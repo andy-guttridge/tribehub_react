@@ -46,6 +46,8 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 
 ### Bootstrap icons
 
+### React Router
+
 ## Testing
 
 ### Manual testing
@@ -73,6 +75,7 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 ## Credits
 
 ### Code
+- How to use the React Router `<BrowserRouter>` component to provide history context to `<Router>` components from [this Stack Overflow article](https://stackoverflow.com/questions/65425884/react-router-v6-error-useroutes-may-be-used-only-in-the-context-of-a-route)
 
 ### Media
 - Placeholder screenshots image used on the wireframes by u_fg0tkeqgiy on [Pixabay](https://pixabay.com/vectors/view-web-secure-image-ipad-laptop-7321141/).
