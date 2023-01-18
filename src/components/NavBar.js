@@ -6,9 +6,9 @@ function NavBar() {
 
   const navBarIcons = (
     <>
-      <NavLink to="/"><House size="32" className="lg:mx-2"/><span className="hidden lg:inline">Home</span></NavLink>
-      <NavLink to="/"><PersonVcard size="32" className="lg:mx-2"/><span className="hidden lg:inline">Contacts</span></NavLink>
-      <NavLink to="/"><Gear size="32" className="lg:mx-2"/><span className="hidden lg:inline">Settings</span></NavLink>
+      <NavLink to="/tribe-home"><House size="32" className="lg:mx-2"/><span className="hidden lg:inline">Home</span></NavLink>
+      <NavLink to="/contacts"><PersonVcard size="32" className="lg:mx-2"/><span className="hidden lg:inline">Contacts</span></NavLink>
+      <NavLink to="/settings"><Gear size="32" className="lg:mx-2"/><span className="hidden lg:inline">Settings</span></NavLink>
     </>
   )
 
