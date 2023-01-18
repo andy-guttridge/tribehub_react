@@ -44,7 +44,7 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 
 ### DaisyUI
 
-### Bootstrap icons
+### React Bootstrap Icons
 
 ### React Router
 
