@@ -77,6 +77,10 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 ### Code
 - How to use the React Router `<BrowserRouter>` component to provide history context to `<Router>` components from [this Stack Overflow article](https://stackoverflow.com/questions/65425884/react-router-v6-error-useroutes-may-be-used-only-in-the-context-of-a-route)
 
+The following documentation was referenced extensively throughout the project:
+
+- [React Router Documentation](https://v5.reactrouter.com/)
+
 ### Media
 - Placeholder screenshots image used on the wireframes by u_fg0tkeqgiy on [Pixabay](https://pixabay.com/vectors/view-web-secure-image-ipad-laptop-7321141/).
 - Placeholder avatar image used on the wireframes and in the app by Stephanie Edwards on [Pixabay](https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/).
