@@ -1,6 +1,7 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
+import Signin from './pages/Signin'
 import TribeHome from './pages/TribeHome';
 import Contacts from './pages/Contacts';
 import Settings from './pages/Settings';
@@ -14,6 +15,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path="/" />
+        <Route exact path="sign-in" element={<Signin />}/>
         <Route exact path="/tribe-home" element={<TribeHome />} />
         <Route exact path="/contacts" element={<Contacts />} />
         <Route exact path="/settings" element={<Settings />} />
