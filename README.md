@@ -48,6 +48,8 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 
 ### React Router
 
+### Axios
+
 ## Testing
 
 ### Manual testing
