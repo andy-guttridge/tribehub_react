@@ -12,6 +12,7 @@ root.render(
     {/* How to use the BrowserRouter component to provide context for Router components is from */}
     {/* https://stackoverflow.com/questions/65425884/react-router-v6-error-useroutes-may-be-used-only-in-the-context-of-a-route */}
     <BrowserRouter>
+      {/* CurrentUserProvider provides current user context to child elements */}
       <CurrentUserProvider>
         <App />
       </CurrentUserProvider>
