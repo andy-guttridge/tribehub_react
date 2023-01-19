@@ -75,7 +75,7 @@ function Signin() {
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password">
               <span>Password:</span>
               <input
-                type="text"
+                type="password"
                 placeholder="password"
                 className="input input-bordered w-full"
                 id="password"
