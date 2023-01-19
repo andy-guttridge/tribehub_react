@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
+import { SetCurrentUserContext, useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 
 function Signin() {
   
@@ -18,6 +18,7 @@ function Signin() {
   const navigate = useNavigate();
 
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
   
   // Retrieve username and password from the state variables
   const { username, password } = signInData;
@@ -35,6 +36,7 @@ function Signin() {
     event.preventDefault();
     try {
       const { data } = await axios.post('/dj-rest-auth/login/', signInData);
+      setCurrentUser(data.user)
       navigate("/tribe-home");
     }
     catch(error){

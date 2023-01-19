@@ -9,7 +9,6 @@ function Settings() {
   // Check if user logged in on mount, if not redirect to landing page
   useEffect( () => {
     !currentUser && navigate("/");
-    console.log('Settings.js mounted')
   }, [])
   
   return (
