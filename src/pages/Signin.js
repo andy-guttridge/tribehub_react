@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 
 function Signin() {
 
@@ -7,6 +8,8 @@ function Signin() {
     password: '',
   });
 
+  const [errors, setErrors] = useState({});
+
   const { username, password } = signInData;
 
   const handleChange = (event) => {
@@ -14,11 +17,17 @@ function Signin() {
       ...signInData,
       [event.target.name]: event.target.value
     })
-  }
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
-  }
+    event.preventDefault();
+    try {
+      const { data } = await axios.post('/dj-rest-auth/login/', signInData);
+    }
+    catch(error){
+      setErrors(error.response?.data)
+    };
+  };
 
   return (
     <>
@@ -31,8 +40,7 @@ function Signin() {
               <input
                   type="text"
                   placeholder="username"
-                  className="input
-                  input-bordered w-full"
+                  className="input input-bordered w-full"
                   id="username"
                   name="username"
                   value={username}
@@ -44,8 +52,7 @@ function Signin() {
               <input
                 type="text"
                 placeholder="password"
-                className="input
-															input-bordered w-full"
+                className="input input-bordered w-full"
                 id="password"
                 name="password"
                 value={password}
