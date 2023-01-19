@@ -13,7 +13,7 @@ function NavBar() {
     </>
   );
 
-  // State variable for current user
+  // State variable for current user details
   const currentUser = useCurrentUser();
 
   return (

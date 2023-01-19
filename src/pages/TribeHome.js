@@ -8,10 +8,7 @@ function TribeHome() {
   
   // Check if user logged in on mount, if not redirect to landing page
   useEffect( () => {
-    if (!currentUser){
-      console.log(currentUser)
-      navigate("/")
-    }
+    !currentUser && navigate("/")
   }, [])
   
   return (

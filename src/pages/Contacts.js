@@ -8,10 +8,8 @@ function Contacts() {
   
   // Check if user logged in on mount, if not redirect to landing page
   useEffect( () => {
-    if (!currentUser){
-      navigate("/")
-    }
-  },[])
+    !currentUser && navigate("/")
+  }, [])
 
   return (
     <div>
