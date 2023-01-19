@@ -1,6 +1,7 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 
+import './api/axiosDefaults'
 import Signin from './pages/Signin'
 import TribeHome from './pages/TribeHome';
 import Contacts from './pages/Contacts';
