@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 function Signin() {
   
@@ -11,6 +13,11 @@ function Signin() {
   
   // State variables for HTTP errors from the API
   const [errors, setErrors] = useState({});
+  
+  // Use to redirect on login
+  const navigate = useNavigate();
+
+  const currentUser = useCurrentUser();
   
   // Retrieve username and password from the state variables
   const { username, password } = signInData;
@@ -28,11 +35,17 @@ function Signin() {
     event.preventDefault();
     try {
       const { data } = await axios.post('/dj-rest-auth/login/', signInData);
+      navigate("/tribe-home");
     }
     catch(error){
       setErrors(error.response?.data)
     };
   };
+  
+  // Redirect to tribe homepage if user is authenticated
+  useEffect(() => {
+    currentUser && navigate("/tribe-home")
+  }, [currentUser])
 
   return (
     <>

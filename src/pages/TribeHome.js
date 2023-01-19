@@ -1,6 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useCurrentUser } from '../contexts/CurrentUserContext'
 
 function TribeHome() {
+  const currentUser = useCurrentUser();
+  const navigate = useNavigate();
+  
+  // Check if user logged in on mount, if not redirect to landing page
+  useEffect( () => {
+    if (!currentUser){
+      console.log(currentUser)
+      navigate("/")
+    }
+  }, [])
+  
   return (
     <div>
       <h2>Home</h2>
