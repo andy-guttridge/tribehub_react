@@ -4,27 +4,28 @@ import { useNavigate } from 'react-router-dom';
 import { SetCurrentUserContext, useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 
 import { setTokenTimestamp } from "../utils/utils";
+import { InfoCircle } from 'react-bootstrap-icons';
 
 function Signin() {
-  
+
   // State variables for sign-in form submission data
   const [signInData, setSignInData] = useState({
     username: '',
     password: '',
   });
-  
+
   // State variables for HTTP errors from the API
   const [errors, setErrors] = useState({});
-  
+
   // Use to redirect on login
   const navigate = useNavigate();
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-  
+
   // Retrieve username and password from the state variables
   const { username, password } = signInData;
-  
+
   // Change handler for sign-in form
   const handleChange = (event) => {
     setSignInData({
@@ -32,7 +33,7 @@ function Signin() {
       [event.target.name]: event.target.value
     })
   };
-  
+
   // Event handler for sign-in form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,11 +43,11 @@ function Signin() {
       setTokenTimestamp(data);
       navigate("/tribe-home");
     }
-    catch(error){
+    catch (error) {
       setErrors(error.response?.data)
     };
   };
-  
+
   // Redirect to tribe homepage if user is authenticated
   useEffect(() => {
     currentUser && navigate("/tribe-home")
@@ -65,16 +66,16 @@ function Signin() {
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="username">
               <span>Username:</span>
               <input
-                  type="text"
-                  placeholder="username"
-                  className="input input-bordered w-full"
-                  id="username"
-                  name="username"
-                  value={username}
-                  onChange={handleChange}
+                type="text"
+                placeholder="username"
+                className="input input-bordered w-full"
+                id="username"
+                name="username"
+                value={username}
+                onChange={handleChange}
               />
             </label>
-            
+
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password">
               <span>Password:</span>
               <input
@@ -89,6 +90,15 @@ function Signin() {
             </label>
             <button className="btn btn-outline w-full">Submit</button>
           </form>
+          
+          {/* Display alert with any sign-in errors */}
+          {
+            errors.non_field_errors?.map((error) => (
+              <div className="alert alert-warning justify-start mt-4">
+                <InfoCircle size="32" /><span>{error}</span>
+              </div>
+            ))
+          }
 
         </div>
       </div>
