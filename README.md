@@ -50,6 +50,8 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 
 ### Axios
 
+### JWT Decode
+
 ## Testing
 
 ### Manual testing
