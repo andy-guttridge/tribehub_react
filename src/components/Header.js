@@ -27,7 +27,7 @@ function Header(A) {
           // Show welcome and sign-out button if user is authenticated
           currentUser && (
             <>
-          <span className="mr-4">Welcome, {currentUser.username}</span>
+          <span className="mr-4">Welcome, {currentUser.display_name}</span>
           <NavLink to="/" onClick={handleSignout}><button className="btn btn-outline btn-xs">Sign-out</button></NavLink>
           </>
           )
