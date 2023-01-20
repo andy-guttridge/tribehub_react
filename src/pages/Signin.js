@@ -93,8 +93,8 @@ function Signin() {
           
           {/* Display alert with any sign-in errors */}
           {
-            errors.non_field_errors?.map((error) => (
-              <div className="alert alert-warning justify-start mt-4">
+            errors.non_field_errors?.map((error, idx) => (
+              <div className="alert alert-warning justify-start mt-4" key={idx}>
                 <InfoCircle size="32" /><span>{error}</span>
               </div>
             ))

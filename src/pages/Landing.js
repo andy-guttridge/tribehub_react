@@ -9,7 +9,8 @@ function Landing() {
   return (
     <div>
       {/* Show sign-in button if user is not authenticated */}
-      {!currentUser && <NavLink to={"/sign-in"}><button className="btn btn-outline btn-wide">Sign-in</button></NavLink>}
+      {!currentUser && <NavLink to={"/register"}><button className="btn btn-outline btn-wide m-2">Register</button></NavLink>}
+      {!currentUser && <NavLink to={"/sign-in"}><button className="btn btn-ghost m-2">Sign-in</button></NavLink>}
       <h2>Landing Page Placeholder</h2>
     </div>
   )

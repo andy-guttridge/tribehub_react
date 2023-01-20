@@ -10,6 +10,7 @@ import NavBar from './components/NavBar';
 import Header from './components/Header';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import Landing from './pages/Landing';
+import Register from './pages/Register';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -19,7 +20,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path="/" element={<Landing />}/>
-        <Route exact path="sign-in" element={<Signin />}/>
+        <Route exact path="/sign-in" element={<Signin />}/>
+        <Route exact path="/register" element={<Register />}/>
         <Route exact path="/tribe-home" element={<TribeHome />} />
         <Route exact path="/contacts" element={<Contacts />} />
         <Route exact path="/settings" element={<Settings />} />
