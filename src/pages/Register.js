@@ -22,12 +22,11 @@ function Register() {
   const navigate = useNavigate();
 
   const currentUser = useCurrentUser();
-  const setCurrentUser = useSetCurrentUser();
 
-  // Retrieve username and password from the state variables
+  // Retrieve required form data from state variables
   const { username, password, password2, tribename } = registerData;
 
-  // Change handler for sign-in form
+  // Change handler for registration form
   const handleChange = (event) => {
     setRegisterData({
       ...registerData,
@@ -35,7 +34,8 @@ function Register() {
     })
   };
 
-  // Event handler for sign-in form submission
+  // Event handler for registration form submission.
+  // Redirects to sign-in page after successful form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -57,15 +57,25 @@ function Register() {
     <>
       <h2>Register</h2>
       {/* Flex container for page content */}
-      <div className="flex justify-center">
+      <div className="flex flex-col items-center">
+        <div className="card card-bordered w-3/4 md:w-1/2 lg:w-1/2 mb-4">
+          <div className="card-body">
+          <h3>Register your tribe here!</h3>
+          <ul className="list-disc text-left">
+          <li>You will be the chief of the tribe.</li>
+          <li>You can add more members to your tribe when you have registered your account and signed in.</li>
+          </ul>
+          </div>
+        </div>
 
         <div className="form-control w-3/4 md:w-1/2 lg:w-1/2">
           <form onSubmit={handleSubmit}>
+            <p>Pick a user name and password for your account</p>
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="username">
               <span>Username:</span>
               <input
                 type="text"
-                placeholder="username"
+                placeholder="Username"
                 className="input input-bordered w-full"
                 id="username"
                 name="username"
@@ -123,7 +133,7 @@ function Register() {
                 <InfoCircle size="32" /><span>{errors.password2}</span>
               </div>
             }
-
+            <p>You will be the chief, so pick a name for your tribe!</p>
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribename">
               <span>Tribe name:</span>
               <input
