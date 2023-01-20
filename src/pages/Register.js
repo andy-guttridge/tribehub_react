@@ -68,8 +68,11 @@ function Register() {
           </div>
         </div>
 
-        <div className="form-control w-3/4 md:w-1/2 lg:w-1/2">
+        <div className="form-control w-3/4 md:w-1/2 lg:w-1/2 text-left">
+          {/* Registration form */}
           <form onSubmit={handleSubmit}>
+
+            {/* Username */}
             <p>Pick a user name and password for your account</p>
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="username">
               <span>Username:</span>
@@ -91,7 +94,8 @@ function Register() {
                 <InfoCircle size="32" /><span>{errors.username}</span>
               </div>
             }
-
+            
+            {/* Password */}
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password">
               <span>Password:</span>
               <input
@@ -112,7 +116,8 @@ function Register() {
                 <InfoCircle size="32" /><span>{errors.password}</span>
               </div>
             }
-
+            
+            {/* Password 2 */}
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password2">
               <span>Password 2:</span>
               <input
@@ -133,6 +138,8 @@ function Register() {
                 <InfoCircle size="32" /><span>{errors.password2}</span>
               </div>
             }
+
+            {/* Tribename */}
             <p>You will be the chief, so pick a name for your tribe!</p>
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribename">
               <span>Tribe name:</span>
