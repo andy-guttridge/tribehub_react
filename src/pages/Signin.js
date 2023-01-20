@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { SetCurrentUserContext, useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 
+import { setTokenTimestamp } from "../utils/utils";
+
 function Signin() {
   
   // State variables for sign-in form submission data
@@ -37,6 +39,7 @@ function Signin() {
     try {
       const { data } = await axios.post('/dj-rest-auth/login/', signInData);
       setCurrentUser(data.user)
+      setTokenTimestamp(data);
       navigate("/tribe-home");
     }
     catch(error){
