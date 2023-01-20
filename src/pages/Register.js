@@ -119,7 +119,7 @@ function Register() {
             
             {/* Password 2 */}
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password2">
-              <span>Password 2:</span>
+              <span>Re-enter password:</span>
               <input
                 type="password"
                 placeholder="Re-enter password"
