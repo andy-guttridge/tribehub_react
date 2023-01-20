@@ -7,8 +7,8 @@ function NavBar() {
 
   const navBarIcons = (
     <>
-      <NavLink to="/tribe-home"><House size="32" className="lg:mx-2" aria-label="Home" /><span className="hidden lg:inline">Home</span></NavLink>
-      <NavLink to="/contacts"><PersonVcard size="32" className="lg:mx-2" aria-label="Contacts" /><span className="hidden lg:inline">Contacts</span></NavLink>
+      <NavLink to="/tribe-home"><House size="32" className="lg:mx-2" aria-label="Home" /><span className="hidden lg:inline lg:mr-24">Home</span></NavLink>
+      <NavLink to="/contacts"><PersonVcard size="32" className="lg:mx-2" aria-label="Contacts" /><span className="hidden lg:inline lg:mr-24">Contacts</span></NavLink>
       <NavLink to="/settings"><Gear size="32" className="lg:mx-2" aria-label="Settings" /><span className="hidden lg:inline">Settings</span></NavLink>
     </>
   );
@@ -26,7 +26,7 @@ function NavBar() {
             {navBarIcons}
           </div>
           {/* Top NavBar for large breakpoint and above */}
-          <div className="navbar hidden lg:flex justify-around">
+          <div className="navbar hidden lg:flex justify-center">
             {navBarIcons}
           </div>
         </>
