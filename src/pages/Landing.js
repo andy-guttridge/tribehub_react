@@ -1,10 +1,16 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
 function Landing() {
 
   const currentUser = useCurrentUser();
+  const navigate = useNavigate();
+
+  // Check if user logged in on mount, if yes redirect to tribe-home
+  useEffect ( () => {
+    currentUser && navigate("/tribe-home")
+  }, [])
 
   return (
     <div>

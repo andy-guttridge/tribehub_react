@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
-function TribeHome() {
+function TribeHome({ singlePage }) {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
   
@@ -12,7 +12,13 @@ function TribeHome() {
   }, [])
   
   return (
-    <div>
+    // Apply some styling if displaying in single page mode
+    <div
+      className={
+        singlePage
+        && "basis-4/5 border-solid border-2 flex-none m-2"
+      }
+    >
       <h2>Home</h2>
     </div>
   )
