@@ -5,7 +5,7 @@ import './api/axiosDefaults'
 import Signin from './pages/Signin'
 import TribeHome from './pages/TribeHome';
 import Contacts from './pages/Contacts';
-import Settings from './pages/Settings';
+import Account from './pages/Account';
 import NavBar from './components/NavBar';
 import Header from './components/Header';
 import { useCurrentUser } from './contexts/CurrentUserContext';
@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/register" element={<Register />}/>
         <Route exact path="/tribe-home" element={<TribeHome />} />
         <Route exact path="/contacts" element={<Contacts />} />
-        <Route exact path="/settings" element={<Settings />} />
+        <Route exact path="/account" element={<Account />} />
       </Routes>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
-function Settings() {
+function Account() {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
   
@@ -13,9 +13,9 @@ function Settings() {
   
   return (
     <div>
-      <h2>Settings</h2>
+      <h2>Account</h2>
     </div>
   )
 }
 
-export default Settings
+export default Account

@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { House, PersonVcard, Gear } from 'react-bootstrap-icons'
+import { House, PersonVcard, Gear, PersonGear } from 'react-bootstrap-icons'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
 function NavBar() {
@@ -9,7 +9,7 @@ function NavBar() {
     <>
       <NavLink to="/tribe-home"><House size="32" className="lg:mx-2" aria-label="Home" /><span className="hidden lg:inline lg:mr-24">Home</span></NavLink>
       <NavLink to="/contacts"><PersonVcard size="32" className="lg:mx-2" aria-label="Contacts" /><span className="hidden lg:inline lg:mr-24">Contacts</span></NavLink>
-      <NavLink to="/settings"><Gear size="32" className="lg:mx-2" aria-label="Settings" /><span className="hidden lg:inline">Settings</span></NavLink>
+      <NavLink to="/account"><PersonGear size="32" className="lg:mx-2" aria-label="Account" /><span className="hidden lg:inline">Account</span></NavLink>
     </>
   );
 
