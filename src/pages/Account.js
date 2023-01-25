@@ -75,6 +75,7 @@ function Account() {
             <Spinner />
           )}
           {/* Show button to add new user or the component with the form to add a new user depending on state variable */}
+          {/* We have to pass handleNewMemberButton to the form component so that it can set the isAddingNewMember state back to false */}
           <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
             {
               !isAddingNewMember ? (
