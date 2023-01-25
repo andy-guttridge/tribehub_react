@@ -50,6 +50,8 @@ function App() {
                 <Route exact path="/contacts" element={<Contacts />} />
                 <Route exact path="/account" element={<Account />} />
               </Routes>
+              {/* Div with margin to ensure clearance above bottom navbar */}
+              <div className="mb-20"></div>
             </>
           ) : (
             // If window width larger than breakpoint, use single page app layout
