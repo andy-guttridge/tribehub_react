@@ -62,10 +62,15 @@ function Account() {
           <h3>Your tribe</h3>
           {/* We do not include the user in the list */}
           {hasLoaded ? (
-            tribe.results[0]?.users.map(tribeMember => (
-              (currentUser.pk !== tribeMember.user_id) && 
-              (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} />)
-            ))
+            // If there is only one user in the tribe, it must be the tribe admin so show a prompt to add more users.
+            tribe.results[0].users.length > 1 ? (
+              tribe.results[0]?.users.map(tribeMember => (
+                (currentUser.pk !== tribeMember.user_id) && 
+                (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} />)
+              ))
+            ) : (
+              <p className="m-2">It's looking a bit empty! Click the add button to add a member to your tribe.</p>
+            )
           ) : (
             <Spinner />
           )}
