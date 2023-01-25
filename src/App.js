@@ -69,7 +69,6 @@ function App() {
               {/* If user is logged in and URL is something random, use SinglePage component */}
               {/* Otherwise, redirect to the landing page. */}
               {currentUser && (currentUrl.pathname !== "/") && <SinglePage />}
-              {!currentUser && (currentUrl.pathname !== "/") && <Landing />}
             </>
           )
       }
