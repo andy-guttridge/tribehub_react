@@ -18,7 +18,7 @@ function Account() {
   const singlePageStyles = "basis-4/5 border-solid border-2 flex-none m-2"
 
   const handleNewMember = () => {
-    
+
   }
 
   useEffect(() => {
@@ -46,17 +46,22 @@ function Account() {
       }
     >
       <h2>Account</h2>
-      <h3>Your tribe</h3>
-      {hasLoaded ? (
-        tribe.results[0]?.users.map(tribeMember => (
-          <TribeMember key={tribeMember.user_id} tribeMember={tribeMember} />
-        ))
-      ) : (
-        <Spinner />
-      )}
-      <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
-        <button onClick={handleNewMember}><PlusCircle size="32"/></button>
-      </div>
+      {currentUser.is_admin &&
+        <>
+          <h3>Your tribe</h3>
+          {hasLoaded ? (
+            tribe.results[0]?.users.map(tribeMember => (
+              (currentUser.pk !== tribeMember.user_id) && 
+              (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} />)
+            ))
+          ) : (
+            <Spinner />
+          )}
+          <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
+            <button onClick={handleNewMember}><PlusCircle size="32" /></button>
+          </div>
+        </>
+      }
     </div>
   )
 }
