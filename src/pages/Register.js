@@ -43,7 +43,7 @@ function Register() {
       navigate("/sign-in");
     }
     catch (error) {
-      setErrors(error.response?.data)
+      setErrors(error.response?.data);
     };
   };
 
