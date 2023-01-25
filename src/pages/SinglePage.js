@@ -17,11 +17,11 @@ function SinglePage() {
 
   return (
     // Use the components we display as separate pages for mobile embedded in one single
-    // page. Use a singlePage prop to tell the children they are being rendered in single page mode.
+    // page.
     <div className="flex flex-wrap justify-center">
-      <TribeHome singlePage />
-      <Contacts singlePage />
-      <Account singlePage />
+      <TribeHome />
+      <Contacts />
+      <Account />
     </div>
   )
 }

@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
+import { SinglePageProvider } from './contexts/SinglePageContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <BrowserRouter>
       {/* CurrentUserProvider provides current user context to child elements */}
       <CurrentUserProvider>
-        <App />
+        <SinglePageProvider>
+          <App />
+        </SinglePageProvider>
       </CurrentUserProvider>
     </BrowserRouter >
   </React.StrictMode>

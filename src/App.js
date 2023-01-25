@@ -13,36 +13,25 @@ import { useCurrentUser } from './contexts/CurrentUserContext';
 import Landing from './pages/Landing';
 import Register from './pages/Register';
 import SinglePage from './pages/SinglePage';
+import { useSinglePage } from './contexts/SinglePageContext';
 
 
 function App() {
-  // Technique for using an event listener to store the current window size in
-  // state variables is from 
-  // https://stackoverflow.com/questions/62954765/how-to-do-conditional-rendering-according-to-screen-width-in-react
-  // State variables for current width of window
-  const [width, setWidth] = useState(window.innerWidth);
-  const breakPoint = 1024;
 
   // Hook to check the current URL
   const currentUrl = useLocation();
-  
-  // When mounted, set event listener to check for window being resized
-  // and update state when it is. Clean up event listener when unmounted.
-  useEffect(() => {
-    const handleResizeWindow = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResizeWindow);
-    return () => {
-      window.removeEventListener("resize", handleResizeWindow);
-    };
-  }, [])
 
+  // Hook to provide current user context
   const currentUser = useCurrentUser();
+
+  // Hook to provide context on whether to display in single page mode
+  const singlePage = useSinglePage();
   return (
     <div className="App">
       <Header />
       {
         // If window width less than large breakpoint, display mobile navbar and separate pages
-        width < breakPoint ?
+        !singlePage ?
           (
             <>
               <NavBar />
