@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
+import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 function TribeMemberDetailsForm({ handleNewMemberButton }) {
@@ -33,7 +34,7 @@ function TribeMemberDetailsForm({ handleNewMemberButton }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('/accounts/user/', registerData);
+      await axiosReq.post('/accounts/user/', registerData);
       handleNewMemberButton();
     }
     catch (error) {

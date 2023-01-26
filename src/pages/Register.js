@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { InfoCircle } from 'react-bootstrap-icons';
 
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+import { axiosReq } from '../api/axiosDefaults';
 
 function Register() {
 
@@ -39,7 +40,7 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('/accounts/tribe/', registerData);
+      await axiosReq.post('/accounts/tribe/', registerData);
       navigate("/sign-in");
     }
     catch (error) {

@@ -7,6 +7,7 @@ import TribeMember from '../components/TribeMember';
 import Spinner from '../components/Spinner';
 import { PlusCircle } from 'react-bootstrap-icons';
 import TribeMemberDetailsForm from '../components/TribeMemberDetailsForm';
+import { axiosReq } from '../api/axiosDefaults';
 
 function Account() {
   // Hooks for current user, changing current page location, checking if app is in single page mode
@@ -37,7 +38,7 @@ function Account() {
     // Fetch tribe members
     const fetchTribe = async () => {
       try {
-        const { data } = await axios.get('tribe/');
+        const { data } = await axiosReq.get('tribe/');
         setTribe(data);
         setHasLoaded(true);
       }

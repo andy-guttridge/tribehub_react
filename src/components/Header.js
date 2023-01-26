@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { axiosRes } from '../api/axiosDefaults';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 
 function Header(A) {
@@ -11,7 +12,7 @@ function Header(A) {
   // Handle sign-out with API
   const handleSignout = async (event) => {
     try {
-      await axios.post("dj-rest-auth/logout/");
+      await axiosRes.post("dj-rest-auth/logout/");
       setCurrentUser(null);
     }
     catch(error) {
