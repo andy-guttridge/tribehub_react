@@ -34,7 +34,6 @@ function App() {
         !singlePage ?
           (
             <>
-              <NavBar className="z-[9999]"/>
               <Routes>
                 <Route exact path="/" element={
                   currentUser ? (
@@ -52,6 +51,7 @@ function App() {
               </Routes>
               {/* Div with margin to ensure clearance above bottom navbar */}
               <div className="mb-20"></div>
+              <NavBar className="z-[9999]"/>
             </>
           ) : (
             // If window width larger than breakpoint, use single page app layout

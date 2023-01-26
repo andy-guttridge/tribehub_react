@@ -94,6 +94,7 @@ function TribeMemberDetailsForm({ handleNewMemberButton }) {
         }
 
         {/* Password 2 */}
+        <div>
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password2">
           <span>Re-enter password:</span>
           <input
@@ -106,6 +107,7 @@ function TribeMemberDetailsForm({ handleNewMemberButton }) {
             onChange={handleChange}
           />
         </label>
+        </div>
 
         {/* Display alert with any password2 errors */}
         {
