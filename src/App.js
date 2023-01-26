@@ -34,7 +34,7 @@ function App() {
         !singlePage ?
           (
             <>
-              <NavBar />
+              <NavBar className="z-[9999]"/>
               <Routes>
                 <Route exact path="/" element={
                   currentUser ? (
