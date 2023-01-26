@@ -9,8 +9,6 @@ import Spinner from '../components/Spinner';
 import TribeMemberDetailsForm from '../components/TribeMemberDetailsForm';
 import { axiosReq } from '../api/axiosDefaults';
 
-
-
 function MyTribe() {
   // Hooks for current user, changing current page location, checking if app is in single page mode
   const currentUser = useCurrentUser();
