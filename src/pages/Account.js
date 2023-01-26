@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 import { useSinglePage } from '../contexts/SinglePageContext';
+import ConfirmModal from '../components/ConfirmModal';
 import TribeMember from '../components/TribeMember';
 import Spinner from '../components/Spinner';
 import { PlusCircle } from 'react-bootstrap-icons';
@@ -15,26 +16,46 @@ function Account() {
   const navigate = useNavigate();
   const singlePage = useSinglePage();
 
-  // State variables for members of the user's tribe, whether the component has loaded and whether user
+  // State variables for members of the user's tribe, whether the component has loaded, and whether user
   // is in the process of adding a new user.
   const [tribe, setTribe] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [isAddingNewMember, setIsAddingNewMember] = useState(false);
 
+  // State variable to confirm whether a tribe admin has selected to delete one of their tribe member's
+  // accounts. If yes, this stores the user id of the user they've selected to delete.
+  const [isDeletingMember, setIsDeletingMember] = useState(false);
+
   // Styles to apply if app is in single page mode
-  const singlePageStyles = "basis-4/5 border-solid border-2 flex-none m-2"
+  const singlePageStyles = "basis-4/5 border-solid border-2 flex-none m-2";
 
   // Handler to respond to the add new member button by toggling the state
   const handleNewMemberButton = () => {
     setIsAddingNewMember(!isAddingNewMember);
-  } 
+  }
+
+  // Handler for delete tribe member buttons
+  const handleDeleteButton = (id) => {
+    setIsDeletingMember(id);
+  }
   
-  // Use effect has isAddingNewMember in dependency array, to ensure component reloads
-  // when the user has finished adding a new user
+  // Handler to delete a tribe member
+  const doDelete = async () => {
+    try {
+      await axiosReq.delete(`accounts/user/${isDeletingMember}`)
+    }
+    catch (error) {
+      console.log(error.response?.data)
+    }
+    setIsDeletingMember(false);
+  }
+
+  // Use effect has isAddingNewMember and isDeletingNewMember in dependency array, to ensure component reloads
+  // when the user has finished adding a new user or deleting a user
   useEffect(() => {
     // Check if user logged in on mount, if not redirect to landing page
     !currentUser && navigate("/");
-    
+
     // Fetch tribe members
     const fetchTribe = async () => {
       try {
@@ -47,7 +68,7 @@ function Account() {
       }
     }
     fetchTribe();
-  }, [isAddingNewMember])
+  }, [isAddingNewMember, isDeletingMember])
 
   return (
     // Apply some styling if displaying in single page mode
@@ -60,14 +81,14 @@ function Account() {
       {/* List members of tribe if user is tribe admin */}
       {currentUser?.is_admin &&
         <>
-          <h3>Your tribe</h3>
+          <h3>My tribe</h3>
           {/* We do not include the user in the list */}
           {hasLoaded ? (
             // If there is only one user in the tribe, it must be the tribe admin so show a prompt to add more users.
             tribe.results[0].users.length > 1 ? (
               tribe.results[0]?.users.map(tribeMember => (
-                (currentUser.pk !== tribeMember.user_id) && 
-                (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} />)
+                (currentUser.pk !== tribeMember.user_id) &&
+                (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} handleDeleteButton={handleDeleteButton} />)
               ))
             ) : (
               <p className="m-2">It's looking a bit empty! Click the add button to add a member to your tribe.</p>
@@ -82,10 +103,21 @@ function Account() {
               !isAddingNewMember ? (
                 <button onClick={handleNewMemberButton}><PlusCircle size="32" /></button>
               ) : (
-                <TribeMemberDetailsForm handleNewMemberButton={handleNewMemberButton}/>
+                <TribeMemberDetailsForm handleNewMemberButton={handleNewMemberButton} />
               )
             }
           </div>
+
+          {/* If tribe admin has selected to delete a tribeMember, show the modal to confirm or cancel */}
+          {
+            isDeletingMember &&
+            <ConfirmModal
+              heading="Delete user"
+              body="Are	you sure you want to delete this user account?"
+              cancelHandler={() => setIsDeletingMember(false)}
+              confirmHandler={doDelete}
+            />
+          }
         </>
       }
     </div>
