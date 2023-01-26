@@ -1,8 +1,7 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
+
 import { axiosReq } from '../api/axiosDefaults';
-import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 function TribeMemberDetailsForm({ handleNewMemberButton }) {
 
@@ -15,8 +14,6 @@ function TribeMemberDetailsForm({ handleNewMemberButton }) {
 
     // State variables for HTTP errors from the API
   const [errors, setErrors] = useState({});
-
-  const currentUser = useCurrentUser();
 
     // Retrieve required form data from state variables
     const { username, password, password2 } = registerData;
@@ -49,7 +46,7 @@ function TribeMemberDetailsForm({ handleNewMemberButton }) {
       <form onSubmit={handleSubmit}>
 
         {/* Username */}
-        <p>Pick a user name and password for your account</p>
+        <p>Pick a user name and password for their account</p>
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="username">
           <span>Username:</span>
           <input
