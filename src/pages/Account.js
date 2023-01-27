@@ -3,6 +3,7 @@ import React from 'react'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 import { useSinglePage } from '../contexts/SinglePageContext';
 import MyTribe from '../components/MyTribe';
+import MyAccount from '../components/MyAccount';
 
 function Account() {
   // Hooks for current user, changing current page location, checking if app is in single page mode
@@ -22,6 +23,7 @@ function Account() {
       <h2>Account</h2>
       {/* Show members of the user's tribe if they are tribe admin */}
       {currentUser?.is_admin && <MyTribe />}
+      <MyAccount />
     </div>
   )
 }
