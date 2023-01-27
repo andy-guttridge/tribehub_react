@@ -4,8 +4,7 @@ import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContex
 
 import { setTokenTimestamp } from "../utils/utils";
 import { InfoCircle } from 'react-bootstrap-icons';
-import { axiosReq, axiosRes } from '../api/axiosDefaults';
-import axios from 'axios';
+import { axiosReq } from '../api/axiosDefaults';
 
 function Signin() {
 
