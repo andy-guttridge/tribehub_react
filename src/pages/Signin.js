@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { SetCurrentUserContext, useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 
 import { setTokenTimestamp } from "../utils/utils";
 import { InfoCircle } from 'react-bootstrap-icons';
-import { axiosRes } from '../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../api/axiosDefaults';
+import axios from 'axios';
 
 function Signin() {
 
@@ -39,13 +39,13 @@ function Signin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axiosRes.post('/dj-rest-auth/login/', signInData);
+      const { data } = await axiosReq.post('/dj-rest-auth/login/', signInData);
       setCurrentUser(data.user)
       setTokenTimestamp(data);
       navigate("/tribe-home");
     }
-    catch (error) {
-      setErrors(error.response?.data)
+    catch (errors) {
+      setErrors(errors.response?.data);
     };
   };
 
