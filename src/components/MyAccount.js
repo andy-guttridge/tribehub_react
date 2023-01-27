@@ -62,6 +62,7 @@ function MyAccount() {
   return (
     <>
       <h3>My Account</h3>
+      <h3>My Profile</h3>
       <h3>Delete Account</h3>
       <div className="block m-4">
         <div className="md:w-2/3 text-left m-auto">
