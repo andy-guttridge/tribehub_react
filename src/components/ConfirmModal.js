@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+import styles from '../styles/ConfirmModal.module.css'
+
 function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
   
   // Handler to identify if user has clicked outside modal and remove it if so
@@ -20,7 +22,7 @@ function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
     <div className="modal modal-open">
       <div className="modal-box">
         <h3>{heading}</h3>
-        <p>{body}</p>
+        <p className={`text-left ${styles.ModalBodyTxt}`}>{body}</p>
         <button
           className="btn btn-outline btn-sm m-2"
           onClick={cancelHandler}
