@@ -11,9 +11,9 @@ function MyAccount() {
   // Ref to useNavigate hook for redidrection
   const navigate = useNavigate();
 
-   // Reference to current user
-   const currentUser = useCurrentUser();
-   const setCurrentUser = useSetCurrentUser();
+  // Reference to current user
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
 
 
   // State variable to confirm whether data has loaded;
@@ -48,7 +48,9 @@ function MyAccount() {
     <>
       <h3>My Account</h3>
       <h3>My Profile</h3>
-      <ProfileForm />
+      <div className="justify-center flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
+        <ProfileForm />
+      </div>
       <h3>Delete Account</h3>
       <div className="block m-4">
         <div className="md:w-2/3 text-left m-auto">

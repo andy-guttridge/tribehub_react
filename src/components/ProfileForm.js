@@ -88,7 +88,7 @@ function ProfileForm() {
   }, [])
 
   return (
-    <div className="m-8">
+    <div className="basis-full">
       <form onSubmit={handleSubmit}>
         {/* Display name */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="display_name">
