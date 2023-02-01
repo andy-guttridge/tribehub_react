@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import Avatar from './Avatar';
+import Spinner from './Spinner';
 
 function ProfileForm() {
 
   // Reference to current user
   const currentUser = useCurrentUser();
-  const setCurrentUser = useSetCurrentUser();
 
   // Use useRef hook to maintain a reference to the form file upload element
   const imageInput = useRef(null);
@@ -60,7 +60,9 @@ function ProfileForm() {
 
     // We have to refresh the user's access token before we make a request to create a post, because we are uploading an image file as well as text.
     try {
+      setHasLoaded(false);
       await axiosReq.put(`/profile/${currentUser.pk}/`, formData);
+      setHasLoaded(true);
     }
     catch (err) {
       // console.log(err)
@@ -77,7 +79,7 @@ function ProfileForm() {
         const { data } = await axiosReq.get(`profile/${currentUser.pk}/`);
         const { display_name, image } = data;
         console.log(image)
-        setProfileData( {display_name, image} );
+        setProfileData({ display_name, image });
         setHasLoaded(true);
       }
       catch (error) {
@@ -89,28 +91,33 @@ function ProfileForm() {
 
   return (
     <div className="basis-full">
-      <form onSubmit={handleSubmit}>
-        {/* Display name */}
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="display_name">
-          <span>Display Name:</span>
-          <input
-            type="text"
-            className="input input-bordered w-full"
-            id="display_name"
-            name="display_name"
-            value={display_name}
-            onChange={handleChange}
-          />
-        </label>
+      {hasLoaded ? (
+        <form onSubmit={handleSubmit}>
+          {/* Display name */}
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="display_name">
+            <span>Display Name:</span>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              id="display_name"
+              name="display_name"
+              value={display_name}
+              onChange={handleChange}
+            />
+          </label>
 
-        {/* Profile image  */}
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="image">
-          <span>Profile image:</span>
-          <input type="file" className="file-input file-input-bordered w-full" onChange={handleImageChange} accept="image/*" ref={imageInput} />
-        </ label>
-        <Avatar imageUrl={ image } large />
-        <button className="btn btn-wide">Submit</button>
-      </form>
+          {/* Profile image  */}
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="image">
+            <span>Profile image:</span>
+            <input type="file" className="file-input file-input-bordered w-full" onChange={handleImageChange} accept="image/*" ref={imageInput} />
+          </ label>
+          <Avatar imageUrl={image} large />
+          <button className="btn btn-wide">Submit</button>
+        </form>
+      ) : (
+        <Spinner />
+      )}
+
     </div>
   )
 }
