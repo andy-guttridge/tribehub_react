@@ -13,7 +13,7 @@ function ProfileForm() {
   // Use useRef hook to maintain a reference to the form file upload element
   const imageInput = useRef(null);
 
-  // State variable for editable profile data;
+  // State variables for editable profile data;
   const [profileData, setProfileData] = useState({
     display_name: '',
     image: '',
@@ -48,7 +48,7 @@ function ProfileForm() {
   }
 
   // Handle form submission
-  const handleSubmit = async (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
 
     // Create new form data and append the current display_name value.
@@ -141,6 +141,7 @@ function ProfileForm() {
               <InfoCircle size="32" /><span>{errors.image}</span>
             </div>
           }
+          
           <button className="btn btn-wide">Submit</button>
 
           {/* Display alert with any non-field errors */}

@@ -34,12 +34,12 @@ function TribeMemberDetailsForm({ handleNewMemberButton }) {
       await axiosReq.post('/accounts/user/', registerData);
       handleNewMemberButton();
     }
-    catch (error) {
+    catch(error) {
       setErrors(error.response?.data);
     };
   };
 
-  return (
+  return(
     <div className="basis-full">
       <h3>Add tribe member</h3>
       {/* Registration form */}

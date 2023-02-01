@@ -5,6 +5,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext'
 import ConfirmModal from './ConfirmModal';
 import DeleteAccountButton from './DeleteAccountForm';
+import PasswordChangeForm from './PasswordChangeForm';
 import ProfileForm from './ProfileForm';
 
 function MyAccount() {
@@ -47,11 +48,21 @@ function MyAccount() {
 
   return (
     <>
-      <h3>My Account</h3>
+      {/* Update profile section */}
       <h3>My Profile</h3>
       <div className="justify-center flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
         <ProfileForm />
       </div>
+
+      {/* Change password section */}
+      <h3>Change password</h3>
+      <div className="block m-4">
+        <div className="md:w-2/3 text-left m-auto">
+          <PasswordChangeForm />
+        </div>
+      </div>
+
+      {/* Delete acccount section */}
       <h3>Delete Account</h3>
       <div className="block m-4">
         <div className="md:w-2/3 text-left m-auto">
