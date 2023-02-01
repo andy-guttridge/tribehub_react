@@ -111,7 +111,9 @@ function ProfileForm() {
             <span>Profile image:</span>
             <input type="file" className="file-input file-input-bordered w-full" onChange={handleImageChange} accept="image/*" ref={imageInput} />
           </ label>
+          <div className="flex justify-center">
           <Avatar imageUrl={image} large />
+          </div>
           <button className="btn btn-wide">Submit</button>
         </form>
       ) : (
