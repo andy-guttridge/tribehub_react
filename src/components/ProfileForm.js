@@ -24,6 +24,9 @@ function ProfileForm() {
   // State variables for HTTP errors from the API
   const [errors, setErrors] = useState({});
 
+  // State variable to confirm the profile change request was successful
+  const [requestSucceeded, setRequestSucceeded] = useState(false);
+
   // State variable to confirm whether data has loaded;
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -48,7 +51,7 @@ function ProfileForm() {
   }
 
   // Handle form submission
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Create new form data and append the current display_name value.
@@ -66,6 +69,8 @@ function ProfileForm() {
       setHasLoaded(false);
       await axiosReq.put(`/profile/${currentUser.pk}/`, formData);
       setHasLoaded(true);
+      setRequestSucceeded(true);
+      setErrors({});
     }
     catch (err) {
       // console.log(err)
@@ -73,10 +78,11 @@ function ProfileForm() {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data)
         setHasLoaded(true);
+        setRequestSucceeded(false);
       }
     }
   }
-  
+
   // Fetch user's profile data on mount and update state variables with 
   // fetched data, or errors if not successful
   useEffect(() => {
@@ -141,7 +147,7 @@ function ProfileForm() {
               <InfoCircle size="32" /><span>{errors.image}</span>
             </div>
           }
-          
+
           <button className="btn btn-wide">Submit</button>
 
           {/* Display alert with any non-field errors */}
@@ -151,6 +157,14 @@ function ProfileForm() {
                 <InfoCircle size="32" /><span>{error}</span>
               </div>
             ))
+          }
+
+          {/* Display alert with success message if the request succeeded */}
+          {
+            requestSucceeded && 
+              <div className="alert alert-success justify-start mt-4">
+                <InfoCircle size="32" /><span>Profile updated</span>
+              </div>
           }
         </form>
       ) : (
