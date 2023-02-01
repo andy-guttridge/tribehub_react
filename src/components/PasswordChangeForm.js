@@ -36,6 +36,12 @@ function PasswordChangeForm() {
     try {
       setHasLoaded(false);
       await axiosReq.post('/dj-rest-auth/password/change/', passwordFormData);
+      // Clear the form
+      setPasswordFormData({
+        new_password1: '',
+        new_password2: '',
+        old_password: ''
+      })
       setRequestSucceeded(true);
       setHasLoaded(true);
       setErrors({});
