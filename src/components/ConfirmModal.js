@@ -20,9 +20,9 @@ function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
 
   return (
     <div className="modal modal-open">
-      <div className="modal-box">
+      <div className="modal-box text-center">
         <h3>{heading}</h3>
-        <p className={`text-left ${styles.ModalBodyTxt}`}>{body}</p>
+        <p className={`text-center ${styles.ModalBodyTxt}`}>{body}</p>
         <button
           className="btn btn-outline btn-sm m-2"
           onClick={cancelHandler}

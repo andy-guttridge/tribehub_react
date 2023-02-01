@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom'
 import { useNavigate } from 'react-router-dom';
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext'
@@ -60,19 +61,21 @@ function MyAccount() {
       </div>
       < DeleteAccountButton handleDeleteAccountBtn={handleDeleteAccountBtn} />
       {
-        isDeletingAccount &&
-        <ConfirmModal
-          heading="Delete account"
-          body={
-            currentUser.is_admin ? (
-              "Are you sure you want to delete your user account and all those of your tribe members?\n\n This action cannot be undone."
-            ) : (
-              "Are you sure you want to delete your user account? This action cannot be undone."
-            )
-          }
-          cancelHandler={() => setIsDeletingAccount(false)}
-          confirmHandler={doDeleteAccount}
-        />
+        // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
+        // https://upmostly.com/tutorials/modal-components-react-custom-hooks
+        isDeletingAccount && ReactDOM.createPortal(
+          <ConfirmModal
+            heading="Delete account"
+            body={
+              currentUser.is_admin ? (
+                "Are you sure you want to delete your user account and all those of your tribe members?\n\n This action cannot be undone."
+              ) : (
+                "Are you sure you want to delete your user account? This action cannot be undone."
+              )
+            }
+            cancelHandler={() => setIsDeletingAccount(false)}
+            confirmHandler={doDeleteAccount}
+          />, document.body)
       }
     </>
   )

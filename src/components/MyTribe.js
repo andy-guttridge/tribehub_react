@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ReactDOM from 'react-dom'
 import { useNavigate } from 'react-router-dom'
 import { PlusCircle } from 'react-bootstrap-icons';
 
@@ -95,14 +96,16 @@ function MyTribe() {
       </div>
 
       {/* If tribe admin has selected to delete a tribeMember, show the modal to confirm or cancel */}
+      {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
+          // https://upmostly.com/tutorials/modal-components-react-custom-hooks */}
       {
-        isDeletingMember &&
-        <ConfirmModal
-          heading="Delete user"
-          body="Are	you sure you want to delete this user account?"
-          cancelHandler={() => setIsDeletingMember(false)}
-          confirmHandler={doDelete}
-        />
+        isDeletingMember && ReactDOM.createPortal(
+          <ConfirmModal
+            heading="Delete user"
+            body="Are	you sure you want to delete this user account?"
+            cancelHandler={() => setIsDeletingMember(false)}
+            confirmHandler={doDelete}
+          />, document.body)
       }
     </>
   )
