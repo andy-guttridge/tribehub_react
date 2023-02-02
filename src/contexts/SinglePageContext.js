@@ -23,14 +23,14 @@ export const SinglePageProvider = ({ children }) => {
     }
     window.addEventListener("resize", handleResizeWindow);
     setSinglePage(window.innerWidth >= breakPoint);
-    return () => {
+    return() => {
       window.removeEventListener("resize", handleResizeWindow);
     };
   }, [])
 
-  return (
+  return(
     <SinglePageContext.Provider value={singlePage}>
-    { children }
+      { children }
     </SinglePageContext.Provider>
   )
 }
