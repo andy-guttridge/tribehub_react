@@ -16,7 +16,7 @@ root.render(
       {/* CurrentUserProvider provides current user context to child elements */}
       <CurrentUserProvider>
         <SinglePageProvider>
-          <App className="z-0" />
+            <App className="z-0" />
         </SinglePageProvider>
       </CurrentUserProvider>
     </BrowserRouter >

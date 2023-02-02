@@ -9,6 +9,7 @@ import styles from '../styles/Calendar.module.css';
 
 import Spinner from '../components/Spinner';
 import { axiosReq } from '../api/axiosDefaults';
+import { checkEventsForDate } from '../utils/utils';
 
 function TribeHome() {
   // Get ref to current user
@@ -30,24 +31,22 @@ function TribeHome() {
   const [events, setEvents] = useState({ results: [] });
 
   useEffect(() => {
-     // Check if user logged in on mount, if not redirect to landing page
+    // Check if user logged in on mount, if not redirect to landing page
     !currentUser && navigate("/");
 
     // Fetch user's events
     const fetchEvents = async () => {
       try {
         const { data } = await axiosReq.get('/events/')
-        console.log (data)
         setEvents(data);
         setHasLoaded(true);
       }
-      catch(errors) {
+      catch (errors) {
         console.log(errors);
       }
     }
     setHasLoaded(false);
     fetchEvents();
-    console.log(events);
   }, [currentUser])
 
   return (
@@ -62,7 +61,12 @@ function TribeHome() {
         <>
           <h2>Home</h2>
           <div className="flex justify-center m-4">
-            <Calendar className={`${styles.TribehubCalendar}`} />
+            <Calendar
+              className={`${styles.TribehubCalendar}`}
+              calendarType="ISO 8601"
+              minDetail="month"
+              tileContent={(calData) => checkEventsForDate(calData, events)}
+            />
           </div>
           {events?.results?.map((event, idx) => <p key={idx}>{event.subject}</p>)}
         </>
