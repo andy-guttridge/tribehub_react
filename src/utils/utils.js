@@ -54,3 +54,18 @@ export const checkEventsForDate = (calData, events) => {
     </div>
   )
 }
+
+// Find out if there are any events for the day supplied by the calendar
+export const getEventsForDay = (calDate, events, e) => {
+  // Convert all dates to ISO strings without timezone data
+  const calDateISOStr = calDate.toISOString().slice(0, -5);
+
+  // Check each event against the date supplied by the calendar, and if the dates match add to a new array
+  const eventsForDay = events?.results?.filter((event) => {
+    const eventDate = new Date(event.start);
+    eventDate.setHours(0, 0, 0);
+    const eventDateISOStr = eventDate.toISOString().slice(0, -5);
+    return eventDateISOStr === calDateISOStr;
+  })
+  return eventsForDay;
+}
