@@ -19,6 +19,7 @@ export const removeTokenTimestamp = () => {
   localStorage.removeItem('refreshTokenTimestamp');
 }
 
+// Check if this user has a calendar event for the date passed in by the calendar
 export const checkEventsForDate = (calData, events) => {
   // Get current date the calendar is asking about
   const { date } = calData;
