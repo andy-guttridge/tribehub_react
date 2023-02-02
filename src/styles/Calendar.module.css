@@ -1,10 +1,18 @@
 /* How to use the :global selector to ensure styles are overriden within a React component from */
 /* https://stackoverflow.com/questions/42191671/css-modules-reactjs-parent-and-child-css-classes-in-different-components */
 
+.TribehubCalendar {
+  height: 400px;
+}
+
+.TribehubCalendar :global(.react-calendar__tile){
+  height: 50px;
+}
+
 @media (min-width: 768px) {
   .TribehubCalendar{
     width: 500px;
-    height: 450px;
+    height: 550px;
   }
   
   .TribehubCalendar :global(.react-calendar__tile){
@@ -15,7 +23,7 @@
 @media (min-width: 1024px) {
   .TribehubCalendar{
     width: 750px;
-    height: 625px;
+    min-height: 750px;
   }
   
   .TribehubCalendar :global(.react-calendar__tile){
