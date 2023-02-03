@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Avatar({ imageUrl, large }) {
+function Avatar({ imageUrl, large, small }) {
   return (
-    <div className="avatar m-4 inline">
-      <div className={(large ? "w-40" : "w-20") + " rounded-full"}>
+    <div className={"avatar inline " + (small ? " " : "m-4")}>
+      <div className={(large ? "w-40" : small ? "w-10" : "w-20") + " rounded-full"}>
         <img src={imageUrl}></img>
       </div>
     </div>
