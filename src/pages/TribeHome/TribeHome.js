@@ -26,7 +26,6 @@ function TribeHome() {
 
   const handleCalDaySelect = (events) => {
     setDayEvents(events);
-    console.log(dayEvents);
   }
 
   useEffect(() => {
@@ -43,12 +42,14 @@ function TribeHome() {
       }
     >
       <h2>Home</h2>
-      <TribeCal handleCalDaySelect={handleCalDaySelect}/>
-      {
-        dayEvents?.map((dayEvent) => {
-          return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`}/>
-        })
-      }
+      <TribeCal handleCalDaySelect={handleCalDaySelect} />
+      <div className="max-h-96 overflow-scroll">
+        {
+          dayEvents?.map((dayEvent) => {
+            return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} />
+          })
+        }
+      </div>
     </div>
   )
 }
