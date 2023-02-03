@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
 
-import { axiosReq } from '../api/axiosDefaults';
-import Spinner from './Spinner';
+import { axiosReq } from '../../api/axiosDefaults';
+import Spinner from '../../components/Spinner';
 
 function PasswordChangeForm() {
 

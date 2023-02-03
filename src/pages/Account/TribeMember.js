@@ -1,6 +1,6 @@
 import React from 'react'
 import { Trash3 } from 'react-bootstrap-icons'
-import Avatar from './Avatar'
+import Avatar from '../../components/Avatar'
 
 function TribeMember({ tribeMember, handleDeleteButton }) {
 

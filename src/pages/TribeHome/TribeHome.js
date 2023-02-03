@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import 'react-calendar/dist/Calendar.css';
 
 import { useNavigate } from 'react-router-dom'
-import { useCurrentUser } from '../contexts/CurrentUserContext'
-import { useSinglePage } from '../contexts/SinglePageContext';
+import { useCurrentUser } from '../../contexts/CurrentUserContext'
+import { useSinglePage } from '../../contexts/SinglePageContext';
 
-import TribeCal from '../components/TribeCal';
-import CalEvent from '../components/CalEvent';
+import TribeCal from './TribeCal';
+import CalEvent from './CalEvent';
 
 function TribeHome() {
   // Get ref to current user

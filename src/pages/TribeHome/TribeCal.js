@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-import styles from '../styles/Calendar.module.css';
-import Spinner from '../components/Spinner';
-import { axiosReq } from '../api/axiosDefaults';
-import { checkEventsForDate, getEventsForDay } from '../utils/utils';
+import styles from '../../styles/Calendar.module.css';
+import Spinner from '../../components/Spinner';
+import { axiosReq } from '../../api/axiosDefaults';
+import { checkEventsForDate, getEventsForDay } from '../../utils/utils';
 
 function TribeCal( {handleCalDaySelect }) {
 

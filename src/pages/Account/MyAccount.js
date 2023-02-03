@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom'
 import { useNavigate } from 'react-router-dom';
-import { axiosReq } from '../api/axiosDefaults';
-import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext'
-import ConfirmModal from './ConfirmModal';
+import { axiosReq } from '../../api/axiosDefaults';
+import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext'
+import ConfirmModal from '../../components/ConfirmModal';
 import DeleteAccountButton from './DeleteAccountForm';
 import PasswordChangeForm from './PasswordChangeForm';
 import ProfileForm from './ProfileForm';

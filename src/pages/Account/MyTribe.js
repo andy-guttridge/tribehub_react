@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom'
 import { useNavigate } from 'react-router-dom'
 import { PlusCircle } from 'react-bootstrap-icons';
 
-import { useCurrentUser } from '../contexts/CurrentUserContext'
-import ConfirmModal from '../components/ConfirmModal';
-import TribeMember from '../components/TribeMember';
-import Spinner from '../components/Spinner';
-import TribeMemberDetailsForm from '../components/TribeMemberDetailsForm';
-import { axiosReq } from '../api/axiosDefaults';
+import { useCurrentUser } from '../../contexts/CurrentUserContext'
+import ConfirmModal from '../../components/ConfirmModal';
+import TribeMember from './TribeMember';
+import Spinner from '../../components/Spinner';
+import TribeMemberDetailsForm from './TribeMemberDetailsForm';
+import { axiosReq } from '../../api/axiosDefaults';
 
 function MyTribe() {
   // Hooks for current user, changing current page location, checking if app is in single page mode

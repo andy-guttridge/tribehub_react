@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
-import { axiosReq } from '../api/axiosDefaults';
-import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
-import Avatar from './Avatar';
-import Spinner from './Spinner';
+import { axiosReq } from '../../api/axiosDefaults';
+import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import Avatar from '../../components/Avatar';
+import Spinner from '../../components/Spinner';
 
 function ProfileForm() {
 

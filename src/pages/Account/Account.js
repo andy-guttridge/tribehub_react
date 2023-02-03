@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { useCurrentUser } from '../contexts/CurrentUserContext'
-import { useSinglePage } from '../contexts/SinglePageContext';
-import MyTribe from '../components/MyTribe';
-import MyAccount from '../components/MyAccount';
+import { useCurrentUser } from '../../contexts/CurrentUserContext'
+import { useSinglePage } from '../../contexts/SinglePageContext';
+import MyTribe from './MyTribe';
+import MyAccount from './MyAccount';
 
 function Account() {
   // Hooks for current user, changing current page location, checking if app is in single page mode

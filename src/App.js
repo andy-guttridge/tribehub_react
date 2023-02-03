@@ -4,9 +4,9 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import './api/axiosDefaults'
 
 import Signin from './pages/Signin'
-import TribeHome from './pages/TribeHome';
+import TribeHome from './pages/TribeHome/TribeHome';
 import Contacts from './pages/Contacts';
-import Account from './pages/Account';
+import Account from './pages/Account/Account';
 import NavBar from './components/NavBar';
 import Header from './components/Header';
 import { useCurrentUser } from './contexts/CurrentUserContext';

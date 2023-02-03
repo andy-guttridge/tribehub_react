@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
 
-import { axiosReq } from '../api/axiosDefaults';
+import { axiosReq } from '../../api/axiosDefaults';
 
 function TribeMemberDetailsForm({ handleNewMemberButton }) {
 
