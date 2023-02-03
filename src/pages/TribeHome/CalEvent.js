@@ -2,7 +2,7 @@ import React from 'react'
 import Avatar from '../../components/Avatar'
 
 function CalEvent({ event }) {
-  
+
   // Extract the first five people involved in this event,
   // including the owner and invitees. Set flag if there will be more than
   // four invitees (plus the owner).
@@ -10,14 +10,14 @@ function CalEvent({ event }) {
   users.push(event.user);
   const moreThanFour = event.to.length > 4;
   for (let i = 0; i < event.to.length; i++) {
-    if(i > 3){break;}
+    if (i > 3) { break; }
     users.push(event.to[i])
   }
-  
+
   // Convert event start date string to an actual date and format for display
   const eventDate = new Date(event.start);
-  const eventTimeStr = eventDate.toLocaleTimeString('en-UK', {timeStyle: 'short'});
-  
+  const eventTimeStr = eventDate.toLocaleTimeString('en-UK', { timeStyle: 'short' });
+
   // Split duration string into array of hours, mins, secs and convert to array of ints
   const hoursMinsSecsStr = event.duration.split(":");
   const hoursMinsSecs = hoursMinsSecsStr.map((str) => parseInt(str));
@@ -26,7 +26,11 @@ function CalEvent({ event }) {
   const durationMilliSecs = (hoursMinsSecs[1] * 60) * 1000 + (hoursMinsSecs[0] * 60 * 60 * 1000);
   const endDate = new Date(event.start);
   endDate.setTime(endDate.getTime() + durationMilliSecs);
-  const endTimeStr = endDate.toLocaleTimeString('en-UK', {timeStyle: 'short'});
+  const endTimeStr = endDate.toLocaleTimeString('en-UK', { timeStyle: 'short' });
+
+  // Extract user_ids of users who have accepted the invitation
+  const acceptedUserIds = event.accepted.map((user) => user.user_id);
+  acceptedUserIds.push(event.user.user_id)
 
   return (
     <div className="card border-b-2 rounded-sm w-4/5 lg:w-1/2 m-2 inline-block text-center">
@@ -35,9 +39,17 @@ function CalEvent({ event }) {
         <h4 className="text-sm">{event.subject}</h4>
         <div className="avatar-group -space-x-6">
           {/* Return an avatar for each user */}
+          {/* Include a prop to say whether they have accepted the invitation */}
           {
             users.map((toUser) => {
-              return (<Avatar small imageUrl={toUser.image} key={`event-to${event.id}-${toUser.user_id}`} />)
+              return (
+                <Avatar
+                  small
+                  imageUrl={toUser.image}
+                  key={`event-to${event.id}-${toUser.user_id}`}
+                  accepted={!(acceptedUserIds.includes(toUser.user_id))}
+                />
+              )
             })
           }
           {
