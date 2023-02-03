@@ -1,0 +1,10 @@
+.CategoryIcon {
+  filter: brightness(0) saturate(100%) invert(0%) sepia(16%) saturate(7462%) hue-rotate(105deg) brightness(111%) contrast(100%);
+}
+
+.User {
+  border: 2px solid black;
+  border-radius: 10px;
+  color: white;
+  background-color: black;
+}

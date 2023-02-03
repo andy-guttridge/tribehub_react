@@ -1,6 +1,9 @@
 import React from 'react'
 import { ArrowRepeat } from 'react-bootstrap-icons';
+
 import Avatar from '../../components/Avatar'
+import { eventCategories } from '../../utils/constants';
+import styles from '../../styles/CalEvent.module.css'
 
 function CalEvent({ event }) {
 
@@ -35,9 +38,10 @@ function CalEvent({ event }) {
 
   return (
     <div className="card border-b-2 rounded-sm w-4/5 lg:w-1/2 m-2 inline-block text-center">
-      <div className="card-title flex justify-between">
 
-        <h4 className="text-sm">{event.subject}{event.recurrence_type !== 'NON' && <ArrowRepeat size="16"/>}</h4>
+      {/* Card title */}
+      <div className="card-title flex justify-between">
+        <h4 className="text-sm">{event.subject}{event.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
         <div className="avatar-group -space-x-6">
           {/* Return an avatar for each user */}
           {/* Include a prop to say whether they have accepted the invitation */}
@@ -64,11 +68,46 @@ function CalEvent({ event }) {
           }
         </div>
       </div>
-      <div className="card-body">
+
+      {/* Card body */}
+      <div className="card-body grid grid-cols-2">
+        {/* Event category icon */}
+        <img src={require(`../../assets/categories/${eventCategories[event.category].image}`)} className={`w-12 ${styles.CategoryIcon}`} />
         <span>{eventTimeStr} - {endTimeStr}</span>
       </div>
+
+      {/* Collapse section for more detail */}
+      <div tabIndex="0" className="collapse collapse-arrow">
+        <input type="checkbox" />
+        <div className="collapse-title text-right">Detail</div>
+        <div className="collapse-content">
+          <div className="grid grid-cols-2 justify-items-center">
+            <div>
+              {/* Retrieve and display the users invited */}
+              <h5>To:</h5>
+              {event.to?.map((user) => {
+                return (
+                  <span className={`${styles.User} m-2`}>{user.display_name} </span>
+                )
+              })}
+            </div>
+            
+            <div>
+              {/* Retrieve and display the users who have accepted */}
+              <h5>Accepted:</h5>
+              {event.accepted?.map((user) => {
+                return (
+                  <span className={`${styles.User}`}>{user.display_name} </span>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   )
+
 }
 
 export default CalEvent
