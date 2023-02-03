@@ -1,4 +1,5 @@
 import React from 'react'
+import { ArrowRepeat } from 'react-bootstrap-icons';
 import Avatar from '../../components/Avatar'
 
 function CalEvent({ event }) {
@@ -36,7 +37,7 @@ function CalEvent({ event }) {
     <div className="card border-b-2 rounded-sm w-4/5 lg:w-1/2 m-2 inline-block text-center">
       <div className="card-title flex justify-between">
 
-        <h4 className="text-sm">{event.subject}</h4>
+        <h4 className="text-sm">{event.subject}{event.recurrence_type !== 'NON' && <ArrowRepeat size="16"/>}</h4>
         <div className="avatar-group -space-x-6">
           {/* Return an avatar for each user */}
           {/* Include a prop to say whether they have accepted the invitation */}
