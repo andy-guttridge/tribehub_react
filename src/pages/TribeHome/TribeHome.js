@@ -32,7 +32,6 @@ function TribeHome() {
   useEffect(() => {
     // Check if user logged in on mount, if not redirect to landing page
     !currentUser && navigate("/");
-    console.log('did useEffect')
   }, [currentUser, dayEvents])
 
   return (
@@ -47,7 +46,7 @@ function TribeHome() {
       <TribeCal handleCalDaySelect={handleCalDaySelect}/>
       {
         dayEvents?.map((dayEvent) => {
-          return <CalEvent event={dayEvent}/>
+          return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`}/>
         })
       }
     </div>

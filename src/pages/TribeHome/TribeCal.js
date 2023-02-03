@@ -37,9 +37,9 @@ function TribeCal( {handleCalDaySelect }) {
   useEffect(() => {
     // Set dates for fetching calendar data. Load data for 3 months before and after today.
     const fromDate = new Date();
-    fromDate.setMonth(fromDate.getMonth() - 3);
+    fromDate.setMonth(fromDate.getMonth() - 12);
     const toDate = new Date();
-    toDate.setMonth(toDate.getMonth() + 3);
+    toDate.setMonth(toDate.getMonth() + 12);
 
     // Fetch the data
     try {
@@ -56,9 +56,9 @@ function TribeCal( {handleCalDaySelect }) {
     // Set dates for fetching data based on the activeStartDate supplied by the calendar component
     const { activeStartDate } = calData;
     const fromDate = new Date(activeStartDate.getTime());
-    fromDate.setMonth(activeStartDate.getMonth() - 3);
+    fromDate.setMonth(activeStartDate.getMonth() - 12);
     const toDate = new Date(activeStartDate.getTime());
-    toDate.setMonth(toDate.getMonth() + 3);
+    toDate.setMonth(toDate.getMonth() + 12);
 
     // Fetch the data
     try {
@@ -67,12 +67,6 @@ function TribeCal( {handleCalDaySelect }) {
     catch (errors) {
       console.log(errors);
     }
-  }
-
-  const handleOnClickDay = (calDate, event) => {
-    console.log(calDate);
-    setDayEvents(getEventsForDay(calDate, events));
-    console.log(dayEvents);
   }
 
   return (
