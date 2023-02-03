@@ -13,6 +13,20 @@ function CalEvent({ event }) {
     if(i > 3){break;}
     users.push(event.to[i])
   }
+  
+  // Convert event start date string to an actual date and format for display
+  const eventDate = new Date(event.start);
+  const eventTimeStr = eventDate.toLocaleTimeString('en-UK', {timeStyle: 'short'});
+  
+  // Split duration string into array of hours, mins, secs and convert to array of ints
+  const hoursMinsSecsStr = event.duration.split(":");
+  const hoursMinsSecs = hoursMinsSecsStr.map((str) => parseInt(str));
+
+  // Convert hours, mins and secs to milliseconds, calculate end date and format for display
+  const durationMilliSecs = (hoursMinsSecs[1] * 60) * 1000 + (hoursMinsSecs[0] * 60 * 60 * 1000);
+  const endDate = new Date(event.start);
+  endDate.setTime(endDate.getTime() + durationMilliSecs);
+  const endTimeStr = endDate.toLocaleTimeString('en-UK', {timeStyle: 'short'});
 
   return (
     <div className="card border-b-2 rounded-sm w-4/5 lg:w-1/2 m-2 inline-block text-center">
@@ -38,6 +52,7 @@ function CalEvent({ event }) {
         </div>
       </div>
       <div className="card-body">
+        <span>{eventTimeStr} - {endTimeStr}</span>
       </div>
     </div>
   )
