@@ -81,7 +81,15 @@ function CalEvent({ event }) {
         <input type="checkbox" />
         <div className="collapse-title text-right">Detail</div>
         <div className="collapse-content">
-          <div className="grid grid-cols-2 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center">
+            <div>
+              {/* Retrieve and display the event w */}
+              <h5>
+                From:
+              </h5>
+              <span className={`${styles.User} m-2`}>{event.user.display_name} </span>
+            </div>
+
             <div>
               {/* Retrieve and display the users invited */}
               <h5>To:</h5>
@@ -91,7 +99,7 @@ function CalEvent({ event }) {
                 )
               })}
             </div>
-            
+
             <div>
               {/* Retrieve and display the users who have accepted */}
               <h5>Accepted:</h5>

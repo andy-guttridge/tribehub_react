@@ -102,18 +102,20 @@ function TribeHome() {
 
         // Calendar
         <>
-          <div className="inline-block m-4">
-            <Calendar
-              className={`${styles.TribehubCalendar}`}
-              calendarType="ISO 8601"
-              minDetail="month"
-              tileContent={(calData) => checkEventsForDate(calData, events)}
-              onActiveStartDateChange={handleCalMonthChange}
-              onClickDay={(calDate, event) => setDayEvents(getEventsForDay(calDate, events, event))}
-            />
+          <div>
+            <div className="flex justify-center">
+              <Calendar
+                className={`${styles.TribehubCalendar}`}
+                calendarType="ISO 8601"
+                minDetail="month"
+                tileContent={(calData) => checkEventsForDate(calData, events)}
+                onActiveStartDateChange={handleCalMonthChange}
+                onClickDay={(calDate, event) => setDayEvents(getEventsForDay(calDate, events, event))}
+              />
+            </div>
 
             {/* Event details for selected day */}
-            <div className="max-h-96 overflow-scroll">
+            <div className="max-h-96 inline-block w-4/5 overflow-scroll">
               {
                 dayEvents?.map((dayEvent, i) => {
                   return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} />
