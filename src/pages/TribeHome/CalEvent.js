@@ -37,7 +37,7 @@ function CalEvent({ event }) {
   acceptedUserIds.push(event.user.user_id)
 
   return (
-    <div className="card border-b-2 rounded-sm w-4/5 lg:w-1/2 m-2 inline-block text-center">
+    <div className="card border-b-2 rounded-sm m-2 text-center">
 
       {/* Card title */}
       <div className="card-title flex justify-between">
@@ -77,7 +77,7 @@ function CalEvent({ event }) {
       </div>
 
       {/* Collapse section for more detail */}
-      <div tabIndex="0" className="collapse collapse-arrow">
+      <div className="collapse collapse-arrow">
         <input type="checkbox" />
         <div className="collapse-title text-right">Detail</div>
         <div className="collapse-content">
@@ -85,9 +85,9 @@ function CalEvent({ event }) {
             <div>
               {/* Retrieve and display the users invited */}
               <h5>To:</h5>
-              {event.to?.map((user) => {
+              {event.to?.map((user, i) => {
                 return (
-                  <span className={`${styles.User} m-2`}>{user.display_name} </span>
+                  <span className={`${styles.User} m-2`} key={`${user.user_id}-${i}`}>{user.display_name} </span>
                 )
               })}
             </div>
@@ -95,9 +95,9 @@ function CalEvent({ event }) {
             <div>
               {/* Retrieve and display the users who have accepted */}
               <h5>Accepted:</h5>
-              {event.accepted?.map((user) => {
+              {event.accepted?.map((user, j) => {
                 return (
-                  <span className={`${styles.User}`}>{user.display_name} </span>
+                  <span className={`${styles.User}`} key={`${user.user_id}-${j}-acc`}>{user.display_name} </span>
                 )
               })}
             </div>
