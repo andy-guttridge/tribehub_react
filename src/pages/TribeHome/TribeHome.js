@@ -10,6 +10,7 @@ import Spinner from '../../components/Spinner';
 import { axiosReq } from '../../api/axiosDefaults';
 import { checkEventsForDate, getEventsForDay } from '../../utils/utils';
 import CalEvent from './CalEvent';
+import { InfoCircle } from 'react-bootstrap-icons';
 
 function TribeHome() {
 
@@ -34,6 +35,9 @@ function TribeHome() {
   // State variables for specific day's events
   const [dayEvents, setDayEvents] = useState([]);
 
+  // State variables for API errors
+  const [errors, setErrors] = useState();
+
   // Fetch user's events
   const fetchEvents = async (fromDate, toDate) => {
 
@@ -45,8 +49,11 @@ function TribeHome() {
       setEvents(data);
       setHasLoaded(true);
     }
-    catch (errors) {
-      return errors
+    catch (error) {
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data)
+        setHasLoaded(true);
+      }
     }
   }
 
@@ -58,12 +65,7 @@ function TribeHome() {
     toDate.setMonth(toDate.getMonth() + 12);
 
     // Fetch the data
-    try {
-      fetchEvents(fromDate, toDate)
-    }
-    catch (errors) {
-      console.log(errors);
-    }
+    fetchEvents(fromDate, toDate)
   }, [])
 
   useEffect(() => {
@@ -82,12 +84,7 @@ function TribeHome() {
     toDate.setMonth(toDate.getMonth() + 12);
 
     // Fetch the data
-    try {
-      fetchEvents(fromDate, toDate);
-    }
-    catch (errors) {
-      console.log(errors);
-    }
+    fetchEvents(fromDate, toDate);
   }
 
   return (
@@ -127,6 +124,16 @@ function TribeHome() {
       ) : (
         <Spinner />
       )}
+      {/* Display generic alert if problems loading calendar data */}
+      {
+        errors && (
+          <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+            <InfoCircle size="32" className="m-auto"/>
+            <p className="text-center inline-block">There was a problem fetching calendar data.</p>
+            <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
+          </div>
+        )
+      }
     </ div>
   )
 }
