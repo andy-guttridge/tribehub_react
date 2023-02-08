@@ -10,7 +10,8 @@ import Spinner from '../../components/Spinner';
 import { axiosReq } from '../../api/axiosDefaults';
 import { checkEventsForDate, getEventsForDay } from '../../utils/utils';
 import CalEvent from './CalEvent';
-import { InfoCircle } from 'react-bootstrap-icons';
+import { InfoCircle, PlusCircle } from 'react-bootstrap-icons';
+import EventDetailsForm from './EventDetailsForm';
 
 function TribeHome() {
 
@@ -37,6 +38,11 @@ function TribeHome() {
 
   // State variables for API errors
   const [errors, setErrors] = useState();
+
+  const [isAddingNewEvent, setIsAddingNewEvent] = useState(false);
+
+  // Respond to user pressing add new event button
+  const handleNewEventButton = () => setIsAddingNewEvent(!isAddingNewEvent)
 
   // Fetch user's events
   const fetchEvents = async (fromDate, toDate) => {
@@ -124,11 +130,22 @@ function TribeHome() {
       ) : (
         <Spinner />
       )}
+
+      <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
+        {
+          !isAddingNewEvent ? (
+            <button onClick={(handleNewEventButton)}><PlusCircle size="32" /></button>
+          ) : (
+            <EventDetailsForm handleNewEventButton={handleNewEventButton}/>
+          )
+        }
+      </div>
+
       {/* Display generic alert if problems loading calendar data */}
       {
         errors && (
           <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
-            <InfoCircle size="32" className="m-auto"/>
+            <InfoCircle size="32" className="m-auto" />
             <p className="text-center inline-block">There was a problem fetching calendar data.</p>
             <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
           </div>
