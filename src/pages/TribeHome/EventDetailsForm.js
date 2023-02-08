@@ -9,12 +9,15 @@ function EventDetailsForm({ handleNewEventButton }) {
 
       {/* Add event form */}
       <form>
+
+        {/* To users field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to">
           <span>To:</span>
           <select>
           </select>
         </label>
-
+        
+        {/* Start time and date field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
           <span>Date and time:</span>
           <input
@@ -22,7 +25,8 @@ function EventDetailsForm({ handleNewEventButton }) {
             className="input input-bordered w-full"
           />
         </label>
-
+        
+        {/* Duration field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="duration">
           <span>Duration:</span>
           <select>
@@ -38,7 +42,8 @@ function EventDetailsForm({ handleNewEventButton }) {
             <option value="06:00:00">6 hours</option>
           </select>
         </label>
-
+        
+        {/* Repeat field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to">
           <span>Repeat:</span>
           <select>
@@ -50,7 +55,8 @@ function EventDetailsForm({ handleNewEventButton }) {
             <option value="YEA">Yearly</option>
           </select>
         </label>
-
+        
+        {/* Subject field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="subject">
           <span>Subject:</span>
           <input
@@ -59,6 +65,7 @@ function EventDetailsForm({ handleNewEventButton }) {
           />
         </label>
 
+        {/* Category field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category">
           <span>Category:</span>
 
