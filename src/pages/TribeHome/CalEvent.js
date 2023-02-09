@@ -1,11 +1,14 @@
 import React from 'react'
-import { ArrowRepeat } from 'react-bootstrap-icons';
+import { ArrowRepeat, PencilSquare } from 'react-bootstrap-icons';
 
 import Avatar from '../../components/Avatar'
 import { eventCategories } from '../../utils/constants';
 import styles from '../../styles/CalEvent.module.css'
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 function CalEvent({ event }) {
+
+  const currentUser = useCurrentUser()
 
   // Extract the first five people involved in this event,
   // including the owner and invitees. Set flag if there will be more than
@@ -43,6 +46,7 @@ function CalEvent({ event }) {
       <div className="card-title flex justify-between">
         <h4 className="text-sm">{event.subject}{event.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
         <div className="avatar-group -space-x-6">
+
           {/* Return an avatar for each user */}
           {/* Include a prop to say whether they have accepted the invitation */}
           {
@@ -67,6 +71,13 @@ function CalEvent({ event }) {
             </div>
           }
         </div>
+      </div>
+      
+      {/* Show edit button if user is owner of this event or tribe admin */}
+      <div className="flex justify-start">
+        {(event.user.user_id === currentUser.pk || currentUser.is_admin) 
+          && <button className='btn btn-ghost'><PencilSquare size="26" /></button>
+        }
       </div>
 
       {/* Card body */}
