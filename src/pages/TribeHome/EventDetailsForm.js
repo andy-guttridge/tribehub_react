@@ -99,6 +99,7 @@ function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent 
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to">
             <span>To:</span>
             <select
+              className="input input-bordered w-full"
               id="to"
               name="to"
               value={to}
@@ -146,6 +147,7 @@ function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent 
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="duration">
             <span>Duration:</span>
             <select
+              className="input input-bordered w-full"
               required
               id="duration"
               name="duration"
@@ -177,6 +179,7 @@ function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent 
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="recurrence_type">
             <span>Repeat:</span>
             <select
+              className="input input-bordered w-full"
               id="recurrence_type"
               name="recurrence_type"
               value={recurrence_type}
@@ -227,6 +230,7 @@ function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent 
             {/* How to iterate over values of an object in React is from */}
             {/* https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs */}
             <select
+              className="input input-bordered w-full"
               required
               id="category"
               name="category"
