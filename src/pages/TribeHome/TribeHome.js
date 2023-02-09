@@ -39,7 +39,11 @@ function TribeHome() {
   // State variables for API errors
   const [errors, setErrors] = useState();
 
+  // State variables for whether user has the add event form open
   const [isAddingNewEvent, setIsAddingNewEvent] = useState(false);
+
+  // State variable used as a flag when event details are saved
+  const [didSaveEvent, setDidSaveEvent] = useState(false)
 
   // Respond to user pressing add new event button
   const handleNewEventButton = () => setIsAddingNewEvent(!isAddingNewEvent)
@@ -53,6 +57,7 @@ function TribeHome() {
     try {
       const { data } = await axiosReq.get(`/events/?from_date=${fromDateStr}&to_date=${toDateStr}`)
       setEvents(data);
+      console.log(data);
       setHasLoaded(true);
     }
     catch (error) {
@@ -65,6 +70,7 @@ function TribeHome() {
 
   useEffect(() => {
     // Set dates for fetching calendar data. Load data for 3 months before and after today.
+    setHasLoaded(false);
     const fromDate = new Date();
     fromDate.setMonth(fromDate.getMonth() - 12);
     const toDate = new Date();
@@ -72,7 +78,7 @@ function TribeHome() {
 
     // Fetch the data
     fetchEvents(fromDate, toDate)
-  }, [])
+  }, [didSaveEvent])
 
   useEffect(() => {
     // Check if user logged in on mount, if not redirect to landing page
@@ -136,7 +142,11 @@ function TribeHome() {
           !isAddingNewEvent ? (
             <button onClick={(handleNewEventButton)}><PlusCircle size="32" /></button>
           ) : (
-            <EventDetailsForm handleNewEventButton={handleNewEventButton}/>
+            <EventDetailsForm 
+              handleNewEventButton={handleNewEventButton}
+              didSaveEvent={didSaveEvent}
+              setDidSaveEvent={setDidSaveEvent}
+            />
           )
         }
       </div>

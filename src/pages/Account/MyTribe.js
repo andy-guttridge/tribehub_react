@@ -72,8 +72,8 @@ function MyTribe() {
       {/* We do not include the user in the list */}
       {hasLoaded ? (
         // If there is only one user in the tribe, it must be the tribe admin so show a prompt to add more users.
-        tribe.results[0].users.length > 1 ? (
-          tribe.results[0]?.users.map(tribeMember => (
+        tribe.results[0]?.users.length > 1 ? (
+          tribe.results[0].users.map(tribeMember => (
             (currentUser.pk !== tribeMember.user_id) &&
             (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} handleDeleteButton={handleDeleteButton} />)
           ))

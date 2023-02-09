@@ -4,7 +4,7 @@ import Spinner from '../../components/Spinner';
 
 import { eventCategories } from '../../utils/constants';
 
-function EventDetailsForm({ handleNewEventButton }) {
+function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent }) {
 
   // State variables for loading status and tribe members data
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -57,6 +57,7 @@ function EventDetailsForm({ handleNewEventButton }) {
     try {
       await axiosReq.post('/events/', calEvent);
       handleNewEventButton();
+      setDidSaveEvent(!didSaveEvent);
     }
     catch(error) {
       console.log(error)
