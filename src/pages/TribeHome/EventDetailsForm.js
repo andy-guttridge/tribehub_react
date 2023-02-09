@@ -6,9 +6,64 @@ import { eventCategories } from '../../utils/constants';
 
 function EventDetailsForm({ handleNewEventButton }) {
 
+  // State variables for loading status and tribe members data
   const [hasLoaded, setHasLoaded] = useState(false);
   const [tribe, setTribe] = useState({ results: [] });
 
+  // State variables for calendar events
+  const [calEvent, setCalEvent] = useState({
+    to: [''],
+    start: '',
+    duration: '00:30:00',
+    recurrence_type: 'NON',
+    subject: '',
+    category: 'OTH'
+  });
+
+  // Retrieve form data from state variables
+  const { to, start, duration, recurrence_type, subject, category } = calEvent;
+
+  // Change handler for event form (excepting the multiple selection input for inviting users)
+  const handleChange = (event) => {
+    setCalEvent({
+      ...calEvent,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  // Change handler for 'to' multiple selection form field
+  // Code to handle multiple selections in controlled React forms is from
+  // https://stackoverflow.com/questions/50090335/how-handle-multiple-select-form-in-reactjs
+  const handleChangeTo = (event) =>{
+
+    // Get full array of options from click event, and map over them
+    // to find out if they are selected - if so, add to array
+    const options = Array.from(event.target.options);
+    const toFieldValue = [];
+    options.map((option) => {
+      option.selected && toFieldValue.push(option.value)
+    })
+
+    // Set value of the form element using the array
+    setCalEvent({
+      ...calEvent,
+      to: toFieldValue
+    })
+  }
+
+  // Handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axiosReq.post('/events/', calEvent);
+      handleNewEventButton();
+    }
+    catch(error) {
+      console.log(error)
+    }
+  }
+
+  // Retrieve this user's tribe members from the API
   useEffect(() => {
     const fetchTribe = async () => {
       try {
@@ -30,12 +85,18 @@ function EventDetailsForm({ handleNewEventButton }) {
       {hasLoaded ? (
 
         // Add event form 
-        <form>
+        <form onSubmit={handleSubmit}>
 
           {/* To users field */}
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to">
             <span>To:</span>
-            <select>
+            <select
+              id="to"
+              name="to"
+              value={to}
+              onChange={handleChangeTo}
+              multiple={true}
+            >
               {
                 tribe?.results[0]?.users?.map((tribeMember) => {
                   return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
@@ -50,13 +111,23 @@ function EventDetailsForm({ handleNewEventButton }) {
             <input
               type="datetime-local"
               className="input input-bordered w-full"
+              id="start"
+              name="start"
+              value={start}
+              onChange={handleChange}
             />
           </label>
 
           {/* Duration field */}
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="duration">
             <span>Duration:</span>
-            <select>
+            <select
+              required
+              id="duration"
+              name="duration"
+              value={duration}
+              onChange={handleChange}
+            >
               <option value="00:15:00">15 minutes</option>
               <option value="00:30:00">30 minutes</option>
               <option value="00:45:00">45 minutes</option>
@@ -71,9 +142,14 @@ function EventDetailsForm({ handleNewEventButton }) {
           </label>
 
           {/* Repeat field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to">
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="recurrence_type">
             <span>Repeat:</span>
-            <select>
+            <select
+              id="recurrence_type"
+              name="recurrence_type"
+              value={recurrence_type}
+              onChange={handleChange}
+            >
               <option value="NON">None</option>
               <option value="DAI">Daily</option>
               <option value="WEK">Weekly</option>
@@ -89,6 +165,10 @@ function EventDetailsForm({ handleNewEventButton }) {
             <input
               type="text"
               className="input input-bordered w-full"
+              id="subject"
+              name="subject"
+              value={subject}
+              onChange={handleChange}
             />
           </label>
 
@@ -98,7 +178,13 @@ function EventDetailsForm({ handleNewEventButton }) {
 
             {/* How to iterate over values of an object in React is from */}
             {/* https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs */}
-            <select>
+            <select
+              required
+              id="category"
+              name="category"
+              value={category}
+              onChange={handleChange}
+            >
               {
                 Object.keys(eventCategories).map((keyName) => {
                   return <option value={keyName} key={`category-${keyName}`}>{eventCategories[keyName].text}</option>
