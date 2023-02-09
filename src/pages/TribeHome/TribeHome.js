@@ -140,7 +140,7 @@ function TribeHome() {
       <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
         {
           !isAddingNewEvent ? (
-            <button onClick={(handleNewEventButton)}><PlusCircle size="32" /></button>
+            <button onClick={(handleNewEventButton)} className='btn btn-ghost'><PlusCircle size="32" /></button>
           ) : (
             <EventDetailsForm 
               handleNewEventButton={handleNewEventButton}
