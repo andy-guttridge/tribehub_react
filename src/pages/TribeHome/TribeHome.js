@@ -57,7 +57,6 @@ function TribeHome() {
     try {
       const { data } = await axiosReq.get(`/events/?from_date=${fromDateStr}&to_date=${toDateStr}`)
       setEvents(data);
-      console.log(data);
       setHasLoaded(true);
     }
     catch (error) {
@@ -127,7 +126,8 @@ function TribeHome() {
             <div className="max-h-96 inline-block w-4/5 overflow-scroll">
               {
                 dayEvents?.map((dayEvent, i) => {
-                  return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} />
+                  // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
+                  return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} />
                 })
               }
             </div>
@@ -143,7 +143,7 @@ function TribeHome() {
             <button onClick={(handleNewEventButton)} className='btn btn-ghost'><PlusCircle size="32" /></button>
           ) : (
             <EventDetailsForm 
-              handleNewEventButton={handleNewEventButton}
+              handleCancelButton={handleNewEventButton}
               didSaveEvent={didSaveEvent}
               setDidSaveEvent={setDidSaveEvent}
             />

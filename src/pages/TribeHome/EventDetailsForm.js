@@ -5,7 +5,7 @@ import Spinner from '../../components/Spinner';
 
 import { eventCategories } from '../../utils/constants';
 
-function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent }) {
+function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event }) {
 
   // State variables for loading status and tribe members data
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -28,10 +28,10 @@ function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent 
   const { to, start, duration, recurrence_type, subject, category } = calEvent;
 
   // Change handler for event form (excepting the multiple selection input for inviting users)
-  const handleChange = (event) => {
+  const handleChange = (e) => {
     setCalEvent({
       ...calEvent,
-      [event.target.name]: event.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -56,20 +56,37 @@ function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent 
   }
 
   // Handle form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await axiosReq.post('/events/', calEvent);
 
-      // Hide form and tell parent component the event was saved
-      handleNewEventButton();
-      setDidSaveEvent(!didSaveEvent);
+      // If user is editing event, try put request, otherwise try post request
+      if (isEditingEvent) {
+        const formData = new FormData();
+
+        // Manually create and append form data to replicate the format of the axios post request, as the API expects this
+        for (let user of calEvent.to) {
+          formData.append('to[]', user)
+        }
+        formData.append('start', calEvent.start);
+        formData.append('duration', calEvent.duration);
+        formData.append('recurrence_type', calEvent.recurrence_type);
+        formData.append('subject', calEvent.subject);
+        formData.append('category', calEvent.category);
+        await axiosReq.put(`/events/${event.id}/`, formData)
+      }
+      else {
+        await axiosReq.post('/events/', calEvent);
+      }
     }
     catch (error) {
-      console.log('Setting error: ', error)
       setErrors(error.response?.data);
     }
+    // Hide form and tell parent component the event was saved
+    handleCancelButton();
+    setDidSaveEvent(!didSaveEvent);
   }
+
 
   // Retrieve this user's tribe members from the API
   useEffect(() => {
@@ -84,11 +101,69 @@ function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent 
       }
     }
     fetchTribe();
+
+    if (isEditingEvent) {
+
+      // If user is editing a recurrence, then we need to fetch the original and use that
+      // to populate the form. Otherwise, we have an original event already, so just use that data.
+      const fetchEvent = async () => {
+        if (event.recurrence_type === 'REC') {
+          try {
+            setHasLoaded(false);
+            const { data } = await axiosReq.get(`/events/${event.id}/`);
+            
+            // Extract user ids from event data if users have been invited
+            let toUsersArray = ['']
+            toUsersArray = data.to?.map((toUser) => toUser.user_id)
+
+            // Set form values to those of existing event if user is editing an existing event
+            setCalEvent({
+              to: toUsersArray,
+              start: data.start,
+              duration: data.duration,
+              recurrence_type: data.recurrence_type,
+              subject: data.subject,
+              category: data.category
+            })
+            setHasLoaded(true);
+          }
+          catch (error) {
+            setErrors({ event: 'There was an error loading event data from the server.' })
+          }
+        }
+        else {
+          // Extract user ids from event data if users have been invited
+          let toUsersArray = ['']
+          toUsersArray = event.to?.map((toUser) => toUser.user_id)
+
+          // Set form values to those of existing event if user is editing an existing event
+          setCalEvent({
+            to: toUsersArray,
+            start: event.start,
+            duration: event.duration,
+            recurrence_type: event.recurrence_type,
+            subject: event.subject,
+            category: event.category
+          })
+        }
+      }
+      fetchEvent();
+    }
   }, [])
+
+
 
   return (
     <div className="basis-full">
-      <h3>Add a calendar event</h3>
+
+      {/* Show appropriate title depending if user is adding new or editing existing event */}
+      {isEditingEvent ? (
+        <h3>Edit calendar event</h3>
+      ) : (
+        <h3>Add a calendar event</h3>
+      )}
+
+
 
       {hasLoaded ? (
 
@@ -132,6 +207,7 @@ function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent 
               name="start"
               value={start}
               onChange={handleChange}
+              required
             />
           </label>
 
@@ -253,7 +329,7 @@ function EventDetailsForm({ handleNewEventButton, didSaveEvent, setDidSaveEvent 
             </div>
           }
 
-          <button className="btn btn-outline m-2}" type="button" onClick={handleNewEventButton}>Cancel</button>
+          <button className="btn btn-outline m-2}" type="button" onClick={handleCancelButton}>Cancel</button>
           <button className="btn btn-outline w-1/3 m-2" type="submit">Submit</button>
 
           {/* Display alert with any non-field errors */}

@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ArrowRepeat, PencilSquare } from 'react-bootstrap-icons';
 
 import Avatar from '../../components/Avatar'
 import { eventCategories } from '../../utils/constants';
 import styles from '../../styles/CalEvent.module.css'
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import EventDetailsForm from './EventDetailsForm';
 
-function CalEvent({ event }) {
-
+function CalEvent({ event, didSaveEvent,setDidSaveEvent }) {
+  
+  // Reference to current user
   const currentUser = useCurrentUser()
+
+  // State variables to flag whether user is currently editing an event
+  const [isEditingEvent, setIsEditingEvent] = useState();
 
   // Extract the first five people involved in this event,
   // including the owner and invitees. Set flag if there will be more than
@@ -76,7 +81,7 @@ function CalEvent({ event }) {
       {/* Show edit button if user is owner of this event or tribe admin */}
       <div className="flex justify-start">
         {(event.user.user_id === currentUser.pk || currentUser.is_admin) 
-          && <button className='btn btn-ghost'><PencilSquare size="26" /></button>
+          && <button className='btn btn-ghost' onClick={() => setIsEditingEvent(true)}><PencilSquare size="26" /></button>
         }
       </div>
 
@@ -86,6 +91,15 @@ function CalEvent({ event }) {
         <img src={require(`../../assets/categories/${eventCategories[event.category].image}`)} className={`w-12 ${styles.CategoryIcon}`} />
         <span>{eventTimeStr} - {endTimeStr}</span>
       </div>
+
+      {/* Display the EventDetailsForm if user is editing an event */}
+      {isEditingEvent && 
+        <EventDetailsForm 
+          handleCancelButton={() => setIsEditingEvent(false)}
+          isEditingEvent
+          event = {event}
+          setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
+      />}
 
       {/* Collapse section for more detail */}
       <div className="collapse collapse-arrow">
