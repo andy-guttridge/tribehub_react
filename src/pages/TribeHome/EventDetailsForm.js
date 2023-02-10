@@ -158,7 +158,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
 
       {/* Show appropriate title depending if user is adding new or editing existing event */}
       {isEditingEvent ? (
-        <h3>Edit calendar event</h3>
+        <>
+          <h3>Edit calendar event</h3>
+          {event.recurrence_type === 'REC' && <div className="alert alert-info mb-4">You have selected a repeat event. Your edits will be made to the original event.</div>}
+        </>
       ) : (
         <h3>Add a calendar event</h3>
       )}
