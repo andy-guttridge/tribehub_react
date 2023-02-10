@@ -111,7 +111,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
           try {
             setHasLoaded(false);
             const { data } = await axiosReq.get(`/events/${event.id}/`);
-            
+
             // Extract user ids from event data if users have been invited
             let toUsersArray = ['']
             toUsersArray = data.to?.map((toUser) => toUser.user_id)
@@ -352,6 +352,14 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         errors.tribe &&
         <div className="alert alert-warning justify-start mt-4">
           <InfoCircle size="32" /><span>{errors.tribe}</span>
+        </div>
+      }
+
+      {/* Display alert if there was an issue fetching event data */}
+      {
+        errors.event &&
+        <div className="alert alert-warning justify-start mt-4">
+          <InfoCircle size="32" /><span>{errors.event}</span>
         </div>
       }
 
