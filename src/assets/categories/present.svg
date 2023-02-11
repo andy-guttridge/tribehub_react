@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" width="1000px" height="1300px" preserveAspectRatio="none" viewBox="0 0 982 1033" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <clipPath id="clippath0" transform="">
+      <path d="M 0 1080 L 1920 1080 L 1920 0 L 0 0 Z" style="fill: none; clip-rule: nonzero;"/>
+    </clipPath>
+  </defs>
+  <g transform="matrix(1, 0, 0, -1, -468.858704, 1060.334351)" bx:origin="0 1">
+    <g transform="">
+      <path d="M 922.553 588.715 L 515.101 588.715 L 515.101 27 L 922.553 27 Z" style="fill: rgb(229, 44, 26); fill-opacity: 1;"/>
+      <path d="M 922.553 790.933 L 469.396 790.933 L 469.396 604.307 L 922.553 604.307 Z" style="fill: rgb(229, 44, 26); fill-opacity: 1;"/>
+      <path d="M 997.448 27 L 1404.898 27 L 1404.898 588.715 L 997.448 588.715 Z" style="fill: rgb(229, 44, 26); fill-opacity: 1;"/>
+      <path d="M 997.448 604.307 L 1450.603 604.307 L 1450.603 790.933 L 997.448 790.933 Z" style="fill: rgb(229, 44, 26); fill-opacity: 1;"/>
+      <path d="M 0 1080 L 1920 1080 L 1920 0 L 0 0 Z" style="fill: none;"/>
+    </g>
+    <g style="clip-path: url(#clippath0);">
+      <g transform="translate(859.5937 831.9468)">
+        <path d="M 0 0 C 109.797 -4.476 -74.937 237.16 -275.937 188.602 C -349.292 170.881 -284.697 11.606 0 0 Z" style="fill: none; stroke: rgb(229, 44, 26); stroke-opacity: 1; stroke-miterlimit: 0; stroke-width: 64.086px; stroke-dashoffset: 0px;"/>
+      </g>
+    </g>
+    <g style="clip-path: url(#clippath0);">
+      <g transform="translate(1060.4063 831.9468)">
+        <path d="M 0 0 C -109.797 -4.476 74.937 237.16 275.937 188.602 C 349.292 170.881 284.697 11.606 0 0 Z" style="fill: none; stroke: rgb(229, 44, 26); stroke-opacity: 1; stroke-miterlimit: 0; stroke-width: 64.086px; stroke-dashoffset: 0px;"/>
+      </g>
+    </g>
+    <g style="clip-path: url(#clippath0);">
+      <g transform="translate(1007.5244 864.3135)">
+        <path d="M 0 0 C 0 -26.248 -21.277 -47.525 -47.524 -47.525 C -73.771 -47.525 -95.049 -26.248 -95.049 0 C -95.049 26.247 -73.771 47.525 -47.524 47.525 C -21.277 47.525 0 26.247 0 0" style="fill: rgb(229, 44, 26); fill-opacity: 1;"/>
+      </g>
+    </g>
+  </g>
+</svg>

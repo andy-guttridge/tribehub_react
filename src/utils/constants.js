@@ -1,4 +1,8 @@
 export const eventCategories = {
+  'CEL' : {
+    text: 'Celebration',
+    image: 'present.svg',
+  },
   'CLU' : {
     text: 'Club',
     image: 'club.svg',
@@ -14,6 +18,10 @@ export const eventCategories = {
   'MUS' : {
     text: 'Music',
     image: 'music.svg',
+  },
+  'OUT' : {
+    text: 'Outing',
+    image: 'car.svg',
   },
   'OTH': {
     text: 'Other',
