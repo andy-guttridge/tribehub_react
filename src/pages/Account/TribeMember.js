@@ -13,9 +13,9 @@ function TribeMember({ tribeMember, handleDeleteButton }) {
       <div className="grid col-start-2 justify-end">
         <button
           className="m-4 btn btn-ghost"
-          aria-label="Delete tribe member"
           onClick={() => handleDeleteButton(tribeMember.user_id)}>
           <Trash3 size="32"></Trash3>
+          <span className="sr-only">Delete {tribeMember.display_name} from tribe</span>
         </button>
       </div>
     </div>

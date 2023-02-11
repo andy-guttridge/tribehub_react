@@ -88,7 +88,7 @@ function MyTribe() {
       <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
         {
           !isAddingNewMember ? (
-            <button onClick={handleNewMemberButton} className='btn btn-ghost'><PlusCircle size="32"/></button>
+            <button onClick={handleNewMemberButton} className='btn btn-ghost'><PlusCircle size="32"/><span className="sr-only">Add new tribe member</span></button>
           ) : (
             <TribeMemberDetailsForm handleNewMemberButton={handleNewMemberButton} />
           )

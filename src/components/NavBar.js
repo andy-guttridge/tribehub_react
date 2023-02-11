@@ -7,9 +7,9 @@ function NavBar() {
 
   const navBarIcons = (
     <>
-      <NavLink to="/tribe-home"><House size="32" className="lg:mx-2" aria-label="Home" /><span className="hidden lg:inline lg:mr-24">Home</span></NavLink>
-      <NavLink to="/contacts"><PersonVcard size="32" className="lg:mx-2" aria-label="Contacts" /><span className="hidden lg:inline lg:mr-24">Contacts</span></NavLink>
-      <NavLink to="/account"><PersonGear size="32" className="lg:mx-2" aria-label="Account" /><span className="hidden lg:inline">Account</span></NavLink>
+      <NavLink to="/tribe-home"><House size="32" className="lg:mx-2" aria-label="Home" /><span className="sr-only lg:not-sr-only lg:inline lg:mr-24">Home</span></NavLink>
+      <NavLink to="/contacts"><PersonVcard size="32" className="lg:mx-2" aria-label="Contacts" /><span className="sr-only lg:not-sr-only lg:inline lg:mr-24">Contacts</span></NavLink>
+      <NavLink to="/account"><PersonGear size="32" className="lg:mx-2" aria-label="Account" /><span className="sr-only lg:not-sr-only lg:inline">Account</span></NavLink>
     </>
   );
 
