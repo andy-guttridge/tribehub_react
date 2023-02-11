@@ -39,7 +39,6 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent }) {
   // State variables for errors
   const [errors, setErrors] = useState({})
 
-
   // Handle event accept/decline buttons
   const handleEventResponse = async (e) => {
 

@@ -48,26 +48,27 @@ function TribeHome() {
   // Respond to user pressing add new event button
   const handleNewEventButton = () => setIsAddingNewEvent(!isAddingNewEvent)
 
-  // Fetch user's events
-  const fetchEvents = async (fromDate, toDate) => {
+  useEffect(() => {
 
-    // Convert fromDate and toDate to ISO strings for the API, and get rid of last 5 chars to eliminate timezone data
-    const toDateStr = toDate.toISOString().slice(0, -5);
-    const fromDateStr = fromDate.toISOString().slice(0, -5);
-    try {
-      const { data } = await axiosReq.get(`/events/?from_date=${fromDateStr}&to_date=${toDateStr}`)
-      setEvents(data);
-      setHasLoaded(true);
-    }
-    catch (error) {
-      if (error.response?.status !== 401) {
-        setErrors(error.response?.data)
+    // Fetch user's events
+    const fetchEvents = async (fromDate, toDate) => {
+
+      // Convert fromDate and toDate to ISO strings for the API, and get rid of last 5 chars to eliminate timezone data
+      const toDateStr = toDate.toISOString().slice(0, -5);
+      const fromDateStr = fromDate.toISOString().slice(0, -5);
+      try {
+        const { data } = await axiosReq.get(`/events/?from_date=${fromDateStr}&to_date=${toDateStr}`)
+        setEvents(data);
         setHasLoaded(true);
       }
+      catch (error) {
+        if (error.response?.status !== 401) {
+          setErrors(error.response?.data)
+          setHasLoaded(true);
+        }
+      }
     }
-  }
 
-  useEffect(() => {
     // Set dates for fetching calendar data. Load data for 3 months before and after today.
     setHasLoaded(false);
     const fromDate = new Date();
@@ -77,6 +78,9 @@ function TribeHome() {
 
     // Fetch the data
     fetchEvents(fromDate, toDate)
+
+    // Set events for today
+    setDayEvents(getEventsForDay(new Date(), events))
   }, [didSaveEvent])
 
   useEffect(() => {
@@ -86,6 +90,25 @@ function TribeHome() {
 
   // Handle the user changing the calendar month by reloading events data with correct date range
   const handleCalMonthChange = (calData) => {
+
+    // Fetch user's events
+    const fetchEvents = async (fromDate, toDate) => {
+
+      // Convert fromDate and toDate to ISO strings for the API, and get rid of last 5 chars to eliminate timezone data
+      const toDateStr = toDate.toISOString().slice(0, -5);
+      const fromDateStr = fromDate.toISOString().slice(0, -5);
+      try {
+        const { data } = await axiosReq.get(`/events/?from_date=${fromDateStr}&to_date=${toDateStr}`)
+        setEvents(data);
+        setHasLoaded(true);
+      }
+      catch (error) {
+        if (error.response?.status !== 401) {
+          setErrors(error.response?.data)
+          setHasLoaded(true);
+        }
+      }
+    }
 
     // Set dates for fetching data based on the activeStartDate supplied by the calendar component
     const { activeStartDate } = calData;
@@ -142,7 +165,7 @@ function TribeHome() {
           !isAddingNewEvent ? (
             <button onClick={(handleNewEventButton)} className='btn btn-ghost'><PlusCircle size="32" /><span className="sr-only">Add new calendar event</span></button>
           ) : (
-            <EventDetailsForm 
+            <EventDetailsForm
               handleCancelButton={handleNewEventButton}
               didSaveEvent={didSaveEvent}
               setDidSaveEvent={setDidSaveEvent}

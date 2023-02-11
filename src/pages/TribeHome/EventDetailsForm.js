@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { InfoCircle } from 'react-bootstrap-icons';
+
 import { axiosReq } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
-
 import { eventCategories } from '../../utils/constants';
 
 function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event }) {
@@ -74,17 +74,23 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         formData.append('subject', calEvent.subject);
         formData.append('category', calEvent.category);
         await axiosReq.put(`/events/${event.id}/`, formData)
+
+        // Hide form and tell parent component the event was saved
+        handleCancelButton();
+        setDidSaveEvent(!didSaveEvent);
       }
       else {
         await axiosReq.post('/events/', calEvent);
+
+        // Hide form and tell parent component the event was saved
+        handleCancelButton();
+        setDidSaveEvent(!didSaveEvent);
       }
     }
     catch (error) {
       setErrors(error.response?.data);
     }
-    // Hide form and tell parent component the event was saved
-    handleCancelButton();
-    setDidSaveEvent(!didSaveEvent);
+
   }
 
 
@@ -150,8 +156,6 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
       fetchEvent();
     }
   }, [])
-
-
 
   return (
     <div className="basis-full">
@@ -221,7 +225,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
               <InfoCircle size="32" /><span>{errors.start}</span>
             </div>
           }
-
+          
           {/* Duration field */}
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="duration">
             <span>Duration:</span>
