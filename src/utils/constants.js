@@ -37,6 +37,6 @@ export const eventCategories = {
   },
   'NON': {
     text: 'None',
-    image: '',
+    image: 'none.svg',
   }
 }
