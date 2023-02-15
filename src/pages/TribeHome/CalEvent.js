@@ -171,10 +171,22 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       {/* Show edit button and delete button if user is owner of this event or tribe admin */}
       <div className="flex justify-start">
         {(thisEvent.user.user_id === currentUser.pk || currentUser.is_admin)
-          && 
+          &&
           <>
-            <button className="btn btn-ghost" onClick={() => setIsEditingEvent(true)}><PencilSquare size="26" /></button>
-            <button className="btn btn-ghost" onClick={() => handleDeleteButton(thisEvent.id)}><Trash3 size="26"></Trash3></button>
+            <button
+              className="btn btn-ghost"
+              onClick={() => setIsEditingEvent(true)}
+            >
+              <PencilSquare size="26" />
+              <span className="sr-only">Edit calender event {thisEvent.subject}</span>
+            </button>
+            <button
+              className="btn btn-ghost"
+              onClick={() => handleDeleteButton(thisEvent.id)}
+            >
+              <Trash3 size="26" />
+              <span className="sr-only">Delete calender event {thisEvent.subject}</span>
+            </button>
           </>
         }
       </div>
@@ -210,12 +222,12 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
           </button>
         </div>
         /* Display alert if there was an issue loading tribe data */}
-          {
-            errors.event_response &&
-            <div className="alert alert-warning justify-start mt-4">
-              <InfoCircle size="32" /><span>{errors.event_response}</span>
-            </div>
-          }
+      {
+        errors.event_response &&
+        <div className="alert alert-warning justify-start mt-4">
+          <InfoCircle size="32" /><span>{errors.event_response}</span>
+        </div>
+      }
 
       {/* Display the EventDetailsForm if user is editing an event */}
       {isEditingEvent &&
