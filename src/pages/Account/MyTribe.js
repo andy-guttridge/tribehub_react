@@ -38,10 +38,10 @@ function MyTribe() {
   // Handler to delete a tribe member
   const doDelete = async () => {
     try {
-      await axiosReq.delete(`accounts/user/${isDeletingMember}`)
+      await axiosReq.delete(`accounts/user/${isDeletingMember}`);
     }
     catch (error) {
-      console.log(error.response?.data)
+      console.log(error.response?.data);
     }
     setIsDeletingMember(false);
   }
