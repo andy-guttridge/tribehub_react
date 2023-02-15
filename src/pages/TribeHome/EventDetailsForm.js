@@ -5,7 +5,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
 import { eventCategories } from '../../utils/constants';
 
-function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event }) {
+function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate }) {
 
   // State variables for loading status and tribe members data
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -17,7 +17,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
   // State variables for calendar events
   const [calEvent, setCalEvent] = useState({
     to: [''],
-    start: '',
+    start: defaultStartDate,
     duration: '00:30:00',
     recurrence_type: 'NON',
     subject: '',
@@ -155,6 +155,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
       }
       fetchEvent();
     }
+    console.log("Default start date: ", defaultStartDate);
   }, [])
 
   return (

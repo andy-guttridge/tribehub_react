@@ -66,6 +66,7 @@ function TribeHome() {
         setHasLoaded(true);
 
         // Set events for currently selected calendar day
+        console.log(currentDay);
         setDayEvents(getEventsForDay(currentDay, data));
       }
       catch (error) {
@@ -132,8 +133,15 @@ function TribeHome() {
                 onActiveStartDateChange={handleCalMonthChange}
                 defaultValue={currentDay}
                 onClickDay={(calDate, event) => {
-                  // Set the current day so that we can reference this to ensure the calendar stays on the same day when it remounts/data reloads
-                  setCurrentDay(calDate);
+                  // Set the current day so that we can reference this to ensure the calendar stays on the same day when it remounts/data reloads.
+                  // We have to compensate for any timezone offset, as directly converting the date from the calendar component to ISOString causes problems e.g. with
+                  // British summer time.
+                  const tzOffset = calDate.getTimezoneOffset();
+
+                  // How to add a number of minutes to a JS DateTime object is adapted from
+                  // https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
+                  const dateWithoutTimezone = new Date(calDate.getTime() + tzOffset*(-60000));
+                  setCurrentDay(dateWithoutTimezone);
                   setDayEvents(getEventsForDay(calDate, events, event));
                 }}
               />
@@ -163,6 +171,8 @@ function TribeHome() {
               handleCancelButton={handleNewEventButton}
               didSaveEvent={didSaveEvent}
               setDidSaveEvent={setDidSaveEvent}
+              // Pass currently selected calendar day in correct format to the form, to populate the starting value for the date of the event
+              defaultStartDate={`${currentDay.toISOString().substring(0, 10)}T12:00`}
             />
           )
         }
