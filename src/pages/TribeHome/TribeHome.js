@@ -66,7 +66,6 @@ function TribeHome() {
         setHasLoaded(true);
 
         // Set events for currently selected calendar day
-        console.log(currentDay);
         setDayEvents(getEventsForDay(currentDay, data));
       }
       catch (error) {

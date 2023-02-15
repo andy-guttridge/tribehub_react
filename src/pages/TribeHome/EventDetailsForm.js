@@ -159,7 +159,6 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
       }
       fetchEvent();
     }
-    console.log("Default start date: ", defaultStartDate);
   }, [])
 
   return (
