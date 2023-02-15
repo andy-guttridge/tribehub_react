@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import ReactDOM from 'react-dom'
 import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -12,6 +13,7 @@ import { checkEventsForDate, getEventsForDay } from '../../utils/utils';
 import CalEvent from './CalEvent';
 import { InfoCircle, PlusCircle } from 'react-bootstrap-icons';
 import EventDetailsForm from './EventDetailsForm';
+import ConfirmModal from '../../components/ConfirmModal';
 
 function TribeHome() {
 
@@ -41,6 +43,9 @@ function TribeHome() {
 
   // State variables for whether user has the add event form open
   const [isAddingNewEvent, setIsAddingNewEvent] = useState(false);
+
+  // State variables for whether user is in the process of deleting an event
+  const [isDeletingEvent, setIsDeletingEvent] = useState(false);
 
   // State variable used as a flag when event details are saved
   const [didSaveEvent, setDidSaveEvent] = useState(false)
@@ -76,9 +81,25 @@ function TribeHome() {
       }
     }
   )
+  
+  // Handle user pressing delete event button by storing the event id.
+  const handleDeleteButton = (eventId) => {
+    setIsDeletingEvent(eventId);
+  }
+
+  // Delete event when user has confirmed they wish to do so.
+  const doDelete = async () => {
+    try {
+      await axiosReq.delete(`events/${isDeletingEvent}`);
+      setDidSaveEvent(!didSaveEvent);
+    }
+    catch(error) {
+      console.log(error?.response?.data);
+    }
+    setIsDeletingEvent(false);
+  }
 
   useEffect(() => {
-
     // Set dates for fetching calendar data. Load data for 3 months before and after today.
     setHasLoaded(false);
     const fromDate = new Date();
@@ -139,7 +160,7 @@ function TribeHome() {
 
                   // How to add a number of minutes to a JS DateTime object is adapted from
                   // https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
-                  const dateWithoutTimezone = new Date(calDate.getTime() + tzOffset*(-60000));
+                  const dateWithoutTimezone = new Date(calDate.getTime() + tzOffset * (-60000));
                   setCurrentDay(dateWithoutTimezone);
                   setDayEvents(getEventsForDay(calDate, events, event));
                 }}
@@ -151,7 +172,7 @@ function TribeHome() {
               {
                 dayEvents?.map((dayEvent, i) => {
                   // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
-                  return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} />
+                  return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} handleDeleteButton={handleDeleteButton} />
                 })
               }
             </div>
@@ -186,6 +207,19 @@ function TribeHome() {
             <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
           </div>
         )
+      }
+      
+      {/* If tribe admin has selected to delete an event, show the modal to confirm or cancel */}
+      {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
+          // https://upmostly.com/tutorials/modal-components-react-custom-hooks */}
+      {
+        isDeletingEvent && ReactDOM.createPortal(
+          <ConfirmModal
+            heading="Delete event"
+            body={`Are	you sure you want to delete this event?\n\nIf you choose to delete an event or one of its repeats, all occurrences will be removed.`}
+            cancelHandler={() => setIsDeletingEvent(false)}
+            confirmHandler={doDelete}
+          />, document.body)
       }
     </ div>
   )

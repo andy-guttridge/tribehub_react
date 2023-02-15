@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ArrowRepeat, InfoCircle, PencilSquare } from 'react-bootstrap-icons';
+import { ArrowRepeat, InfoCircle, PencilSquare, Trash3 } from 'react-bootstrap-icons';
 
 import Avatar from '../../components/Avatar'
 import { eventCategories } from '../../utils/constants';
@@ -8,7 +8,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import EventDetailsForm from './EventDetailsForm';
 import { axiosReq } from '../../api/axiosDefaults';
 
-function CalEvent({ event, didSaveEvent, setDidSaveEvent }) {
+function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) {
 
   // Reference to current user
   const currentUser = useCurrentUser();
@@ -168,10 +168,14 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent }) {
         </div>
       </div>
 
-      {/* Show edit button if user is owner of this event or tribe admin */}
+      {/* Show edit button and delete button if user is owner of this event or tribe admin */}
       <div className="flex justify-start">
         {(thisEvent.user.user_id === currentUser.pk || currentUser.is_admin)
-          && <button className='btn btn-ghost' onClick={() => setIsEditingEvent(true)}><PencilSquare size="26" /></button>
+          && 
+          <>
+            <button className="btn btn-ghost" onClick={() => setIsEditingEvent(true)}><PencilSquare size="26" /></button>
+            <button className="btn btn-ghost" onClick={() => handleDeleteButton(thisEvent.id)}><Trash3 size="26"></Trash3></button>
+          </>
         }
       </div>
 
