@@ -3,6 +3,7 @@ import { InfoCircle } from 'react-bootstrap-icons';
 
 import { axiosReq } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { eventCategories } from '../../utils/constants';
 
 function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate }) {
@@ -13,6 +14,9 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
 
   // State variables for form submission errors
   const [errors, setErrors] = useState({});
+
+  // Ref to current user
+  const currentUser = useCurrentUser();
 
   // State variables for calendar events
   const [calEvent, setCalEvent] = useState({
@@ -191,7 +195,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             >
               {
                 tribe?.results[0]?.users?.map((tribeMember) => {
-                  return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
+                  return currentUser.pk !== tribeMember.user_id && <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
                 })
               }
             </select>
