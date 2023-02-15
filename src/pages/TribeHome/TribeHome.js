@@ -134,8 +134,8 @@ function TribeHome() {
                 defaultValue={currentDay}
                 onClickDay={(calDate, event) => {
                   // Set the current day so that we can reference this to ensure the calendar stays on the same day when it remounts/data reloads.
-                  // We have to compensate for any timezone offset, as directly converting the date from the calendar component to ISOString causes problems e.g. with
-                  // British summer time.
+                  // We have to compensate for any timezone offset, as directly converting the date from the calendar component to ISOString causes problems e.g.
+                  // the date sent to the form will be one day early when it's British summer time.
                   const tzOffset = calDate.getTimezoneOffset();
 
                   // How to add a number of minutes to a JS DateTime object is adapted from
