@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -45,13 +45,17 @@ function TribeHome() {
   // State variable used as a flag when event details are saved
   const [didSaveEvent, setDidSaveEvent] = useState(false)
 
+  // State variable for current calendar day selected by user
+  const [currentDay, setCurrentDay] = useState(new Date());
+
   // Respond to user pressing add new event button
   const handleNewEventButton = () => setIsAddingNewEvent(!isAddingNewEvent)
 
-  useEffect(() => {
-
-    // Fetch user's events
-    const fetchEvents = async (fromDate, toDate) => {
+  // Function to fetch user's events and set them as values for the current calendar day
+  // How to use useCallback hook to correctly declare a function outside of useEffect to enable
+  // code re-use from https://stackoverflow.com/questions/56410369/can-i-call-separate-function-in-useeffect
+  const fetchEvents = useCallback(
+    async (fromDate, toDate) => {
 
       // Convert fromDate and toDate to ISO strings for the API, and get rid of last 5 chars to eliminate timezone data
       const toDateStr = toDate.toISOString().slice(0, -5);
@@ -60,6 +64,9 @@ function TribeHome() {
         const { data } = await axiosReq.get(`/events/?from_date=${fromDateStr}&to_date=${toDateStr}`)
         setEvents(data);
         setHasLoaded(true);
+
+        // Set events for currently selected calendar day
+        setDayEvents(getEventsForDay(currentDay, data));
       }
       catch (error) {
         if (error.response?.status !== 401) {
@@ -68,6 +75,9 @@ function TribeHome() {
         }
       }
     }
+  )
+
+  useEffect(() => {
 
     // Set dates for fetching calendar data. Load data for 3 months before and after today.
     setHasLoaded(false);
@@ -79,8 +89,6 @@ function TribeHome() {
     // Fetch the data
     fetchEvents(fromDate, toDate)
 
-    // Set events for today
-    setDayEvents(getEventsForDay(new Date(), events))
   }, [didSaveEvent])
 
   useEffect(() => {
@@ -90,25 +98,6 @@ function TribeHome() {
 
   // Handle the user changing the calendar month by reloading events data with correct date range
   const handleCalMonthChange = (calData) => {
-
-    // Fetch user's events
-    const fetchEvents = async (fromDate, toDate) => {
-
-      // Convert fromDate and toDate to ISO strings for the API, and get rid of last 5 chars to eliminate timezone data
-      const toDateStr = toDate.toISOString().slice(0, -5);
-      const fromDateStr = fromDate.toISOString().slice(0, -5);
-      try {
-        const { data } = await axiosReq.get(`/events/?from_date=${fromDateStr}&to_date=${toDateStr}`)
-        setEvents(data);
-        setHasLoaded(true);
-      }
-      catch (error) {
-        if (error.response?.status !== 401) {
-          setErrors(error.response?.data)
-          setHasLoaded(true);
-        }
-      }
-    }
 
     // Set dates for fetching data based on the activeStartDate supplied by the calendar component
     const { activeStartDate } = calData;
@@ -141,7 +130,12 @@ function TribeHome() {
                 minDetail="month"
                 tileContent={(calData) => checkEventsForDate(calData, events)}
                 onActiveStartDateChange={handleCalMonthChange}
-                onClickDay={(calDate, event) => setDayEvents(getEventsForDay(calDate, events, event))}
+                defaultValue={currentDay}
+                onClickDay={(calDate, event) => {
+                  // Set the current day so that we can reference this to ensure the calendar stays on the same day when it remounts/data reloads
+                  setCurrentDay(calDate);
+                  setDayEvents(getEventsForDay(calDate, events, event));
+                }}
               />
             </div>
 
