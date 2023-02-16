@@ -11,7 +11,7 @@ function NotficationsMenu() {
 
   // State variable to store notifications
   const [notifications, setNotifications] = useState({});
-  
+
   // State variable to trigger notifications to reload when a user has accepted or declined an event.
   // The value is simply toggled when there is a change to trigger a re-load.
   const [notificationsChanged, setNotificationsChanged] = useState(false);
@@ -38,7 +38,10 @@ function NotficationsMenu() {
       {/* Dropdown containing notification items */}
       <div className="dropdown dropdown-end">
         <label tabIndex="0" className="btn btn-sm btn-ghost">
-          <Bell size="16" />
+          <div className="indicator">
+            {notifications?.results?.length > 0 && <span class="indicator-item badge badge-xs badge-secondary">{notifications.results.length}</span>}
+            <Bell size="20" />
+          </div>
         </ label>
         <ul tabIndex="0" className="dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
           {
@@ -46,7 +49,7 @@ function NotficationsMenu() {
               <>
                 {
                   notifications?.results?.map((notification) => {
-                    return <NotificationItem notification={notification} key={`notification-${notification.id}`} notificationsChanged={notificationsChanged} setNotificationsChanged={setNotificationsChanged}/>
+                    return <NotificationItem notification={notification} key={`notification-${notification.id}`} notificationsChanged={notificationsChanged} setNotificationsChanged={setNotificationsChanged} />
                   })
                 }
               </>
