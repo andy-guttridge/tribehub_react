@@ -3,15 +3,23 @@ import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 function NotificationItem({ notification }) {
-
+  
+  // State variable for event this notification represents
   const [event, setEvent] = useState({});
+
+  // State variables for strings representing event start and end dates and times
   const [startDateStr, setStartDateStr] = useState('');
   const [startTimeStr, setStartTimeStr] = useState('');
   const [endTimeStr, setEndTimeStr] = useState('');
   const [endDateStr, setEndDateStr] = useState('');
-  const [hasAccepted, setHasAccepted] = useState('false');
-  const [errors, setErrors] = useState({})
 
+  // State variable for whether user has accepted the invitation
+  const [hasAccepted, setHasAccepted] = useState('false');
+
+  // State variable for errors
+  const [errors, setErrors] = useState({})
+  
+  // Reference to current user
   const currentUser = useCurrentUser();
 
   // Handle event accept/decline buttons
@@ -70,17 +78,22 @@ function NotificationItem({ notification }) {
   }, [])
 
   return (
+
+    // Return a list item representing the notification
     <li>
       <div className="inline">
         <h3 className="text-base">{notification.subject}</h3>
         <p className="text-sm text-left">{notification.message}</p>
         <p className="text-sm text-left"><span>Start: </span><span>{startDateStr} {startTimeStr}</span></p>
         <p className="text-sm text-left"><span>End: </span><span>{endDateStr} {endTimeStr}</span></p>
+        
+        {/* Check this notification is for an event and show going/not going buttons if so */}
+        {/* Currently this is the only type of notification, but others could be added in future */}
         {
           notification.type = "INV" &&
           <div className="btn-group justify-center">
             <button
-              className={"btn btn-sm " + (!hasAccepted && "btn-active")}
+              className={"btn btn-xs " + (!hasAccepted && "btn-active")}
               name='not-going'
               id='not-going'
               value='decline'
@@ -89,7 +102,7 @@ function NotificationItem({ notification }) {
               Not going
             </button>
             <button
-              className={"btn btn-sm " + (hasAccepted && "btn-active")}
+              className={"btn btn-xs " + (hasAccepted && "btn-active")}
               name='not-going'
               id='not-going'
               value='accept'

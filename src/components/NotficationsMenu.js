@@ -31,6 +31,7 @@ function NotficationsMenu() {
 
   return (
     <div className="inline-block mx-2">
+      {/* Dropdown containing notification items */}
       <div className="dropdown dropdown-end">
         <label tabIndex="0" className="btn btn-sm btn-ghost">
           <Bell size="16" />
@@ -41,12 +42,16 @@ function NotficationsMenu() {
               <>
                 {
                   notifications?.results?.map((notification) => {
-                    return <NotificationItem notification={notification} key={`notification-${notification.id}`}/>
+                    return <NotificationItem notification={notification} key={`notification-${notification.id}`} />
                   })
                 }
               </>
             ) : (
+
+              // Display spinner if notifications haven't loaded
+              <li>
                 <Spinner />
+              </li>
             )
           }
         </ul>
