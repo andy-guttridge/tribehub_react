@@ -3,9 +3,6 @@ import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 function NotificationItem({ notification }) {
-  
-  // State variable for event this notification represents
-  const [event, setEvent] = useState({});
 
   // State variables for strings representing event start and end dates and times
   const [startDateStr, setStartDateStr] = useState('');
@@ -18,7 +15,7 @@ function NotificationItem({ notification }) {
 
   // State variable for errors
   const [errors, setErrors] = useState({})
-  
+
   // Reference to current user
   const currentUser = useCurrentUser();
 
@@ -28,7 +25,7 @@ function NotificationItem({ notification }) {
     // Create response object from value of button, attempt to post and set state variable
     const eventResponse = { event_response: e.target.value }
     try {
-      await axiosReq.post(`/events/response/${event.id}/`, eventResponse);
+      await axiosReq.post(`/events/response/${notification?.event?.id}/`, eventResponse);
       setHasAccepted(e.target.value === 'accept');
     }
     catch (error) {
@@ -38,43 +35,35 @@ function NotificationItem({ notification }) {
 
   useEffect(() => {
 
-    // Fetch events and extract date and time strings
-    const fetchEvent = async () => {
-      try {
-        const { data } = await axiosReq.get(`events/${notification.event}/`);
-        setEvent(data);
+    // Check if this user has accepted the invitation by comparing to each user in the event.accepted field in turn
+    const checkAccepted = () => (notification?.event?.accepted?.reduce(
+      (acc, user) => (user.user_id === currentUser.pk) || acc
+      ,
+      false))
 
-        const eventDate = new Date(data?.start);
+    const hasAcceptedData = checkAccepted();
+    setHasAccepted(hasAcceptedData);
 
-        // Extract date and time strings for start date
-        setStartDateStr(eventDate.toDateString('en-UK', { dateStyle: 'short' }));
-        setStartTimeStr(eventDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
+    const eventDate = new Date(notification?.event?.start);
 
-        // Calculate end date from duration
-        // Split duration string into array of hours, mins, secs and convert to array of ints
-        const hoursMinsSecsStr = data?.duration.split(":");
-        const hoursMinsSecs = hoursMinsSecsStr.map((str) => parseInt(str));
+    // Extract date and time strings for start date
+    setStartDateStr(eventDate.toDateString('en-UK', { dateStyle: 'short' }));
+    setStartTimeStr(eventDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
 
-        // Convert hours, mins and secs to milliseconds, calculate end date and format for display
-        const durationMilliSecs = (hoursMinsSecs[1] * 60) * 1000 + (hoursMinsSecs[0] * 60 * 60 * 1000);
-        const endDate = new Date(data?.start);
-        endDate.setTime(endDate.getTime() + durationMilliSecs);
+    // Calculate end date from duration
+    // Split duration string into array of hours, mins, secs and convert to array of ints
+    const hoursMinsSecsStr = notification?.event?.duration.split(":");
+    const hoursMinsSecs = hoursMinsSecsStr.map((str) => parseInt(str));
 
-        // Extract date and time strings for end date
-        setEndDateStr(endDate.toDateString('en-UK', { dateStyle: 'short' }))
-        setEndTimeStr(endDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
+    // Convert hours, mins and secs to milliseconds, calculate end date and format for display
+    const durationMilliSecs = (hoursMinsSecs[1] * 60) * 1000 + (hoursMinsSecs[0] * 60 * 60 * 1000);
+    const endDate = new Date(notification?.event?.start);
+    endDate.setTime(endDate.getTime() + durationMilliSecs);
 
-        // Check if this user has accepted the invitation by comparing to each user in the event.accepted field in turn
-        const checkAccepted = () => (event.accepted?.reduce(
-          (acc, user) => ((user.user_id === currentUser.pk) || acc), false))
-        setHasAccepted(checkAccepted());
+    // Extract date and time strings for end date
+    setEndDateStr(endDate.toDateString('en-UK', { dateStyle: 'short' }))
+    setEndTimeStr(endDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
 
-      }
-      catch (error) {
-        console.log("Error: ", error);
-      }
-    }
-    fetchEvent();
   }, [])
 
   return (
@@ -86,7 +75,7 @@ function NotificationItem({ notification }) {
         <p className="text-sm text-left">{notification.message}</p>
         <p className="text-sm text-left"><span>Start: </span><span>{startDateStr} {startTimeStr}</span></p>
         <p className="text-sm text-left"><span>End: </span><span>{endDateStr} {endTimeStr}</span></p>
-        
+
         {/* Check this notification is for an event and show going/not going buttons if so */}
         {/* Currently this is the only type of notification, but others could be added in future */}
         {
