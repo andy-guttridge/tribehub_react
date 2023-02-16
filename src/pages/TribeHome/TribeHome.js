@@ -47,7 +47,8 @@ function TribeHome() {
   // State variables for whether user is in the process of deleting an event
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
 
-  // State variable used as a flag when event details are saved
+  // State variable used as a flag when event details are saved.
+  // This is simply toggles to trigger events to reload when there has been a change.
   const [didSaveEvent, setDidSaveEvent] = useState(false)
 
   // State variable for current calendar day selected by user
@@ -90,7 +91,7 @@ function TribeHome() {
   // Delete event when user has confirmed they wish to do so.
   const doDelete = async () => {
     try {
-      await axiosReq.delete(`events/${isDeletingEvent}`);
+      await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
     }
     catch(error) {
