@@ -74,10 +74,10 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
     // Return a list item representing the notification
     <li>
       <div className="inline">
-        <h3 className="text-base">{notification.subject}</h3>
-        <p className="text-sm text-left">{notification.message}</p>
-        <p className="text-sm text-left"><span>Start: </span><span>{startDateStr} {startTimeStr}</span></p>
-        <p className="text-sm text-left"><span>End: </span><span>{endDateStr} {endTimeStr}</span></p>
+        <h3 className="text-base text-center">{notification.subject}</h3>
+        <p className="text-sm text-center">{notification.message}</p>
+        <p className="text-sm text-left"><span>Start: </span><br /><span>{startDateStr} {startTimeStr}</span></p>
+        <p className="text-sm text-left"><span>End: </span><br /><span>{endDateStr} {endTimeStr}</span></p>
 
         {/* Check this notification is for an event and show going/not going buttons if so */}
         {/* Currently this is the only type of notification, but others could be added in future */}
