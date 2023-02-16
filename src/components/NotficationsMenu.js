@@ -11,6 +11,10 @@ function NotficationsMenu() {
 
   // State variable to store notifications
   const [notifications, setNotifications] = useState({});
+  
+  // State variable to trigger notifications to reload when a user has accepted or declined an event.
+  // The value is simply toggled when there is a change to trigger a re-load.
+  const [notificationsChanged, setNotificationsChanged] = useState(false);
 
   useEffect(() => {
     // Fetch user's notifications
@@ -27,7 +31,7 @@ function NotficationsMenu() {
     }
 
     fetchNotifications();
-  }, [])
+  }, [notificationsChanged])
 
   return (
     <div className="inline-block mx-2">
@@ -42,7 +46,7 @@ function NotficationsMenu() {
               <>
                 {
                   notifications?.results?.map((notification) => {
-                    return <NotificationItem notification={notification} key={`notification-${notification.id}`} />
+                    return <NotificationItem notification={notification} key={`notification-${notification.id}`} notificationsChanged={notificationsChanged} setNotificationsChanged={setNotificationsChanged}/>
                   })
                 }
               </>
@@ -50,7 +54,7 @@ function NotficationsMenu() {
 
               // Display spinner if notifications haven't loaded
               <li>
-                <Spinner />
+                <Spinner small />
               </li>
             )
           }

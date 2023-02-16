@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-function NotificationItem({ notification }) {
+function NotificationItem({ notification, notificationsChanged, setNotificationsChanged }) {
 
   // State variables for strings representing event start and end dates and times
   const [startDateStr, setStartDateStr] = useState('');
@@ -27,6 +27,9 @@ function NotificationItem({ notification }) {
     try {
       await axiosReq.post(`/events/response/${notification?.event?.id}/`, eventResponse);
       setHasAccepted(e.target.value === 'accept');
+
+      // Communicate to the parent that the status of the notification changed
+      setNotificationsChanged(!notificationsChanged);
     }
     catch (error) {
       setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
@@ -101,7 +104,7 @@ function NotificationItem({ notification }) {
             </button>
           </div>
         }
-        <br /><hr />
+        <br /><br /><hr />
       </div>
     </li>
   )
