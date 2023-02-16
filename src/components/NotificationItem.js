@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { Trash3 } from 'react-bootstrap-icons';
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-function NotificationItem({ notification, notificationsChanged, setNotificationsChanged }) {
+function NotificationItem({ notification, notificationsChanged, setNotificationsChanged, handleDeleteButton }) {
 
   // State variables for strings representing event start and end dates and times
   const [startDateStr, setStartDateStr] = useState('');
@@ -79,7 +80,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
         <p className="text-sm text-left"><span>Start: </span><br /><span>{startDateStr} {startTimeStr}</span></p>
         <p className="text-sm text-left"><span>End: </span><br /><span>{endDateStr} {endTimeStr}</span></p>
 
-        {/* Check this notification is for an event and show going/not going buttons if so */}
+        {/* Check this notification is for an event and show going/not going buttons if so. Also a delete button */}
         {/* Currently this is the only type of notification, but others could be added in future */}
         {
           notification.type = "INV" &&
@@ -101,6 +102,10 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
               onClick={handleEventResponse}
             >
               Going
+            </button>
+            <button className="btn btn-xs btn-outline" onClick={() => handleDeleteButton(notification.id)}>
+              <Trash3 size="16" />
+              <span className="sr-only">Delete notification</span>
             </button>
           </div>
         }
