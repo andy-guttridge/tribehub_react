@@ -73,6 +73,7 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 ### Accessability testing
 
 ### Resolved bugs
+- During implementation of the `NotificationItem` component, requests to the REST API for the data for the events with which each notification is associated were frequently resulting in an HTTP 500 internal server error. A version of the API running on a development server was used for debugging. This revealed that the number of simultaneous requests for data coming from a large number of NotificationItems was overwhelming the free tier ElephantSQL database server. The fix was to add the full data for each event to the notification JSON served by the API, which meant that only one network request was required to fetch the notification and event data together. 
 
 ### Unresolved bugs
 
