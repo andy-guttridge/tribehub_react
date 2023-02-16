@@ -274,6 +274,8 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
           </div>
         </div>
       </div>
+
+     
     </div>
 
   )

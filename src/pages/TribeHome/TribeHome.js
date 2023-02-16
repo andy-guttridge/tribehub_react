@@ -39,7 +39,7 @@ function TribeHome() {
   const [dayEvents, setDayEvents] = useState([]);
 
   // State variables for API errors
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState({});
 
   // State variables for whether user has the add event form open
   const [isAddingNewEvent, setIsAddingNewEvent] = useState(false);
@@ -73,16 +73,17 @@ function TribeHome() {
 
         // Set events for currently selected calendar day
         setDayEvents(getEventsForDay(currentDay, data));
+        setErrors({});
       }
       catch (error) {
         if (error.response?.status !== 401) {
-          setErrors(error.response?.data)
+          setErrors({ calendarError: 'There was an error loading calendar data.' })
           setHasLoaded(true);
         }
       }
     }
   )
-  
+
   // Handle user pressing delete event button by storing the event id.
   const handleDeleteButton = (eventId) => {
     setIsDeletingEvent(eventId);
@@ -94,8 +95,8 @@ function TribeHome() {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
     }
-    catch(error) {
-      console.log(error?.response?.data);
+    catch (error) {
+      setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
     }
     setIsDeletingEvent(false);
   }
@@ -168,10 +169,30 @@ function TribeHome() {
               />
             </div>
 
+            {/* Display generic alert if problems loading calendar data */}
+            {
+              errors.calendarError && (
+                <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+                  <InfoCircle size="32" className="m-auto" />
+                  <p className="text-center inline-block">There was a problem fetching calendar data.</p>
+                  <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
+                </div>
+              )
+            }
+
+            {/* Display alert if there was an issue deleting a calender event */}
+            {
+              errors.delete &&
+              <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+                <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
+              </div>
+            }
+
+
             {/* Event details for selected day */}
             <div className="max-h-96 inline-block w-4/5 overflow-scroll">
               {
-                dayEvents?.map((dayEvent, i) => {
+                dayEvents?.map((dayEvent) => {
                   // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
                   return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} handleDeleteButton={handleDeleteButton} />
                 })
@@ -199,17 +220,6 @@ function TribeHome() {
         }
       </div>
 
-      {/* Display generic alert if problems loading calendar data */}
-      {
-        errors && (
-          <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
-            <InfoCircle size="32" className="m-auto" />
-            <p className="text-center inline-block">There was a problem fetching calendar data.</p>
-            <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
-          </div>
-        )
-      }
-      
       {/* If tribe admin has selected to delete an event, show the modal to confirm or cancel */}
       {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
           // https://upmostly.com/tutorials/modal-components-react-custom-hooks */}

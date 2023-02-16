@@ -17,7 +17,7 @@ function NavBar() {
   const currentUser = useCurrentUser();
 
   return (
-    <>
+    <div>
       {/* Display navBarIcons only if current user is logged in */}
       {currentUser && (
         <>
@@ -31,7 +31,7 @@ function NavBar() {
           </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 

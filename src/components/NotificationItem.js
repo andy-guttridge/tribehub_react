@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Trash3 } from 'react-bootstrap-icons';
+import ReactDOM from 'react-dom'
+import { InfoCircle, Trash3 } from 'react-bootstrap-icons';
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
@@ -31,6 +32,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
 
       // Communicate to the parent that the status of the notification changed
       setNotificationsChanged(!notificationsChanged);
+      setErrors({});
     }
     catch (error) {
       setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
@@ -111,6 +113,19 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
         }
         <br /><br /><hr />
       </div>
+
+      {/* Display alert if there was an issue deleting a tribe member */}
+      {/* Technique for adding an element to a different location in the DOM is from */}
+      {/* https://upmostly.com/tutorials/modal-components-react-custom-hooks */}
+      {
+        errors.event_response && ReactDOM.createPortal(
+          <div className="flex justify-center">
+            <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 block">
+              <InfoCircle size="32" className="inline-block" /><span>{errors.event_response}</span>
+            </div>
+          </div>
+          , document.getElementById('Header'))
+      }
     </li>
   )
 }

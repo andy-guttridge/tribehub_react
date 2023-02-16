@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { useNavigate } from 'react-router-dom'
-import { PlusCircle } from 'react-bootstrap-icons';
+import { InfoCircle, PlusCircle } from 'react-bootstrap-icons';
 
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import ConfirmModal from '../../components/ConfirmModal';
@@ -25,6 +25,9 @@ function MyTribe() {
   // accounts. If yes, this stores the user id of the user they've selected to delete.
   const [isDeletingMember, setIsDeletingMember] = useState(false);
 
+  // State variables for errors
+  const [errors, setErrors] = useState({});
+
   // Handler to respond to the add new member button by toggling the state
   const handleNewMemberButton = () => {
     setIsAddingNewMember(!isAddingNewMember);
@@ -41,7 +44,7 @@ function MyTribe() {
       await axiosReq.delete(`accounts/user/${isDeletingMember}`);
     }
     catch (error) {
-      console.log(error.response?.data);
+      setErrors({delete : 'There was an error attempting to delete this tribe member.\n\nYou may be offline or there may have been a server error.'})
     }
     setIsDeletingMember(false);
   }
@@ -60,7 +63,7 @@ function MyTribe() {
         setHasLoaded(true);
       }
       catch (error) {
-        console.log(error.response?.data);
+        setErrors({tribe : 'There was an error fetching your tribe members from the server.\n\nYou may be offline or there may have been a server error.'})
       }
     }
     fetchTribe();
@@ -94,6 +97,25 @@ function MyTribe() {
           )
         }
       </div>
+      
+      <div className="flex justify-center">
+      {/* Display alert if there was an issue deleting a tribe member */}
+      {
+        errors.delete &&
+        <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 justify-self-center">
+          <InfoCircle size="32" /><span>{errors.delete}</span>
+        </div>
+      }
+
+      {/* Display alert if there was an issue fetching tribe members */}
+      {
+        errors.tribe &&
+        <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 justify-self-center">
+          <InfoCircle size="32" /><span>{errors.tribe}</span>
+        </div>
+      }
+      </div>
+
 
       {/* If tribe admin has selected to delete a tribeMember, show the modal to confirm or cancel */}
       {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from

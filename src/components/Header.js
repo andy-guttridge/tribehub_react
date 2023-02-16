@@ -23,7 +23,7 @@ function Header(A) {
 
 
   return (
-    <div>
+    <div id="Header">
       <h1 className="md:text-6xl">TribeHub</h1>
       {
         // Show welcome and sign-out button if user is authenticated
