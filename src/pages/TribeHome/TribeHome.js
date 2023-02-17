@@ -240,7 +240,7 @@ function TribeHome() {
         }
       </div>
 
-      {/* If tribe admin has selected to delete an event, show the modal to confirm or cancel */}
+      {/* If tribe admin or event owner has selected to delete an event, show the modal to confirm or cancel */}
       {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
           // https://upmostly.com/tutorials/modal-components-react-custom-hooks */}
       {
