@@ -31,8 +31,8 @@ function EventSearch({ handleCancelButton }) {
     category_search: '',
     tribe_to: [],
     tribe_from: '',
-    from_date: null,
-    to_date: null
+    from_date: undefined,
+    to_date: undefined
   })
 
   // Retrieve search values from state variables
