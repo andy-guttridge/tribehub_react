@@ -98,7 +98,8 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
   }
 
 
-  // Retrieve this user's tribe members from the API
+  // Retrieve this user's tribe members from the API and fetch the original event if user is editing a recurrence.
+  // Populate form with existing event details if applicable.
   useEffect(() => {
     const fetchTribe = async () => {
       try {
