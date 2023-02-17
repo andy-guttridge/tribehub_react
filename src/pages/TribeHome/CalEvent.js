@@ -32,6 +32,10 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
   const [eventTimeStr, setEventTimeStr] = useState('');
   const [endTimeStr, setEndTimeStr] = useState('');
 
+  // State variables for string representations of event start and end dates
+  const [startDateStr, setStartDateStr] = useState('');
+  const [endDateStr, setEndDateStr] = useState('');
+
   // State variables for whether user is invited to the event and whether they have accepted
   const [isInvited, setIsInvited] = useState(false);
   const [hasAccepted, setHasAccepted] = useState('false');
@@ -108,7 +112,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       // Convert event start date string to an actual date and format for display
       const eventDate = new Date(thisEvent.start);
       setEventTimeStr(eventDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
-
+      setStartDateStr(eventDate.toDateString('en-UK', { dateStyle: 'short' }));
       // Split duration string into array of hours, mins, secs and convert to array of ints
       const hoursMinsSecsStr = thisEvent.duration.split(":");
       const hoursMinsSecs = hoursMinsSecsStr.map((str) => parseInt(str));
@@ -118,6 +122,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       const endDate = new Date(thisEvent.start);
       endDate.setTime(endDate.getTime() + durationMilliSecs);
       setEndTimeStr(endDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
+      setEndDateStr(eventDate.toDateString('en-UK', { dateStyle: 'short' }));
     }
     getTimeStrs();
   }, [])
@@ -192,10 +197,14 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       </div>
 
       {/* Card body */}
-      <div className="card-body grid grid-cols-2">
+      <div className="card-body grid grid-cols-3">
         {/* Event category icon */}
-        <img src={require(`../../assets/categories/${eventCategories[event.category].image}`)} className={`w-12 ${styles.CategoryIcon}`} />
-        <span>{eventTimeStr} - {endTimeStr}</span>
+        <img src={require(`../../assets/categories/${eventCategories[event.category].image}`)} className={`w-12 ${styles.CategoryIcon} col-span-1`} />
+        <div className="col-span-2 text-left">
+          <p className="font-bold">Start:</p><p>{startDateStr}{eventTimeStr}</p>
+          <hr />
+          <p className="font-bold">End:</p><p>{endDateStr}{endTimeStr}</p>
+        </div>
       </div>
 
       {/* Show going/not going buttons if user is invited */}
@@ -275,7 +284,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
         </div>
       </div>
 
-     
+
     </div>
 
   )
