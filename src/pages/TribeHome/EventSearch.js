@@ -17,7 +17,7 @@ function EventSearch({ handleCancelButton }) {
   // State variables for search values
   const [searchValues, setSearchValues] = useState({
     text_search: '',
-    category_search: [],
+    category_search: '',
     tribe_search: []
   })
 
@@ -38,8 +38,29 @@ function EventSearch({ handleCancelButton }) {
     fetchTribe();
   }, [])
 
+  // Fetch events according to search values
+  useEffect(() => {
+
+    // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate them
+    const textSearch = `?search=${text_search}`;
+    const categorySearch = category_search ? `category=${category_search}` : '';
+    const tribeSearch = tribe_search.reduce((acc, tribeMember) => acc + `&to=${tribeMember}`, '');
+    const finalSearchString = textSearch.concat(categorySearch, tribeSearch)
+
+    const fetchEvents = async () => {
+      try {
+        const { data } = await axiosReq.get(`events/${finalSearchString}`);
+        console.log(data.results)
+      }
+      catch (errors) {
+        setErrors(errors);
+      }
+    }
+    fetchEvents();
+  }, [searchValues])
+
   // Change handler for text search field
-  const handleChangeText = (e) => {
+  const handleChange = (e) => {
     setSearchValues({
       ...searchValues,
       [e.target.name]: e.target.value
@@ -80,13 +101,13 @@ function EventSearch({ handleCancelButton }) {
             id="text_search"
             name="text_search"
             value={text_search}
-            onChange={handleChangeText}
+            onChange={handleChange}
           />
         </label>
 
-        {/* Category search sfield */}
+        {/* Category search field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category-search">
-          <span>Categories:</span>
+          <span>Category:</span>
 
           {/* How to iterate over values of an object in React is from */}
           {/* https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs */}
@@ -95,9 +116,9 @@ function EventSearch({ handleCancelButton }) {
             id="category_search"
             name="category_search"
             value={category_search}
-            onChange={handleMultipleSelectChange}
-            multiple={true}
+            onChange={handleChange}
           >
+            <option value="" key="empty-category">--</option>
             {
               Object.keys(eventCategories).map((keyName) => {
                 return <option value={keyName} key={`category-${keyName}`}>{eventCategories[keyName].text}</option>
