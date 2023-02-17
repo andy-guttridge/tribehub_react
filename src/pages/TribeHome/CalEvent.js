@@ -145,12 +145,12 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
           {/* Return an avatar for each user */}
           {/* Include a prop to say whether they have accepted the invitation */}
           {
-            avatarUsers.map((toUser) => {
+            avatarUsers.map((toUser, i) => {
               return (
                 <Avatar
                   small
                   imageUrl={toUser.image}
-                  key={`event-to${thisEvent.id}-${toUser.user_id}`}
+                  key={`event-to${thisEvent.id}-${toUser.user_id}-${i}`}
                   accepted={!(acceptedUserIds.includes(toUser.user_id))}
                 />
               )
