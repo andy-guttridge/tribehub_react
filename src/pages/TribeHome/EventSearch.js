@@ -233,6 +233,8 @@ function EventSearch({ handleCancelButton }) {
         </label>
 
         {/* From date field */}
+
+        <p className='text-sm text-left md:text-center'>You'll get events for the next two months if you don't enter dates</p>
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
           <span>From date:</span>
           <input
