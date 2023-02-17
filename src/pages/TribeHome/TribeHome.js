@@ -11,9 +11,10 @@ import Spinner from '../../components/Spinner';
 import { axiosReq } from '../../api/axiosDefaults';
 import { checkEventsForDate, getEventsForDay } from '../../utils/utils';
 import CalEvent from './CalEvent';
-import { InfoCircle, PlusCircle } from 'react-bootstrap-icons';
+import { InfoCircle, PlusCircle, Search } from 'react-bootstrap-icons';
 import EventDetailsForm from './EventDetailsForm';
 import ConfirmModal from '../../components/ConfirmModal';
+import EventSearch from './EventSearch';
 
 function TribeHome() {
 
@@ -47,15 +48,15 @@ function TribeHome() {
   // State variables for whether user is in the process of deleting an event
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
 
+  // State variable for whether user has the search form open
+  const [isSearching, setIsSearching] = useState(false);
+
   // State variable used as a flag when event details are saved.
   // This is simply toggles to trigger events to reload when there has been a change.
   const [didSaveEvent, setDidSaveEvent] = useState(false)
 
   // State variable for current calendar day selected by user
   const [currentDay, setCurrentDay] = useState(new Date());
-
-  // Respond to user pressing add new event button
-  const handleNewEventButton = () => setIsAddingNewEvent(!isAddingNewEvent)
 
   // Function to fetch user's events and set them as values for the current calendar day
   // How to use useCallback hook to correctly declare a function outside of useEffect to enable
@@ -190,31 +191,50 @@ function TribeHome() {
 
 
             {/* Event details for selected day */}
-            <div className="max-h-96 inline-block w-4/5 overflow-scroll">
-              {
-                dayEvents?.map((dayEvent) => {
-                  // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
-                  return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} handleDeleteButton={handleDeleteButton} />
-                })
-              }
-            </div>
+            {/* Do not display these if in search mode */}
+            {
+              !isSearching && 
+              <div className="max-h-96 inline-block w-4/5 overflow-scroll">
+                {
+                  dayEvents?.map((dayEvent) => {
+                    // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
+                    return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} handleDeleteButton={handleDeleteButton} />
+                  })
+                }
+              </div>
+            }
           </div>
         </>
       ) : (
         <Spinner />
       )}
 
+
+      {/* Button to search, search form, button to add new event add new event form */}
       <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
+
+        {/* Add new event button and form */}
         {
-          !isAddingNewEvent ? (
-            <button onClick={(handleNewEventButton)} className='btn btn-ghost'><PlusCircle size="32" /><span className="sr-only">Add new calendar event</span></button>
-          ) : (
+          !isAddingNewEvent && !isSearching ? (
+            <button onClick={() => setIsAddingNewEvent(!isAddingNewEvent)} className='btn btn-ghost'><PlusCircle size="32" /><span className="sr-only">Add new calendar event</span></button>
+          ) : isAddingNewEvent && (
             <EventDetailsForm
-              handleCancelButton={handleNewEventButton}
+              handleCancelButton={() => setIsAddingNewEvent(!isAddingNewEvent)}
               didSaveEvent={didSaveEvent}
               setDidSaveEvent={setDidSaveEvent}
               // Pass currently selected calendar day in correct format to the form, to populate the starting value for the date of the event
               defaultStartDate={`${currentDay.toISOString().substring(0, 10)}T12:00`}
+            />
+          )
+        }
+
+        {/* Search button and form */}
+        {
+          !isSearching && !isAddingNewEvent ? (
+            <button onClick={() => setIsSearching(!isSearching)} className='btn btn-ghost'><Search size="32" /><span className="sr-only">Search calendar events</span></button>
+          ) : isSearching && (
+            <EventSearch 
+              handleCancelButton={() => setIsSearching(!isSearching)}
             />
           )
         }
