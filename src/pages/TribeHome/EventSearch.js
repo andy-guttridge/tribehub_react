@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import ReactDOM from 'react-dom'
 import { axiosReq } from '../../api/axiosDefaults';
+import ConfirmModal from '../../components/ConfirmModal';
+import Spinner from '../../components/Spinner';
 
 import { eventCategories } from '../../utils/constants';
+import CalEvent from './CalEvent';
 
 function EventSearch({ handleCancelButton }) {
 
@@ -14,6 +18,13 @@ function EventSearch({ handleCancelButton }) {
   // State variable for if required data from the API has loaded
   const [hasLoaded, setHasLoaded] = useState(false);
 
+  // State variable used as a flag when event details are saved.
+  // This is simply toggles to trigger events to reload when there has been a change.
+  const [didSaveEvent, setDidSaveEvent] = useState(false)
+
+  // State variables for whether user is in the process of deleting an event
+  const [isDeletingEvent, setIsDeletingEvent] = useState(false);
+
   // State variables for search values
   const [searchValues, setSearchValues] = useState({
     text_search: '',
@@ -24,9 +35,14 @@ function EventSearch({ handleCancelButton }) {
   // Retrieve search values from state variables
   const { text_search, category_search, tribe_search } = searchValues;
 
+  // State variables for events
+  const [events, setEvents] = useState({ results: [] })
+  
+  // Fetch user's tribe members
   useEffect(() => {
     const fetchTribe = async () => {
       try {
+        setHasLoaded(false);
         const { data } = await axiosReq.get('tribe/');
         setTribe(data);
         setHasLoaded(true);
@@ -43,21 +59,30 @@ function EventSearch({ handleCancelButton }) {
 
     // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate them
     const textSearch = `?search=${text_search}`;
-    const categorySearch = category_search ? `category=${category_search}` : '';
+    const categorySearch = category_search ? `&category=${category_search}` : '';
     const tribeSearch = tribe_search.reduce((acc, tribeMember) => acc + `&to=${tribeMember}`, '');
     const finalSearchString = textSearch.concat(categorySearch, tribeSearch)
-
+    
+    // Fetch events from the API
     const fetchEvents = async () => {
       try {
+        setHasLoaded(false);
         const { data } = await axiosReq.get(`events/${finalSearchString}`);
-        console.log(data.results)
+        console.log(data.results);
+        setEvents(data);
+        setHasLoaded(true);
       }
       catch (errors) {
         setErrors(errors);
       }
     }
     fetchEvents();
-  }, [searchValues])
+  }, [searchValues, didSaveEvent])
+
+  // Handle user pressing delete event button by storing the event id.
+  const handleDeleteButton = (eventId) => {
+    setIsDeletingEvent(eventId);
+  }
 
   // Change handler for text search field
   const handleChange = (e) => {
@@ -85,6 +110,18 @@ function EventSearch({ handleCancelButton }) {
       ...searchValues,
       [e.target.name]: searchValue
     })
+  }
+
+  // Delete event when user has confirmed they wish to do so.
+  const doDelete = async () => {
+    try {
+      await axiosReq.delete(`events/${isDeletingEvent}/`);
+      setDidSaveEvent(!didSaveEvent);
+    }
+    catch (error) {
+      setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
+    }
+    setIsDeletingEvent(false);
   }
 
   return (
@@ -148,6 +185,37 @@ function EventSearch({ handleCancelButton }) {
 
         <button onClick={handleCancelButton} className="btn btn-outline">Cancel search</button>
       </form>
+
+      {/* Display events using search results */}
+      {
+        hasLoaded ? (
+          <div className="max-h-96 inline-block overflow-scroll">
+            {
+              events?.results?.map((event, i) => {
+                // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
+                return <CalEvent event={event} key={`event-${event.id}-${i}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} handleDeleteButton={handleDeleteButton} />
+              })
+            }
+          </div>
+        ) : (
+          <Spinner />
+        )
+      }
+
+
+      {/* If tribe admin or event owner has selected to delete an event, show the modal to confirm or cancel */}
+      {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
+          // https://upmostly.com/tutorials/modal-components-react-custom-hooks */}
+      {
+        isDeletingEvent && ReactDOM.createPortal(
+          <ConfirmModal
+            heading="Delete event"
+            body={`Are	you sure you want to delete this event?\n\nIf you choose to delete an event or one of its repeats, all occurrences will be removed.`}
+            cancelHandler={() => setIsDeletingEvent(false)}
+            confirmHandler={doDelete}
+          />, document.body)
+      }
+
     </div>
   )
 }
