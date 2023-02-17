@@ -89,7 +89,16 @@ function EventSearch({ handleCancelButton }) {
         setErrors(errors);
       }
     }
-    fetchEvents();
+
+    // Technique for using a timer to reduce number of network requests is from
+    // Code Institute's Moments walkthrough project
+    const timer = setTimeout(() => {
+      fetchEvents();
+    }, 1000);
+    
+    return () => {
+      clearTimeout(timer);
+    }
   }, [searchValues, didSaveEvent])
 
   // Handle user pressing delete event button by storing the event id.
@@ -244,7 +253,6 @@ function EventSearch({ handleCancelButton }) {
             name="from_date"
             value={from_date}
             onChange={handleChange}
-            required
             ref={fromInput}
           />
         </label>
@@ -259,11 +267,11 @@ function EventSearch({ handleCancelButton }) {
             name="to_date"
             value={to_date}
             onChange={handleChange}
-            required
             ref={toInput}
           />
         </label>
-
+        
+        {/* Cancel search button */}
         <button onClick={handleCancelButton} className="btn btn-outline">Cancel search</button>
       </form>
 
