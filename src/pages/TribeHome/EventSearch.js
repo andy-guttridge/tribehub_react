@@ -11,10 +11,20 @@ function EventSearch({ handleCancelButton }) {
   // State variables for errors
   const [errors, setErrors] = useState({});
 
-  // State variable for if requried data from the API has loaded
+  // State variable for if required data from the API has loaded
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  useEffect(() =>{
+  // State variables for search values
+  const [searchValues, setSearchValues] = useState({
+    text_search: '',
+    category_search: [],
+    tribe_search: []
+  })
+
+  // Retrieve search values from state variables
+  const { text_search, category_search, tribe_search } = searchValues;
+
+  useEffect(() => {
     const fetchTribe = async () => {
       try {
         const { data } = await axiosReq.get('tribe/');
@@ -27,7 +37,34 @@ function EventSearch({ handleCancelButton }) {
     }
     fetchTribe();
   }, [])
-  
+
+  // Change handler for text search field
+  const handleChangeText = (e) => {
+    setSearchValues({
+      ...searchValues,
+      [e.target.name]: e.target.value
+    }
+    )
+  }
+
+  // Change handler for multiple selection form fields
+  // Code to handle multiple selections in controlled React forms is from
+  // https://stackoverflow.com/questions/50090335/how-handle-multiple-select-form-in-reactjs
+  const handleMultipleSelectChange = (e) => {
+    // Get full array of options from click event, and map over them
+    // to find out if they are selected - if so, add to array
+    const options = Array.from(e.target.options);
+    const searchValue = [];
+    options.map((option) => {
+      option.selected && searchValue.push(option.value)
+    })
+
+    // Set value of the form element using the array
+    setSearchValues({
+      ...searchValues,
+      [e.target.name]: searchValue
+    })
+  }
 
   return (
     <div className="basis-full">
@@ -40,60 +77,56 @@ function EventSearch({ handleCancelButton }) {
           <input
             type="text"
             className="input input-bordered w-full"
-            id="text-search"
-            name="text-search"
-            // value={text-search}
-            // onChange={handleChange}
+            id="text_search"
+            name="text_search"
+            value={text_search}
+            onChange={handleChangeText}
           />
         </label>
 
         {/* Category search sfield */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category-search">
-            <span>Category:</span>
+          <span>Categories:</span>
 
-            {/* How to iterate over values of an object in React is from */}
-            {/* https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs */}
-            <select
-              className="input input-bordered w-full"
-              required
-              id="category-search"
-              name="category-search"
-              // value={category-search}
-              // onChange={handleChange}
-            >
-              {
-                Object.keys(eventCategories).map((keyName) => {
-                  return <option value={keyName} key={`category-${keyName}`}>{eventCategories[keyName].text}</option>
-                })
-              }
-            </select>
-          </label>
-          
-          {/* Tribe members search field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
-            <span>Tribe member search:</span>
-            <select
-              className="input input-bordered w-full"
-              id="to"
-              name="to"
-              // value={tribe-search}
-              // onChange={tribe-search}
-              multiple={true}
-            >
-              {
-                tribe?.results[0]?.users?.map((tribeMember) => {
-                  return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
-                })
-              }
-            </select>
-          </label>
+          {/* How to iterate over values of an object in React is from */}
+          {/* https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs */}
+          <select
+            className="input input-bordered w-full"
+            id="category_search"
+            name="category_search"
+            value={category_search}
+            onChange={handleMultipleSelectChange}
+            multiple={true}
+          >
+            {
+              Object.keys(eventCategories).map((keyName) => {
+                return <option value={keyName} key={`category-${keyName}`}>{eventCategories[keyName].text}</option>
+              })
+            }
+          </select>
+        </label>
 
+        {/* Tribe members search field */}
+        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
+          <span>Tribe member search:</span>
+          <select
+            className="input input-bordered w-full"
+            id="tribe_search"
+            name="tribe_search"
+            value={tribe_search}
+            onChange={handleMultipleSelectChange}
+            multiple={true}
+          >
+            {
+              tribe?.results[0]?.users?.map((tribeMember) => {
+                return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
+              })
+            }
+          </select>
+        </label>
 
-
+        <button onClick={handleCancelButton} className="btn btn-outline">Cancel search</button>
       </form>
-
-
-      <button onClick={handleCancelButton} className="btn btn-outline">Cancel</button>
     </div>
   )
 }
