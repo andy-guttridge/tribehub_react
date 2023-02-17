@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { axiosReq } from '../../api/axiosDefaults';
 import ConfirmModal from '../../components/ConfirmModal';
@@ -29,15 +29,22 @@ function EventSearch({ handleCancelButton }) {
   const [searchValues, setSearchValues] = useState({
     text_search: '',
     category_search: '',
-    tribe_search: []
+    tribe_to: [],
+    tribe_from: '',
+    from_date: null,
+    to_date: null
   })
 
   // Retrieve search values from state variables
-  const { text_search, category_search, tribe_search } = searchValues;
+  const { text_search, category_search, tribe_to, tribe_from, to_date, from_date } = searchValues;
 
   // State variables for events
   const [events, setEvents] = useState({ results: [] })
-  
+
+  // References to from and to date form fields
+  const fromInput = useRef(null);
+  const toInput = useRef(null);
+
   // Fetch user's tribe members
   useEffect(() => {
     const fetchTribe = async () => {
@@ -58,11 +65,17 @@ function EventSearch({ handleCancelButton }) {
   useEffect(() => {
 
     // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate them
+    console.log(to_date)
     const textSearch = `?search=${text_search}`;
     const categorySearch = category_search ? `&category=${category_search}` : '';
-    const tribeSearch = tribe_search.reduce((acc, tribeMember) => acc + `&to=${tribeMember}`, '');
-    const finalSearchString = textSearch.concat(categorySearch, tribeSearch)
-    
+    const tribeToSearch = tribe_to.reduce((acc, tribeMember) => acc + `&to=${tribeMember}`, '');
+    const tribeFromSearch = tribe_from ? `&user=${tribe_from}` : '&user=';
+    const toDateString = to_date && new Date(to_date).toISOString().slice(0, -5);
+    const toSearchString = to_date ? `&to_date=${toDateString}` : '';
+    const fromDateString = from_date && new Date(from_date).toISOString().slice(0, -5);
+    const fromSearchString = from_date ? `&from_date=${fromDateString}` : '';
+    const finalSearchString = textSearch.concat(categorySearch, tribeToSearch, tribeFromSearch, fromSearchString, toSearchString)
+
     // Fetch events from the API
     const fetchEvents = async () => {
       try {
@@ -91,6 +104,23 @@ function EventSearch({ handleCancelButton }) {
       [e.target.name]: e.target.value
     }
     )
+
+    // Validate date inputs to make sure the from date is not before the to date,
+    // and state value and form input values if so.
+    if (e.target.name === 'from_date' && e.target.value > searchValues.to_date) {
+      setSearchValues({
+        ...searchValues,
+        to_date: from_date
+      })
+      toInput.value = fromInput.value;
+    }
+    if (e.target.name === 'to_date' && e.target.value < searchValues.from_date) {
+      setSearchValues({
+        ...searchValues,
+        from_date: to_date
+      })
+      fromInput.value = toInput.value;
+    }
   }
 
   // Change handler for multiple selection form fields
@@ -166,12 +196,12 @@ function EventSearch({ handleCancelButton }) {
 
         {/* Tribe members search field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
-          <span>Tribe member search:</span>
+          <span>Tribe members invited:</span>
           <select
             className="input input-bordered w-full"
-            id="tribe_search"
-            name="tribe_search"
-            value={tribe_search}
+            id="tribe_to"
+            name="tribe_to"
+            value={tribe_to}
             onChange={handleMultipleSelectChange}
             multiple={true}
           >
@@ -181,6 +211,55 @@ function EventSearch({ handleCancelButton }) {
               })
             }
           </select>
+        </label>
+
+        {/* Tribe members from field */}
+        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
+          <span>Tribe member sent from:</span>
+          <select
+            className="input input-bordered w-full"
+            id="tribe_from"
+            name="tribe_from"
+            value={tribe_from}
+            onChange={handleMultipleSelectChange}
+          >
+            <option value={''} key={'blank-from-option'}>--</option>
+            {
+              tribe?.results[0]?.users?.map((tribeMember) => {
+                return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
+              })
+            }
+          </select>
+        </label>
+
+        {/* From date field */}
+        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
+          <span>From date:</span>
+          <input
+            type="date"
+            className="input input-bordered w-full"
+            id="from_date"
+            name="from_date"
+            value={from_date}
+            onChange={handleChange}
+            required
+            ref={fromInput}
+          />
+        </label>
+
+        {/* To date field */}
+        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
+          <span>To date:</span>
+          <input
+            type="date"
+            className="input input-bordered w-full"
+            id="to_date"
+            name="to_date"
+            value={to_date}
+            onChange={handleChange}
+            required
+            ref={toInput}
+          />
         </label>
 
         <button onClick={handleCancelButton} className="btn btn-outline">Cancel search</button>
