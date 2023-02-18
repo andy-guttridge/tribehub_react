@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { InfoCircle } from 'react-bootstrap-icons';
 import ReactDOM from 'react-dom'
 import { axiosReq } from '../../api/axiosDefaults';
 import ConfirmModal from '../../components/ConfirmModal';
@@ -22,7 +23,8 @@ function EventSearch({ handleCancelButton }) {
   // This is simply toggles to trigger events to reload when there has been a change.
   const [didSaveEvent, setDidSaveEvent] = useState(false)
 
-  // State variables for whether user is in the process of deleting an event
+  // State variables for whether user is in the process of deleting an event.
+  // If user is deleting event, the id of the event is stored here.
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
 
   // State variables for search values
@@ -53,9 +55,10 @@ function EventSearch({ handleCancelButton }) {
         const { data } = await axiosReq.get('tribe/');
         setTribe(data);
         setHasLoaded(true);
+        setErrors({});
       }
       catch (error) {
-        setErrors({ tribe: 'There was an error loading tribe data from the server.' })
+        setErrors({ tribe: 'There was an error loading tribe data. You may be offline, or there may have been a server error' })
       }
     }
     fetchTribe();
@@ -84,9 +87,10 @@ function EventSearch({ handleCancelButton }) {
         console.log(data.results);
         setEvents(data);
         setHasLoaded(true);
+        setErrors({});
       }
       catch (errors) {
-        setErrors(errors);
+        setErrors({ events: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
       }
     }
 
@@ -95,7 +99,7 @@ function EventSearch({ handleCancelButton }) {
     const timer = setTimeout(() => {
       fetchEvents();
     }, 1000);
-    
+
     return () => {
       clearTimeout(timer);
     }
@@ -156,6 +160,7 @@ function EventSearch({ handleCancelButton }) {
     try {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
+      setErrors({});
     }
     catch (error) {
       setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
@@ -166,6 +171,23 @@ function EventSearch({ handleCancelButton }) {
   return (
     <div className="basis-full">
       <h3>Search events</h3>
+
+      {/* Display alert if there was an issue fetching tribe data */}
+      {
+        errors.tribe &&
+        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+          <InfoCircle size="32" className="inline-block" /><p>{errors.tribe}</p>
+        </div>
+      }
+
+      {/* Display alert if there was an issue fetching events data */}
+      {
+        errors.events &&
+        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+          <InfoCircle size="32" className="inline-block" /><p>{errors.events}</p>
+        </div>
+      }
+
       <form>
 
         {/* Text search field */}
@@ -270,10 +292,18 @@ function EventSearch({ handleCancelButton }) {
             ref={toInput}
           />
         </label>
-        
+
         {/* Cancel search button */}
         <button onClick={handleCancelButton} className="btn btn-outline">Cancel search</button>
       </form>
+
+      {/* Display alert if there was an issue deleting an event */}
+      {
+        errors.delete &&
+        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+          <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
+        </div>
+      }
 
       {/* Display events using search results */}
       {
