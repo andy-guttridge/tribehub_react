@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import TribeHome from './TribeHome/TribeHome'
-import Contacts from './Contacts'
+import Contacts from './Contacts/Contacts'
 import Account from './Account/Account'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 import { useNavigate } from 'react-router-dom'

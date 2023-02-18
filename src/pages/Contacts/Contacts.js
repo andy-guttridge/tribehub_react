@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useCurrentUser } from '../contexts/CurrentUserContext'
-import { useSinglePage } from '../contexts/SinglePageContext';
+import { useCurrentUser } from '../../contexts/CurrentUserContext'
+import { useSinglePage } from '../../contexts/SinglePageContext';
 
 function Contacts() {
   const currentUser = useCurrentUser();
