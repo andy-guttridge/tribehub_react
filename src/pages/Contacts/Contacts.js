@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { axiosReq } from '../../api/axiosDefaults';
+import Spinner from '../../components/Spinner';
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { useSinglePage } from '../../contexts/SinglePageContext';
 import Contact from './Contact';
@@ -58,13 +59,20 @@ function Contacts() {
       }
     >
       <h2>Contacts</h2>
-      <div className="inline-block w-4/5">
+      {
+        hasLoaded ? (
+          <div className="inline-block w-4/5">
         {
           contacts?.results?.map((contact) => {
             return <Contact contact={contact} />
           })
         }
       </div>
+        ) : (
+          <Spinner />
+        )
+      }
+      
     </div>
   )
 }
