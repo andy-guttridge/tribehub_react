@@ -68,7 +68,6 @@ function EventSearch({ handleCancelButton }) {
   useEffect(() => {
 
     // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate them
-    console.log(to_date)
     const textSearch = `?search=${text_search}`;
     const categorySearch = category_search ? `&category=${category_search}` : '';
     const tribeToSearch = tribe_to.reduce((acc, tribeMember) => acc + `&to=${tribeMember}`, '');
@@ -84,7 +83,6 @@ function EventSearch({ handleCancelButton }) {
       try {
         setHasLoaded(false);
         const { data } = await axiosReq.get(`events/${finalSearchString}`);
-        console.log(data.results);
         setEvents(data);
         setHasLoaded(true);
         setErrors({});
