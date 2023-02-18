@@ -119,8 +119,8 @@ function TribeMemberDetailsForm({ handleNewMemberButton }) {
 
       {/* Display alert with any non-field errors */}
       {
-        errors.non_field_errors?.map((error) => (
-          <div className="alert alert-warning justify-start mt-4">
+        errors.non_field_errors?.map((error, i) => (
+          <div className="alert alert-warning justify-start mt-4" key={`tribemember_form_non-field_err${i}`}>
             <InfoCircle size="32" /><span>{error}</span>
           </div>
         ))

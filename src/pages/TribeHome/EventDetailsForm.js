@@ -340,14 +340,15 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
               <InfoCircle size="32" /><span>{errors.category}</span>
             </div>
           }
-
+          
+          {/* Cancel and submit buttons */}
           <button className="btn btn-outline m-2}" type="button" onClick={handleCancelButton}>Cancel</button>
           <button className="btn btn-outline w-1/3 m-2" type="submit">Submit</button>
 
           {/* Display alert with any non-field errors */}
           {
-            errors.non_field_errors?.map((error) => (
-              <div className="alert alert-warning justify-start mt-4">
+            errors.non_field_errors?.map((error, i) => (
+              <div className="alert alert-warning justify-start mt-4" key={`eventform-nonfield-err${i}`}>
                 <InfoCircle size="32" /><span>{error}</span>
               </div>
             ))
