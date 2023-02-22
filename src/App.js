@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import './api/axiosDefaults'
 
 import Signin from './pages/Signin'
@@ -45,10 +45,16 @@ function App() {
                 <Route exact path="/tribe-home" element={<TribeHome />} />
                 <Route exact path="/contacts" element={<Contacts />} />
                 <Route exact path="/account" element={<Account />} />
+
+                {/* If URL not successfully resolved, direct to TribeHome if logged in, */}
+                {/* otherwise, redirect to the landing page. */}
+                {/* How to use Navigate component for this purpose is from */}
+                {/* https://www.copycat.dev/blog/react-router-redirect/ */}
+                <Route path='*' element={<Navigate to={currentUser ? 'tribe-home' : '/'} />}/>
               </Routes>
               {/* Div with margin to ensure clearance above bottom navbar */}
               <div className="mb-20"></div>
-              <NavBar className="z-[9999]"/>
+              <NavBar className="z-[9999]" />
             </>
           ) : (
             // If window width larger than breakpoint, use single page app layout
@@ -67,10 +73,13 @@ function App() {
                 <Route exact path="/tribe-home" element={<SinglePage />} />
                 <Route exact path="/contacts" element={<SinglePage />} />
                 <Route exact path="/account" element={<SinglePage />} />
+
+                {/* If URL not successfully resolved, direct to SinglePage if logged in, */}
+                {/* otherwise, redirect to the landing page. */}
+                {/* How to use Navigate component for this purpose is from */}
+                {/* https://www.copycat.dev/blog/react-router-redirect/ */}
+                <Route path='*' element={<Navigate to={currentUser ? 'tribe-home' : '/'} />}/>
               </Routes>
-              {/* If URL not successfully resolved, direct to SinglePage if logged in, */}
-              {/* otherwise, redirect to the landing page. */}
-              {currentUser ? <SinglePage /> : <Landing />}
             </>
           )
       }
