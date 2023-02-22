@@ -62,7 +62,8 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
     <div className="w-4/5 m-auto">
       <h3>Add contact</h3>
       <form onSubmit={handleSubmit}>
-
+        
+        {/* The value from the API for each form input is or'd with an empty string, as the API can return null values which cause errors in React */}
         {/* Category field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category">
           <span>Category:</span>
@@ -71,7 +72,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             className="input input-bordered w-full"
             id="category"
             name="category"
-            value={category}
+            value={category || ''}
             onChange={handleChange}
           />
         </label>
@@ -95,7 +96,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             className="input input-bordered w-full"
             id="company"
             name="company"
-            value={company}
+            value={company || ''}
             onChange={handleChange}
           />
         </label>
@@ -119,7 +120,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             className="input input-bordered w-full"
             id="title"
             name="title"
-            value={title}
+            value={title || ''}
             onChange={handleChange}
           />
         </label>
@@ -143,7 +144,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             className="input input-bordered w-full"
             id="first_name"
             name="first_name"
-            value={first_name}
+            value={first_name || ''}
             onChange={handleChange}
           />
         </label>
@@ -167,7 +168,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             className="input input-bordered w-full"
             id="last_name"
             name="last_name"
-            value={last_name}
+            value={last_name || ''}
             onChange={handleChange}
           />
         </label>
@@ -191,7 +192,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             className="input input-bordered w-full"
             id="phone"
             name="phone"
-            value={phone}
+            value={phone || ''}
             onChange={handleChange}
           />
         </label>
@@ -215,7 +216,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             className="input input-bordered w-full"
             id="email"
             name="email"
-            value={email}
+            value={email || ''}
             onChange={handleChange}
           />
         </label>
