@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { PlusCircle } from 'react-bootstrap-icons';
+import { PlusCircle, Search } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom'
 import { axiosReq } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
@@ -9,6 +9,7 @@ import { useSinglePage } from '../../contexts/SinglePageContext';
 import Contact from './Contact';
 import ContactDetailsForm from './ContactDetailsForm';
 import ConfirmModal from '../../components/ConfirmModal';
+import ContactSearch from './ContactSearch';
 
 function Contacts() {
 
@@ -43,6 +44,9 @@ function Contacts() {
   // State variable for id of contact being deleted, or false if user is not currently deleting a contact
   const [isDeletingContact, setIsDeletingContact] = useState(false);
 
+  // State variable for whether user is currently searching contacts
+  const [isSearching, setIsSearching] = useState(false);
+
   // Handle user pressing delete contact button by storing the contact id
   const handleDeleteButton = (contactId) => {
     setIsDeletingContact(contactId);
@@ -55,8 +59,8 @@ function Contacts() {
       setDidSaveContact(!didSaveContact);
       setIsDeletingContact(false);
     }
-    catch(error) {
-      setErrors({delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.'});
+    catch (error) {
+      setErrors({ delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.' });
     }
   }
 
@@ -102,8 +106,10 @@ function Contacts() {
             }
 
             {
+              // Don't display contacts here if user is searching
+              !isSearching && 
               contacts?.results?.map((contact) => {
-                return <Contact contact={contact} key={contact.id} handleDeleteButton={handleDeleteButton} didSaveContact={didSaveContact} setDidSaveContact={setDidSaveContact}/>
+                return <Contact contact={contact} key={contact.id} handleDeleteButton={handleDeleteButton} didSaveContact={didSaveContact} setDidSaveContact={setDidSaveContact} />
               })
             }
           </div>
@@ -112,20 +118,31 @@ function Contacts() {
         )
       }
 
-      {/* Show add contact button if user is tribe admin and they are not currently adding a contact */}
+      {/* Show add contact button if user is tribe admin, they are not currently adding a contact and user does not have the search form open */}
       <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
-        {!isAddingContact && currentUser.is_admin &&
+        {!isAddingContact && !isSearching && currentUser.is_admin &&
           <button className='btn btn-ghost'
             onClick={() => setIsAddingContact(!isAddingContact)}>
             <PlusCircle size="32" />
             <span className="sr-only">Add new contact</span>
           </button>
         }
+
+        {/* Show search button or search form if user has pressed the button */}
+        {
+          !isSearching && !isAddingContact ? (
+            <button onClick={() => setIsSearching(!isSearching)} className='btn btn-ghost'>
+              <Search size="32" /><span className="sr-only">Search contacts</span>
+            </button>
+          ) : isSearching && (
+            <ContactSearch handleCancelButton={() => setIsSearching(false)}/>
+          )
+        }
       </div>
 
-      {/* Show contact details form if user is currently adding a contact */}
+      {/* Show contact details form if user is currently adding a contact and doesn't have the search form open */}
       {
-        isAddingContact && currentUser.is_admin &&
+        isAddingContact && !isSearching && currentUser.is_admin &&
         <ContactDetailsForm
           handleCancelButton={() => setIsAddingContact(!isAddingContact)}
           didSaveContact={didSaveContact}
