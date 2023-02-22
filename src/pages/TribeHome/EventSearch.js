@@ -67,7 +67,7 @@ function EventSearch({ handleCancelButton }) {
   // Fetch events according to search values
   useEffect(() => {
 
-    // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate them
+    // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate
     const textSearch = `?search=${text_search}`;
     const categorySearch = category_search ? `&category=${category_search}` : '';
     const tribeToSearch = tribe_to.reduce((acc, tribeMember) => acc + `&to=${tribeMember}`, '');
@@ -86,6 +86,7 @@ function EventSearch({ handleCancelButton }) {
         setEvents(data);
         setHasLoaded(true);
         setErrors({});
+        console.log(data);
       }
       catch (errors) {
         setErrors({ events: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
@@ -306,7 +307,7 @@ function EventSearch({ handleCancelButton }) {
       {/* Display events using search results */}
       {
         hasLoaded ? (
-          <div className="max-h-96 inline-block overflow-scroll">
+          <div className="max-h-96 overflow-scroll">
             {
               events?.results?.map((event, i) => {
                 // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
