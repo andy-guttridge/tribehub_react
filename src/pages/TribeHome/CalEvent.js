@@ -185,6 +185,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
               <PencilSquare size="26" />
               <span className="sr-only">Edit calender event {thisEvent.subject}</span>
             </button>
+            
             <button
               className="btn btn-ghost"
               onClick={() => handleDeleteButton(thisEvent.id)}
