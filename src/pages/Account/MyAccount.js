@@ -26,7 +26,7 @@ function MyAccount() {
 
   // Check if user logged in on mount, if not redirect to landing page
   useEffect(() => {
-    !currentUser && navigate("/landing-page/")
+    !currentUser && navigate("/")
   }, [currentUser])
 
   // Handle user confirm they want to delete their account
