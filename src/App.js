@@ -67,10 +67,13 @@ function App() {
                 />
                 <Route exact path="/sign-in" element={<Signin />} />
                 <Route exact path="/register" element={<Register />} />
+                <Route exact path="/tribe-home" element={<SinglePage />} />
+                <Route exact path="/contacts" element={<SinglePage />} />
+                <Route exact path="/account" element={<SinglePage />} />
               </Routes>
-              {/* If user is logged in and URL is something random, use SinglePage component */}
-              {/* Otherwise, redirect to the landing page. */}
-              {currentUser && (currentUrl.pathname !== "/") && <SinglePage />}
+              {/* If URL not successfully resolved, direct to SinglePage if logged in, */}
+              {/* otherwise, redirect to the landing page. */}
+              {currentUser ? <SinglePage /> : <Landing />}
             </>
           )
       }
