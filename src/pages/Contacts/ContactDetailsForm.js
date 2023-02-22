@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
 import { axiosReq } from '../../api/axiosDefaults';
 
-function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveContact }) {
+function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveContact, isEditingContact, contact }) {
 
   // State variables for form values
   const [contactForm, setContactForm] = useState({
@@ -24,9 +24,15 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axiosReq.post('contacts/', contactForm);
 
+    // If user is editing an existing contact, make changes using PUT method,
+    // otherwise create a new contact with POST method
+    try {
+      if(isEditingContact) {
+        await axiosReq.put(`contacts/${contact.id}/`, contactForm);
+      } else {
+        await axiosReq.post('contacts/', contactForm);
+      }
       // Hide form and tell parent component the contact was saved
       handleCancelButton();
       setDidSaveContact(!didSaveContact);
@@ -37,12 +43,20 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
     }
   }
 
+  // Handle changes in form values
   const handleChange = (e) => {
     setContactForm({
       ...contactForm,
       [e.target.name]: e.target.value
     })
   }
+
+  // Set form values using contact details passed in if user is editing an existing contact
+  useEffect(() => {
+    if (isEditingContact) {
+      setContactForm(contact);
+    }
+  }, [])
 
   return (
     <div className="w-4/5 m-auto">
@@ -205,7 +219,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             onChange={handleChange}
           />
         </label>
-        
+
         {/* Display alert with any email field errors */}
         {
           errors?.email?.map((error, i) => {

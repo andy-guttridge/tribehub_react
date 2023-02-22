@@ -1,25 +1,40 @@
-import React from 'react'
-import { Trash3 } from 'react-bootstrap-icons'
+import React, { useState } from 'react'
+import { PencilSquare, Trash3 } from 'react-bootstrap-icons'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
+import ContactDetailsForm from './ContactDetailsForm';
 
 // Component for individual contact
-function Contact({ contact, handleDeleteButton }) {
+function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButton }) {
 
   // Reference to current user
   const currentUser = useCurrentUser();
 
+  // State variable to flag if user is currently editing the contact
+  const [isEditingContact, setIsEditingContact] = useState();
+
   return (
     <div className="card border-b-2 rounded-sm m-2 text-center">
       <div className="flex justify-start">
-        {/* Show delete contact button if user is tribe admin */}
+        {/* Show delete and edit buttons if user is tribe admin */}
         {
           currentUser.is_admin &&
-          <button className="btn btn-ghost"
-            onClick={() => handleDeleteButton(contact.id)}
-          >
-            <Trash3 size="26"></Trash3>
-            <span className="sr-only">Delete contact</span>
-          </button>
+          <>
+            <button
+            className="btn btn-ghost"
+            onClick={() => setIsEditingContact(true)}
+            >
+              <PencilSquare size="26" />
+              <span className="sr-only">Edit contact</span>
+            </button>
+
+            <button
+              className="btn btn-ghost"
+              onClick={() => handleDeleteButton(contact.id)}
+            >
+              <Trash3 size="26"></Trash3>
+              <span className="sr-only">Delete contact</span>
+            </button>
+          </>
         }
       </div>
 
@@ -35,6 +50,17 @@ function Contact({ contact, handleDeleteButton }) {
           <p><span className="font-bold">Email: </span>{contact.email}</p>
         </div>
       </div>
+
+    {/* Display ContactDetailsForm if user is editing a contact */}
+    { isEditingContact && 
+      <ContactDetailsForm 
+        handleCancelButton={() => setIsEditingContact(false)}
+        isEditingContact
+        contact={contact}
+        didSaveContact={didSaveContact}
+        setDidSaveContact={setDidSaveContact}
+      />
+    }
     </div>
   )
 }

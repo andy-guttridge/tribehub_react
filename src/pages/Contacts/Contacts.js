@@ -103,7 +103,7 @@ function Contacts() {
 
             {
               contacts?.results?.map((contact) => {
-                return <Contact contact={contact} key={contact.id} handleDeleteButton={handleDeleteButton} />
+                return <Contact contact={contact} key={contact.id} handleDeleteButton={handleDeleteButton} didSaveContact={didSaveContact} setDidSaveContact={setDidSaveContact}/>
               })
             }
           </div>
