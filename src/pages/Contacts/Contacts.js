@@ -83,7 +83,7 @@ function Contacts() {
       }
     }
     fetchContacts();
-  }, [didSaveContact])
+  }, [didSaveContact, isSearching])
 
   return (
     // Apply some styling if displaying in single page mode
