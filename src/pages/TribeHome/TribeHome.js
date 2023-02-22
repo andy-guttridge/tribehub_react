@@ -198,7 +198,7 @@ function TribeHome() {
                 {
                   dayEvents?.map((dayEvent) => {
                     // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
-                    return <CalEvent event={dayEvent} key={`event-${dayEvent.id}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} handleDeleteButton={handleDeleteButton} />
+                    return <CalEvent event={dayEvent} key={`event-${dayEvent.id}-${dayEvent.start}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} handleDeleteButton={handleDeleteButton} />
                   })
                 }
               </div>
