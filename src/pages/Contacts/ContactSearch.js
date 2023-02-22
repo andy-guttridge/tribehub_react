@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { axiosReq } from '../../api/axiosDefaults';
+import Spinner from '../../components/Spinner';
 import Contact from './Contact';
 
 function ContactSearch({ handleCancelButton }) {
 
   // State variable for whether search results have loaded
-  const [loaded, setHasLoaded] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   // State variable for search term
   const [searchValue, setSearchValue] = useState('');
@@ -16,9 +17,19 @@ function ContactSearch({ handleCancelButton }) {
   // State variables for errors
   const [errors, setErrors] = useState({});
 
+  // Flag for when a contact has been changed or deleted.
+  // This is simply toggled to trigger a reload of the data
+  const [didSaveContact, setDidSaveContact] = useState(false);
+
+
   // Handle change of form input value
   const handleChange = (e) => {
     setSearchValue(e.target.value);
+  }
+
+  // Handle delete button on a contact
+  const handleDeleteButton = () =>  {
+
   }
 
   // Fetch contacts according to search values
@@ -30,10 +41,9 @@ function ContactSearch({ handleCancelButton }) {
         setContacts(data);
         setHasLoaded(true);
         setErrors({});
-        console.log(data);
       }
       catch (error) {
-        setErrors(error);
+        setErrors({events: 'There was an error loading search results. You may be offline, or there may have been a server error.'});
       }
     }
 
@@ -47,7 +57,7 @@ function ContactSearch({ handleCancelButton }) {
       clearTimeout(timer);
     }
 
-  }, [searchValue])
+  }, [searchValue, didSaveContact])
 
   return (
     <div className="basis-full">
@@ -71,9 +81,13 @@ function ContactSearch({ handleCancelButton }) {
       {/* Display contacts using search results */}
       <div>
         {
-          contacts?.results?.map((contact, i) => {
-            return <Contact contact={contact} key={`contact-${contact.id}-${i}`}/>
-          })
+          hasLoaded ? (
+            contacts?.results?.map((contact, i) => {
+              return <Contact contact={contact} key={`contact-${contact.id}-${i}`} didSaveContact={didSaveContact} setDidSaveContact={setDidSaveContact} handleDeleteButton={handleDeleteButton}/>
+            })
+          ) : (
+            <Spinner />
+          )
         }
       </div>
     </div>

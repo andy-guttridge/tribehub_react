@@ -72,7 +72,6 @@ function Contacts() {
   // Fetch users contacts from API
   useEffect(() => {
     const fetchContacts = async () => {
-      console.log(currentUser.username)
       try {
         setHasLoaded(false);
         const { data } = await axiosReq.get('contacts/');
