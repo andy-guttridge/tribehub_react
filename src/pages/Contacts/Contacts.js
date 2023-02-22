@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ReactDOM from 'react-dom'
 import { PlusCircle } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom'
 import { axiosReq } from '../../api/axiosDefaults';
@@ -7,6 +8,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { useSinglePage } from '../../contexts/SinglePageContext';
 import Contact from './Contact';
 import ContactDetailsForm from './ContactDetailsForm';
+import ConfirmModal from '../../components/ConfirmModal';
 
 function Contacts() {
 
@@ -37,6 +39,26 @@ function Contacts() {
   // State variable used as a flag when contact details are saved.
   // This is simply toggles to trigger events to reload when there has been a change.
   const [didSaveContact, setDidSaveContact] = useState(false);
+
+  // State variable for id of contact being deleted, or false if user is not currently deleting a contact
+  const [isDeletingContact, setIsDeletingContact] = useState(false);
+
+  // Handle user pressing delete contact button by storing the contact id
+  const handleDeleteButton = (contactId) => {
+    setIsDeletingContact(contactId);
+  }
+
+  // Delete the contact if user confirms deletion
+  const doDelete = async () => {
+    try {
+      await axiosReq.delete(`contacts/${isDeletingContact}/`);
+      setDidSaveContact(!didSaveContact);
+      setIsDeletingContact(false);
+    }
+    catch(error) {
+      setErrors({delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.'});
+    }
+  }
 
   // Check if user logged in on mount, if not redirect to landing page
   useEffect(() => {
@@ -81,7 +103,7 @@ function Contacts() {
 
             {
               contacts?.results?.map((contact) => {
-                return <Contact contact={contact} key={contact.id} />
+                return <Contact contact={contact} key={contact.id} handleDeleteButton={handleDeleteButton} />
               })
             }
           </div>
@@ -109,6 +131,19 @@ function Contacts() {
           didSaveContact={didSaveContact}
           setDidSaveContact={setDidSaveContact}
         />
+      }
+
+      {/* If tribe admin has selected to delete a contact, show the modal to confirm or cancel */}
+      {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
+          // https://upmostly.com/tutorials/modal-components-react-custom-hooks */}
+      {
+        isDeletingContact && ReactDOM.createPortal(
+          <ConfirmModal
+            heading="Delete contact"
+            body={`Are	you sure you want to delete this contact?`}
+            cancelHandler={() => setIsDeletingContact(false)}
+            confirmHandler={doDelete}
+          />, document.body)
       }
 
     </div>
