@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import { PlusCircle, Search } from 'react-bootstrap-icons';
+import { InfoCircle, PlusCircle, Search } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom'
 import { axiosReq } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
@@ -60,6 +60,7 @@ function Contacts() {
       setIsDeletingContact(false);
     }
     catch (error) {
+      setIsDeletingContact(false);
       setErrors({ delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.' });
     }
   }
@@ -77,9 +78,10 @@ function Contacts() {
         const { data } = await axiosReq.get('contacts/');
         setContacts(data);
         setHasLoaded(true);
+        setErrors({});
       }
       catch (error) {
-        setErrors(errors);
+        setErrors({ contacts: 'There was a problem loading your contacts. You may be offline, or there may have been a server error.'});
       }
     }
     fetchContacts();
@@ -93,6 +95,23 @@ function Contacts() {
       }
     >
       <h2>Contacts</h2>
+
+      {/* Display alert if there was an issue fetching contact data */}
+      {
+        errors.contacts &&
+        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+          <InfoCircle size="32" className="inline-block" /><p>{errors.contacts}</p>
+        </div>
+      }
+
+      {/* Display alert if there was an issue deleting a contact */}
+      {
+        errors.delete &&
+        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+          <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
+        </div>
+      }
+
 
       {/* Display contacts */}
       {
@@ -161,7 +180,6 @@ function Contacts() {
             confirmHandler={doDelete}
           />, document.body)
       }
-
     </div>
   )
 }

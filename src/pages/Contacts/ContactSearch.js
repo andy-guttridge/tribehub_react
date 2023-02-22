@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { InfoCircle } from 'react-bootstrap-icons';
 import ReactDOM from 'react-dom';
 
 import { axiosReq } from '../../api/axiosDefaults';
@@ -49,7 +50,7 @@ function ContactSearch({ handleCancelButton }) {
         setErrors({});
       }
       catch (error) {
-        setErrors({ events: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
+        setErrors({ contacts: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
       }
     }
 
@@ -72,6 +73,7 @@ function ContactSearch({ handleCancelButton }) {
       setIsDeletingContact(false);
     }
     catch (error) {
+      setIsDeletingContact(false);
       setErrors({ delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.' });
     }
   }
@@ -79,6 +81,23 @@ function ContactSearch({ handleCancelButton }) {
   return (
     <div className="basis-full">
       <h3>Search contacts</h3>
+
+      {/* Display alert if there was an issue fetching contact data */}
+      {
+        errors.contacts &&
+        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+          <InfoCircle size="32" className="inline-block" /><p>{errors.contacts}</p>
+        </div>
+      }
+
+      {/* Display alert if there was an issue deleting a contact */}
+      {
+        errors.delete &&
+        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+          <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
+        </div>
+      }
+
       <form>
         {/* Contact search field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="contact-search">
