@@ -18,9 +18,6 @@ import { useSinglePage } from './contexts/SinglePageContext';
 
 function App() {
 
-  // Hook to check the current URL
-  const currentUrl = useLocation();
-
   // Hook to provide current user context
   const currentUser = useCurrentUser();
 
