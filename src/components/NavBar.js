@@ -1,36 +1,47 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { House, PersonVcard, Gear, PersonGear } from 'react-bootstrap-icons'
+import React, { useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+import { House, PersonVcard, PersonGear } from 'react-bootstrap-icons'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
 function NavBar() {
+  
+  // Reference to current url
+  const location = useLocation();
 
+  // Reference to current user
+  const currentUser = useCurrentUser();
+  
+  // Icons for Navbar. Use current url to apply the active class to the correct Navlink component
   const navBarIcons = (
     <>
-      <NavLink to="/tribe-home"><House size="32" className="lg:mx-2" aria-label="Home" /><span className="sr-only lg:not-sr-only lg:inline lg:mr-24">Home</span></NavLink>
-      <NavLink to="/contacts"><PersonVcard size="32" className="lg:mx-2" aria-label="Contacts" /><span className="sr-only lg:not-sr-only lg:inline lg:mr-24">Contacts</span></NavLink>
-      <NavLink to="/account"><PersonGear size="32" className="lg:mx-2" aria-label="Account" /><span className="sr-only lg:not-sr-only lg:inline">Account</span></NavLink>
+      <NavLink  to="/tribe-home" className={location.pathname !== '/account' && location.pathname !=='/contacts' && 'active'}>
+        <House size="32" aria-label="Home" />
+        <span className="sr-only">Home</span>
+      </NavLink>
+
+      <NavLink to="/contacts" className={location.pathname == '/contacts' && 'active'}>
+        <PersonVcard size="32" aria-label="Contacts" />
+        <span className="sr-only">Contacts</span>
+      </NavLink>
+
+      <NavLink to="/account" className={location.pathname == '/account' && 'active'}>
+        <PersonGear size="32" aria-label="Account" />
+        <span className="sr-only">Account</span>
+      </NavLink>
     </>
   );
-
-  // State variable for current user details
-  const currentUser = useCurrentUser();
 
   return (
     <div>
       {/* Display navBarIcons only if current user is logged in */}
-      {currentUser && (
+      {currentUser && 
         <>
           {/* Bottom NavBar for mobile */}
           <div className="btm-nav lg:hidden">
             {navBarIcons}
           </div>
-          {/* Top NavBar for large breakpoint and above */}
-          <div className="navbar hidden lg:flex justify-center">
-            {navBarIcons}
-          </div>
         </>
-      )}
+      }
     </div>
   );
 };
