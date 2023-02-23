@@ -11,7 +11,7 @@ function NavBar() {
   // Reference to current user
   const currentUser = useCurrentUser();
   
-  // Icons for Navbar. Use current url to apply the active class to the correct Navlink component
+  // Icons for bottom navbar (only used for breakpoints below large). Use current url to apply the active class to the correct Navlink component
   const navBarIcons = (
     <>
       <NavLink  to="/tribe-home" className={location.pathname !== '/account' && location.pathname !=='/contacts' && 'active'}>
@@ -32,14 +32,12 @@ function NavBar() {
   );
 
   return (
-    <div>
+    <div className="btm-nav lg:hidden">
       {/* Display navBarIcons only if current user is logged in */}
       {currentUser && 
         <>
           {/* Bottom NavBar for mobile */}
-          <div className="btm-nav lg:hidden">
             {navBarIcons}
-          </div>
         </>
       }
     </div>
