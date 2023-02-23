@@ -7,6 +7,7 @@ import ConfirmModal from '../../components/ConfirmModal';
 import DeleteAccountButton from './DeleteAccountForm';
 import PasswordChangeForm from './PasswordChangeForm';
 import ProfileForm from './ProfileForm';
+import {removeTokenTimestamp} from '../../utils/utils'
 
 function MyAccount() {
 
@@ -29,6 +30,7 @@ function MyAccount() {
   const doDeleteAccount = async () => {
     try {
       await axiosReq.delete(`accounts/user/${currentUser.pk}/`);
+      removeTokenTimestamp();
       setCurrentUser(null);
       navigate('/')
     }
@@ -75,10 +77,12 @@ function MyAccount() {
             heading="Delete account"
             body={
               currentUser.is_admin ? (
-                "Are you sure you want to delete your user account and all those of your tribe members?\n\n This action cannot be undone."
+                "Are you sure you want to delete your user account and all those of your tribe members? This action cannot be undone."
+                + "\n\nIf you have another account, you will need to clear all cookies for TribeHub before you can use it to login again."
               ) : (
                 "Are you sure you want to delete your user account? This action cannot be undone."
-              )
+                + "\n\nIf you have another account, you will need to clear all cookies for TribeHub before you can use it to login again."
+              ) 
             }
             cancelHandler={() => setIsDeletingAccount(false)}
             confirmHandler={doDeleteAccount}
