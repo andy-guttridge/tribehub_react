@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { InfoCircle } from 'react-bootstrap-icons';
 
-import { axiosReq } from '../../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { eventCategories } from '../../utils/constants';
@@ -103,7 +103,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
   useEffect(() => {
     const fetchTribe = async () => {
       try {
-        const { data } = await axiosReq.get('tribe/');
+        const { data } = await axiosRes.get('tribe/');
         setTribe(data);
         setHasLoaded(true);
       }
@@ -121,7 +121,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         if (event.recurrence_type === 'REC') {
           try {
             setHasLoaded(false);
-            const { data } = await axiosReq.get(`/events/${event.id}/`);
+            const { data } = await axiosRes.get(`/events/${event.id}/`);
 
             // Extract user ids from event data if users have been invited
             let toUsersArray = ['']

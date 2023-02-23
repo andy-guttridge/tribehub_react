@@ -77,7 +77,7 @@ export const CurrentUserProvider = ({ children }) => {
       // If user not authorised, try to refresh token. If that doesn't work,
       // navigate back to sign-in page if the user was previously logged in.
       async (error) => {
-        if(error.response?.status == 401) {
+        if(error.response?.status === 401) {
           try {
             await axios.post('dj-rest-auth/token/refresh/')
           }

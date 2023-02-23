@@ -13,7 +13,7 @@ function Header(A) {
   // Handle sign-out with API
   const handleSignout = async (event) => {
     try {
-      await axiosRes.post("dj-rest-auth/logout/");
+      await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
     }
     catch (error) {

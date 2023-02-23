@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { InfoCircle } from 'react-bootstrap-icons';
 import ReactDOM from 'react-dom';
 
-import { axiosReq } from '../../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import ConfirmModal from '../../components/ConfirmModal';
 import Spinner from '../../components/Spinner';
 import Contact from './Contact';
@@ -44,7 +44,7 @@ function ContactSearch({ handleCancelButton }) {
     const fetchContacts = async () => {
       try {
         setHasLoaded(false);
-        const { data } = await axiosReq.get(`contacts/?search=${searchValue}`);
+        const { data } = await axiosRes.get(`contacts/?search=${searchValue}`);
         setContacts(data);
         setHasLoaded(true);
         setErrors({});

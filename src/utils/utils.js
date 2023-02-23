@@ -11,6 +11,7 @@ export const setTokenTimestamp = (data) => {
 
 // Check if there is a refresh token, if yes return true as user has been logged in.
 export const shouldRefreshToken = () => {
+  console.log('Refresh token timestamp retrieved: ', !!localStorage.getItem('refreshTokenTimestamp'))
   return !!localStorage.getItem('refreshTokenTimestamp');
 }
 
