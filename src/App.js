@@ -1,6 +1,5 @@
 import './App.css';
-import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './api/axiosDefaults'
 
 import Signin from './pages/Signin'

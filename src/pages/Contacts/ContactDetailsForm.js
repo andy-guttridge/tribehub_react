@@ -56,7 +56,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
     if (isEditingContact) {
       setContactForm(contact);
     }
-  }, [])
+  }, [isEditingContact, setContactForm, contact])
 
   return (
     <div className="w-4/5 m-auto">

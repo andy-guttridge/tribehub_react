@@ -17,17 +17,13 @@ function MyAccount() {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-
-  // State variable to confirm whether data has loaded;
-  const [hasLoaded, setHasLoaded] = useState(false);
-
   // State variable to track whether user is currently in the process of deleting their account
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
 
   // Check if user logged in on mount, if not redirect to landing page
   useEffect(() => {
     !currentUser && navigate("/")
-  }, [currentUser])
+  }, [currentUser, navigate])
 
   // Handle user confirm they want to delete their account
   const doDeleteAccount = async () => {

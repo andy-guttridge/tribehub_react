@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { House, PersonVcard, PersonGear } from 'react-bootstrap-icons'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
@@ -19,12 +19,12 @@ function NavBar() {
         <span className="sr-only">Home</span>
       </NavLink>
 
-      <NavLink to="/contacts" className={location.pathname == '/contacts' && 'active'}>
+      <NavLink to="/contacts" className={location.pathname === '/contacts' && 'active'}>
         <PersonVcard size="32" aria-label="Contacts" />
         <span className="sr-only">Contacts</span>
       </NavLink>
 
-      <NavLink to="/account" className={location.pathname == '/account' && 'active'}>
+      <NavLink to="/account" className={location.pathname === '/account' && 'active'}>
         <PersonGear size="32" aria-label="Account" />
         <span className="sr-only">Account</span>
       </NavLink>
