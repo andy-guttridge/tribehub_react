@@ -47,7 +47,7 @@ export const CurrentUserProvider = ({ children }) => {
       async(config) => {
         if (shouldRefreshToken()){
           try {
-              await axiosRes.post('/dj-rest-auth/token/refresh/');
+              await axios.post('/dj-rest-auth/token/refresh/');
           }
           catch(error){
               setCurrentUser((prevCurrentUser) => {
