@@ -91,7 +91,9 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         setDidSaveEvent(!didSaveEvent);
       }
     } catch (error) {
-      setErrors(error.response?.data);
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data);
+      }
     }
 
   }
@@ -105,7 +107,9 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         setTribe(data);
         setHasLoaded(true);
       } catch (error) {
-        setErrors({ tribe: 'There was an error loading tribe data from the server.' })
+        if(error.response?.status !== 401) {
+          setErrors({ tribe: 'There was an error loading tribe data from the server.' })
+        }
       }
     }
     fetchTribe();
@@ -135,7 +139,9 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             })
             setHasLoaded(true);
           } catch (error) {
-            setErrors({ event: 'There was an error loading event data from the server.' })
+            if(error.response?.status !== 401) {
+              setErrors({ event: 'There was an error loading event data from the server.' })
+            }
           }
         } else {
           // Extract user ids from event data if users have been invited
@@ -227,7 +233,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
               <InfoCircle size="32" /><span>{errors.start}</span>
             </div>
           }
-          
+
           {/* Duration field */}
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="duration">
             <span>Duration:</span>
@@ -337,7 +343,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
               <InfoCircle size="32" /><span>{errors.category}</span>
             </div>
           }
-          
+
           {/* Cancel and submit buttons */}
           <button className="btn btn-outline m-2}" type="button" onClick={handleCancelButton}>Cancel</button>
           <button className="btn btn-outline w-1/3 m-2" type="submit">Submit</button>

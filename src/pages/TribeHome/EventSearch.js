@@ -57,7 +57,9 @@ function EventSearch({ handleCancelButton }) {
         setHasLoaded(true);
         setErrors({});
       } catch (error) {
-        setErrors({ tribe: 'There was an error loading tribe data. You may be offline, or there may have been a server error' })
+        if (error.response?.status !== 401) {
+          setErrors({ tribe: 'There was an error loading tribe data. You may be offline, or there may have been a server error' })
+        }
       }
     }
     fetchTribe();
@@ -65,7 +67,6 @@ function EventSearch({ handleCancelButton }) {
 
   // Fetch events according to search values
   useEffect(() => {
-    console.log('Using effect')
     // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate
     const textSearch = `?search=${text_search}`;
     const categorySearch = category_search ? `&category=${category_search}` : '';
@@ -86,7 +87,9 @@ function EventSearch({ handleCancelButton }) {
         setHasLoaded(true);
         setErrors({});
       } catch (error) {
-        setErrors({ events: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
+        if (error.response?.status !== 401) {
+          setErrors({ events: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
+        }
       }
     }
 
@@ -158,7 +161,9 @@ function EventSearch({ handleCancelButton }) {
       setDidSaveEvent(!didSaveEvent);
       setErrors({});
     } catch (error) {
-      setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
+      if(error.response?.status !== 401) {
+        setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
+      }
     }
     setIsDeletingEvent(false);
   }

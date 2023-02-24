@@ -49,7 +49,9 @@ function ContactSearch({ handleCancelButton }) {
         setHasLoaded(true);
         setErrors({});
       } catch (error) {
-        setErrors({ contacts: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
+        if (error.response?.status !== 401) {
+          setErrors({ contacts: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
+        }
       }
     }
 

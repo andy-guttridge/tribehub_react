@@ -29,7 +29,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
     // If user is editing an existing contact, make changes using PUT method,
     // otherwise create a new contact with POST method
     try {
-      if(isEditingContact) {
+      if (isEditingContact) {
         await axiosReq.put(`contacts/${contact.id}/`, contactForm);
       } else {
         await axiosReq.post('contacts/', contactForm);
@@ -39,7 +39,9 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
       setDidSaveContact(!didSaveContact);
       setErrors({});
     } catch (error) {
-      setErrors(error.response?.data);
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data);
+      }
     }
   }
 
@@ -62,7 +64,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
     <div className="w-4/5 m-auto">
       <h3>Add contact</h3>
       <form onSubmit={handleSubmit}>
-        
+
         {/* The value from the API for each form input is or'd with an empty string, as the API can return null values which cause errors in React */}
         {/* Category field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category">

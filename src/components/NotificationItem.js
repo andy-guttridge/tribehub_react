@@ -22,7 +22,6 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
   // Reference to current user
   const currentUser = useCurrentUser();
 
-
   // Handle event accept/decline buttons
   const handleEventResponse = async (e) => {
 
@@ -36,7 +35,9 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
       setNotificationsChanged(!notificationsChanged);
       setErrors({});
     } catch (error) {
-      setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
+      if(error.response?.status !== 401) {
+        setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
+      }
     }
   }
 

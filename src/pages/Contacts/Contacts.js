@@ -61,8 +61,10 @@ function Contacts() {
       setDidSaveContact(!didSaveContact);
       setIsDeletingContact(false);
     } catch (error) {
-      setIsDeletingContact(false);
-      setErrors({ delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.' });
+      if (error.response?.status !== 401) {
+        setIsDeletingContact(false);
+        setErrors({ delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.' });
+      }
     }
   }
 
@@ -81,7 +83,9 @@ function Contacts() {
         setHasLoaded(true);
         setErrors({});
       } catch (error) {
-        setErrors({ contacts: 'There was a problem loading your contacts. You may be offline, or there may have been a server error.' });
+        if(error.response?.status !== 401) {
+          setErrors({ contacts: 'There was a problem loading your contacts. You may be offline, or there may have been a server error.' });
+        }
       }
     }
     fetchContacts();

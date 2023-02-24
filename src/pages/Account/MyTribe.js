@@ -47,7 +47,9 @@ function MyTribe() {
       await axiosReq.delete(`accounts/user/${isDeletingMember}`);
       setTribeChangeFlag(!tribeChangeFlag);
     } catch (error) {
-      setErrors({ delete: 'There was an error attempting to delete this tribe member.\n\nYou may be offline or there may have been a server error.' })
+      if(error.response?.status !== 401) {
+        setErrors({ delete: 'There was an error attempting to delete this tribe member.\n\nYou may be offline or there may have been a server error.' })
+      }
     }
     setIsDeletingMember(false);
   }
@@ -65,7 +67,9 @@ function MyTribe() {
         setTribe(data);
         setHasLoaded(true);
       } catch (error) {
-        setErrors({ tribe: 'There was an error fetching your tribe members from the server.\n\nYou may be offline or there may have been a server error.' })
+        if(error.response?.status !== 401) {
+          setErrors({ tribe: 'There was an error fetching your tribe members from the server.\n\nYou may be offline or there may have been a server error.' })
+        }
       }
     }
     fetchTribe();

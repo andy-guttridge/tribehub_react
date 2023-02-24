@@ -44,7 +44,9 @@ function Signin() {
       setTokenTimestamp(data);
       navigate('/tribe-home');
     } catch (error) {
-      setErrors(error.response?.data);
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data);
+      }
     };
   };
 
@@ -90,7 +92,7 @@ function Signin() {
             </label>
             <button className="btn btn-outline w-full" type="submit">Submit</button>
           </form>
-          
+
           {/* Display alert with any sign-in errors */}
           {
             errors.non_field_errors?.map((error, idx) => (

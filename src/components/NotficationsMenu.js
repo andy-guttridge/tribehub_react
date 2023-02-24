@@ -37,7 +37,9 @@ function NotficationsMenu() {
       setNotificationsChanged(!notificationsChanged);
       setErrors({});
     } catch (error) {
-      setErrors({ delete: 'There was an issue deleting this notification.\n\nYou may be offline, or there may have been a server error.' })
+      if(error.response?.status !== 401) {
+        setErrors({ delete: 'There was an issue deleting this notification.\n\nYou may be offline, or there may have been a server error.' })
+      }
     }
     setIsDeletingNotification(false);
   }
@@ -49,8 +51,12 @@ function NotficationsMenu() {
         const { data } = await axiosRes.get('notifications/');
         setNotifications(data);
         setHasLoaded(true);
+        setErrors({});
       } catch (error) {
-        setErrors({ notifications: 'There was an issue fetching notification details.\n\nYou may be offline, or there may have been a server error.' })
+        if(error.response?.status !== 401) {
+          setErrors({ notifications: 'There was an issue fetching notification details.\n\nYou may be offline, or there may have been a server error.' })
+        }
+        
       }
     }
 

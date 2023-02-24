@@ -79,7 +79,9 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       // Trigger a reload of the parent as event recurrences may also be affected
       setDidSaveEvent(!didSaveEvent);
     } catch (error) {
-      setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
+      if(error.response?.status !== 401) {
+        setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
+      }
     }
   }
 

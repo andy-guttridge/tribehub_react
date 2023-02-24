@@ -9,11 +9,15 @@ import DeleteAccountButton from './DeleteAccountForm';
 import PasswordChangeForm from './PasswordChangeForm';
 import ProfileForm from './ProfileForm';
 import {removeTokenTimestamp} from '../../utils/utils'
+import { InfoCircle } from 'react-bootstrap-icons';
 
 function MyAccount() {
 
   // Ref to useNavigate hook for redidrection
   const navigate = useNavigate();
+
+  // State variables for errors
+  const [errors, setErrors] = useState({})
 
   // Reference to current user
   const currentUser = useCurrentUser();
@@ -33,9 +37,13 @@ function MyAccount() {
       await axiosReq.delete(`accounts/user/${currentUser.pk}/`);
       removeTokenTimestamp();
       setCurrentUser(null);
-      navigate('/')
+      navigate('/');
+      setErrors({});
     } catch (error) {
-      console.log(error.response?.data);
+      if(error.response?.status !== 401) {
+        setErrors({delete: 'There was a problem deleting your account. You may be offline, or a server error may have occurred.'})
+        setIsDeletingAccount(false);
+      }
     }
   }
 
@@ -62,6 +70,15 @@ function MyAccount() {
 
       {/* Delete acccount section */}
       <h3>Delete Account</h3>
+
+      {/* Display error alert if there was an issue deleting account */}
+      {
+      errors.delete && 
+      <div className="block w-4/5 md:w-2/3 lg:1/2 mx-auto my-4 alert alert-warning">
+        <InfoCircle size="32" className="m-auto"/><p>{errors.delete}</p>
+      </div>
+      }
+      
       <div className="block m-4">
         <div className="md:w-2/3 text-left m-auto">
           <p>This is a permanent action and can't be undone.</p>

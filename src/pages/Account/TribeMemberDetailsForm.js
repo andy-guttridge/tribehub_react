@@ -3,7 +3,7 @@ import { InfoCircle } from 'react-bootstrap-icons';
 
 import { axiosReq } from '../../api/axiosDefaults';
 
-function TribeMemberDetailsForm( { tribeChangeFlag, handleNewMemberButton } ) {
+function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton }) {
 
   // State variables for registration form submission data
   const [registerData, setRegisterData] = useState({
@@ -12,13 +12,13 @@ function TribeMemberDetailsForm( { tribeChangeFlag, handleNewMemberButton } ) {
     password2: ''
   });
 
-    // State variables for HTTP errors from the API
+  // State variables for HTTP errors from the API
   const [errors, setErrors] = useState({});
 
-    // Retrieve required form data from state variables
-    const { username, password, password2 } = registerData;
-  
-    // Change handler for registration form
+  // Retrieve required form data from state variables
+  const { username, password, password2 } = registerData;
+
+  // Change handler for registration form
   const handleChange = (event) => {
     setRegisterData({
       ...registerData,
@@ -34,12 +34,14 @@ function TribeMemberDetailsForm( { tribeChangeFlag, handleNewMemberButton } ) {
       await axiosReq.post('/accounts/user/', registerData);
       handleNewMemberButton();
       tribeChangeFlag();
-    } catch(error) {
-      setErrors(error.response?.data);
+    } catch (error) {
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data);
+      }
     };
   };
 
-  return(
+  return (
     <div className="basis-full">
       <h3>Add tribe member</h3>
       {/* Registration form */}
@@ -92,18 +94,18 @@ function TribeMemberDetailsForm( { tribeChangeFlag, handleNewMemberButton } ) {
 
         {/* Password 2 */}
         <div>
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password2">
-          <span>Re-enter password:</span>
-          <input
-            type="password"
-            placeholder="Re-enter password"
-            className="input input-bordered w-full"
-            id="password2"
-            name="password2"
-            value={password2}
-            onChange={handleChange}
-          />
-        </label>
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password2">
+            <span>Re-enter password:</span>
+            <input
+              type="password"
+              placeholder="Re-enter password"
+              className="input input-bordered w-full"
+              id="password2"
+              name="password2"
+              value={password2}
+              onChange={handleChange}
+            />
+          </label>
         </div>
 
         {/* Display alert with any password2 errors */}

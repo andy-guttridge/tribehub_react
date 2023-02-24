@@ -98,7 +98,9 @@ function TribeHome() {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
     } catch (error) {
-      setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
+      if(error.response?.status !== 401) {
+        setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
+      }
     }
     setIsDeletingEvent(false);
   }
