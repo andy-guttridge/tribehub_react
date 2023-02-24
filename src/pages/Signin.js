@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+import { InfoCircle } from 'react-bootstrap-icons';
 
 import { setTokenTimestamp } from "../utils/utils";
-import { InfoCircle } from 'react-bootstrap-icons';
 import { axiosReq } from '../api/axiosDefaults';
 
 function Signin() {
@@ -20,6 +20,7 @@ function Signin() {
   // Use to redirect on login
   const navigate = useNavigate();
 
+  // References to current user
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
@@ -41,16 +42,15 @@ function Signin() {
       const { data } = await axiosReq.post('/dj-rest-auth/login/', signInData);
       setCurrentUser(data.user)
       setTokenTimestamp(data);
-      navigate("/tribe-home");
-    }
-    catch (errors) {
-      setErrors(errors.response?.data);
+      navigate('/tribe-home');
+    } catch (error) {
+      setErrors(error.response?.data);
     };
   };
 
   // Redirect to tribe homepage if user is authenticated
   useEffect(() => {
-    currentUser && navigate("/tribe-home")
+    currentUser && navigate('/tribe-home')
   }, [currentUser])
 
   return (
@@ -88,7 +88,7 @@ function Signin() {
                 onChange={handleChange}
               />
             </label>
-            <button className="btn btn-outline w-full">Submit</button>
+            <button className="btn btn-outline w-full" type="submit">Submit</button>
           </form>
           
           {/* Display alert with any sign-in errors */}
@@ -99,7 +99,6 @@ function Signin() {
               </div>
             ))
           }
-
         </div>
       </div>
     </>

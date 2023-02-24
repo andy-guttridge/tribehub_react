@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { PencilSquare, Trash3 } from 'react-bootstrap-icons'
+
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import ContactDetailsForm from './ContactDetailsForm';
 
@@ -22,6 +23,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
             <button
             className="btn btn-ghost"
             onClick={() => setIsEditingContact(true)}
+            type="button"
             >
               <PencilSquare size="26" />
               <span className="sr-only">Edit contact</span>
@@ -30,6 +32,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
             <button
               className="btn btn-ghost"
               onClick={() => handleDeleteButton(contact.id)}
+              type="button"
             >
               <Trash3 size="26"></Trash3>
               <span className="sr-only">Delete contact</span>

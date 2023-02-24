@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
 function Landing() {
@@ -14,9 +15,19 @@ function Landing() {
 
   return (
     <div>
-      {/* Show sign-in button if user is not authenticated */}
-      {!currentUser && <NavLink to={"/register"}><button className="btn btn-outline btn-wide m-2">Register</button></NavLink>}
-      {!currentUser && <NavLink to={"/sign-in"}><button className="btn btn-ghost m-2">Sign-in</button></NavLink>}
+      
+      {/* Register and sign-in buttons if user not authenticated */}
+      {/* Register button */}
+      {!currentUser &&
+      <NavLink to={"/register"}>
+        <button className="btn btn-outline btn-wide m-2" type="button">Register</button>
+      </NavLink>}
+      
+      {/* Sign-in button */}
+      {!currentUser &&
+      <NavLink to={"/sign-in"}>
+        <button className="btn btn-ghost m-2" type="button">Sign-in</button>
+      </NavLink>}
       <h2>Landing Page Placeholder</h2>
     </div>
   )

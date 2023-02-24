@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Bell, InfoCircle } from 'react-bootstrap-icons'
+
 import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import NotificationItem from './NotificationItem'
 import Spinner from './Spinner';
@@ -35,8 +36,7 @@ function NotficationsMenu() {
       await axiosReq.delete(`notifications/${isDeletingNotification}/`);
       setNotificationsChanged(!notificationsChanged);
       setErrors({});
-    }
-    catch (error) {
+    } catch (error) {
       setErrors({ delete: 'There was an issue deleting this notification.\n\nYou may be offline, or there may have been a server error.' })
     }
     setIsDeletingNotification(false);
@@ -50,8 +50,7 @@ function NotficationsMenu() {
         const { data } = await axiosRes.get('notifications/');
         setNotifications(data);
         setHasLoaded(true);
-      }
-      catch (error) {
+      } catch (error) {
         setErrors({ notifications: 'There was an issue fetching notification details.\n\nYou may be offline, or there may have been a server error.' })
       }
     }
@@ -75,7 +74,13 @@ function NotficationsMenu() {
               <>
                 {
                   notifications?.results?.map((notification) => {
-                    return <NotificationItem notification={notification} key={`notification-${notification.id}`} notificationsChanged={notificationsChanged} setNotificationsChanged={setNotificationsChanged} handleDeleteButton={handleDeleteButton} />
+                    return <NotificationItem
+                      notification={notification}
+                      key={`notification-${notification.id}`}
+                      notificationsChanged={notificationsChanged}
+                      setNotificationsChanged={setNotificationsChanged}
+                      handleDeleteButton={handleDeleteButton}
+                    />
                   })
                 }
               </>

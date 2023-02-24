@@ -42,9 +42,8 @@ function MyTribe() {
   const doDelete = async () => {
     try {
       await axiosReq.delete(`accounts/user/${isDeletingMember}`);
-    }
-    catch (error) {
-      setErrors({delete : 'There was an error attempting to delete this tribe member.\n\nYou may be offline or there may have been a server error.'})
+    } catch (error) {
+      setErrors({ delete: 'There was an error attempting to delete this tribe member.\n\nYou may be offline or there may have been a server error.' })
     }
     setIsDeletingMember(false);
   }
@@ -53,7 +52,7 @@ function MyTribe() {
   // when the user has finished adding a new user or deleting a user
   useEffect(() => {
     // Check if user logged in on mount, if not redirect to landing page
-    !currentUser && navigate("/");
+    !currentUser && navigate('/');
 
     // Fetch tribe members
     const fetchTribe = async () => {
@@ -61,9 +60,8 @@ function MyTribe() {
         const { data } = await axiosRes.get('tribe/');
         setTribe(data);
         setHasLoaded(true);
-      }
-      catch (error) {
-        setErrors({tribe : 'There was an error fetching your tribe members from the server.\n\nYou may be offline or there may have been a server error.'})
+      } catch (error) {
+        setErrors({ tribe: 'There was an error fetching your tribe members from the server.\n\nYou may be offline or there may have been a server error.' })
       }
     }
     fetchTribe();
@@ -86,36 +84,42 @@ function MyTribe() {
       ) : (
         <Spinner />
       )}
+
       {/* Show button to add new user or the component with the form to add a new user depending on state variable */}
       {/* We have to pass handleNewMemberButton to the form component so that it can set the isAddingNewMember state back to false */}
       <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
         {
           !isAddingNewMember ? (
-            <button onClick={handleNewMemberButton} className='btn btn-ghost'><PlusCircle size="32"/><span className="sr-only">Add new tribe member</span></button>
+            <button
+              onClick={handleNewMemberButton}
+              className="btn btn-ghost"
+              type="button"
+            >
+              <PlusCircle size="32" /><span className="sr-only">Add new tribe member</span>
+            </button>
           ) : (
             <TribeMemberDetailsForm handleNewMemberButton={handleNewMemberButton} />
           )
         }
       </div>
-      
+
       <div className="flex justify-center">
-      {/* Display alert if there was an issue deleting a tribe member */}
-      {
-        errors.delete &&
-        <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 justify-self-center">
-          <InfoCircle size="32" /><span>{errors.delete}</span>
-        </div>
-      }
+        {/* Display alert if there was an issue deleting a tribe member */}
+        {
+          errors.delete &&
+          <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 justify-self-center">
+            <InfoCircle size="32" /><span>{errors.delete}</span>
+          </div>
+        }
 
-      {/* Display alert if there was an issue fetching tribe members */}
-      {
-        errors.tribe &&
-        <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 justify-self-center">
-          <InfoCircle size="32" /><span>{errors.tribe}</span>
-        </div>
-      }
+        {/* Display alert if there was an issue fetching tribe members */}
+        {
+          errors.tribe &&
+          <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 justify-self-center">
+            <InfoCircle size="32" /><span>{errors.tribe}</span>
+          </div>
+        }
       </div>
-
 
       {/* If tribe admin has selected to delete a tribeMember, show the modal to confirm or cancel */}
       {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from

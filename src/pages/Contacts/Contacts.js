@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { InfoCircle, PlusCircle, Search } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom'
+
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
@@ -23,7 +24,7 @@ function Contacts() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = "basis-4/5 border-solid border-2 flex-none m-2"
+  const singlePageStyles = 'basis-4/5 border-solid border-2 flex-none m-2'
 
   // State variables for tribe contacts
   const [contacts, setContacts] = useState([]);
@@ -58,8 +59,7 @@ function Contacts() {
       await axiosReq.delete(`contacts/${isDeletingContact}/`);
       setDidSaveContact(!didSaveContact);
       setIsDeletingContact(false);
-    }
-    catch (error) {
+    } catch (error) {
       setIsDeletingContact(false);
       setErrors({ delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.' });
     }
@@ -79,9 +79,8 @@ function Contacts() {
         setContacts(data);
         setHasLoaded(true);
         setErrors({});
-      }
-      catch (error) {
-        setErrors({ contacts: 'There was a problem loading your contacts. You may be offline, or there may have been a server error.'});
+      } catch (error) {
+        setErrors({ contacts: 'There was a problem loading your contacts. You may be offline, or there may have been a server error.' });
       }
     }
     fetchContacts();
@@ -112,7 +111,6 @@ function Contacts() {
         </div>
       }
 
-
       {/* Display contacts */}
       {
         hasLoaded ? (
@@ -125,9 +123,15 @@ function Contacts() {
 
             {
               // Don't display contacts here if user is searching
-              !isSearching && 
+              !isSearching &&
               contacts?.results?.map((contact) => {
-                return <Contact contact={contact} key={contact.id} handleDeleteButton={handleDeleteButton} didSaveContact={didSaveContact} setDidSaveContact={setDidSaveContact} />
+                return <Contact
+                  contact={contact}
+                  key={contact.id}
+                  handleDeleteButton={handleDeleteButton}
+                  didSaveContact={didSaveContact}
+                  setDidSaveContact={setDidSaveContact}
+                />
               })
             }
           </div>
@@ -139,8 +143,10 @@ function Contacts() {
       {/* Show add contact button if user is tribe admin, they are not currently adding a contact and user does not have the search form open */}
       <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
         {!isAddingContact && !isSearching && currentUser?.is_admin &&
-          <button className='btn btn-ghost'
-            onClick={() => setIsAddingContact(!isAddingContact)}>
+          <button className="btn btn-ghost"
+            onClick={() => setIsAddingContact(!isAddingContact)}
+            type="button"
+          >
             <PlusCircle size="32" />
             <span className="sr-only">Add new contact</span>
           </button>
@@ -149,11 +155,15 @@ function Contacts() {
         {/* Show search button or search form if user has pressed the button */}
         {
           !isSearching && !isAddingContact ? (
-            <button onClick={() => setIsSearching(!isSearching)} className='btn btn-ghost'>
+            <button
+              onClick={() => setIsSearching(!isSearching)}
+              className="btn btn-ghost"
+              type="button"
+            >
               <Search size="32" /><span className="sr-only">Search contacts</span>
             </button>
           ) : isSearching && (
-            <ContactSearch handleCancelButton={() => setIsSearching(false)}/>
+            <ContactSearch handleCancelButton={() => setIsSearching(false)} />
           )
         }
       </div>

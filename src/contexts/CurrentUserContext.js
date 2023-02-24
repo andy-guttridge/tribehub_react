@@ -1,9 +1,9 @@
+import React from 'react';
 import { useState, createContext, useContext, useEffect, useMemo} from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
-import { axiosReq, axiosRes } from '../api/axiosDefaults';
-import React from 'react';
+import axios from 'axios';
 
+import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import { removeTokenTimestamp, shouldRefreshToken } from '../utils/utils';
 
 /* Code in this file adapted from the Code Institute 'Moments' React walkthrough project.
@@ -26,8 +26,7 @@ export const CurrentUserProvider = ({ children }) => {
     try {
       const {data} = await axiosRes.get('dj-rest-auth/user/');
       setCurrentUser(data);
-    }
-    catch(error) {
+    } catch(error) {
       console.log(error);
     }
   }

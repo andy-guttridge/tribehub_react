@@ -1,26 +1,23 @@
 import axios from 'axios';
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { axiosRes } from '../api/axiosDefaults';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import NotficationsMenu from './NotficationsMenu';
 
-function Header(A) {
+function Header() {
   // State variables for current user details
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
   // Handle sign-out with API
-  const handleSignout = async (event) => {
+  const handleSignout = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error)
     };
   }
-
 
   return (
     <div id="Header">

@@ -1,12 +1,11 @@
-import jwtDecode from "jwt-decode"
+import jwtDecode from 'jwt-decode'
 import styles from '../styles/CalDots.module.css'
 
-
-// data param is data returned from the API when user logs in.
+// Data param is data returned from the API when user logs in.
 export const setTokenTimestamp = (data) => {
   // Use jwtDecode to decode the refresh token. Token expiry date is returned with a key of exp.
   const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
-  localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+  localStorage.setItem('refreshTokenTimestamp', refreshTokenTimestamp);
 }
 
 // Check if there is a refresh token, if yes return true as user has been logged in.
@@ -31,7 +30,7 @@ export const checkEventsForDate = (calData, events) => {
   // is asking about
   events?.results?.map(
     (event) => {
-
+      
       // Get date from current event, get rid of the time data for both
       // the event date and calendar date and check for a match
       const eventDate = new Date(event.start);

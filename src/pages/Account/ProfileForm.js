@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
+
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
-import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Avatar from '../../components/Avatar';
 import Spinner from '../../components/Spinner';
 
@@ -61,7 +62,7 @@ function ProfileForm() {
     // Check if the user has uploaded a new image. If not, then the existing image stays in place,
     // as the form  component won't have an image file. If yes, append to form data.
     if (imageInput?.current?.files[0]) {
-      formData.append("image", imageInput.current.files[0]);
+      formData.append('image', imageInput.current.files[0]);
     }
 
     // Attempt to upload the new form data.
@@ -71,12 +72,10 @@ function ProfileForm() {
       setHasLoaded(true);
       setRequestSucceeded(true);
       setErrors({});
-    }
-    catch (err) {
-      // console.log(err)
+    } catch (error) {
       // A 401 error will be handled by our axios interceptor, so only set the error data if its a different error.
-      if (err.response?.status !== 401) {
-        setErrors(err.response?.data)
+      if (error.response?.status !== 401) {
+        setErrors(error.response?.data)
         setHasLoaded(true);
         setRequestSucceeded(false);
       }
@@ -92,8 +91,7 @@ function ProfileForm() {
         const { display_name, image } = data;
         setProfileData({ display_name, image });
         setHasLoaded(true);
-      }
-      catch (error) {
+      } catch (error) {
         if (error.response?.status !== 401) {
           setErrors(error.response?.data)
           setHasLoaded(true);
@@ -148,7 +146,7 @@ function ProfileForm() {
             </div>
           }
 
-          <button className="btn btn-wide">Submit</button>
+          <button className="btn btn-wide" type="submit">Submit</button>
 
           {/* Display alert with any non-field errors */}
           {

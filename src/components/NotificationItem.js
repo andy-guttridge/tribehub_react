@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
+
 import { InfoCircle, Trash3 } from 'react-bootstrap-icons';
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
@@ -33,8 +34,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
       // Communicate to the parent that the status of the notification changed
       setNotificationsChanged(!notificationsChanged);
       setErrors({});
-    }
-    catch (error) {
+    } catch (error) {
       setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
     }
   }
@@ -44,8 +44,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
     // Check if this user has accepted the invitation by comparing to each user in the event.accepted field in turn
     const checkAccepted = () => (notification?.event?.accepted?.reduce(
       (acc, user) => (user.user_id === currentUser.pk) || acc
-      ,
-      false))
+      , false))
 
     const hasAcceptedData = checkAccepted();
     setHasAccepted(hasAcceptedData);
@@ -58,7 +57,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
 
     // Calculate end date from duration
     // Split duration string into array of hours, mins, secs and convert to array of ints
-    const hoursMinsSecsStr = notification?.event?.duration.split(":");
+    const hoursMinsSecsStr = notification?.event?.duration.split(':');
     const hoursMinsSecs = hoursMinsSecsStr.map((str) => parseInt(str));
 
     // Convert hours, mins and secs to milliseconds, calculate end date and format for display
@@ -85,7 +84,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
         {/* Check this notification is for an event and show going/not going buttons if so. Also a delete button */}
         {/* Currently this is the only type of notification, but others could be added in future */}
         {
-          notification.type = "INV" &&
+          notification.type = 'INV' &&
           <div className="btn-group justify-center">
             <button
               className={"btn btn-xs " + (!hasAccepted && "btn-active")}

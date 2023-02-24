@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { InfoCircle } from 'react-bootstrap-icons';
 
-import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosReq } from '../api/axiosDefaults';
 
 function Register() {
@@ -41,22 +40,22 @@ function Register() {
     event.preventDefault();
     try {
       await axiosReq.post('/accounts/tribe/', registerData);
-      navigate("/sign-in");
-    }
-    catch (error) {
+      navigate('/sign-in');
+    } catch (error) {
       setErrors(error.response?.data);
     };
   };
 
   // Redirect to tribe homepage if user is authenticated
   useEffect(() => {
-    currentUser && navigate("/tribe-home")
+    currentUser && navigate('/tribe-home')
   }, [currentUser])
 
 
   return (
     <>
       <h2>Register</h2>
+
       {/* Flex container for page content */}
       <div className="flex flex-col items-center">
         <div className="card card-bordered w-3/4 md:w-1/2 lg:w-1/2 mb-4">
@@ -70,6 +69,7 @@ function Register() {
         </div>
 
         <div className="form-control w-3/4 md:w-1/2 lg:w-1/2 text-left">
+
           {/* Registration form */}
           <form onSubmit={handleSubmit}>
 
@@ -163,7 +163,7 @@ function Register() {
               </div>
             }
 
-            <button className="btn btn-outline w-full">Submit</button>
+            <button className="btn btn-outline w-full" type="submit">Submit</button>
           </form>
 
           {/* Display alert with any non-field errors */}

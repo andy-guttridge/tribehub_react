@@ -49,7 +49,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
     const options = Array.from(event.target.options);
     const toFieldValue = [];
     options.map((option) => {
-      option.selected && toFieldValue.push(option.value)
+      return option.selected && toFieldValue.push(option.value)
     })
 
     // Set value of the form element using the array
@@ -90,13 +90,11 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         handleCancelButton();
         setDidSaveEvent(!didSaveEvent);
       }
-    }
-    catch (error) {
+    } catch (error) {
       setErrors(error.response?.data);
     }
 
   }
-
 
   // Retrieve this user's tribe members from the API and fetch the original event if user is editing a recurrence.
   // Populate form with existing event details if applicable.
@@ -106,8 +104,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         const { data } = await axiosRes.get('tribe/');
         setTribe(data);
         setHasLoaded(true);
-      }
-      catch (error) {
+      } catch (error) {
         setErrors({ tribe: 'There was an error loading tribe data from the server.' })
       }
     }
@@ -137,12 +134,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
               category: data.category
             })
             setHasLoaded(true);
-          }
-          catch (error) {
+          } catch (error) {
             setErrors({ event: 'There was an error loading event data from the server.' })
           }
-        }
-        else {
+        } else {
           // Extract user ids from event data if users have been invited
           let toUsersArray = ['']
           toUsersArray = event.to?.map((toUser) => toUser.user_id)
@@ -193,6 +188,8 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
               onChange={handleChangeTo}
               multiple={true}
             >
+
+              {/* Add each tribe member to the options for the drop-down, except for the current user */}
               {
                 tribe?.results[0]?.users?.map((tribeMember) => {
                   return currentUser.pk !== tribeMember.user_id && <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>

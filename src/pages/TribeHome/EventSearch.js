@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
 import ReactDOM from 'react-dom'
+
 import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import ConfirmModal from '../../components/ConfirmModal';
 import Spinner from '../../components/Spinner';
-
 import { eventCategories } from '../../utils/constants';
 import CalEvent from './CalEvent';
 
@@ -56,8 +56,7 @@ function EventSearch({ handleCancelButton }) {
         setTribe(data);
         setHasLoaded(true);
         setErrors({});
-      }
-      catch (error) {
+      } catch (error) {
         setErrors({ tribe: 'There was an error loading tribe data. You may be offline, or there may have been a server error' })
       }
     }
@@ -87,8 +86,7 @@ function EventSearch({ handleCancelButton }) {
         setHasLoaded(true);
         setErrors({});
         console.log(data);
-      }
-      catch (errors) {
+      } catch (error) {
         setErrors({ events: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
       }
     }
@@ -144,7 +142,7 @@ function EventSearch({ handleCancelButton }) {
     const options = Array.from(e.target.options);
     const searchValue = [];
     options.map((option) => {
-      option.selected && searchValue.push(option.value)
+      return option.selected && searchValue.push(option.value)
     })
 
     // Set value of the form element using the array
@@ -160,8 +158,7 @@ function EventSearch({ handleCancelButton }) {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
       setErrors({});
-    }
-    catch (error) {
+    } catch (error) {
       setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
     }
     setIsDeletingEvent(false);
@@ -253,7 +250,7 @@ function EventSearch({ handleCancelButton }) {
             value={tribe_from}
             onChange={handleMultipleSelectChange}
           >
-            <option value={''} key={'blank-from-option'}>--</option>
+            <option value={""} key={"blank-from-option"}>--</option>
             {
               tribe?.results[0]?.users?.map((tribeMember) => {
                 return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
@@ -263,7 +260,6 @@ function EventSearch({ handleCancelButton }) {
         </label>
 
         {/* From date field */}
-
         <p className='text-sm text-left md:text-center'>You'll get events for the next two months if you don't enter dates</p>
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
           <span>From date:</span>
@@ -293,7 +289,7 @@ function EventSearch({ handleCancelButton }) {
         </label>
 
         {/* Cancel search button */}
-        <button onClick={handleCancelButton} className="btn btn-outline">Cancel search</button>
+        <button onClick={handleCancelButton} className="btn btn-outline" type="button">Cancel search</button>
       </form>
 
       {/* Display alert if there was an issue deleting an event */}
@@ -311,7 +307,13 @@ function EventSearch({ handleCancelButton }) {
             {
               events?.results?.map((event, i) => {
                 // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
-                return <CalEvent event={event} key={`event-${event.id}-${i}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} handleDeleteButton={handleDeleteButton} />
+                return <CalEvent
+                  event={event}
+                  key={`event-${event.id}-${i}`}
+                  didSaveEvent={didSaveEvent}
+                  setDidSaveEvent={setDidSaveEvent}
+                  handleDeleteButton={handleDeleteButton}
+                />
               })
             }
           </div>

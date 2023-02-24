@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
+
 import { axiosReq } from '../../api/axiosDefaults';
 
 function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveContact, isEditingContact, contact }) {
@@ -37,8 +38,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
       handleCancelButton();
       setDidSaveContact(!didSaveContact);
       setErrors({});
-    }
-    catch (error) {
+    } catch (error) {
       setErrors(error.response?.data);
     }
   }

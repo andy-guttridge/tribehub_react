@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom'
 import { useNavigate } from 'react-router-dom';
+
 import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser, useSetCurrentUser } from '../../contexts/CurrentUserContext'
 import ConfirmModal from '../../components/ConfirmModal';
@@ -23,7 +24,7 @@ function MyAccount() {
 
   // Check if user logged in on mount, if not redirect to landing page
   useEffect(() => {
-    !currentUser && navigate("/")
+    !currentUser && navigate('/')
   }, [currentUser, navigate])
 
   // Handle user confirm they want to delete their account
@@ -33,8 +34,7 @@ function MyAccount() {
       removeTokenTimestamp();
       setCurrentUser(null);
       navigate('/')
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error.response?.data);
     }
   }

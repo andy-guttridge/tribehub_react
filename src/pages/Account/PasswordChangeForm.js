@@ -45,8 +45,7 @@ function PasswordChangeForm() {
       setRequestSucceeded(true);
       setHasLoaded(true);
       setErrors({});
-    }
-    catch (error) {
+    } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data)
 
@@ -135,7 +134,7 @@ function PasswordChangeForm() {
             </div>
           }
 
-          <button className="btn btn-wide">Submit</button>
+          <button className="btn btn-wide" type="submit">Submit</button>
 
           {/* Display alert with any non-field errors */}
           {

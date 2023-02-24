@@ -21,10 +21,10 @@ export const SinglePageProvider = ({ children }) => {
     const handleResizeWindow = () => {
       setSinglePage(window.innerWidth >= breakPoint);
     }
-    window.addEventListener("resize", handleResizeWindow);
+    window.addEventListener('resize', handleResizeWindow);
     setSinglePage(window.innerWidth >= breakPoint);
     return() => {
-      window.removeEventListener("resize", handleResizeWindow);
+      window.removeEventListener('resize', handleResizeWindow);
     };
   }, [])
 

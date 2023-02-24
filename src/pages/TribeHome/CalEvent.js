@@ -78,13 +78,13 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
 
       // Trigger a reload of the parent as event recurrences may also be affected
       setDidSaveEvent(!didSaveEvent);
-    }
-    catch (error) {
+    } catch (error) {
       setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
     }
   }
 
   useEffect(() => {
+
     // Get list of users invited to this event who need avatars, including the owner and invitees.
     // Set flag if there will be more than four invitees (plus the owner).
     const getUsers = () => {
@@ -112,12 +112,13 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
 
   useEffect(() => {
     const getTimeStrs = () => {
+
       // Convert event start date string to an actual date and format for display
       const eventDate = new Date(thisEvent.start);
       setEventTimeStr(eventDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
       setStartDateStr(eventDate.toDateString('en-UK', { dateStyle: 'short' }));
       // Split duration string into array of hours, mins, secs and convert to array of ints
-      const hoursMinsSecsStr = thisEvent.duration.split(":");
+      const hoursMinsSecsStr = thisEvent.duration.split(':');
       const hoursMinsSecs = hoursMinsSecsStr.map((str) => parseInt(str));
 
       // Convert hours, mins and secs to milliseconds, calculate end date and format for display
@@ -188,7 +189,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
               <PencilSquare size="26" />
               <span className="sr-only">Edit calender event {thisEvent.subject}</span>
             </button>
-            
+
             <button
               className="btn btn-ghost"
               onClick={() => handleDeleteButton(thisEvent.id)}
@@ -203,7 +204,11 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       {/* Card body */}
       <div className="card-body grid grid-cols-3">
         {/* Event category icon */}
-        <img src={require(`../../assets/categories/${eventCategories[event.category].image}`)} className={`w-12 ${styles.CategoryIcon} col-span-1`} />
+        <img
+          src={require(`../../assets/categories/${eventCategories[event.category].image}`)}
+          className={`w-12 ${styles.CategoryIcon} col-span-1`}
+          alt={[eventCategories[event.text]]}
+        />
         <div className="col-span-2 text-left">
           <p className="font-bold">Start:</p><p>{startDateStr}{eventTimeStr}</p>
           <hr />
@@ -217,18 +222,18 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
         <div className="btn-group justify-center">
           <button
             className={"btn btn-sm " + (!hasAccepted && "btn-active")}
-            name='not-going'
-            id='not-going'
-            value='decline'
+            name="not-going"
+            id="not-going"
+            value="decline"
             onClick={handleEventResponse}
           >
             Not going
           </button>
           <button
             className={"btn btn-sm " + (hasAccepted && "btn-active")}
-            name='not-going'
-            id='not-going'
-            value='accept'
+            name="not-going"
+            id="not-going"
+            value="accept"
             onClick={handleEventResponse}
           >
             Going
@@ -258,6 +263,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
         <div className="collapse-content">
           <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center">
             <div>
+
               {/* Retrieve and display the event w */}
               <h5>
                 From:
@@ -266,6 +272,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
             </div>
 
             <div>
+
               {/* Retrieve and display the users invited */}
               <h5>To:</h5>
               {thisEvent.to?.map((user, i) => {
@@ -276,6 +283,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
             </div>
 
             <div>
+
               {/* Retrieve and display the users who have accepted */}
               <h5>Accepted:</h5>
               {thisEvent.accepted?.map((user, j) => {
@@ -287,12 +295,8 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
           </div>
         </div>
       </div>
-
-
     </div>
-
   )
-
 }
 
 export default CalEvent

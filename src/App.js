@@ -1,7 +1,7 @@
 import './App.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import './api/axiosDefaults'
 
+import './api/axiosDefaults'
 import Signin from './pages/Signin'
 import TribeHome from './pages/TribeHome/TribeHome';
 import Contacts from './pages/Contacts/Contacts';
@@ -14,7 +14,6 @@ import Register from './pages/Register';
 import SinglePage from './pages/SinglePage';
 import { useSinglePage } from './contexts/SinglePageContext';
 
-
 function App() {
 
   // Hook to provide current user context
@@ -22,6 +21,7 @@ function App() {
 
   // Hook to provide context on whether to display in single page mode
   const singlePage = useSinglePage();
+
   return (
     <div className="App">
       <Header />
@@ -49,7 +49,7 @@ function App() {
                 {/* otherwise, redirect to the landing page. */}
                 {/* How to use Navigate component for this purpose is from */}
                 {/* https://www.copycat.dev/blog/react-router-redirect/ */}
-                <Route path='*' element={<Navigate to={currentUser ? 'tribe-home' : '/'} />}/>
+                <Route path="*" element={<Navigate to={currentUser ? "tribe-home" : "/"} />}/>
               </Routes>
               {/* Div with margin to ensure clearance above bottom navbar */}
               <div className="mb-20"></div>
@@ -77,7 +77,7 @@ function App() {
                 {/* otherwise, redirect to the landing page. */}
                 {/* How to use Navigate component for this purpose is from */}
                 {/* https://www.copycat.dev/blog/react-router-redirect/ */}
-                <Route path='*' element={<Navigate to={currentUser ? 'tribe-home' : '/'} />}/>
+                <Route path="*" element={<Navigate to={currentUser ? "tribe-home" : "/"} />}/>
               </Routes>
             </>
           )

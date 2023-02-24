@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-
 import { useNavigate } from 'react-router-dom'
+
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { useSinglePage } from '../../contexts/SinglePageContext';
 import styles from '../../styles/Calendar.module.css';
@@ -31,7 +31,7 @@ function TribeHome() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = "basis-4/5 border-solid border-2 m-2";
+  const singlePageStyles = 'basis-4/5 border-solid border-2 m-2';
 
   // State variables for user's events
   const [events, setEvents] = useState({ results: [] });
@@ -75,8 +75,7 @@ function TribeHome() {
         // Set events for currently selected calendar day
         setDayEvents(getEventsForDay(currentDay, data));
         setErrors({});
-      }
-      catch (error) {
+      } catch (error) {
         if (error.response?.status !== 401) {
           setErrors({ calendarError: 'There was an error loading calendar data.' })
           setHasLoaded(true);
@@ -95,8 +94,7 @@ function TribeHome() {
     try {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
-    }
-    catch (error) {
+    } catch (error) {
       setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
     }
     setIsDeletingEvent(false);
@@ -117,7 +115,7 @@ function TribeHome() {
 
   useEffect(() => {
     // Check if user logged in on mount, if not redirect to landing page
-    !currentUser && navigate("/");
+    !currentUser && navigate('/');
   }, [currentUser])
 
   // Handle the user changing the calendar month by reloading events data with correct date range
@@ -189,16 +187,21 @@ function TribeHome() {
               </div>
             }
 
-
             {/* Event details for selected day */}
             {/* Do not display these if in search mode */}
             {
-              !isSearching && 
+              !isSearching &&
               <div className="max-h-96 inline-block w-4/5 overflow-scroll">
                 {
                   dayEvents?.map((dayEvent) => {
                     // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
-                    return <CalEvent event={dayEvent} key={`event-${dayEvent.id}-${dayEvent.start}`} didSaveEvent={didSaveEvent} setDidSaveEvent={setDidSaveEvent} handleDeleteButton={handleDeleteButton} />
+                    return <CalEvent
+                      event={dayEvent}
+                      key={`event-${dayEvent.id}-${dayEvent.start}`}
+                      didSaveEvent={didSaveEvent}
+                      setDidSaveEvent={setDidSaveEvent}
+                      handleDeleteButton={handleDeleteButton}
+                    />
                   })
                 }
               </div>
@@ -209,14 +212,15 @@ function TribeHome() {
         <Spinner />
       )}
 
-
       {/* Button to search, search form, button to add new event add new event form */}
       <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
 
         {/* Add new event button and form */}
         {
           !isAddingNewEvent && !isSearching ? (
-            <button onClick={() => setIsAddingNewEvent(!isAddingNewEvent)} className='btn btn-ghost'><PlusCircle size="32" /><span className="sr-only">Add new calendar event</span></button>
+            <button onClick={() => setIsAddingNewEvent(!isAddingNewEvent)} className="btn btn-ghost">
+              <PlusCircle size="32" /><span className="sr-only">Add new calendar event</span>
+            </button>
           ) : isAddingNewEvent && (
             <EventDetailsForm
               handleCancelButton={() => setIsAddingNewEvent(!isAddingNewEvent)}
@@ -231,9 +235,11 @@ function TribeHome() {
         {/* Search button and form */}
         {
           !isSearching && !isAddingNewEvent ? (
-            <button onClick={() => setIsSearching(!isSearching)} className='btn btn-ghost'><Search size="32" /><span className="sr-only">Search calendar events</span></button>
+            <button onClick={() => setIsSearching(!isSearching)} className="btn btn-ghost">
+              <Search size="32" /><span className="sr-only">Search calendar events</span>
+            </button>
           ) : isSearching && (
-            <EventSearch 
+            <EventSearch
               handleCancelButton={() => setIsSearching(!isSearching)}
             />
           )

@@ -48,8 +48,7 @@ function ContactSearch({ handleCancelButton }) {
         setContacts(data);
         setHasLoaded(true);
         setErrors({});
-      }
-      catch (error) {
+      } catch (error) {
         setErrors({ contacts: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
       }
     }
@@ -71,8 +70,7 @@ function ContactSearch({ handleCancelButton }) {
       await axiosReq.delete(`contacts/${isDeletingContact}/`);
       setDidSaveContact(!didSaveContact);
       setIsDeletingContact(false);
-    }
-    catch (error) {
+    } catch (error) {
       setIsDeletingContact(false);
       setErrors({ delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.' });
     }
@@ -99,6 +97,7 @@ function ContactSearch({ handleCancelButton }) {
       }
 
       <form>
+
         {/* Contact search field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="contact-search">
           <span>Contact search:</span>
@@ -119,7 +118,13 @@ function ContactSearch({ handleCancelButton }) {
         {
           hasLoaded ? (
             contacts?.results?.map((contact, i) => {
-              return <Contact contact={contact} key={`contact-${contact.id}-${i}`} didSaveContact={didSaveContact} setDidSaveContact={setDidSaveContact} handleDeleteButton={handleDeleteButton} />
+              return <Contact
+                contact={contact}
+                key={`contact-${contact.id}-${i}`}
+                didSaveContact={didSaveContact}
+                setDidSaveContact={setDidSaveContact}
+                handleDeleteButton={handleDeleteButton}
+              />
             })
           ) : (
             <Spinner />
