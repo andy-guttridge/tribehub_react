@@ -3,20 +3,21 @@ import React, { useEffect } from 'react'
 import styles from '../styles/ConfirmModal.module.css'
 
 function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
-  
-  // Handler to identify if user has clicked outside modal and remove it if so
-  const handleOutsideClick = (event) => {
-    if(event.target.matches('.modal')){
-      cancelHandler();
-    }
-  }
 
   // Create event listener to close modal when user clicks outside modal, and clean-up when component unmounts
   useEffect(() => {
+    // Handler to identify if user has clicked outside modal and remove it if so
+    const handleOutsideClick = (event) => {
+      if (event.target.matches('.modal')) {
+        console.log('Cancelling')
+        cancelHandler();
+      }
+    }
+
     const modalOuter = document.getElementsByClassName('modal')[0];
     modalOuter.addEventListener('click', (handleOutsideClick));
-    return () => {modalOuter.removeEventListener('click', handleOutsideClick)}
-  },[])
+    return () => { modalOuter.removeEventListener('click', handleOutsideClick) }
+  }, [cancelHandler])
 
   return (
     <div className="modal modal-open">
