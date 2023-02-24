@@ -3,7 +3,7 @@ import { InfoCircle } from 'react-bootstrap-icons';
 
 import { axiosReq } from '../../api/axiosDefaults';
 
-function TribeMemberDetailsForm( { handleNewMemberButton } ) {
+function TribeMemberDetailsForm( { tribeChangeFlag, handleNewMemberButton } ) {
 
   // State variables for registration form submission data
   const [registerData, setRegisterData] = useState({
@@ -33,6 +33,7 @@ function TribeMemberDetailsForm( { handleNewMemberButton } ) {
     try {
       await axiosReq.post('/accounts/user/', registerData);
       handleNewMemberButton();
+      tribeChangeFlag();
     } catch(error) {
       setErrors(error.response?.data);
     };
@@ -41,7 +42,6 @@ function TribeMemberDetailsForm( { handleNewMemberButton } ) {
   return(
     <div className="basis-full">
       <h3>Add tribe member</h3>
-      
       {/* Registration form */}
       <form onSubmit={handleSubmit}>
 

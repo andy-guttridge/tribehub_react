@@ -25,6 +25,9 @@ function MyTribe() {
   // accounts. If yes, this stores the user id of the user they've selected to delete.
   const [isDeletingMember, setIsDeletingMember] = useState(false);
 
+  // State variable to trigger data reload if a change has been made to tribemembers
+  const [tribeChangeFlag, setTribeChangeFlag] = useState(false);
+
   // State variables for errors
   const [errors, setErrors] = useState({});
 
@@ -42,6 +45,7 @@ function MyTribe() {
   const doDelete = async () => {
     try {
       await axiosReq.delete(`accounts/user/${isDeletingMember}`);
+      setTribeChangeFlag(!tribeChangeFlag);
     } catch (error) {
       setErrors({ delete: 'There was an error attempting to delete this tribe member.\n\nYou may be offline or there may have been a server error.' })
     }
@@ -51,6 +55,7 @@ function MyTribe() {
   // Use effect has isAddingNewMember and isDeletingNewMember in dependency array, to ensure component reloads
   // when the user has finished adding a new user or deleting a user
   useEffect(() => {
+    console.log('Using effect')
     // Check if user logged in on mount, if not redirect to landing page
     !currentUser && navigate('/');
 
@@ -65,7 +70,7 @@ function MyTribe() {
       }
     }
     fetchTribe();
-  }, [isAddingNewMember, isDeletingMember])
+  }, [tribeChangeFlag, currentUser, navigate])
 
   return (
     <>
@@ -98,7 +103,7 @@ function MyTribe() {
               <PlusCircle size="32" /><span className="sr-only">Add new tribe member</span>
             </button>
           ) : (
-            <TribeMemberDetailsForm handleNewMemberButton={handleNewMemberButton} />
+            <TribeMemberDetailsForm tribeChangeFlag={() => setTribeChangeFlag(!tribeChangeFlag)} handleNewMemberButton={handleNewMemberButton} />
           )
         }
       </div>
