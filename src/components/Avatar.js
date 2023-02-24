@@ -9,7 +9,7 @@ function Avatar({ imageUrl, large, small, accepted }) {
 							className={(large? "w-40 " : small ? "w-10 " : "w-20 ") + 
               (accepted && "contrast-50 grayscale ")  + 
               " rounded-full"}>
-        <img src={imageUrl}></img>
+        <img src={imageUrl} alt="User avatar"></img>
       </div>
     </div>
   )
