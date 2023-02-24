@@ -46,7 +46,6 @@ function NotficationsMenu() {
     // Fetch user's notifications
     const fetchNotifications = async () => {
       try {
-        setHasLoaded(false);
         const { data } = await axiosRes.get('notifications/');
         setNotifications(data);
         setHasLoaded(true);

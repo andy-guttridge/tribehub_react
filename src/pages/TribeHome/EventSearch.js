@@ -65,7 +65,7 @@ function EventSearch({ handleCancelButton }) {
 
   // Fetch events according to search values
   useEffect(() => {
-
+    console.log('Using effect')
     // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate
     const textSearch = `?search=${text_search}`;
     const categorySearch = category_search ? `&category=${category_search}` : '';
@@ -85,7 +85,6 @@ function EventSearch({ handleCancelButton }) {
         setEvents(data);
         setHasLoaded(true);
         setErrors({});
-        console.log(data);
       } catch (error) {
         setErrors({ events: 'There was an error loading search results. You may be offline, or there may have been a server error.' });
       }
@@ -100,7 +99,7 @@ function EventSearch({ handleCancelButton }) {
     return () => {
       clearTimeout(timer);
     }
-  }, [searchValues, didSaveEvent])
+  }, [category_search, from_date, tribe_from, text_search, to_date, tribe_to, didSaveEvent])
 
   // Handle user pressing delete event button by storing the event id.
   const handleDeleteButton = (eventId) => {

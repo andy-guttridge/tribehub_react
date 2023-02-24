@@ -11,6 +11,7 @@ import Contact from './Contact';
 import ContactDetailsForm from './ContactDetailsForm';
 import ConfirmModal from '../../components/ConfirmModal';
 import ContactSearch from './ContactSearch';
+import { current } from 'tailwindcss/colors';
 
 function Contacts() {
 
@@ -68,7 +69,7 @@ function Contacts() {
   // Check if user logged in on mount, if not redirect to landing page
   useEffect(() => {
     !currentUser && navigate("/")
-  }, [])
+  }, [currentUser, navigate])
 
   // Fetch users contacts from API
   useEffect(() => {

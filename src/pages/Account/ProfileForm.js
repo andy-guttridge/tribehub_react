@@ -99,7 +99,7 @@ function ProfileForm() {
       }
     }
     fetchProfile();
-  }, [])
+  }, [currentUser])
 
   return (
     <div className="basis-full">

@@ -55,7 +55,6 @@ function MyTribe() {
   // Use effect has isAddingNewMember and isDeletingNewMember in dependency array, to ensure component reloads
   // when the user has finished adding a new user or deleting a user
   useEffect(() => {
-    console.log('Using effect')
     // Check if user logged in on mount, if not redirect to landing page
     !currentUser && navigate('/');
 

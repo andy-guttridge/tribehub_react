@@ -82,7 +82,7 @@ function TribeHome() {
         }
       }
     }
-  )
+  , [currentDay])
 
   // Handle user pressing delete event button by storing the event id.
   const handleDeleteButton = (eventId) => {
@@ -111,12 +111,12 @@ function TribeHome() {
     // Fetch the data
     fetchEvents(fromDate, toDate)
 
-  }, [didSaveEvent])
+  }, [didSaveEvent, fetchEvents])
 
   useEffect(() => {
     // Check if user logged in on mount, if not redirect to landing page
     !currentUser && navigate('/');
-  }, [currentUser])
+  }, [currentUser, navigate])
 
   // Handle the user changing the calendar month by reloading events data with correct date range
   const handleCalMonthChange = (calData) => {

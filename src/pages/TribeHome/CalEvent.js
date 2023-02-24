@@ -84,7 +84,6 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
   }
 
   useEffect(() => {
-
     // Get list of users invited to this event who need avatars, including the owner and invitees.
     // Set flag if there will be more than four invitees (plus the owner).
     const getUsers = () => {
@@ -108,7 +107,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       setHasAccepted(checkAccepted());
     }
     getUsers();
-  }, [])
+  }, [currentUser, thisEvent])
 
   useEffect(() => {
     const getTimeStrs = () => {
@@ -129,7 +128,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       setEndDateStr(eventDate.toDateString('en-UK', { dateStyle: 'short' }));
     }
     getTimeStrs();
-  }, [])
+  }, [thisEvent])
 
   useEffect(() => {
     const getAcceptedUserIds = () => {
@@ -140,7 +139,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       setAcceptedUserIds(Ids);
     }
     getAcceptedUserIds();
-  }, [hasAccepted])
+  }, [hasAccepted, thisEvent])
 
 
   return (

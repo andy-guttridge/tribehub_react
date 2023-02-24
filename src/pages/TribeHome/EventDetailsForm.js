@@ -155,7 +155,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
       }
       fetchEvent();
     }
-  }, [])
+  }, [event, isEditingEvent])
 
   return (
     <div className="basis-full">

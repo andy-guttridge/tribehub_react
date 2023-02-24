@@ -22,6 +22,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
   // Reference to current user
   const currentUser = useCurrentUser();
 
+
   // Handle event accept/decline buttons
   const handleEventResponse = async (e) => {
 
@@ -40,7 +41,6 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
   }
 
   useEffect(() => {
-
     // Check if this user has accepted the invitation by comparing to each user in the event.accepted field in turn
     const checkAccepted = () => (notification?.event?.accepted?.reduce(
       (acc, user) => (user.user_id === currentUser.pk) || acc
@@ -69,7 +69,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
     setEndDateStr(endDate.toDateString('en-UK', { dateStyle: 'short' }))
     setEndTimeStr(endDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
 
-  }, [])
+  }, [currentUser, notification])
 
   return (
 

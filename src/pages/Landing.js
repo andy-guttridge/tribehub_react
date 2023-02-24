@@ -10,8 +10,8 @@ function Landing() {
 
   // Check if user logged in on mount, if yes redirect to tribe-home
   useEffect ( () => {
-    currentUser && navigate("/tribe-home")
-  }, [])
+    currentUser && navigate('/tribe-home')
+  }, [currentUser, navigate])
 
   return (
     <div>

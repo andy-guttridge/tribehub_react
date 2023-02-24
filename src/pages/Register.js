@@ -49,7 +49,7 @@ function Register() {
   // Redirect to tribe homepage if user is authenticated
   useEffect(() => {
     currentUser && navigate('/tribe-home')
-  }, [currentUser])
+  }, [currentUser, navigate])
 
 
   return (

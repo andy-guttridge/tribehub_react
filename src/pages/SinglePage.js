@@ -13,7 +13,7 @@ function SinglePage() {
   // Check if user logged in on mount, if not redirect to landing page
   useEffect (() => {
     !currentUser && navigate('/');
-  }, [])
+  }, [currentUser, navigate])
 
   return (
     // Use the components we display as separate pages for mobile embedded in one single
