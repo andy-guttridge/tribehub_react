@@ -23,24 +23,19 @@ export const checkEventsForDate = (calData, events) => {
   // Get current date the calendar is asking about
   const { date } = calData;
 
-  // Flag for matching events
-  let matchFound = false;
-
-  // Map through events data, flag any where the date matches the date the calendar
-  // is asking about
-  events?.results?.map(
-    (event) => {
-      
+  // Check events data against the date the calendar is asking about, and
+  // return true if any matches are found
+  const matchFound = events?.results?.reduce(
+    (acc, event) => {
       // Get date from current event, get rid of the time data for both
       // the event date and calendar date and check for a match
       const eventDate = new Date(event.start);
       date.setHours(0, 0, 0, 0)
       eventDate.setHours(0, 0, 0, 0)
-      if(date.toISOString() === eventDate.toISOString()){
-        matchFound = true;
-      }
+      return date.toISOString() === eventDate.toISOString() || acc
     }
-  )
+  , false)
+  
   // If match found, return a div to display in the calendar tile
   return (
     <div className={`${styles.CalDot} block`}>
