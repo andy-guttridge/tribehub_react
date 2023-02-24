@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -58,6 +58,9 @@ function TribeHome() {
   // State variable for current calendar day selected by user
   const [currentDay, setCurrentDay] = useState(new Date());
 
+  // Reference to current day so we can use it without making it a dependency in useCallback
+  const currentDayRef = useRef(currentDay);
+
   // Function to fetch user's events and set them as values for the current calendar day
   // How to use useCallback hook to correctly declare a function outside of useEffect to enable
   // code re-use from https://stackoverflow.com/questions/56410369/can-i-call-separate-function-in-useeffect
@@ -73,7 +76,7 @@ function TribeHome() {
         setHasLoaded(true);
 
         // Set events for currently selected calendar day
-        setDayEvents(getEventsForDay(currentDay, data));
+        setDayEvents(getEventsForDay(currentDayRef.current, data));
         setErrors({});
       } catch (error) {
         if (error.response?.status !== 401) {
@@ -82,7 +85,7 @@ function TribeHome() {
         }
       }
     }
-  , [currentDay])
+  , [])
 
   // Handle user pressing delete event button by storing the event id.
   const handleDeleteButton = (eventId) => {
