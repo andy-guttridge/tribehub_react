@@ -9,7 +9,6 @@ function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
     // Handler to identify if user has clicked outside modal and remove it if so
     const handleOutsideClick = (event) => {
       if (event.target.matches('.modal')) {
-        console.log('Cancelling')
         cancelHandler();
       }
     }
