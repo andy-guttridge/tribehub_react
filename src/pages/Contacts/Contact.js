@@ -25,7 +25,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
             onClick={() => setIsEditingContact(true)}
             type="button"
             >
-              <PencilSquare size="26" />
+              <PencilSquare size="26" className="text-primary"/>
               <span className="sr-only">Edit contact</span>
             </button>
 
@@ -34,7 +34,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
               onClick={() => handleDeleteButton(contact.id)}
               type="button"
             >
-              <Trash3 size="26"></Trash3>
+              <Trash3 size="26" className="text-primary"></Trash3>
               <span className="sr-only">Delete contact</span>
             </button>
           </>

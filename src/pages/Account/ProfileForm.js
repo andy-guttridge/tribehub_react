@@ -146,7 +146,7 @@ function ProfileForm() {
             </div>
           }
 
-          <button className="btn btn-wide" type="submit">Submit</button>
+          <button className="btn btn-primary btn-wide" type="submit">Submit</button>
 
           {/* Display alert with any non-field errors */}
           {

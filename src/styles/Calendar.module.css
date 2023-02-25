@@ -9,6 +9,36 @@
   height: 50px;
 }
 
+.TribehubCalendar :global(.react-calendar__tile--now){
+  @apply bg-accent;
+  @apply text-accent-content;
+}
+
+.TribehubCalendar :global(.react-calendar__tile--now:enabled:focus){
+  @apply bg-accent-focus;
+  @apply text-accent-content;
+}
+
+.TribehubCalendar :global(.react-calendar__tile--now:enabled:hover){
+  @apply bg-primary;
+  @apply text-primary-content;
+}
+
+
+.TribehubCalendar :global(.react-calendar__tile--active){
+  @apply bg-secondary;
+  @apply text-secondary-content;
+}
+
+.TribehubCalendar :global(.react-calendar__tile--active:enabled:focus){
+  @apply bg-secondary-focus;
+  @apply text-secondary-content;
+}
+
+.TribehubCalendar :global(.react-calendar__tile--active:enabled:hover){
+  @apply bg-primary;
+}
+
 @media (min-width: 768px) {
   .TribehubCalendar{
     width: 500px;

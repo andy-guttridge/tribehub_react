@@ -70,7 +70,7 @@ function NotficationsMenu() {
         <label tabIndex="0" className="btn btn-sm btn-ghost">
           <div className="indicator">
             {notifications?.results?.length > 0 && <span className="indicator-item badge badge-xs badge-secondary">{notifications.results.length}</span>}
-            <Bell size="20" />
+            <Bell size="20" className="text-primary"/>
           </div>
         </ label>
         <ul tabIndex="0" className="dropdown-content p-2 shadow bg-base-100 rounded-box w-52">

@@ -21,7 +21,7 @@ function TribeMember({ tribeMember, handleDeleteButton }) {
           onClick={() => handleDeleteButton(tribeMember.user_id)}
           type="button"
         >
-          <Trash3 size="32"></Trash3>
+          <Trash3 size="28" className="text-primary"></Trash3>
           <span className="sr-only">Delete {tribeMember.display_name} from tribe</span>
         </button>
       </div>

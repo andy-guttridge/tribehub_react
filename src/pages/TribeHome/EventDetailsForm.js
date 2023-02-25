@@ -345,8 +345,8 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
           }
 
           {/* Cancel and submit buttons */}
-          <button className="btn btn-outline m-2}" type="button" onClick={handleCancelButton}>Cancel</button>
-          <button className="btn btn-outline w-1/3 m-2" type="submit">Submit</button>
+          <button className="btn btn-primary btn-outline m-2}" type="button" onClick={handleCancelButton}>Cancel</button>
+          <button className="btn btn-primary w-1/3 m-2" type="submit">Submit</button>
 
           {/* Display alert with any non-field errors */}
           {

@@ -24,13 +24,13 @@ function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
         <h3>{heading}</h3>
         <p className={`text-center ${styles.ModalBodyTxt}`}>{body}</p>
         <button
-          className="btn btn-outline btn-sm m-2"
+          className="btn btn-primary btn-outline btn-sm m-2"
           onClick={cancelHandler}
         >
           Cancel
         </button>
         <button
-          className="btn btn-outline btn-sm m-2"
+          className="btn btn-warning btn-sm m-2"
           onClick={confirmHandler}
         >
           Confirm

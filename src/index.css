@@ -26,12 +26,13 @@ code {
   h2 {
     @apply text-3xl;
     @apply font-shantell;
+    @apply text-accent;
   }
   h3 {
     @apply text-2xl;
     @apply font-nunito;
   }
-  p, span, button, form {
+ div, p, span, button, form {
     @apply font-lato;
   }
 }

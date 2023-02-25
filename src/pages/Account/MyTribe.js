@@ -103,7 +103,7 @@ function MyTribe() {
               className="btn btn-ghost"
               type="button"
             >
-              <PlusCircle size="32" /><span className="sr-only">Add new tribe member</span>
+              <PlusCircle size="32" className="text-primary"/><span className="sr-only">Add new tribe member</span>
             </button>
           ) : (
             <TribeMemberDetailsForm tribeChangeFlag={() => setTribeChangeFlag(!tribeChangeFlag)} handleNewMemberButton={handleNewMemberButton} />

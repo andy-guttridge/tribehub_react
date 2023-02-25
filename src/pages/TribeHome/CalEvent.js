@@ -187,7 +187,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
               className="btn btn-ghost"
               onClick={() => setIsEditingEvent(true)}
             >
-              <PencilSquare size="26" />
+              <PencilSquare size="26" className="text-primary" />
               <span className="sr-only">Edit calender event {thisEvent.subject}</span>
             </button>
 
@@ -195,7 +195,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
               className="btn btn-ghost"
               onClick={() => handleDeleteButton(thisEvent.id)}
             >
-              <Trash3 size="26" />
+              <Trash3 size="26" className="text-primary" />
               <span className="sr-only">Delete calender event {thisEvent.subject}</span>
             </button>
           </>
@@ -269,7 +269,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
               <h5>
                 From:
               </h5>
-              <span className={`${styles.User} m-2`}>{thisEvent.user.display_name} </span>
+              <div className={`${styles.User} m-2 inline-block bg-secondary`}><span className="text-secondary-content font-bold">{thisEvent.user.display_name}</span></div>
             </div>
 
             <div>
@@ -278,7 +278,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
               <h5>To:</h5>
               {thisEvent.to?.map((user, i) => {
                 return (
-                  <span className={`${styles.User} m-2`} key={`${user.user_id}-${i}`}>{user.display_name} </span>
+                  <div className={`${styles.User} m-2 inline-block bg-secondary`} key={`${user.user_id}-${i}`}><span className="text-secondary-content font-bold">{user.display_name}</span></div>
                 )
               })}
             </div>
@@ -289,7 +289,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
               <h5>Accepted:</h5>
               {thisEvent.accepted?.map((user, j) => {
                 return (
-                  <span className={`${styles.User}`} key={`${user.user_id}-${j}-acc`}>{user.display_name} </span>
+                  <div className={`${styles.User} inline-block bg-secondary`} key={`${user.user_id}-${j}-acc`}><span className="text-secondary-content font-bold">{user.display_name}</span></div>
                 )
               })}
             </div>

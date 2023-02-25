@@ -152,7 +152,7 @@ function Contacts() {
             onClick={() => setIsAddingContact(!isAddingContact)}
             type="button"
           >
-            <PlusCircle size="32" />
+            <PlusCircle size="32" className="text-primary" />
             <span className="sr-only">Add new contact</span>
           </button>
         }
@@ -165,7 +165,7 @@ function Contacts() {
               className="btn btn-ghost"
               type="button"
             >
-              <Search size="32" /><span className="sr-only">Search contacts</span>
+              <Search size="32" className="text-primary"/><span className="sr-only">Search contacts</span>
             </button>
           ) : isSearching && (
             <ContactSearch handleCancelButton={() => setIsSearching(false)} />
