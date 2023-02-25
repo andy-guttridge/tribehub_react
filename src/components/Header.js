@@ -25,7 +25,7 @@ function Header() {
   }
 
   return (
-    <div id="Header">
+    <div id="Header" className="bg-base-100 lg:m-2 mx-auto my-0 lg:rounded-lg">
       <h1 className="md:text-6xl font-bubblegum"><span className="text-primary">Tribe</span><span className="text-secondary">Hub</span></h1>
       {
         // Show welcome and sign-out button if user is authenticated
@@ -33,7 +33,7 @@ function Header() {
           <>
             <span className="mx-2">Welcome, {currentUser.display_name}</span>
             <NotficationsMenu />
-            <NavLink to="/" onClick={handleSignout}><button className="btn btn-outline btn-xs mx-2 btn-primary" type="button">Sign-out</button></NavLink>
+            <NavLink to="/" onClick={handleSignout}><button className="btn btn-outline btn-xs m-2 btn-primary" type="button">Sign-out</button></NavLink>
           </>
         )
       }

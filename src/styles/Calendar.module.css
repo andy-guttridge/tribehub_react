@@ -1,61 +1,85 @@
 /* How to use the :global selector to ensure styles are overriden within a React component from */
 /* https://stackoverflow.com/questions/42191671/css-modules-reactjs-parent-and-child-css-classes-in-different-components */
 
+/* Size of main calendar body when below medium breakpoint */
 .TribehubCalendar {
   height: 400px;
 }
 
+/* Size of calendar cells when below medium breakpoint */
 .TribehubCalendar :global(.react-calendar__tile){
   height: 50px;
 }
 
+/* Styles for today on calendar */
 .TribehubCalendar :global(.react-calendar__tile--now){
   @apply bg-accent;
   @apply text-accent-content;
 }
 
+/* Styles for today on calendar when enabled */
 .TribehubCalendar :global(.react-calendar__tile--now:enabled:focus){
   @apply bg-accent-focus;
   @apply text-accent-content;
 }
 
+/* Hover styles for today on calendar */
 .TribehubCalendar :global(.react-calendar__tile--now:enabled:hover){
   @apply bg-primary;
   @apply text-primary-content;
 }
 
-
+/* Styles for active day on calendar */
 .TribehubCalendar :global(.react-calendar__tile--active){
   @apply bg-secondary;
   @apply text-secondary-content;
 }
 
+/* Styles for active day on calendar when enabled */
 .TribehubCalendar :global(.react-calendar__tile--active:enabled:focus){
   @apply bg-secondary-focus;
   @apply text-secondary-content;
 }
 
+/* Hover styles for active day on calendar when enabled */
 .TribehubCalendar :global(.react-calendar__tile--active:enabled:hover){
   @apply bg-primary;
 }
 
+/* Styles for calendar body */
+:global(.react-calendar){
+  @apply bg-base-100;
+}
+
+/* Styles for calendar month label */
+.TribehubCalendar :global(.react-calendar__navigation__label:disabled){
+  @apply bg-base-100;
+}
+
+/* Calendar styles for medium breakpoint */
 @media (min-width: 768px) {
+
+  /* Size of main calendar body */
   .TribehubCalendar{
     width: 500px;
     height: 550px;
   }
   
+  /* Size of calendar cells */
   .TribehubCalendar :global(.react-calendar__tile){
     height: 70px;
   }
 }
 
+/* Calendar styles for large breakpoint */
 @media (min-width: 1024px) {
+  /* Size of main calendar body */
   .TribehubCalendar{
     width: 750px;
     min-height: 750px;
   }
   
+  /* Size of calendar cells */
   .TribehubCalendar :global(.react-calendar__tile){
     height: 100px;
   }

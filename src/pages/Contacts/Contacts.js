@@ -11,7 +11,6 @@ import Contact from './Contact';
 import ContactDetailsForm from './ContactDetailsForm';
 import ConfirmModal from '../../components/ConfirmModal';
 import ContactSearch from './ContactSearch';
-import { current } from 'tailwindcss/colors';
 
 function Contacts() {
 
@@ -25,7 +24,7 @@ function Contacts() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = 'basis-4/5 border-solid border-2 flex-none m-2'
+  const singlePageStyles = 'basis-4/5 rounded-lg flex-none mr-2 my-2 bg-base-100'
 
   // State variables for tribe contacts
   const [contacts, setContacts] = useState([]);
@@ -95,7 +94,7 @@ function Contacts() {
     // Apply some styling if displaying in single page mode
     <div
       className={
-        singlePage ? singlePageStyles : undefined
+        singlePage ? singlePageStyles : "bg-base-100"
       }
     >
       <h2>Contacts</h2>
@@ -111,7 +110,7 @@ function Contacts() {
       {/* Display alert if there was an issue deleting a contact */}
       {
         errors.delete &&
-        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center row-end-1">
           <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
         </div>
       }
@@ -119,7 +118,7 @@ function Contacts() {
       {/* Display contacts */}
       {
         hasLoaded ? (
-          <div className="inline-block w-4/5">
+          <div className="inline-block w-full bg-base-200">
             {/* Display message if there are no tribe contacts yet */}
 
             {

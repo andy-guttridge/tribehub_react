@@ -17,6 +17,9 @@ code {
 }
 
 @layer base {
+  body {
+    @apply bg-base-300;
+  }
   h1 {
     @apply text-4xl;
   }

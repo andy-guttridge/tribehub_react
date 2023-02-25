@@ -11,13 +11,13 @@ function Account() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = 'basis-4/5 border-solid border-2 flex-none m-2';  
+  const singlePageStyles = 'basis-4/5 rounded-lg flex-none ml-2 my-2 bg-base-100';  
 
   return (
     // Apply some styling if displaying in single page mode
     <div
       className={
-        (singlePage ? singlePageStyles : undefined)
+        (singlePage ? singlePageStyles : "bg-base-100")
       }
     >
       <h2>Account</h2>

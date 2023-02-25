@@ -47,7 +47,7 @@ function MyTribe() {
       await axiosReq.delete(`accounts/user/${isDeletingMember}`);
       setTribeChangeFlag(!tribeChangeFlag);
     } catch (error) {
-      if(error.response?.status !== 401) {
+      if (error.response?.status !== 401) {
         setErrors({ delete: 'There was an error attempting to delete this tribe member.\n\nYou may be offline or there may have been a server error.' })
       }
     }
@@ -67,7 +67,7 @@ function MyTribe() {
         setTribe(data);
         setHasLoaded(true);
       } catch (error) {
-        if(error.response?.status !== 401) {
+        if (error.response?.status !== 401) {
           setErrors({ tribe: 'There was an error fetching your tribe members from the server.\n\nYou may be offline or there may have been a server error.' })
         }
       }
@@ -76,8 +76,10 @@ function MyTribe() {
   }, [tribeChangeFlag, currentUser, navigate])
 
   return (
-    <>
-      <h3>My tribe</h3>
+    <div className="bg-base-200">
+      <div className="bg-base-100">
+        <h3>My tribe</h3>
+      </div>
       {/* We do not include the user in the list */}
       {hasLoaded ? (
         // If there is only one user in the tribe, it must be the tribe admin so show a prompt to add more users.
@@ -95,7 +97,7 @@ function MyTribe() {
 
       {/* Show button to add new user or the component with the form to add a new user depending on state variable */}
       {/* We have to pass handleNewMemberButton to the form component so that it can set the isAddingNewMember state back to false */}
-      <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
+      <div className="justify-end flex mx-auto m-1 bg-base-100">
         {
           !isAddingNewMember ? (
             <button
@@ -103,7 +105,7 @@ function MyTribe() {
               className="btn btn-ghost"
               type="button"
             >
-              <PlusCircle size="32" className="text-primary"/><span className="sr-only">Add new tribe member</span>
+              <PlusCircle size="32" className="text-primary" /><span className="sr-only">Add new tribe member</span>
             </button>
           ) : (
             <TribeMemberDetailsForm tribeChangeFlag={() => setTribeChangeFlag(!tribeChangeFlag)} handleNewMemberButton={handleNewMemberButton} />
@@ -141,7 +143,7 @@ function MyTribe() {
             confirmHandler={doDelete}
           />, document.body)
       }
-    </>
+    </div>
   )
 }
 

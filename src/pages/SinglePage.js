@@ -18,7 +18,7 @@ function SinglePage() {
   return (
     // Use the components we display as separate pages for mobile embedded in one single
     // page.
-    <div className="flex flex-wrap justify-center">
+    <div className="grid grid-cols-22 m-2 items-start">
       <TribeHome />
       <Contacts />
       <Account />

@@ -145,7 +145,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
 
 
   return (
-    <div className="card border-b-2 rounded-sm m-2 text-center">
+    <div className="card rounded-lg bg-base-100 m-2 text-center">
 
       {/* Card title */}
       <div className="card-title flex justify-between">

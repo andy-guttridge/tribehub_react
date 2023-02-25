@@ -16,7 +16,59 @@ module.exports = {
   // daisyUI config
   daisyui: {
     styled: true,
-    themes: false,
+    themes: [
+      // Idea 1
+      // {
+      //   tribehub_theme: {
+      //     primary: '#3f7c85',
+      //     secondary: '#ff5f5d',
+      //     accent: '#00ccbf',
+      //     neutral: '#747e7e',
+      //     'base-100': '#ffffff'
+      //   },
+      // },
+
+      // Idea 2
+      // {
+      //     tribehub_theme: {
+      //       primary: '#0d6986',
+      //       secondary: '#db073d',
+      //       accent: '#07485b',
+      //       neutral: '#747e7e',
+      //       'base-100': '#ede5f4'
+      //     },
+      // },
+      // Idea 3
+      //   {
+      //     tribehub_theme: {
+      //       primary: '#008cff',
+      //       secondary: '#e80c7a',
+      //       accent: '#55d900',
+      //       neutral: '#747e7e',
+      //       'base-100': '#fafafa'
+      //     },
+      // },
+      // Idea 4
+      // {
+      //   tribehub_theme: {
+      //     primary: '#875ccb',
+      //     secondary: '#8c765b',
+      //     accent: '#66cb7b',
+      //     neutral: '#747e7e',
+      //     'base-100': '#fafafa'
+      //   },
+      // },
+      // Idea 5
+        {
+          tribehub_theme: {
+            primary: '#1579da',
+            secondary: '#f18a9a',
+            accent: '#1c867c',
+            neutral: '#747e7e',
+            'base-100': '#e0f0ff'
+          },
+      },
+    ],
     base: true,
     utils: true,
     logs: true,

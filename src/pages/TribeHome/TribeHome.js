@@ -15,6 +15,7 @@ import { InfoCircle, PlusCircle, Search } from 'react-bootstrap-icons';
 import EventDetailsForm from './EventDetailsForm';
 import ConfirmModal from '../../components/ConfirmModal';
 import EventSearch from './EventSearch';
+import css from '../../styles/TribeHome.module.css'
 
 function TribeHome() {
 
@@ -31,7 +32,7 @@ function TribeHome() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = 'basis-4/5 border-solid border-2 m-2';
+  const singlePageStyles = 'basis-4/5 rounded-b-lg bg-base-100 col-span-2';
 
   // State variables for user's events
   const [events, setEvents] = useState({ results: [] });
@@ -141,7 +142,7 @@ function TribeHome() {
     // Apply some styling if displaying in single page mode
     <div
       className={
-        `${singlePage ? singlePageStyles : ''}`
+        `${singlePage ? singlePageStyles : 'bg-base-100'}`
       }
     >
       <h2>Home</h2>
@@ -196,7 +197,7 @@ function TribeHome() {
             {/* Do not display these if in search mode */}
             {
               !isSearching &&
-              <div className="max-h-96 inline-block w-4/5 overflow-scroll">
+              <div className={singlePage ? (css.DisplayEvents): "max-h-96 bg-base-200 overflow-scroll"} >
                 {
                   dayEvents?.map((dayEvent) => {
                     // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
