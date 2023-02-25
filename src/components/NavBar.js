@@ -33,7 +33,7 @@ function NavBar() {
   );
 
   return (
-    <div className="btm-nav lg:hidden">
+    <div className="btm-nav text-primary lg:hidden">
       {/* Display navBarIcons only if current user is logged in */}
       {currentUser && 
         <>
