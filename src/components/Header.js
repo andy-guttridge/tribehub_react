@@ -26,7 +26,7 @@ function Header() {
 
   return (
     <div id="Header">
-      <h1 className="md:text-6xl">TribeHub</h1>
+      <h1 className="md:text-6xl font-bubblegum"><span>Tribe</span><span>Hub</span></h1>
       {
         // Show welcome and sign-out button if user is authenticated
         currentUser && (
