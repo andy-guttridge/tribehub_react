@@ -6,7 +6,7 @@ import Avatar from '../../components/Avatar'
 function TribeMember({ tribeMember, handleDeleteButton }) {
 
   return (
-    <div className="rounded-lg grid grid-cols-2 m-1 bg-base-100">
+    <div className="rounded-sm grid grid-cols-2 my-2 bg-base-100">
       <div className="flex col-start-1 justify-content-between">
 
         {/* Avatar for tribe member */}
