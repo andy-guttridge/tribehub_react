@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
 
 import { axiosReq } from '../../api/axiosDefaults';
+import css from '../../styles/ContactDetailsForm.module.css';
 
 function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveContact, isEditingContact, contact }) {
 
@@ -61,7 +62,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
   }, [isEditingContact, setContactForm, contact])
 
   return (
-    <div className="w-4/5 m-auto">
+    <div className={`w-4/5 m-auto ${css.ContactDetailsExpand}`}>
       <h3>Add contact</h3>
       <form onSubmit={handleSubmit}>
 

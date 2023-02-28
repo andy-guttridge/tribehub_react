@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
 
 import { axiosReq } from '../../api/axiosDefaults';
+import css from '../../styles/TribeMemberDetailsForm.module.css'
 
 function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton }) {
 
@@ -42,7 +43,7 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton }) {
   };
 
   return (
-    <div className="w-4/5 m-auto">
+    <div className={`w-4/5 m-auto ${css.TribeMemberFormExpand}`}>
       <h3>Add tribe member</h3>
       {/* Registration form */}
       <form onSubmit={handleSubmit}>

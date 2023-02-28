@@ -1,0 +1,12 @@
+.TribeMemberFormExpand {
+  animation: 0.5s expand;
+}
+
+@keyframes expand {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(100%);
+  }
+}

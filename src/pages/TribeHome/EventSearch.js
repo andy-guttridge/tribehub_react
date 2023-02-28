@@ -7,6 +7,7 @@ import ConfirmModal from '../../components/ConfirmModal';
 import Spinner from '../../components/Spinner';
 import { eventCategories } from '../../utils/constants';
 import CalEvent from './CalEvent';
+import css from '../../styles/EventSearch.module.css';
 
 function EventSearch({ handleCancelButton }) {
 
@@ -169,7 +170,7 @@ function EventSearch({ handleCancelButton }) {
   }
 
   return (
-    <div className="basis-full">
+    <div className={`basis-full ${css.EventSearchExpand}`}>
       <h3>Search events</h3>
 
       {/* Display alert if there was an issue fetching tribe data */}

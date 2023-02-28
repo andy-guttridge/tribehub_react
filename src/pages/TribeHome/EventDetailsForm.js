@@ -5,6 +5,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { eventCategories } from '../../utils/constants';
+import css from '../../styles/EventDetailsForm.module.css'
 
 function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate }) {
 
@@ -164,7 +165,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
   }, [event, isEditingEvent])
 
   return (
-    <div className="basis-full w-4/5 m-auto">
+    <div className={`basis-full w-4/5 m-auto ${css.EventDetailsExpand}`}>
 
       {/* Show appropriate title depending if user is adding new or editing existing event */}
       {isEditingEvent ? (

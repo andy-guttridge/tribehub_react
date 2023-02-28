@@ -6,6 +6,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import ConfirmModal from '../../components/ConfirmModal';
 import Spinner from '../../components/Spinner';
 import Contact from './Contact';
+import css from '../../styles/ContactSearch.module.css';
 
 function ContactSearch({ handleCancelButton }) {
 
@@ -79,7 +80,7 @@ function ContactSearch({ handleCancelButton }) {
   }
 
   return (
-    <div className="basis-full">
+    <div className={`basis-full ${css.ContactsSearchExpand}`}>
       <h3>Search contacts</h3>
 
       {/* Display alert if there was an issue fetching contact data */}
