@@ -80,22 +80,8 @@ function MyTribe() {
       <div className="bg-base-100">
         <h3>My tribe</h3>
       </div>
-      {/* We do not include the user in the list */}
-      {hasLoaded ? (
-        // If there is only one user in the tribe, it must be the tribe admin so show a prompt to add more users.
-        tribe.results[0]?.users.length > 1 ? (
-          tribe.results[0].users.map(tribeMember => (
-            (currentUser.pk !== tribeMember.user_id) &&
-            (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} handleDeleteButton={handleDeleteButton} />)
-          ))
-        ) : (
-          <p className="m-2">It's looking a bit empty! Click the add button to add a member to your tribe.</p>
-        )
-      ) : (
-        <Spinner />
-      )}
 
-      {/* Show button to add new user or the component with the form to add a new user depending on state variable */}
+{/* Show button to add new user or the component with the form to add a new user depending on state variable */}
       {/* We have to pass handleNewMemberButton to the form component so that it can set the isAddingNewMember state back to false */}
       <div className="justify-end flex mx-auto m-1 bg-base-100">
         {
@@ -112,6 +98,21 @@ function MyTribe() {
           )
         }
       </div>
+
+      {/* We do not include the user in the list */}
+      {hasLoaded ? (
+        // If there is only one user in the tribe, it must be the tribe admin so show a prompt to add more users.
+        tribe.results[0]?.users.length > 1 ? (
+          tribe.results[0].users.map(tribeMember => (
+            (currentUser.pk !== tribeMember.user_id) &&
+            (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} handleDeleteButton={handleDeleteButton} />)
+          ))
+        ) : (
+          <p className="m-2">It's looking a bit empty! Click the add button to add a member to your tribe.</p>
+        )
+      ) : (
+        <Spinner />
+      )}
 
       <div className="flex justify-center">
         {/* Display alert if there was an issue deleting a tribe member */}
