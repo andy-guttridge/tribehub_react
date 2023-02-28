@@ -79,7 +79,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       // Trigger a reload of the parent as event recurrences may also be affected
       setDidSaveEvent(!didSaveEvent);
     } catch (error) {
-      if(error.response?.status !== 401) {
+      if (error.response?.status !== 401) {
         setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
       }
     }
@@ -148,7 +148,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
     <div className="card rounded-md bg-base-100 my-2 text-center">
 
       {/* Card title */}
-      <div className="card-title flex justify-between">
+      <div className="card-title flex justify-between p-2">
         <h4 className="text-sm">{thisEvent.subject}{thisEvent.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
         <div className="avatar-group -space-x-6">
 
@@ -207,7 +207,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
         {/* Event category icon */}
         <img
           src={require(`../../assets/categories/${eventCategories[event.category].image}`)}
-          className={`w-12 ${styles.CategoryIcon} col-span-1`}
+          className={`w-12 CategoryIcon col-span-1`}
           alt={[eventCategories[event.text]]}
         />
         <div className="col-span-2 text-left">
