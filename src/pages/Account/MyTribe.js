@@ -81,7 +81,7 @@ function MyTribe() {
         <h3>My tribe</h3>
       </div>
 
-{/* Show button to add new user or the component with the form to add a new user depending on state variable */}
+      {/* Show button to add new user or the component with the form to add a new user depending on state variable */}
       {/* We have to pass handleNewMemberButton to the form component so that it can set the isAddingNewMember state back to false */}
       <div className="justify-end flex mx-auto m-1 bg-base-100">
         {
