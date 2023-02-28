@@ -14,8 +14,8 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
   const [isEditingContact, setIsEditingContact] = useState();
 
   return (
-    <div className="card rounded-lg m-1 text-center bg-base-100">
-      <div className="flex justify-start">
+    <div className="card rounded-sm my-2 text-center bg-base-100">
+      <div className="flex justify-end">
         {/* Show delete and edit buttons if user is tribe admin */}
         {
           currentUser.is_admin &&
