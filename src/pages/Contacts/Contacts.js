@@ -115,35 +115,6 @@ function Contacts() {
         </div>
       }
 
-      {/* Display contacts */}
-      {
-        hasLoaded ? (
-          <div className="inline-block w-full bg-base-200">
-            {/* Display message if there are no tribe contacts yet */}
-
-            {
-              !contacts?.results?.length && <p className="text-left md:text-center">Press the + button to start adding your tribe's contacts</p>
-            }
-
-            {
-              // Don't display contacts here if user is searching
-              !isSearching &&
-              contacts?.results?.map((contact) => {
-                return <Contact
-                  contact={contact}
-                  key={contact.id}
-                  handleDeleteButton={handleDeleteButton}
-                  didSaveContact={didSaveContact}
-                  setDidSaveContact={setDidSaveContact}
-                />
-              })
-            }
-          </div>
-        ) : (
-          <Spinner />
-        )
-      }
-
       {/* Show add contact button if user is tribe admin, they are not currently adding a contact and user does not have the search form open */}
       <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
         {!isAddingContact && !isSearching && currentUser?.is_admin &&
@@ -180,6 +151,36 @@ function Contacts() {
           didSaveContact={didSaveContact}
           setDidSaveContact={setDidSaveContact}
         />
+      }
+
+
+      {/* Display contacts */}
+      {
+        hasLoaded ? (
+          <div className="inline-block w-full bg-base-200">
+            {/* Display message if there are no tribe contacts yet */}
+
+            {
+              !contacts?.results?.length && <p className="text-left md:text-center">Press the + button to start adding your tribe's contacts</p>
+            }
+
+            {
+              // Don't display contacts here if user is searching
+              !isSearching &&
+              contacts?.results?.map((contact) => {
+                return <Contact
+                  contact={contact}
+                  key={contact.id}
+                  handleDeleteButton={handleDeleteButton}
+                  didSaveContact={didSaveContact}
+                  setDidSaveContact={setDidSaveContact}
+                />
+              })
+            }
+          </div>
+        ) : (
+          <Spinner />
+        )
       }
 
       {/* If tribe admin has selected to delete a contact, show the modal to confirm or cancel */}
