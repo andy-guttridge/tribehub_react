@@ -145,7 +145,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
 
 
   return (
-    <div className="card rounded-lg bg-base-100 m-2 text-center">
+    <div className="card rounded-md bg-base-100 my-2 text-center">
 
       {/* Card title */}
       <div className="card-title flex justify-between">
@@ -179,7 +179,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       </div>
 
       {/* Show edit button and delete button if user is owner of this event or tribe admin */}
-      <div className="flex justify-start">
+      <div className="flex justify-end">
         {(thisEvent.user.user_id === currentUser.pk || currentUser.is_admin)
           &&
           <>
