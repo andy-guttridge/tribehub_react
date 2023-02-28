@@ -3,12 +3,12 @@
 
 /* Size of main calendar body when below medium breakpoint */
 .TribehubCalendar {
-  height: 400px;
+  height: 300px;
 }
 
 /* Size of calendar cells when below medium breakpoint */
 .TribehubCalendar :global(.react-calendar__tile){
-  height: 50px;
+  height: 40px;
 }
 
 /* Styles for today on calendar */
