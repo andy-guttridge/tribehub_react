@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
 import ReactDOM from 'react-dom'
 
-import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import { axiosReq } from '../../api/axiosDefaults';
 import ConfirmModal from '../../components/ConfirmModal';
 import Spinner from '../../components/Spinner';
 import { eventCategories } from '../../utils/constants';
@@ -52,7 +52,7 @@ function EventSearch({ handleCancelButton }) {
     const fetchTribe = async () => {
       try {
         setHasLoaded(false);
-        const { data } = await axiosRes.get('tribe/');
+        const { data } = await axiosReq.get('tribe/');
         setTribe(data);
         setHasLoaded(true);
         setErrors({});
@@ -82,7 +82,7 @@ function EventSearch({ handleCancelButton }) {
     const fetchEvents = async () => {
       try {
         setHasLoaded(false);
-        const { data } = await axiosRes.get(`events/${finalSearchString}`);
+        const { data } = await axiosReq.get(`events/${finalSearchString}`);
         setEvents(data);
         setHasLoaded(true);
         setErrors({});

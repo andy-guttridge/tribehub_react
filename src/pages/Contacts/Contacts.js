@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { InfoCircle, PlusCircle, Search } from 'react-bootstrap-icons';
 import { useNavigate } from 'react-router-dom'
 
-import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import { axiosReq } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { useSinglePage } from '../../contexts/SinglePageContext';
@@ -77,7 +77,7 @@ function Contacts() {
     const fetchContacts = async () => {
       try {
         setHasLoaded(false);
-        const { data } = await axiosRes.get('contacts/');
+        const { data } = await axiosReq.get('contacts/');
         setContacts(data);
         setHasLoaded(true);
         setErrors({});

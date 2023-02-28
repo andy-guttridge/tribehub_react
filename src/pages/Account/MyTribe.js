@@ -8,7 +8,7 @@ import ConfirmModal from '../../components/ConfirmModal';
 import TribeMember from './TribeMember';
 import Spinner from '../../components/Spinner';
 import TribeMemberDetailsForm from './TribeMemberDetailsForm';
-import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import { axiosReq } from '../../api/axiosDefaults';
 
 function MyTribe() {
   // Hooks for current user, changing current page location, checking if app is in single page mode
@@ -63,7 +63,7 @@ function MyTribe() {
     // Fetch tribe members
     const fetchTribe = async () => {
       try {
-        const { data } = await axiosRes.get('tribe/');
+        const { data } = await axiosReq.get('tribe/');
         setTribe(data);
         setHasLoaded(true);
       } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
 
-import { axiosReq, axiosRes } from '../../api/axiosDefaults';
+import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Avatar from '../../components/Avatar';
 import Spinner from '../../components/Spinner';
@@ -87,7 +87,7 @@ function ProfileForm() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const { data } = await axiosRes.get(`profile/${currentUser.pk}/`);
+        const { data } = await axiosReq.get(`profile/${currentUser.pk}/`);
         const { display_name, image } = data;
         setProfileData({ display_name, image });
         setHasLoaded(true);
