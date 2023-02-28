@@ -1,7 +1,6 @@
 .DisplayEvents {
-  width: 750px;
-  display: inline-block;
-  max-height: 500px;
+  max-height: 750px;
   overflow: scroll;
   @apply bg-base-200;
+
 }

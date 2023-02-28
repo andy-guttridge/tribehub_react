@@ -150,8 +150,8 @@ function TribeHome() {
 
         // Calendar
         <>
-          <div>
-            <div className="flex justify-center">
+          <div className="lg:grid lg:grid-cols-2">
+            <div className="flex justify-center lg:m-2">
               <Calendar
                 className={`${styles.TribehubCalendar}`}
                 calendarType="ISO 8601"
@@ -174,82 +174,84 @@ function TribeHome() {
               />
             </div>
 
-            {/* Display generic alert if problems loading calendar data */}
-            {
-              errors.calendarError && (
+            <div>
+              {/* Display generic alert if problems loading calendar data */}
+              {
+                errors.calendarError && (
+                  <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+                    <InfoCircle size="32" className="m-auto" />
+                    <p className="text-center inline-block">There was a problem fetching calendar data.</p>
+                    <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
+                  </div>
+                )
+              }
+
+              {/* Display alert if there was an issue deleting a calender event */}
+              {
+                errors.delete &&
                 <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
-                  <InfoCircle size="32" className="m-auto" />
-                  <p className="text-center inline-block">There was a problem fetching calendar data.</p>
-                  <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
+                  <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
                 </div>
-              )
-            }
-
-            {/* Display alert if there was an issue deleting a calender event */}
-            {
-              errors.delete &&
-              <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
-                <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
-              </div>
-            }
-
-            {/* Button to search, search form, button to add new event add new event form */}
-            <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
-
-              {/* Add new event button and form */}
-              {
-                !isAddingNewEvent && !isSearching ? (
-                  <button onClick={() => setIsAddingNewEvent(!isAddingNewEvent)} className="btn btn-ghost">
-                    <PlusCircle size="32" className="text-primary" /><span className="sr-only">Add new calendar event</span>
-                  </button>
-                ) : isAddingNewEvent && (
-                  <EventDetailsForm
-                    handleCancelButton={() => setIsAddingNewEvent(!isAddingNewEvent)}
-                    didSaveEvent={didSaveEvent}
-                    setDidSaveEvent={setDidSaveEvent}
-                    // Pass currently selected calendar day in correct format to the form, to populate the starting value for the date of the event
-                    defaultStartDate={`${currentDay.toISOString().substring(0, 10)}T12:00`}
-                  />
-                )
               }
 
-              {/* Search button and form */}
-              {
-                !isSearching && !isAddingNewEvent ? (
-                  <button onClick={() => setIsSearching(!isSearching)} className="btn btn-ghost">
-                    <Search size="32" className="text-primary" /><span className="sr-only">Search calendar events</span>
-                  </button>
-                ) : isSearching && (
-                  <EventSearch
-                    handleCancelButton={() => setIsSearching(!isSearching)}
-                  />
-                )
-              }
-            </div>
+              {/* Button to search, search form, button to add new event add new event form */}
+              <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
 
-            {/* Event details for selected day */}
-            {/* Do not display these if in search mode */}
-            {
-              !isSearching &&
-              <div className={singlePage ? (css.DisplayEvents) : "bg-base-200"} >
+                {/* Add new event button and form */}
                 {
-                  dayEvents?.map((dayEvent) => {
-                    // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
-                    return <CalEvent
-                      event={dayEvent}
-                      key={`event-${dayEvent.id}-${dayEvent.start}`}
+                  !isAddingNewEvent && !isSearching ? (
+                    <button onClick={() => setIsAddingNewEvent(!isAddingNewEvent)} className="btn btn-ghost">
+                      <PlusCircle size="32" className="text-primary" /><span className="sr-only">Add new calendar event</span>
+                    </button>
+                  ) : isAddingNewEvent && (
+                    <EventDetailsForm
+                      handleCancelButton={() => setIsAddingNewEvent(!isAddingNewEvent)}
                       didSaveEvent={didSaveEvent}
                       setDidSaveEvent={setDidSaveEvent}
-                      handleDeleteButton={handleDeleteButton}
+                      // Pass currently selected calendar day in correct format to the form, to populate the starting value for the date of the event
+                      defaultStartDate={`${currentDay.toISOString().substring(0, 10)}T12:00`}
                     />
-                  })
+                  )
                 }
+
+                {/* Search button and form */}
                 {
-                  // Empty div with margin to provide clearance above bottom navbar if not in single page mode
-                  !singlePage && <div className="mb-4 bg-base-100"><br /></div>
+                  !isSearching && !isAddingNewEvent ? (
+                    <button onClick={() => setIsSearching(!isSearching)} className="btn btn-ghost">
+                      <Search size="32" className="text-primary" /><span className="sr-only">Search calendar events</span>
+                    </button>
+                  ) : isSearching && (
+                    <EventSearch
+                      handleCancelButton={() => setIsSearching(!isSearching)}
+                    />
+                  )
                 }
               </div>
-            }
+
+              {/* Event details for selected day */}
+              {/* Do not display these if in search mode */}
+              {
+                !isSearching &&
+                <div className={singlePage ? (css.DisplayEvents) : "bg-base-200"} >
+                  {
+                    dayEvents?.map((dayEvent) => {
+                      // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
+                      return <CalEvent
+                        event={dayEvent}
+                        key={`event-${dayEvent.id}-${dayEvent.start}`}
+                        didSaveEvent={didSaveEvent}
+                        setDidSaveEvent={setDidSaveEvent}
+                        handleDeleteButton={handleDeleteButton}
+                      />
+                    })
+                  }
+                  {
+                    // Empty div with margin to provide clearance above bottom navbar if not in single page mode
+                    !singlePage && <div className="mb-4 bg-base-100"><br /></div>
+                  }
+                </div>
+              }
+            </div>
           </div>
         </>
       ) : (
