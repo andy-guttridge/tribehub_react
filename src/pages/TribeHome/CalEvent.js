@@ -147,6 +147,15 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
   return (
     <div className="card rounded-md bg-base-100 my-2 text-center">
 
+      {/* Display the EventDetailsForm if user is editing an event */}
+      {isEditingEvent &&
+        <EventDetailsForm
+          handleCancelButton={() => setIsEditingEvent(false)}
+          isEditingEvent
+          event={thisEvent}
+          setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
+        />}
+
       {/* Card title */}
       <div className="card-title flex justify-between p-2">
         <h4 className="text-sm">{thisEvent.subject}{thisEvent.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
@@ -247,15 +256,6 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
           <InfoCircle size="32" /><span>{errors.event_response}</span>
         </div>
       }
-
-      {/* Display the EventDetailsForm if user is editing an event */}
-      {isEditingEvent &&
-        <EventDetailsForm
-          handleCancelButton={() => setIsEditingEvent(false)}
-          isEditingEvent
-          event={thisEvent}
-          setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
-        />}
 
       {/* Collapse section for more detail */}
       <div className="collapse collapse-arrow">

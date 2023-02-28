@@ -15,17 +15,27 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
 
   return (
     <div className="card rounded-sm my-2 text-center bg-base-100">
+      {/* Display ContactDetailsForm if user is editing a contact */}
+      {isEditingContact &&
+        <ContactDetailsForm
+          handleCancelButton={() => setIsEditingContact(false)}
+          isEditingContact
+          contact={contact}
+          didSaveContact={didSaveContact}
+          setDidSaveContact={setDidSaveContact}
+        />
+      }
       <div className="flex justify-end">
         {/* Show delete and edit buttons if user is tribe admin */}
         {
           currentUser.is_admin &&
           <>
             <button
-            className="btn btn-ghost"
-            onClick={() => setIsEditingContact(true)}
-            type="button"
+              className="btn btn-ghost"
+              onClick={() => setIsEditingContact(true)}
+              type="button"
             >
-              <PencilSquare size="26" className="text-primary"/>
+              <PencilSquare size="26" className="text-primary" />
               <span className="sr-only">Edit contact</span>
             </button>
 
@@ -53,17 +63,6 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
           <p><span className="font-bold">Email: </span>{contact.email}</p>
         </div>
       </div>
-
-    {/* Display ContactDetailsForm if user is editing a contact */}
-    { isEditingContact && 
-      <ContactDetailsForm 
-        handleCancelButton={() => setIsEditingContact(false)}
-        isEditingContact
-        contact={contact}
-        didSaveContact={didSaveContact}
-        setDidSaveContact={setDidSaveContact}
-      />
-    }
     </div>
   )
 }
