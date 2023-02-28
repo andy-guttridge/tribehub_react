@@ -64,7 +64,7 @@ function NotficationsMenu() {
   }, [notificationsChanged])
 
   return (
-    <div className="inline-block mx-2">
+    <div className="inline-block">
       {/* Dropdown containing notification items */}
       <div className="dropdown dropdown-end">
         <label tabIndex="0" className="btn btn-sm btn-ghost">
@@ -73,7 +73,7 @@ function NotficationsMenu() {
             <Bell size="20" className="text-primary"/>
           </div>
         </ label>
-        <ul tabIndex="0" className="dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
+        <ul tabIndex="0" className="dropdown-content shadow bg-base-200 w-52">
           {
             hasLoaded ? (
               <>

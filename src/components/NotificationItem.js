@@ -76,10 +76,11 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
 
     // Return a list item representing the notification
     <li>
-      <div className="inline">
+      <div className="rounded-sm mb-1 p-1 bg-base-100">
         <h3 className="text-base text-center">{notification.subject}</h3>
         <p className="text-sm text-center">{notification.message}</p>
         <p className="text-sm text-left"><span>Start: </span><br /><span>{startDateStr} {startTimeStr}</span></p>
+        <br />
         <p className="text-sm text-left"><span>End: </span><br /><span>{endDateStr} {endTimeStr}</span></p>
 
         {/* Check this notification is for an event and show going/not going buttons if so. Also a delete button */}
@@ -111,7 +112,6 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
             </button>
           </div>
         }
-        <br /><br /><hr />
       </div>
 
       {/* Display alert if there was an issue deleting a tribe member */}
