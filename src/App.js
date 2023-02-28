@@ -50,10 +50,8 @@ function App() {
                 {/* How to use Navigate component for this purpose is from */}
                 {/* https://www.copycat.dev/blog/react-router-redirect/ */}
                 <Route path="*" element={<Navigate to={currentUser ? "tribe-home" : "/"} />}/>
-              </Routes>
-              {/* Div with margin to ensure clearance above bottom navbar */}
-              <div className="mb-20"></div>
-              <NavBar className="z-[9999]" />
+              </Routes>            
+              <NavBar />
             </>
           ) : (
             // If window width larger than breakpoint, use single page app layout

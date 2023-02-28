@@ -82,7 +82,7 @@ function Contacts() {
         setHasLoaded(true);
         setErrors({});
       } catch (error) {
-        if(error.response?.status !== 401) {
+        if (error.response?.status !== 401) {
           setErrors({ contacts: 'There was a problem loading your contacts. You may be offline, or there may have been a server error.' });
         }
       }
@@ -135,7 +135,7 @@ function Contacts() {
               className="btn btn-ghost"
               type="button"
             >
-              <Search size="32" className="text-primary"/><span className="sr-only">Search contacts</span>
+              <Search size="32" className="text-primary" /><span className="sr-only">Search contacts</span>
             </button>
           ) : isSearching && (
             <ContactSearch handleCancelButton={() => setIsSearching(false)} />
@@ -178,9 +178,15 @@ function Contacts() {
               })
             }
           </div>
+
         ) : (
           <Spinner />
         )
+      }
+
+      {
+        // Empty div with margin to provide clearance above bottom navbar if not in single page mode
+        !singlePage && <div className="mb-4 bg-base-100"><br /></div>
       }
 
       {/* If tribe admin has selected to delete a contact, show the modal to confirm or cancel */}

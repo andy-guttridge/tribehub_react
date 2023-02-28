@@ -139,7 +139,7 @@ function TribeHome() {
   }
 
   return (
-    // Apply some styling if displaying in single page mode
+    // Apply some styling dependinf on whether displaying in single page mode
     <div
       className={
         `${singlePage ? singlePageStyles : 'bg-base-100'}`
@@ -231,7 +231,7 @@ function TribeHome() {
             {/* Do not display these if in search mode */}
             {
               !isSearching &&
-              <div className={singlePage ? (css.DisplayEvents) : "max-h-96 bg-base-200 overflow-scroll"} >
+              <div className={singlePage ? (css.DisplayEvents) : "bg-base-200"} >
                 {
                   dayEvents?.map((dayEvent) => {
                     // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
@@ -243,6 +243,10 @@ function TribeHome() {
                       handleDeleteButton={handleDeleteButton}
                     />
                   })
+                }
+                {
+                  // Empty div with margin to provide clearance above bottom navbar if not in single page mode
+                  !singlePage && <div className="mb-4 bg-base-100"><br /></div>
                 }
               </div>
             }
