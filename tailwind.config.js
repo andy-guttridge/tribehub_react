@@ -10,7 +10,10 @@ module.exports = {
         'lato': ['Lato', 'sans-serif'],
         'shantell': ['Shantell Sans', 'cursive'],
         'oi': ['Oi', 'cursive'],
-        'fredoka': ['Fredoka One', 'cursive']
+        'fredoka': ['Fredoka One', 'cursive'],
+        'spicy': ['Spicy Rice', 'cursive'],
+        'sunshiney': ['Sunshiney', 'cursive'],
+        'chango': ['Chango', 'cursive']
       }
     },
   },
@@ -35,8 +38,8 @@ module.exports = {
           secondary: '#00d7ff',
           accent: '#803053',
           neutral: '#747e7e',
-          'base-100': '#f2f2f2',
-          'base-200': '#e0e0e0'
+          'base-100': '#fafafa',
+          'base-200': '#e6e6e6'
         },
       },
       {

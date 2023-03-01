@@ -24,11 +24,11 @@ code {
     @apply text-4xl;
   }
   h1 span {
-    @apply font-oi;
+    @apply font-fredoka;
   }
   h2 {
     @apply text-3xl;
-    @apply font-oi;
+    @apply font-fredoka;
     @apply text-accent;
   }
   h3 {
