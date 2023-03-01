@@ -24,7 +24,7 @@ function Contacts() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = 'basis-4/5 rounded-lg flex-none mr-2 mt-2 bg-base-100'
+  const singlePageStyles = 'basis-4/5 border border-base-300 rounded-lg flex-none mr-2 mt-2 bg-base-100'
 
   // State variables for tribe contacts
   const [contacts, setContacts] = useState([]);
@@ -118,7 +118,7 @@ function Contacts() {
       }
 
       {/* Show add contact button if user is tribe admin, they are not currently adding a contact and user does not have the search form open */}
-      <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
+      <div className="justify-end lg:justify-start flex w-4/5 md:w-2/3 lg:w-full mx-auto my-4">
         {!isAddingContact && !isSearching && currentUser?.is_admin &&
           <button className="btn btn-ghost"
             onClick={() => setIsAddingContact(!isAddingContact)}

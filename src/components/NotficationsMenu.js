@@ -73,7 +73,7 @@ function NotficationsMenu() {
             <Bell size="20" className="text-primary"/>
           </div>
         </ label>
-        <ul tabIndex="0" className="dropdown-content shadow bg-base-200 w-52">
+        <ul tabIndex="0" className="dropdown-content shadow bg-base-200 border border-base-200 w-52 lg:w-60">
           {
             hasLoaded ? (
               <>

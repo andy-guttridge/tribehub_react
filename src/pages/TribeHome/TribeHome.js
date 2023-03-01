@@ -32,7 +32,7 @@ function TribeHome() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = 'basis-4/5 rounded-b-lg bg-base-100 col-span-2';
+  const singlePageStyles = 'basis-4/5 rounded-lg border border-base-300 bg-base-100 col-span-2';
 
   // State variables for user's events
   const [events, setEvents] = useState({ results: [] });
@@ -197,7 +197,7 @@ function TribeHome() {
               }
 
               {/* Button to search, search form, button to add new event add new event form */}
-              <div className="justify-end flex w-4/5 md:w-2/3 lg:w-full mx-auto my-4">
+              <div className="justify-end lg:justify-start flex w-4/5 md:w-2/3 lg:w-full mx-auto my-4">
 
                 {/* Add new event button and form */}
                 {
@@ -233,7 +233,7 @@ function TribeHome() {
               {/* Event details for selected day */}
               {/* Do not display these if in search mode */}
               {
-                !isSearching &&
+                !isSearching && 
                 <div className={singlePage ? (css.DisplayEvents) : "bg-base-200"} >
                   {
                     dayEvents?.map((dayEvent) => {

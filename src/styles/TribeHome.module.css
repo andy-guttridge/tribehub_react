@@ -2,5 +2,5 @@
   max-height: 750px;
   overflow: scroll;
   @apply bg-base-200;
-
+  @apply rounded-lg m-2;
 }

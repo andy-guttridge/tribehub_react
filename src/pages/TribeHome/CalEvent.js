@@ -158,7 +158,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       
       {/* Card title */}
       <div className="card-title flex justify-between p-2">
-        <h4 className="text-sm">{thisEvent.subject}{thisEvent.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
+        <h4 className="">{thisEvent.subject}{thisEvent.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
         <div className="avatar-group -space-x-6">
 
           {/* Return an avatar for each user */}
@@ -221,9 +221,9 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
           alt={[eventCategories[event.text]]}
         />
         <div className="col-span-2 text-left">
-          <p className="font-bold">Start:</p><p>{startDateStr}{eventTimeStr}</p>
+          <p className="font-bold">Start:</p><p>{startDateStr} {eventTimeStr}</p>
           <hr />
-          <p className="font-bold">End:</p><p>{endDateStr}{endTimeStr}</p>
+          <p className="font-bold">End:</p><p>{endDateStr} {endTimeStr}</p>
         </div>
       </div>
 

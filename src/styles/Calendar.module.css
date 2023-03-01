@@ -3,8 +3,8 @@
 
 /* Size of main calendar body when below medium breakpoint and border style */
 .TribehubCalendar {
-  height: 300px;
-  @apply rounded-sm;
+  height: 325px;
+  @apply rounded-lg;
   @apply border-base-300;
 }
 
@@ -75,7 +75,7 @@
 
 /* Calendar styles for large breakpoint */
 @media (min-width: 1024px) {
-  /* Size of main calendar body */
+  /* Size and colour of main calendar body */
   .TribehubCalendar{
     width: 750px;
     min-height: 750px;
