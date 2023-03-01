@@ -1,6 +1,6 @@
 import React from 'react'
 
-import spinnerImage from '../assets/fidget_spinner_red.png'
+import spinnerImage from '../assets/fidget-spinner.svg'
 
 function Spinner( {small} ) {
   return (
