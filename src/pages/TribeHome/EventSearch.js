@@ -294,7 +294,7 @@ function EventSearch({ handleCancelButton }) {
         </label>
 
         {/* Cancel search button */}
-        <button onClick={handleCancelButton} className="btn btn-primary btn-outline" type="button">Cancel search</button>
+        <button onClick={handleCancelButton} className="btn btn-outline" type="button">Cancel search</button>
       </form>
 
       {/* Display alert if there was an issue deleting an event */}
