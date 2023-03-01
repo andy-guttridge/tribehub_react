@@ -63,7 +63,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
 
   return (
     <div className={`w-4/5 m-auto ${css.ContactDetailsExpand}`}>
-      <h3>Add contact</h3>
+      {isEditingContact ? <h3>Edit Contact</h3> : <h3>Add contact</h3>}
       <form onSubmit={handleSubmit}>
 
         {/* The value from the API for each form input is or'd with an empty string, as the API can return null values which cause errors in React */}
