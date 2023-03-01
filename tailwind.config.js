@@ -50,6 +50,9 @@ module.exports = {
           ".FidgetSpinner": {
             "filter": "invert(42%) sepia(98%) saturate(1106%) hue-rotate(171deg) brightness(99%) contrast(90%)"
           },
+          ".CalWeekendText": {
+            "color": "#ff147a"
+          },
           primary: '#ff147a',
           secondary: '#00d7ff',
           accent: '#ede626',

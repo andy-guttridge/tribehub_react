@@ -49,6 +49,16 @@
   @apply bg-primary;
 }
 
+/* Styles for weekend days */
+.TribehubCalendar :global(.react-calendar__month-view__days__day--weekend){
+  @apply CalWeekendText;
+}
+
+/* Styles for inactive days */
+.TribehubCalendar :global(.react-calendar__month-view__days__day--neighboringMonth){
+  @apply text-neutral;
+}
+
 /* Styles for calendar body */
 :global(.react-calendar){
   @apply bg-base-100;
