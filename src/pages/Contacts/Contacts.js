@@ -163,7 +163,12 @@ function Contacts() {
             {/* Display message if there are no tribe contacts yet */}
 
             {
-              !contacts?.results?.length && <p className="text-left md:text-center">Press the + button to start adding your tribe's contacts</p>
+              !contacts?.results?.length && !isAddingContact &&
+              <div className="bg-base-100 p-2">
+                <div className="alert alert-info justify-center">
+                  <p className="text-left md:text-center font-bold">Press the + button to start adding your tribe's contacts</p>
+                </div>
+              </div>
             }
 
             {
