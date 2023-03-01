@@ -15,17 +15,17 @@ function NavBar() {
   // Icons for bottom navbar (only used for breakpoints below large). Use current url to apply the active class to the correct Navlink component
   const navBarIcons = (
     <>
-      <NavLink  to="/tribe-home" className={location.pathname !== '/account' && location.pathname !=='/contacts' && 'active'}>
+      <NavLink  to="/tribe-home" className={`bg-base-200 {location.pathname !== '/account' && location.pathname !=='/contacts' && 'active'}`}>
         <House size="32" aria-label="Home" />
         <span className="sr-only">Home</span>
       </NavLink>
 
-      <NavLink to="/contacts" className={location.pathname === '/contacts' && 'active'}>
+      <NavLink to="/contacts" className={`bg-base-200 {location.pathname === '/contacts' && 'active'}`}>
         <PersonVcard size="32" aria-label="Contacts" />
         <span className="sr-only">Contacts</span>
       </NavLink>
 
-      <NavLink to="/account" className={location.pathname === '/account' && 'active'}>
+      <NavLink to="/account" className={`bg-base-200 {location.pathname === '/account' && 'active'}`}>
         <PersonGear size="32" aria-label="Account" />
         <span className="sr-only">Account</span>
       </NavLink>
@@ -33,7 +33,7 @@ function NavBar() {
   );
 
   return (
-    <div className="btm-nav text-primary lg:hidden">
+    <div className="btm-nav text-primary lg:hidden bg-base-200">
       {/* Display navBarIcons only if current user is logged in */}
       {currentUser && 
         <>
