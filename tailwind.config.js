@@ -33,11 +33,12 @@ module.exports = {
             "filter": "invert(21%) sepia(99%) saturate(3916%) hue-rotate(322deg) brightness(100%) contrast(103%)"
           },
           primary: '#ff147a',
-          secondary: '#00d7ff',
+          secondary: '#009cb8',
           accent: '#803053',
-          neutral: '#747e7e',
+          neutral: '#4a4a4a',
           'base-100': '#fafafa',
-          'base-200': '#e6e6e6'
+          'base-200': '#e6e6e6',
+          'base-300': '#d6d6d6'
         },
       },
       {
@@ -49,12 +50,13 @@ module.exports = {
           ".FidgetSpinner": {
             "filter": "invert(42%) sepia(98%) saturate(1106%) hue-rotate(171deg) brightness(99%) contrast(90%)"
           },
-          primary: '#0ea1ed',
-          secondary: '#ed2637',
+          primary: '#ff147a',
+          secondary: '#00d7ff',
           accent: '#ede626',
-          neutral: '#747e7e',
+          neutral: '#aeaeae',
           'base-100': '#1c1c1c',
-          'base-200': '#141414'
+          'base-200': '#141414',
+          'base-300': '#505050'
         },
       },
     ],
