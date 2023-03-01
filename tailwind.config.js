@@ -41,11 +41,11 @@ module.exports = {
         tribehub_dark_theme: {
           ...require("daisyui/src/colors/themes")["[data-theme=dark"],
           ".CategoryIcon": {
-            "filter": "invert(39%) sepia(50%) saturate(1978%) hue-rotate(140deg) brightness(95%) contrast(92%)"
+            "filter": "invert(84%) sepia(88%) saturate(459%) hue-rotate(353deg) brightness(95%) contrast(95%);"
           },
           primary: '#0ea1ed',
           secondary: '#ed2637',
-          accent: '#0aa183',
+          accent: '#ede626',
           neutral: '#747e7e',
           'base-100': '#1c1c1c',
           'base-200': '#141414'
