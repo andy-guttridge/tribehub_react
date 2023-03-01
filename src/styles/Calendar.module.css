@@ -6,6 +6,7 @@
   height: 325px;
   @apply rounded-lg;
   @apply border-base-300;
+  @apply font-bold;
 }
 
 /* Size of calendar cells when below medium breakpoint */
