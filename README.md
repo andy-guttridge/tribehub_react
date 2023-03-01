@@ -75,6 +75,8 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 Wave3C testing revealed that the blue colour chosen for the secondary colour did not provide sufficient contrast against the light theme background.
 The colour was darkened  until it passed validator testing. Wave also revealed contrast issues with buttons. Solid buttons in the primary colour were given a black font, while outline buttons were changed from primary to a dark (or light for dark mode) colour, and the font size was increased for all buttons. This resolved the contrast issues.
 
+Wave also found there was insufficient contrast between the text and background for weekend days in dark mode, and for days of an adjacent month in light mode. The former was fixed with an additional CSS class for dark mode, while an existing CSS class from both the light and dark mode themes was used for the latter.
+
 ### Resolved bugs
 - During implementation of the `NotificationItem` component, requests to the REST API for the data for the events with which each notification is associated were frequently resulting in an HTTP 500 internal server error. A version of the API running on a development server was used for debugging. This revealed that the number of simultaneous requests for data coming from a large number of NotificationItems was overwhelming the free tier ElephantSQL database server. The fix was to add the full data for each event to the notification JSON served by the API, which meant that only one network request was required to fetch the notification and event data together. 
 
