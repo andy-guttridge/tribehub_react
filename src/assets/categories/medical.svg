@@ -1,9 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 405.71429 340.13675" xmlns="http://www.w3.org/2000/svg">
- <g transform="translate(-169.19 -356.11)">
-  <path d="m199.19 467.68h345.71a30 30 0 0 1 30 30v168.57a30 30 0 0 1 -30 30h-345.71a30 30 0 0 1 -30 -30v-168.57a30 30 0 0 1 30 -30" fill="#e50000"/>
-  <path transform="rotate(-90)" d="m-610.41 289.19h56.9v165.71h-56.9z" fill="#fff"/>
-  <path transform="scale(-1)" d="m-400.5-664.82h56.9v165.71h-56.9z" fill="#fff"/>
-  <path d="m251.97 481.46s19.676-101.71 120.07-101.71 120.07 101.71 120.07 101.71" fill="none" stroke="#e50000" stroke-linecap="square" stroke-linejoin="round" stroke-width="47.279"/>
- </g>
+  <path d="M 30 111.57 L 375.71 111.57 C 392.279 111.57 405.71 125.001 405.71 141.57 L 405.71 310.14 C 405.71 326.709 392.279 340.14 375.71 340.14 L 30 340.14 C 13.431 340.14 0 326.709 0 310.14 L 0 141.57 C 0 125.001 13.431 111.57 30 111.57" style="stroke: rgb(0, 0, 0);"/>
+  <path d="M 174.405 142.995 L 231.305 142.995 L 231.305 308.705 L 174.405 308.705 Z" fill="#fff" style="stroke: rgb(0, 0, 0);" transform="matrix(0, -1, 1, 0, -22.994995, 428.704987)"/>
+  <path d="M 174.41 143 L 231.31 143 L 231.31 308.71 L 174.41 308.71 Z" fill="#fff" style="stroke: rgb(0, 0, 0);" transform="matrix(-1, 0, 0, -1, 405.720001, 451.709991)"/>
+  <path d="M 82.78 125.35 C 82.78 125.35 102.456 23.64 202.85 23.64 C 303.244 23.64 322.92 125.35 322.92 125.35" fill="none" stroke-linecap="square" stroke-linejoin="round" stroke-width="47.279" style="stroke: rgb(0, 0, 0);"/>
 </svg>
