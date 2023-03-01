@@ -116,7 +116,6 @@ function TribeHome() {
 
     // Fetch the data
     fetchEvents(fromDate, toDate)
-
   }, [didSaveEvent, fetchEvents])
 
   useEffect(() => {
@@ -148,6 +147,18 @@ function TribeHome() {
       }
     >
       <h2>Home</h2>
+
+      {/* Display generic alert if problems loading calendar data */}
+      {
+        errors.calendarError && (
+          <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+            <InfoCircle size="32" className="m-auto" />
+            <p className="text-center inline-block">There was a problem fetching calendar data.</p>
+            <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
+          </div>
+        )
+      }
+
       {hasLoaded ? (
 
         // Calendar
@@ -176,25 +187,15 @@ function TribeHome() {
               />
             </div>
 
-            <div>
-              {/* Display generic alert if problems loading calendar data */}
-              {
-                errors.calendarError && (
-                  <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
-                    <InfoCircle size="32" className="m-auto" />
-                    <p className="text-center inline-block">There was a problem fetching calendar data.</p>
-                    <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
-                  </div>
-                )
-              }
+            {/* Display alert if there was an issue deleting a calender event */}
+            {
+              errors.delete &&
+              <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+                <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
+              </div>
+            }
 
-              {/* Display alert if there was an issue deleting a calender event */}
-              {
-                errors.delete &&
-                <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
-                  <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
-                </div>
-              }
+            <div>
 
               {/* Button to search, search form, button to add new event add new event form */}
               <div className="justify-end lg:justify-start flex w-4/5 md:w-2/3 lg:w-full mx-auto my-4">
@@ -233,7 +234,7 @@ function TribeHome() {
               {/* Event details for selected day */}
               {/* Do not display these if in search mode */}
               {
-                !isSearching && 
+                !isSearching &&
                 <div className={singlePage ? (css.DisplayEvents) : "bg-base-200"} >
                   {
                     dayEvents?.map((dayEvent) => {
