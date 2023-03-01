@@ -107,8 +107,12 @@ function MyTribe() {
             (currentUser.pk !== tribeMember.user_id) &&
             (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} handleDeleteButton={handleDeleteButton} />)
           ))
-        ) : (
-          <p className="m-2">It's looking a bit empty! Click the add button to add a member to your tribe.</p>
+        ) : !isAddingNewMember && (
+          <div className="bg-base-100 p-2">
+          <div className="alert alert-info mx-auto w-4/5">
+          <p className="m-2 font-bold">It's looking a bit empty! Click the add button to add a member to your tribe.</p>
+          </div>
+          </div>
         )
       ) : (
         <Spinner />
