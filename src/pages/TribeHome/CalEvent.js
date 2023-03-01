@@ -155,7 +155,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
           event={thisEvent}
           setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
         />}
-
+      
       {/* Card title */}
       <div className="card-title flex justify-between p-2">
         <h4 className="text-sm">{thisEvent.subject}{thisEvent.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
@@ -193,7 +193,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
           &&
           <>
             <button
-              className="btn btn-ghost"
+              className={`btn btn-ghost ${isEditingEvent && "btn-disabled"}`}
               onClick={() => setIsEditingEvent(true)}
             >
               <PencilSquare size="26" className="text-primary" />
@@ -212,6 +212,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       </div>
 
       {/* Card body */}
+      
       <div className="card-body grid grid-cols-3">
         {/* Event category icon */}
         <img

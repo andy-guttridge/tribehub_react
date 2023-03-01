@@ -31,7 +31,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
           currentUser.is_admin &&
           <>
             <button
-              className="btn btn-ghost"
+              className={`btn btn-ghost ${isEditingContact && "btn-disabled"}`}
               onClick={() => setIsEditingContact(true)}
               type="button"
             >
