@@ -67,10 +67,12 @@ function Contacts() {
     }
   }
 
-  // Check if user logged in on mount, if not redirect to landing page
+  // Check if user logged in on mount, if not redirect to landing page.
+  // Scroll to top of page if not in single page mode.
   useEffect(() => {
-    !currentUser && navigate("/")
-  }, [currentUser, navigate])
+    !currentUser && navigate("/");
+    !singlePage && window.scrollTo(0, 0);
+  }, [currentUser, navigate, singlePage])
 
   // Fetch users contacts from API
   useEffect(() => {

@@ -10,11 +10,15 @@ import PasswordChangeForm from './PasswordChangeForm';
 import ProfileForm from './ProfileForm';
 import {removeTokenTimestamp} from '../../utils/utils'
 import { InfoCircle } from 'react-bootstrap-icons';
+import { useSinglePage } from '../../contexts/SinglePageContext';
 
 function MyAccount() {
 
   // Ref to useNavigate hook for redidrection
   const navigate = useNavigate();
+
+  // Hook to determine if in single page mode
+  const singlePage = useSinglePage();
 
   // State variables for errors
   const [errors, setErrors] = useState({})
@@ -26,10 +30,12 @@ function MyAccount() {
   // State variable to track whether user is currently in the process of deleting their account
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
 
-  // Check if user logged in on mount, if not redirect to landing page
+  // Check if user logged in on mount, if not redirect to landing page.
+  // Scroll to top of page if not in single page mode.
   useEffect(() => {
-    !currentUser && navigate('/')
-  }, [currentUser, navigate])
+    !currentUser && navigate('/');
+    !singlePage && window.scrollTo(0, 0);
+  }, [currentUser, navigate, singlePage])
 
   // Handle user confirm they want to delete their account
   const doDeleteAccount = async () => {

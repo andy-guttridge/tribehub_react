@@ -120,9 +120,11 @@ function TribeHome() {
   }, [didSaveEvent, fetchEvents])
 
   useEffect(() => {
-    // Check if user logged in on mount, if not redirect to landing page
+    // Check if user logged in on mount, if not redirect to landing page.
+    // Ensure top of page is visible if not in single page mode.
     !currentUser && navigate('/');
-  }, [currentUser, navigate])
+    !singlePage && window.scrollTo(0, 0);
+  }, [currentUser, navigate, singlePage])
 
   // Handle the user changing the calendar month by reloading events data with correct date range
   const handleCalMonthChange = (calData) => {
