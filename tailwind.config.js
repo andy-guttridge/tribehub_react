@@ -8,12 +8,7 @@ module.exports = {
       fontFamily: {
         'nunito': ['Nunito', 'sans-serif'],
         'lato': ['Lato', 'sans-serif'],
-        'shantell': ['Shantell Sans', 'cursive'],
-        'oi': ['Oi', 'cursive'],
-        'fredoka': ['Fredoka One', 'cursive'],
-        'spicy': ['Spicy Rice', 'cursive'],
-        'sunshiney': ['Sunshiney', 'cursive'],
-        'chango': ['Chango', 'cursive']
+        'fredoka': ['Fredoka One', 'cursive']
       }
     },
   },
