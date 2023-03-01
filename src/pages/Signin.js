@@ -90,7 +90,7 @@ function Signin() {
                 onChange={handleChange}
               />
             </label>
-            <button className="btn btn-outline w-full" type="submit">Submit</button>
+            <button className="btn btn-primary w-full" type="submit">Submit</button>
           </form>
 
           {/* Display alert with any sign-in errors */}
