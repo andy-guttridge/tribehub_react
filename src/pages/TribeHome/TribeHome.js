@@ -195,7 +195,7 @@ function TribeHome() {
               }
 
               {/* Button to search, search form, button to add new event add new event form */}
-              <div className="justify-end flex w-4/5 md:w-2/3 lg:1/2 mx-auto my-4">
+              <div className="justify-end flex w-4/5 md:w-2/3 lg:w-full mx-auto my-4">
 
                 {/* Add new event button and form */}
                 {
