@@ -8,7 +8,7 @@ import ConfirmModal from '../../components/ConfirmModal';
 import DeleteAccountButton from './DeleteAccountForm';
 import PasswordChangeForm from './PasswordChangeForm';
 import ProfileForm from './ProfileForm';
-import {removeTokenTimestamp} from '../../utils/utils'
+import { removeTokenTimestamp } from '../../utils/utils'
 import { InfoCircle } from 'react-bootstrap-icons';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
@@ -46,8 +46,8 @@ function MyAccount() {
       navigate('/');
       setErrors({});
     } catch (error) {
-      if(error.response?.status !== 401) {
-        setErrors({delete: 'There was a problem deleting your account. You may be offline, or a server error may have occurred.'})
+      if (error.response?.status !== 401) {
+        setErrors({ delete: 'There was a problem deleting your account. You may be offline, or a server error may have occurred.' })
         setIsDeletingAccount(false);
       }
     }
@@ -79,12 +79,12 @@ function MyAccount() {
 
       {/* Display error alert if there was an issue deleting account */}
       {
-      errors.delete && 
-      <div className="block w-4/5 md:w-2/3 lg:1/2 mx-auto my-4 alert alert-warning">
-        <InfoCircle size="32" className="m-auto"/><p>{errors.delete}</p>
-      </div>
+        errors.delete &&
+        <div className="block w-4/5 md:w-2/3 lg:1/2 mx-auto my-4 alert alert-warning">
+          <InfoCircle size="32" className="m-auto" /><p>{errors.delete}</p>
+        </div>
       }
-      
+
       <div className="block m-4">
         <div className="md:w-2/3 text-left m-auto">
           <p>This is a permanent action and can't be undone.</p>
@@ -105,11 +105,15 @@ function MyAccount() {
               ) : (
                 "Are you sure you want to delete your user account? This action cannot be undone."
                 + "\n\nIf you have another account, you will need to clear all cookies for TribeHub before you can use it to login again."
-              ) 
+              )
             }
             cancelHandler={() => setIsDeletingAccount(false)}
             confirmHandler={doDeleteAccount}
           />, document.body)
+      }
+      {
+        // Empty div with margin to provide clearance above bottom navbar if not in single page mode
+        !singlePage && <div className="mb-8 bg-base-100"><br /></div>
       }
     </>
   )
