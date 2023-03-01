@@ -27,6 +27,10 @@ export const eventCategories = {
     text: 'Other',
     image: 'other.svg',
   },
+  'PET': {
+    text: 'Pets',
+    image: 'pets.svg',
+  },
   'SHO': {
     text: 'Shopping',
     image: 'shopping.svg',
