@@ -5,9 +5,6 @@ import { House, PersonVcard, PersonGear } from 'react-bootstrap-icons'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
 function NavBar() {
-  
-  // Reference to current url
-  const location = useLocation();
 
   // Reference to current user
   const currentUser = useCurrentUser();
@@ -33,7 +30,7 @@ function NavBar() {
   );
 
   return (
-    <div className="btm-nav text-primary lg:hidden bg-base-200">
+    <div className={`${!currentUser && "hidden"} btm-nav text-primary lg:hidden bg-base-200`}>
       {/* Display navBarIcons only if current user is logged in */}
       {currentUser && 
         <>

@@ -56,7 +56,7 @@ function Signin() {
   }, [currentUser, navigate])
 
   return (
-    <>
+    <div className="bg-base-100">
       <h2 className="mb-4">Sign-in</h2>
 
       {/* Flex container for page content */}
@@ -103,7 +103,7 @@ function Signin() {
           }
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

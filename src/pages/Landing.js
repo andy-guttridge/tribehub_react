@@ -14,7 +14,7 @@ function Landing() {
   }, [currentUser, navigate])
 
   return (
-    <div>
+    <div className="bg-base-100">
       
       {/* Register and sign-in buttons if user not authenticated */}
       {/* Register button */}
