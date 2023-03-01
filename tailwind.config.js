@@ -30,7 +30,7 @@ module.exports = {
             "filter": "invert(26%) sepia(13%) saturate(3556%) hue-rotate(286deg) brightness(88%) contrast(89%)"
           },
           ".FidgetSpinner": {
-            "filter": "invert(25%) sepia(79%) saturate(4101%) hue-rotate(320deg) brightness(96%) contrast(110%)"
+            "filter": "invert(21%) sepia(99%) saturate(3916%) hue-rotate(322deg) brightness(100%) contrast(103%)"
           },
           primary: '#ff147a',
           secondary: '#00d7ff',
