@@ -1,9 +1,11 @@
 /* How to use the :global selector to ensure styles are overriden within a React component from */
 /* https://stackoverflow.com/questions/42191671/css-modules-reactjs-parent-and-child-css-classes-in-different-components */
 
-/* Size of main calendar body when below medium breakpoint */
+/* Size of main calendar body when below medium breakpoint and border style */
 .TribehubCalendar {
   height: 300px;
+  @apply rounded-sm;
+  @apply border-base-300;
 }
 
 /* Size of calendar cells when below medium breakpoint */
