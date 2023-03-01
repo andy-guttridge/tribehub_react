@@ -53,18 +53,19 @@ function Register() {
 
 
   return (
-    <>
+    <div className="bg-base-100">
       <h2>Register</h2>
 
       {/* Flex container for page content */}
       <div className="flex flex-col items-center">
-        <div className="card card-bordered w-3/4 md:w-1/2 lg:w-1/2 mb-4">
-          <div className="card-body">
+        <div className="m-2 alert alert-info w-3/4 md:w-1/2 lg:w-1/2">
+
           <h3>Register your tribe here!</h3>
-          <ul className="list-disc text-left">
-          <li>You will be the chief of the tribe.</li>
-          <li>You can add more members to your tribe when you have registered your account and signed in.</li>
-          </ul>
+          <div>
+            <ul className="m-2 list-disc text-left">
+              <li>You will be the chief of the tribe.</li>
+              <li>You can add more members to your tribe when you have registered your account and signed in.</li>
+            </ul>
           </div>
         </div>
 
@@ -74,7 +75,7 @@ function Register() {
           <form onSubmit={handleSubmit}>
 
             {/* Username */}
-            <p>Pick a user name and password for your account</p>
+            <p className="font-bold">Pick a user name and password for your account</p>
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="username">
               <span>Username:</span>
               <input
@@ -95,7 +96,7 @@ function Register() {
                 <InfoCircle size="32" /><span>{errors.username}</span>
               </div>
             }
-            
+
             {/* Password */}
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password">
               <span>Password:</span>
@@ -117,7 +118,7 @@ function Register() {
                 <InfoCircle size="32" /><span>{errors.password}</span>
               </div>
             }
-            
+
             {/* Password 2 */}
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password2">
               <span>Re-enter password:</span>
@@ -141,7 +142,7 @@ function Register() {
             }
 
             {/* Tribename */}
-            <p>You will be the chief, so pick a name for your tribe!</p>
+            <p className="font-bold">You will be the chief, so pick a name for your tribe!</p>
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribename">
               <span>Tribe name:</span>
               <input
@@ -177,7 +178,7 @@ function Register() {
 
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
