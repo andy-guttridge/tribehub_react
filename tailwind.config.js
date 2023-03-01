@@ -29,6 +29,9 @@ module.exports = {
           ".CategoryIcon": {
             "filter": "invert(26%) sepia(13%) saturate(3556%) hue-rotate(286deg) brightness(88%) contrast(89%)"
           },
+          ".FidgetSpinner": {
+            "filter": "invert(25%) sepia(79%) saturate(4101%) hue-rotate(320deg) brightness(96%) contrast(110%)"
+          },
           primary: '#ff147a',
           secondary: '#00d7ff',
           accent: '#803053',
@@ -42,6 +45,9 @@ module.exports = {
           ...require("daisyui/src/colors/themes")["[data-theme=dark"],
           ".CategoryIcon": {
             "filter": "invert(84%) sepia(88%) saturate(459%) hue-rotate(353deg) brightness(95%) contrast(95%);"
+          },
+          ".FidgetSpinner": {
+            "filter": "invert(42%) sepia(98%) saturate(1106%) hue-rotate(171deg) brightness(99%) contrast(90%)"
           },
           primary: '#0ea1ed',
           secondary: '#ed2637',
