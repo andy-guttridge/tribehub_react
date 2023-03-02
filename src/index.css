@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height:100%;
 }
 
 code {
@@ -20,37 +21,47 @@ code {
   body {
     @apply bg-base-200;
   }
+
   h1 {
     @apply text-5xl;
   }
+
   h1 span {
     @apply font-fredoka;
     @apply text-5xl;
   }
+
   h2 {
     @apply text-4xl;
     @apply font-fredoka;
     @apply text-accent;
   }
+
   h3 {
     @apply text-3xl;
     @apply font-nunito;
   }
+
   h4 {
     @apply text-base;
     @apply font-nunito;
   }
- div, p, span, button, form {
+
+  div,
+  p,
+  span,
+  button,
+  form {
     @apply font-lato;
     @apply text-base;
   }
-}
 
-.btn {
-  @apply text-base;
-  @apply text-black;
-}
+  .btn {
+    @apply text-base;
+    @apply text-black;
+  }
 
-.btn-outline {
-  @apply text-neutral
+  .btn-outline {
+    @apply text-neutral
+  }
 }

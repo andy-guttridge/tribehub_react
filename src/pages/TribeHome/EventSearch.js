@@ -82,7 +82,6 @@ function EventSearch({ handleCancelButton }) {
     // Fetch events from the API
     const fetchEvents = async () => {
       try {
-        setHasLoaded(false);
         const { data } = await axiosReq.get(`events/${finalSearchString}`);
         setEvents(data);
         setHasLoaded(true);
@@ -162,7 +161,7 @@ function EventSearch({ handleCancelButton }) {
       setDidSaveEvent(!didSaveEvent);
       setErrors({});
     } catch (error) {
-      if(error.response?.status !== 401) {
+      if (error.response?.status !== 401) {
         setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
       }
     }
@@ -308,19 +307,21 @@ function EventSearch({ handleCancelButton }) {
       {/* Display events using search results */}
       {
         hasLoaded ? (
-          <div className="max-h-96 overflow-scroll">
-            {
-              events?.results?.map((event, i) => {
-                // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
-                return <CalEvent
-                  event={event}
-                  key={`event-${event.id}-${i}`}
-                  didSaveEvent={didSaveEvent}
-                  setDidSaveEvent={setDidSaveEvent}
-                  handleDeleteButton={handleDeleteButton}
-                />
-              })
-            }
+          <div className="bg-base-200">
+            <div className="lg:max-h-96 lg:overflow-scroll w-full">
+              {
+                events?.results?.map((event, i) => {
+                  // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
+                  return <CalEvent
+                    event={event}
+                    key={`event-${event.id}-${i}`}
+                    didSaveEvent={didSaveEvent}
+                    setDidSaveEvent={setDidSaveEvent}
+                    handleDeleteButton={handleDeleteButton}
+                  />
+                })
+              }
+            </div>
           </div>
         ) : (
           <Spinner />

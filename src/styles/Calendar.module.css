@@ -3,7 +3,7 @@
 
 /* Size of main calendar body when below medium breakpoint and border style */
 .TribehubCalendar {
-  height: 325px;
+  /* height: 325px; */
   @apply rounded-lg;
   @apply border-base-300;
   @apply font-bold;

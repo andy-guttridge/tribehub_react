@@ -7,6 +7,7 @@ import styles from '../../styles/CalEvent.module.css'
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import EventDetailsForm from './EventDetailsForm';
 import { axiosReq } from '../../api/axiosDefaults';
+import { useSinglePage } from '../../contexts/SinglePageContext';
 
 function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) {
 
@@ -15,6 +16,9 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
 
   // State variables to flag whether user is currently editing an event
   const [isEditingEvent, setIsEditingEvent] = useState();
+
+  // Single page mode hook
+  const singlePage = useSinglePage();
 
   // State variable for whether more than four users are invited
   const [moreThanFour, setMoreThanFour] = useState(false);
@@ -147,17 +151,27 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
         />}
       
       {/* Card title */}
-      <div className="card-title flex justify-between p-2">
-        <h4 className="">{event.subject}{event.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
-        <div className="avatar-group -space-x-6">
+      <div className="card-title bg-base-100 rounded-sm flex justify-between p-2">
+        {/* Event category icon */}
+        <img
+          src={require(`../../assets/categories/${eventCategories[event.category].image}`)}
+          className={`w-12 CategoryIcon col-span-1`}
+          alt={[eventCategories[event.text]]}
+        />
+        <div>
+        <h4 className={`${singlePage ? "text-xl" : "text-md"}`}>{event.subject}</h4>
+        </div>
+        
 
+        <div className={`avatar-group ${singlePage ? "-space-x-14" : "-space-x-6"}`}>
+    
           {/* Return an avatar for each user */}
           {/* Include a prop to say whether they have accepted the invitation */}
           {
             avatarUsers.map((toUser, i) => {
               return (
                 <Avatar
-                  small
+                  small = {singlePage ? false : true}
                   imageUrl={toUser.image}
                   key={`event-to${event.id}-${toUser.user_id}-${i}`}
                   accepted={!(acceptedUserIds.includes(toUser.user_id))}
@@ -176,7 +190,15 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
           }
         </div>
       </div>
-
+      
+      <div className="col-span-2 text-center">
+          {event.recurrence_type !== 'NON' && <ArrowRepeat size="18" className="inline mr-1"/>}
+          <div className="text-right inline-block">
+          <span className="font-bold text-sm md:text-md">Start: </span><span className="text-sm md:text-md">{startDateStr} {eventTimeStr}  </span>
+          <br className="md:hidden"/>
+          <span className="font-bold text-sm md:text-md">End: </span><span className="text-sm md:text-md">{endDateStr} {endTimeStr}</span>
+          </div>
+        </div>
       {/* Show edit button and delete button if user is owner of this event or tribe admin */}
       <div className="flex justify-end">
         {(event.user.user_id === currentUser.pk || currentUser.is_admin)
@@ -202,20 +224,6 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       </div>
 
       {/* Card body */}
-      
-      <div className="card-body grid grid-cols-3">
-        {/* Event category icon */}
-        <img
-          src={require(`../../assets/categories/${eventCategories[event.category].image}`)}
-          className={`w-12 CategoryIcon col-span-1`}
-          alt={[eventCategories[event.text]]}
-        />
-        <div className="col-span-2 text-left">
-          <p className="font-bold">Start:</p><p>{startDateStr} {eventTimeStr}</p>
-          <hr />
-          <p className="font-bold">End:</p><p>{endDateStr} {endTimeStr}</p>
-        </div>
-      </div>
 
       {/* Show going/not going buttons if user is invited */}
       {
@@ -249,7 +257,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       }
 
       {/* Collapse section for more detail */}
-      <div className="collapse collapse-arrow">
+      <div className="collapse collapse-arrow p-0">
         <input type="checkbox" />
         <div className="collapse-title text-right">Detail</div>
         <div className="collapse-content">
