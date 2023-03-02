@@ -63,7 +63,7 @@ function TribeHome() {
   // How to use useCallback hook to correctly declare a function outside of useEffect to enable
   // code re-use from https://stackoverflow.com/questions/56410369/can-i-call-separate-function-in-useeffect
   const fetchEvents = useCallback(
-    async (fromDate, toDate) => {
+    async (fromDate, toDate, didChangeMonth = false) => {
 
       // Convert fromDate and toDate to ISO strings for the API, and get rid of last 5 chars to eliminate timezone data
       const toDateStr = toDate.toISOString().slice(0, -5);
@@ -73,8 +73,19 @@ function TribeHome() {
         setEvents(data);
         setHasLoaded(true);
 
-        // Set events for currently selected calendar day
-        setDayEvents(getEventsForDay(currentDayRef.current, data));
+        // Set events for currently selected calendar day, unless user changed calendar
+        // month, in which case we don't want them to be reset as the day stays the same.
+        if (!didChangeMonth) {
+
+          // Set the current day so that we can reference this to ensure the calendar stays on the same day when it remounts/data reloads.
+          // We have to add any timezone offset, as the date stored in currentDayRef by the calendar will have had any offset removed.
+          const tzOffset = currentDayRef.current.getTimezoneOffset();
+
+          // How to add a number of minutes to a JS DateTime object is adapted from
+          // https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
+          const dateWithoutTimezone = new Date(currentDayRef.current.getTime() + tzOffset * (60000));
+          setDayEvents(getEventsForDay(dateWithoutTimezone, data));
+        }
         setErrors({});
       } catch (error) {
         if (error.response?.status !== 401) {
@@ -104,16 +115,15 @@ function TribeHome() {
   }
 
   useEffect(() => {
+
     // Set dates for fetching calendar data. Load data for 3 months before and after today.
-    // setHasLoaded(false);
     const fromDate = new Date(currentDayRef.current);
     fromDate.setMonth(fromDate.getMonth() - 12);
     const toDate = new Date(currentDayRef.current);
     toDate.setMonth(toDate.getMonth() + 12);
 
-
     // Fetch the data
-    fetchEvents(fromDate, toDate)
+    fetchEvents(fromDate, toDate);
   }, [didSaveEvent, fetchEvents])
 
   useEffect(() => {
@@ -133,8 +143,9 @@ function TribeHome() {
     const toDate = new Date(activeStartDate.getTime());
     toDate.setMonth(toDate.getMonth() + 12);
 
-    // Fetch the data
-    fetchEvents(fromDate, toDate);
+    // Fetch the data. Pass true to tell fetchEvents it is being called
+    // in response to the user changing the calendar month.
+    fetchEvents(fromDate, toDate, true);
   }
 
   return (
@@ -172,7 +183,7 @@ function TribeHome() {
                 defaultValue={currentDayRef.current}
                 onClickDay={(calDate, event) => {
                   // Set the current day so that we can reference this to ensure the calendar stays on the same day when it remounts/data reloads.
-                  // We have to compensate for any timezone offset, as directly converting the date from the calendar component to ISOString causes problems e.g.
+                  // We have to subtract any timezone offset, as directly converting the date from the calendar component to ISOString causes problems e.g.
                   // the date sent to the form will be one day early when it's British summer time.
                   const tzOffset = calDate.getTimezoneOffset();
 
