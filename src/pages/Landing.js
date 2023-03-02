@@ -26,7 +26,7 @@ function Landing() {
       {/* Sign-in button */}
       {!currentUser &&
       <NavLink to={"/sign-in"}>
-        <button className="btn btn-link m-2" type="button">Sign-in</button>
+        <button className="btn m-2 btn-primary" type="button">Sign-in</button>
       </NavLink>}
       <h2>Landing Page Placeholder</h2>
     </div>
