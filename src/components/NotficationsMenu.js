@@ -77,7 +77,10 @@ function NotficationsMenu() {
           {
             hasLoaded ? (
               <>
+                {/* Show message if user doesn't have any notifications */}
+                {notifications?.results?.length === 0 && <li className="border rounded-sm border-base-200 bg-base-100">You have no notifications</li>}
                 {
+                  // Otherwise, display the notifications
                   notifications?.results?.map((notification) => {
                     return <NotificationItem
                       notification={notification}
