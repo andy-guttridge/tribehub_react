@@ -83,8 +83,8 @@ function TribeHome() {
 
           // How to add a number of minutes to a JS DateTime object is adapted from
           // https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
-          const dateWithoutTimezone = new Date(currentDayRef.current.getTime() + tzOffset * (60000));
-          setDayEvents(getEventsForDay(dateWithoutTimezone, data));
+          const dateWithTimezone = new Date(currentDayRef.current.getTime() + tzOffset * (60000));
+          setDayEvents(getEventsForDay(dateWithTimezone, data));
         }
         setErrors({});
       } catch (error) {
