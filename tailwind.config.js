@@ -30,16 +30,16 @@ module.exports = {
             "filter": "invert(26%) sepia(93%) saturate(832%) hue-rotate(186deg) brightness(97%) contrast(94%)"
           },
           ".FidgetSpinner": {
-            "filter": "invert(15%) sepia(92%) saturate(5287%) hue-rotate(323deg) brightness(87%) contrast(109%)"
+            "filter": "invert(17%) sepia(81%) saturate(3952%) hue-rotate(295deg) brightness(81%) contrast(93%)"
           },
           primary: '#e5006a',
-          secondary: '#4f217f',
+          secondary: '#9c13bf',
           accent: '#215ba6',
           neutral: '#4a4a4a',
           'base-100': '#fbfbfb',
           'base-200': '#f8f8f8',
           'base-300': '#d6d6d6'
-        },
+        }
       },
       {
         tribehub_dark_theme: {
