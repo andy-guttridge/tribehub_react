@@ -77,7 +77,7 @@ function TribeHome() {
         setHasLoaded(true);
 
         // Set events for currently selected calendar day
-        setDayEvents(getEventsForDay(currentDayRef.current, data));
+        setDayEvents(getEventsForDay(currentDay, data));
         setErrors({});
       } catch (error) {
         if (error.response?.status !== 401) {
@@ -108,10 +108,10 @@ function TribeHome() {
 
   useEffect(() => {
     // Set dates for fetching calendar data. Load data for 3 months before and after today.
-    setHasLoaded(false);
-    const fromDate = new Date();
+    // setHasLoaded(false);
+    const fromDate = new Date(currentDay);
     fromDate.setMonth(fromDate.getMonth() - 12);
-    const toDate = new Date();
+    const toDate = new Date(currentDay);
     toDate.setMonth(toDate.getMonth() + 12);
 
     // Fetch the data
@@ -136,11 +136,12 @@ function TribeHome() {
     toDate.setMonth(toDate.getMonth() + 12);
 
     // Fetch the data
-    fetchEvents(fromDate, toDate);
+    const getEvents = async () => await fetchEvents(fromDate, toDate);
+    getEvents();
   }
 
   return (
-    // Apply some styling dependinf on whether displaying in single page mode
+    // Apply some styling depending on whether displaying in single page mode
     <div
       className={
         `${singlePage ? singlePageStyles : 'bg-base-100'}`

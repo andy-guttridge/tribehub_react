@@ -13,9 +13,6 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
   // Reference to current user
   const currentUser = useCurrentUser();
 
-  // State variables for the event represented by this component
-  const [thisEvent, setThisEvent] = useState(event);
-
   // State variables to flag whether user is currently editing an event
   const [isEditingEvent, setIsEditingEvent] = useState();
 
@@ -49,7 +46,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
     // Create response object from value of button, attempt to post and set state variable
     const eventResponse = { event_response: e.target.value }
     try {
-      await axiosReq.post(`/events/response/${thisEvent.id}/`, eventResponse);
+      await axiosReq.post(`/events/response/${event.id}/`, eventResponse);
       setHasAccepted(e.target.value === 'accept');
 
       // If the user has accepted, create an object to represent the user matching
@@ -57,22 +54,15 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
       // (currentUser is in the wrong format). If user has declined, filter them out of the array of accepted users.
       let updatedAcceptArray = [];
       if (e.target.value === 'accept') {
-        updatedAcceptArray = [...thisEvent.accepted];
+        updatedAcceptArray = [...event.accepted];
         updatedAcceptArray.push({
           user_id: currentUser.pk,
           display_name: currentUser.display_name,
           image: currentUser.profile_image
         })
       } else {
-        updatedAcceptArray = [...thisEvent.accepted].filter((user) => user.user_id !== currentUser.pk)
+        updatedAcceptArray = [...event.accepted].filter((user) => user.user_id !== currentUser.pk)
       }
-
-      setThisEvent(
-        {
-          ...thisEvent,
-          accepted: updatedAcceptArray
-        }
-      )
 
       setErrors({});
 
@@ -90,58 +80,58 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
     // Set flag if there will be more than four invitees (plus the owner).
     const getUsers = () => {
       const usersNeedAvatars = [];
-      usersNeedAvatars.push(thisEvent.user);
-      setMoreThanFour(thisEvent.to.length > 4);
-      for (let i = 0; i < thisEvent.to.length; i++) {
+      usersNeedAvatars.push(event.user);
+      setMoreThanFour(event.to.length > 4);
+      for (let i = 0; i < event.to.length; i++) {
         if (i > 3) { break; }
-        usersNeedAvatars.push(thisEvent.to[i])
+        usersNeedAvatars.push(event.to[i])
       }
       setAvatarUsers(usersNeedAvatars);
 
       // Check if this user is invited by comparing to each user in the event.to field in turn
-      const checkInvited = () => (thisEvent.to?.reduce(
+      const checkInvited = () => (event.to?.reduce(
         (acc, user) => ((user.user_id === currentUser.pk) || acc), false))
       setIsInvited(checkInvited());
 
       // Check if this user has accepted the invitation by comparing to each user in the event.accepted field in turn
-      const checkAccepted = () => (thisEvent.accepted?.reduce(
+      const checkAccepted = () => (event.accepted?.reduce(
         (acc, user) => ((user.user_id === currentUser.pk) || acc), false))
       setHasAccepted(checkAccepted());
     }
     getUsers();
-  }, [currentUser, thisEvent])
+  }, [currentUser, event])
 
   useEffect(() => {
     const getTimeStrs = () => {
 
       // Convert event start date string to an actual date and format for display
-      const eventDate = new Date(thisEvent.start);
+      const eventDate = new Date(event.start);
       setEventTimeStr(eventDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
       setStartDateStr(eventDate.toDateString('en-UK', { dateStyle: 'short' }));
       // Split duration string into array of hours, mins, secs and convert to array of ints
-      const hoursMinsSecsStr = thisEvent.duration.split(':');
+      const hoursMinsSecsStr = event.duration.split(':');
       const hoursMinsSecs = hoursMinsSecsStr.map((str) => parseInt(str));
 
       // Convert hours, mins and secs to milliseconds, calculate end date and format for display
       const durationMilliSecs = (hoursMinsSecs[1] * 60) * 1000 + (hoursMinsSecs[0] * 60 * 60 * 1000);
-      const endDate = new Date(thisEvent.start);
+      const endDate = new Date(event.start);
       endDate.setTime(endDate.getTime() + durationMilliSecs);
       setEndTimeStr(endDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
       setEndDateStr(eventDate.toDateString('en-UK', { dateStyle: 'short' }));
     }
     getTimeStrs();
-  }, [thisEvent])
+  }, [event])
 
   useEffect(() => {
     const getAcceptedUserIds = () => {
       // Extract user_ids of users who have accepted the invitation and the event owner.
       // Used to decide whether to grey out avatars.
-      const Ids = thisEvent.accepted.map((user) => user.user_id);
-      Ids.push(thisEvent.user.user_id);
+      const Ids = event.accepted.map((user) => user.user_id);
+      Ids.push(event.user.user_id);
       setAcceptedUserIds(Ids);
     }
     getAcceptedUserIds();
-  }, [hasAccepted, thisEvent])
+  }, [hasAccepted, event])
 
 
   return (
@@ -152,13 +142,13 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
         <EventDetailsForm
           handleCancelButton={() => setIsEditingEvent(false)}
           isEditingEvent
-          event={thisEvent}
+          event={event}
           setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
         />}
       
       {/* Card title */}
       <div className="card-title flex justify-between p-2">
-        <h4 className="">{thisEvent.subject}{thisEvent.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
+        <h4 className="">{event.subject}{event.recurrence_type !== 'NON' && <ArrowRepeat size="16" />}</h4>
         <div className="avatar-group -space-x-6">
 
           {/* Return an avatar for each user */}
@@ -169,7 +159,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
                 <Avatar
                   small
                   imageUrl={toUser.image}
-                  key={`event-to${thisEvent.id}-${toUser.user_id}-${i}`}
+                  key={`event-to${event.id}-${toUser.user_id}-${i}`}
                   accepted={!(acceptedUserIds.includes(toUser.user_id))}
                 />
               )
@@ -180,7 +170,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
             moreThanFour &&
             <div className="avatar placeholder">
               <div className="bg-neutral-focus text-neutral-content rounded-full w-10">
-                <span className="text-sm">+{thisEvent.to.length - 4}</span>
+                <span className="text-sm">+{event.to.length - 4}</span>
               </div>
             </div>
           }
@@ -189,7 +179,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
 
       {/* Show edit button and delete button if user is owner of this event or tribe admin */}
       <div className="flex justify-end">
-        {(thisEvent.user.user_id === currentUser.pk || currentUser.is_admin)
+        {(event.user.user_id === currentUser.pk || currentUser.is_admin)
           &&
           <>
             <button
@@ -197,15 +187,15 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
               onClick={() => setIsEditingEvent(true)}
             >
               <PencilSquare size="26" className="text-primary" />
-              <span className="sr-only">Edit calender event {thisEvent.subject}</span>
+              <span className="sr-only">Edit calender event {event.subject}</span>
             </button>
 
             <button
               className="btn btn-ghost"
-              onClick={() => handleDeleteButton(thisEvent.id)}
+              onClick={() => handleDeleteButton(event.id)}
             >
               <Trash3 size="26" className="text-primary" />
-              <span className="sr-only">Delete calender event {thisEvent.subject}</span>
+              <span className="sr-only">Delete calender event {event.subject}</span>
             </button>
           </>
         }
@@ -270,14 +260,14 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
               <h5>
                 From:
               </h5>
-              <div className={`${styles.User} m-2 inline-block bg-secondary`}><span className="text-secondary-content font-bold">{thisEvent.user.display_name}</span></div>
+              <div className={`${styles.User} m-2 inline-block bg-secondary`}><span className="text-secondary-content font-bold">{event.user.display_name}</span></div>
             </div>
 
             <div>
 
               {/* Retrieve and display the users invited */}
               <h5>To:</h5>
-              {thisEvent.to?.map((user, i) => {
+              {event.to?.map((user, i) => {
                 return (
                   <div className={`${styles.User} m-2 inline-block bg-secondary`} key={`${user.user_id}-${i}`}><span className="text-secondary-content font-bold">{user.display_name}</span></div>
                 )
@@ -288,7 +278,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
 
               {/* Retrieve and display the users who have accepted */}
               <h5>Accepted:</h5>
-              {thisEvent.accepted?.map((user, j) => {
+              {event.accepted?.map((user, j) => {
                 return (
                   <div className={`${styles.User} inline-block bg-secondary`} key={`${user.user_id}-${j}-acc`}><span className="text-secondary-content font-bold">{user.display_name}</span></div>
                 )
