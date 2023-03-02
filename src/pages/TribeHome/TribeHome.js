@@ -244,7 +244,7 @@ function TribeHome() {
               {/* Do not display these if in search mode */}
               {
                 !isSearching &&
-                <div className={singlePage ? (css.DisplayEvents) : "bg-base-200"} >
+                <div className={`${singlePage ? (css.DisplayEvents) : "bg-base-200"} md:w-4/5 lg:w-full md:inline-block lg:block`} >
                   {
                     dayEvents?.map((dayEvent) => {
                       // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event

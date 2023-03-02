@@ -3,5 +3,5 @@
   overflow: scroll;
   @apply bg-base-200;
   @apply rounded-lg m-2;
-  @apply lg:border lg:border-base-200;
+  @apply md:border md:border-base-200;
 }

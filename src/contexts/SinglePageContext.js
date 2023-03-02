@@ -9,7 +9,7 @@ export const useSinglePage = () => useContext(SinglePageContext);
 
 export const SinglePageProvider = ({ children }) => {
   const [singlePage, setSinglePage] = useState(false);
-  const breakPoint = 1024;
+  const breakPoint = 768;
   
   // Technique for using an event listener to store the current window size in
   // state variables is from 

@@ -188,113 +188,120 @@ function EventSearch({ handleCancelButton }) {
         </div>
       }
 
-      <form>
+      {
+        hasLoaded ? (
+          <form>
 
-        {/* Text search field */}
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="text-search">
-          <span>Text search:</span>
-          <input
-            type="text"
-            className="input input-bordered w-full"
-            id="text_search"
-            name="text_search"
-            value={text_search}
-            onChange={handleChange}
-          />
-        </label>
+          {/* Text search field */}
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="text-search">
+            <span>Text search:</span>
+            <input
+              type="text"
+              className="input input-bordered w-full"
+              id="text_search"
+              name="text_search"
+              value={text_search}
+              onChange={handleChange}
+            />
+          </label>
+  
+          {/* Category search field */}
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category-search">
+            <span>Category:</span>
+  
+            {/* How to iterate over values of an object in React is from */}
+            {/* https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs */}
+            <select
+              className="input input-bordered w-full"
+              id="category_search"
+              name="category_search"
+              value={category_search}
+              onChange={handleChange}
+            >
+              <option value="" key="empty-category">--</option>
+              {
+                Object.keys(eventCategories).map((keyName) => {
+                  return <option value={keyName} key={`category-${keyName}`}>{eventCategories[keyName].text}</option>
+                })
+              }
+            </select>
+          </label>
+  
+          {/* Tribe members search field */}
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
+            <span>Tribe members invited:</span>
+            <select
+              className="input input-bordered w-full"
+              id="tribe_to"
+              name="tribe_to"
+              value={tribe_to}
+              onChange={handleMultipleSelectChange}
+              multiple={true}
+            >
+              {
+                tribe?.results[0]?.users?.map((tribeMember) => {
+                  return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
+                })
+              }
+            </select>
+          </label>
+  
+          {/* Tribe members from field */}
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
+            <span>Tribe member sent from:</span>
+            <select
+              className="input input-bordered w-full"
+              id="tribe_from"
+              name="tribe_from"
+              value={tribe_from}
+              onChange={handleMultipleSelectChange}
+            >
+              <option value={""} key={"blank-from-option"}>--</option>
+              {
+                tribe?.results[0]?.users?.map((tribeMember) => {
+                  return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
+                })
+              }
+            </select>
+          </label>
+  
+          {/* From date field */}
+          <p className='text-sm text-left md:text-center'>You'll get events for the next two months if you don't enter dates</p>
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
+            <span>From date:</span>
+            <input
+              type="date"
+              className="input input-bordered w-full"
+              id="from_date"
+              name="from_date"
+              value={from_date}
+              onChange={handleChange}
+              ref={fromInput}
+            />
+          </label>
+  
+          {/* To date field */}
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
+            <span>To date:</span>
+            <input
+              type="date"
+              className="input input-bordered w-full"
+              id="to_date"
+              name="to_date"
+              value={to_date}
+              onChange={handleChange}
+              ref={toInput}
+            />
+          </label>
+  
+          {/* Cancel search button */}
+          <button onClick={handleCancelButton} className="btn btn-outline" type="button">Cancel search</button>
+        </form>
+        ) : (
+          <Spinner />
+        )
+      }
 
-        {/* Category search field */}
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category-search">
-          <span>Category:</span>
-
-          {/* How to iterate over values of an object in React is from */}
-          {/* https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs */}
-          <select
-            className="input input-bordered w-full"
-            id="category_search"
-            name="category_search"
-            value={category_search}
-            onChange={handleChange}
-          >
-            <option value="" key="empty-category">--</option>
-            {
-              Object.keys(eventCategories).map((keyName) => {
-                return <option value={keyName} key={`category-${keyName}`}>{eventCategories[keyName].text}</option>
-              })
-            }
-          </select>
-        </label>
-
-        {/* Tribe members search field */}
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
-          <span>Tribe members invited:</span>
-          <select
-            className="input input-bordered w-full"
-            id="tribe_to"
-            name="tribe_to"
-            value={tribe_to}
-            onChange={handleMultipleSelectChange}
-            multiple={true}
-          >
-            {
-              tribe?.results[0]?.users?.map((tribeMember) => {
-                return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
-              })
-            }
-          </select>
-        </label>
-
-        {/* Tribe members from field */}
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
-          <span>Tribe member sent from:</span>
-          <select
-            className="input input-bordered w-full"
-            id="tribe_from"
-            name="tribe_from"
-            value={tribe_from}
-            onChange={handleMultipleSelectChange}
-          >
-            <option value={""} key={"blank-from-option"}>--</option>
-            {
-              tribe?.results[0]?.users?.map((tribeMember) => {
-                return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
-              })
-            }
-          </select>
-        </label>
-
-        {/* From date field */}
-        <p className='text-sm text-left md:text-center'>You'll get events for the next two months if you don't enter dates</p>
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
-          <span>From date:</span>
-          <input
-            type="date"
-            className="input input-bordered w-full"
-            id="from_date"
-            name="from_date"
-            value={from_date}
-            onChange={handleChange}
-            ref={fromInput}
-          />
-        </label>
-
-        {/* To date field */}
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
-          <span>To date:</span>
-          <input
-            type="date"
-            className="input input-bordered w-full"
-            id="to_date"
-            name="to_date"
-            value={to_date}
-            onChange={handleChange}
-            ref={toInput}
-          />
-        </label>
-
-        {/* Cancel search button */}
-        <button onClick={handleCancelButton} className="btn btn-outline" type="button">Cancel search</button>
-      </form>
 
       {/* Display alert if there was an issue deleting an event */}
       {
@@ -306,9 +313,8 @@ function EventSearch({ handleCancelButton }) {
 
       {/* Display events using search results */}
       {
-        hasLoaded ? (
           <div className="bg-base-200">
-            <div className="lg:max-h-96 lg:overflow-scroll w-full">
+            <div className="md:max-h-96 md:overflow-scroll md:border md:border-base-200 w-full">
               {
                 events?.results?.map((event, i) => {
                   // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
@@ -323,9 +329,6 @@ function EventSearch({ handleCancelButton }) {
               }
             </div>
           </div>
-        ) : (
-          <Spinner />
-        )
       }
 
 

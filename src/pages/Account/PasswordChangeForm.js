@@ -62,7 +62,7 @@ function PasswordChangeForm() {
   };
 
   return (
-    <div className="w-4/5 lg:w-full m-auto text-center">
+    <div className="w-4/5 md:w-full m-auto text-center">
       {hasLoaded ? (
 
         // Password change form
