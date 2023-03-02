@@ -43,7 +43,7 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton }) {
   };
 
   return (
-    <div className={`w-4/5 m-auto ${css.TribeMemberFormExpand}`}>
+    <div className={`w-4/5 lg:w-full m-auto lg:mx-2 ${css.TribeMemberFormExpand}`}>
       <h3>Add tribe member</h3>
       {/* Registration form */}
       <form onSubmit={handleSubmit}>

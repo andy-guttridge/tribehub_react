@@ -102,7 +102,7 @@ function ProfileForm() {
   }, [currentUser])
 
   return (
-    <div className="basis-full">
+    <div className="justify-self-center basis-full mx-2">
       {hasLoaded ? (
 
         // Profile form
