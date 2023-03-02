@@ -67,13 +67,13 @@ function NotficationsMenu() {
     <div className="inline-block">
       {/* Dropdown containing notification items */}
       <div className="dropdown dropdown-end">
-        <label tabIndex="0" className="btn btn-sm btn-ghost">
+        <label tabIndex="0" className="btn btn-sm btn-ghost m-1">
           <div className="indicator">
             {notifications?.results?.length > 0 && <span className="indicator-item badge badge-xs badge-secondary">{notifications.results.length}</span>}
             <Bell size="20" className="text-primary"/>
           </div>
         </ label>
-        <ul tabIndex="0" className="dropdown-content shadow bg-base-200 border border-base-200 w-52 lg:w-60">
+        <ul tabIndex="0" className="dropdown-content shadow bg-base-200 border border-base-200 w-56 lg:w-60">
           {
             hasLoaded ? (
               <>
