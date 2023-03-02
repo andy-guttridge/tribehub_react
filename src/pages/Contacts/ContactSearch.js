@@ -99,7 +99,7 @@ function ContactSearch({ handleCancelButton }) {
         </div>
       }
 
-      <form>
+      <form className="lg:mx-2">
 
         {/* Contact search field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="contact-search">
