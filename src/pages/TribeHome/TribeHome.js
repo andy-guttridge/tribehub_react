@@ -56,11 +56,8 @@ function TribeHome() {
   // This is simply toggles to trigger events to reload when there has been a change.
   const [didSaveEvent, setDidSaveEvent] = useState(false)
 
-  // State variable for current calendar day selected by user
-  const [currentDay, setCurrentDay] = useState(new Date());
-
   // Reference to current day so we can use it without making it a dependency in useCallback
-  const currentDayRef = useRef(currentDay);
+  const currentDayRef = useRef(new Date());
 
   // Function to fetch user's events and set them as values for the current calendar day
   // How to use useCallback hook to correctly declare a function outside of useEffect to enable
@@ -77,7 +74,7 @@ function TribeHome() {
         setHasLoaded(true);
 
         // Set events for currently selected calendar day
-        setDayEvents(getEventsForDay(currentDay, data));
+        setDayEvents(getEventsForDay(currentDayRef.current, data));
         setErrors({});
       } catch (error) {
         if (error.response?.status !== 401) {
@@ -109,10 +106,11 @@ function TribeHome() {
   useEffect(() => {
     // Set dates for fetching calendar data. Load data for 3 months before and after today.
     // setHasLoaded(false);
-    const fromDate = new Date(currentDay);
+    const fromDate = new Date(currentDayRef.current);
     fromDate.setMonth(fromDate.getMonth() - 12);
-    const toDate = new Date(currentDay);
+    const toDate = new Date(currentDayRef.current);
     toDate.setMonth(toDate.getMonth() + 12);
+
 
     // Fetch the data
     fetchEvents(fromDate, toDate)
@@ -136,12 +134,11 @@ function TribeHome() {
     toDate.setMonth(toDate.getMonth() + 12);
 
     // Fetch the data
-    const getEvents = async () => await fetchEvents(fromDate, toDate);
-    getEvents();
+    fetchEvents(fromDate, toDate);
   }
 
   return (
-    // Apply some styling depending on whether displaying in single page mode
+    // Apply some styling dependinf on whether displaying in single page mode
     <div
       className={
         `${singlePage ? singlePageStyles : 'bg-base-100'}`
@@ -172,7 +169,7 @@ function TribeHome() {
                 minDetail="month"
                 tileContent={(calData) => checkEventsForDate(calData, events)}
                 onActiveStartDateChange={handleCalMonthChange}
-                defaultValue={currentDay}
+                defaultValue={currentDayRef.current}
                 onClickDay={(calDate, event) => {
                   // Set the current day so that we can reference this to ensure the calendar stays on the same day when it remounts/data reloads.
                   // We have to compensate for any timezone offset, as directly converting the date from the calendar component to ISOString causes problems e.g.
@@ -182,7 +179,7 @@ function TribeHome() {
                   // How to add a number of minutes to a JS DateTime object is adapted from
                   // https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
                   const dateWithoutTimezone = new Date(calDate.getTime() + tzOffset * (-60000));
-                  setCurrentDay(dateWithoutTimezone);
+                  currentDayRef.current = dateWithoutTimezone;
                   setDayEvents(getEventsForDay(calDate, events, event));
                 }}
               />
@@ -213,7 +210,7 @@ function TribeHome() {
                       didSaveEvent={didSaveEvent}
                       setDidSaveEvent={setDidSaveEvent}
                       // Pass currently selected calendar day in correct format to the form, to populate the starting value for the date of the event
-                      defaultStartDate={`${currentDay.toISOString().substring(0, 10)}T12:00`}
+                      defaultStartDate={`${currentDayRef.current.toISOString().substring(0, 10)}T12:00`}
                     />
                   )
                 }
