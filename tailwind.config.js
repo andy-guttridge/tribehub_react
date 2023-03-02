@@ -27,17 +27,17 @@ module.exports = {
         tribehub_theme: {
           ...require("daisyui/src/colors/themes")["[data-theme=dark"],
           ".CategoryIcon": {
-            "filter": "invert(26%) sepia(13%) saturate(3556%) hue-rotate(286deg) brightness(88%) contrast(89%)"
+            "filter": "invert(26%) sepia(93%) saturate(832%) hue-rotate(186deg) brightness(97%) contrast(94%)"
           },
           ".FidgetSpinner": {
-            "filter": "invert(21%) sepia(99%) saturate(3916%) hue-rotate(322deg) brightness(100%) contrast(103%)"
+            "filter": "invert(15%) sepia(92%) saturate(5287%) hue-rotate(323deg) brightness(87%) contrast(109%)"
           },
-          primary: '#ff147a',
-          secondary: '#009cb8',
-          accent: '#803053',
+          primary: '#e5006a',
+          secondary: '#4f217f',
+          accent: '#215ba6',
           neutral: '#4a4a4a',
-          'base-100': '#fafafa',
-          'base-200': '#e6e6e6',
+          'base-100': '#fbfbfb',
+          'base-200': '#f8f8f8',
           'base-300': '#d6d6d6'
         },
       },
@@ -45,21 +45,21 @@ module.exports = {
         tribehub_dark_theme: {
           ...require("daisyui/src/colors/themes")["[data-theme=dark"],
           ".CategoryIcon": {
-            "filter": "invert(84%) sepia(88%) saturate(459%) hue-rotate(353deg) brightness(95%) contrast(95%);"
+            "filter": "invert(90%) sepia(15%) saturate(180%) hue-rotate(150deg) brightness(99%) contrast(98%)"
           },
           ".FidgetSpinner": {
-            "filter": "invert(42%) sepia(98%) saturate(1106%) hue-rotate(171deg) brightness(99%) contrast(90%)"
+            "filter": "invert(80%) sepia(16%) saturate(709%) hue-rotate(175deg) brightness(101%) contrast(94%)"
           },
           ".CalWeekendText": {
-            "color": "#ff147a"
+            "color": "#f2efc2"
           },
-          primary: '#ff147a',
-          secondary: '#00d7ff',
-          accent: '#ede626',
-          neutral: '#aeaeae',
+          primary: '#add5f7',
+          secondary: '#e6e6e6',
+          accent: '#d8ebf2',
+          neutral: '#ffffff',
           'base-100': '#1c1c1c',
           'base-200': '#141414',
-          'base-300': '#505050'
+          'base-300': '#404040'
         },
       },
     ],
