@@ -269,16 +269,14 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
             <div>
 
               {/* Retrieve and display the event w */}
-              <h5>
-                From:
-              </h5>
+              <p className="font-bold">From:</p>
               <div className={`${styles.User} m-2 inline-block bg-secondary`}><span className="text-secondary-content font-bold">{event.user.display_name}</span></div>
             </div>
 
             <div>
 
               {/* Retrieve and display the users invited */}
-              <h5>To:</h5>
+              <p className="font-bold">To:</p>
               {event.to?.map((user, i) => {
                 return (
                   <div className={`${styles.User} m-2 inline-block bg-secondary`} key={`${user.user_id}-${i}`}><span className="text-secondary-content font-bold">{user.display_name}</span></div>
@@ -289,10 +287,10 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
             <div>
 
               {/* Retrieve and display the users who have accepted */}
-              <h5>Accepted:</h5>
+              <p className="font-bold">Accepted:</p>
               {event.accepted?.map((user, j) => {
                 return (
-                  <div className={`${styles.User} inline-block bg-secondary`} key={`${user.user_id}-${j}-acc`}><span className="text-secondary-content font-bold">{user.display_name}</span></div>
+                  <div className={`${styles.User} m-2 inline-block bg-secondary`} key={`${user.user_id}-${j}-acc`}><span className="text-secondary-content font-bold">{user.display_name}</span></div>
                 )
               })}
             </div>

@@ -72,6 +72,7 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 
 Lighthouse testing revealed that button elements did not have id attributes which are required by assistive technologies. These were added to all buttons, with programatically generated unique values where required for components which are rendered multiple times.
 
+
 ### Accessability testing
 
 Wave testing revealed contrast issues with buttons. The text colour for buttons in the primary and secondary colour was lightened, while outline buttons were changed from primary to a dark (or light for dark mode) colour, and the font size was increased for all buttons. This resolved the contrast issues.
@@ -87,7 +88,9 @@ Missing labels were found for the input elements which are part of the DaisyUI c
 
 The Wave report contained an alert about the `noscript` element. This was to flag that content within this element must be accessible. Since the element contains a simple text reminder that JavaScript must be enabled to use the website, this was deemed not to be an issue.
 
-Wave flagged a skipped heading level in the notification items. This was addressed by changing the `h3` elements used in the `NotificationItem` component to `h2` and styling to look like `h3`.
+Wave flagged skipped heading levels in the notification items menu and on calendar events. The former was addressed by changing the `h3` elements used in the `NotificationItem` component to `h2` and styling to look like `h3`. The headings on calendar events were changed from `h4` to `h3`, which would appear to be correct as the next heading above them is an `h2`, however this did not resolve the validator error. `h2` and `h1` were also tested for these headings, but this still did not resolve the error. These elements were then changed to `p` and the error was resolved.
+
+The wave report that the category icons on calendar events did not have unique text for the `alt` attribute. This was due to a bug rather than an oversight, and was corrected. Wave then flagged a 'redundant alternative text' alert, meaning that another nearby element had an image with the same `alt` text. This is because more than one event in the list of events had the 'shopping' category - given the purpose and meaning of the icon, a repeat occurence of the alt text is correct and was deemed not to be an issue.
 
 ### Resolved bugs
 - During implementation of the `NotificationItem` component, requests to the REST API for the data for the events with which each notification is associated were frequently resulting in an HTTP 500 internal server error. A version of the API running on a development server was used for debugging. This revealed that the number of simultaneous requests for data coming from a large number of NotificationItems was overwhelming the free tier ElephantSQL database server. The fix was to add the full data for each event to the notification JSON served by the API, which meant that only one network request was required to fetch the notification and event data together. 
