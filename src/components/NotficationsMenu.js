@@ -6,6 +6,7 @@ import { axiosReq } from '../api/axiosDefaults';
 import NotificationItem from './NotificationItem'
 import Spinner from './Spinner';
 import ConfirmModal from './ConfirmModal';
+import { click } from '@testing-library/user-event/dist/click';
 
 function NotficationsMenu() {
 
@@ -25,6 +26,9 @@ function NotficationsMenu() {
   // State variable to determine whether user is in the process of deleting a notification
   const [isDeletingNotification, setIsDeletingNotification] = useState(false);
 
+  // State variable to store whether dropdown menu is currently open
+  const [dropdownIsOpen, setDropDownIsOpen] = useState();
+
   // Handle user pressing delete notification button by storing id of the notification
   const handleDeleteButton = (id) => {
     setIsDeletingNotification(id);
@@ -37,7 +41,7 @@ function NotficationsMenu() {
       setNotificationsChanged(!notificationsChanged);
       setErrors({});
     } catch (error) {
-      if(error.response?.status !== 401) {
+      if (error.response?.status !== 401) {
         setErrors({ delete: 'There was an issue deleting this notification.\n\nYou may be offline, or there may have been a server error.' })
       }
     }
@@ -53,27 +57,54 @@ function NotficationsMenu() {
         setHasLoaded(true);
         setErrors({});
       } catch (error) {
-        if(error.response?.status !== 401) {
+        if (error.response?.status !== 401) {
           setErrors({ notifications: 'There was an issue fetching notification details.\n\nYou may be offline, or there may have been a server error.' })
         }
-        
+
       }
     }
 
     fetchNotifications();
   }, [notificationsChanged])
 
+  useEffect(() => {
+
+    // Set up an event handler to see if the user clicks outside of the notifications button
+    // or dropdown list. Close the dropdown if they do.
+    const handleDocumentClick = (e) => {
+      const notificationsButton = document.getElementById('notifications-button');
+      const notificationsDropdown = document.getElementById('notifications-list');
+
+      if (!notificationsButton?.contains(e.target) && !notificationsDropdown?.contains(e.target)) {
+        setDropDownIsOpen(false);
+      }
+    };
+    document.addEventListener('click', handleDocumentClick);
+
+    // Clean-up event listener
+    return () => document.body.removeEventListener(click, handleDocumentClick);
+  }, [])
+
   return (
-    <div className="inline-block">
+    <>
       {/* Dropdown containing notification items */}
       <div className="dropdown dropdown-end">
-        <label tabIndex="0" className="btn btn-sm btn-ghost m-1">
+
+        {/* Label with tabindex is used for the dropdown 'button' because of a bug in Safari that prevents a button gaining focus, as per DaisyUI docs */}
+        {/* https://daisyui.com/components/dropdown/ */}
+        <label tabIndex="0" id="notifications-button" className="btn btn-sm btn-ghost m-1" type="button" onClick={() => setDropDownIsOpen(!dropdownIsOpen)}>
           <div className="indicator">
             {notifications?.results?.length > 0 && <span className="indicator-item badge badge-xs badge-secondary">{notifications.results.length}</span>}
-            <Bell size="20" className="text-primary"/>
+            <Bell size="20" className="text-primary" />
           </div>
         </ label>
-        <ul tabIndex="0" className="dropdown-content shadow bg-base-200 border border-base-200 w-56 lg:w-60">
+
+        {/* List containing dropdown items. Apply a hidden class if the dropdown is not currently open */}
+        <ul
+          tabIndex="0"
+          id="notifications-list"
+          className={`dropdown-content shadow bg-base-200 border border-base-200 w-56 lg:w-60 ${!dropdownIsOpen && "hidden"}`}
+        >
           {
             hasLoaded ? (
               <>
@@ -141,7 +172,7 @@ function NotficationsMenu() {
           , document.getElementById('Header'))
       }
 
-    </div>
+    </>
   )
 }
 
