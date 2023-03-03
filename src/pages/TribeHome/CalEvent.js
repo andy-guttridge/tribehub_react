@@ -159,7 +159,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           alt={[eventCategories[event.text]]}
         />
         <div>
-        <h4 className={`${singlePage ? "text-xl" : "text-md"}`}>{event.subject}</h4>
+        <h3 className={`${singlePage ? "text-xl" : "text-md"}`}>{event.subject}</h3>
         </div>
         
 
