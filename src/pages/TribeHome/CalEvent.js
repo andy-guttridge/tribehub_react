@@ -156,7 +156,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
         <img
           src={require(`../../assets/categories/${eventCategories[event.category].image}`)}
           className={`w-12 CategoryIcon col-span-1`}
-          alt={[eventCategories[event.text]]}
+          alt={[eventCategories[event.category].text]}
         />
         <div>
         <p className={`${singlePage ? "text-xl" : "text-md"}`}>{event.subject}</p>
