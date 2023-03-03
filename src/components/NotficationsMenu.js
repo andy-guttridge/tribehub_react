@@ -97,6 +97,7 @@ function NotficationsMenu() {
             {notifications?.results?.length > 0 && <span className="indicator-item badge badge-xs badge-secondary">{notifications.results.length}</span>}
             <Bell size="20" className="text-primary" />
           </div>
+          <span className="sr-only">Notifications menu. There are {notifications?.results?.length} notifications.</span>
         </ label>
 
         {/* List containing dropdown items. Apply a hidden class if the dropdown is not currently open */}

@@ -4,6 +4,8 @@
 }
 
 /* Default styles for calendar dots */
+/* How to use mix-blend-mode to display a colour opposite to the background is from */
+/* https://stackoverflow.com/questions/17741629/how-can-i-invert-color-using-css*/
 .CalDot {
   position: absolute;
   background-color: white;
