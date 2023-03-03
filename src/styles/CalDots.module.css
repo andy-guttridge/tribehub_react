@@ -3,7 +3,24 @@
 }
 
 .CalDot {
-  position: relative;
+  position: absolute;
   background-color: white;
   mix-blend-mode: difference;
+  margin-left: -10px;
+  margin-top: 2px;
 }
+
+@media (min-width: 768px) {
+  .CalDot {
+    margin-left: -4px;
+    margin-top: 4px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .CalDot {
+    margin-left: -6px;
+    margin-top: 8px;
+  }
+}
+

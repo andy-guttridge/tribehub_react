@@ -40,7 +40,7 @@ export const checkEventsForDate = (calData, events) => {
   return (
     <div className={`${styles.CalDotDiv} block`}>
       {matchFound ? (
-        <span className={`${styles.CalDot} inline-block w-5 h-1 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full mb-2 md:mb-0 mx-auto}`}></span>
+        <span className={`${styles.CalDot} w-5 h-1 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full`}></span>
       ) : (
         null
       )}
