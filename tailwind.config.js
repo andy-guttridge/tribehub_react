@@ -33,7 +33,8 @@ module.exports = {
             "filter": "invert(17%) sepia(81%) saturate(3952%) hue-rotate(295deg) brightness(81%) contrast(93%)"
           },
           primary: '#e5006a',
-          'primary-content': '#f7eefb',
+          'primary-content': '#ffffff',
+          'secondary-content': '#f6e0f5',
           secondary: '#9c13bf',
           accent: '#215ba6',
           neutral: '#4a4a4a',
