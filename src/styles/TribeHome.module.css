@@ -1,6 +1,6 @@
 .DisplayEvents {
   max-height: 750px;
-  overflow: scroll;
+  overflow-y: scroll;
   @apply bg-base-200;
   @apply rounded-lg m-2;
   @apply md:border md:border-base-200;
