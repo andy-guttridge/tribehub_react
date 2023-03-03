@@ -76,7 +76,7 @@ function MyTribe() {
   }, [tribeChangeFlag, currentUser, navigate])
 
   return (
-    <div className="bg-base-200">
+    <section className="bg-base-200">
       <div className="bg-base-100">
         <h3>My tribe</h3>
       </div>
@@ -150,7 +150,7 @@ function MyTribe() {
             confirmHandler={doDelete}
           />, document.body)
       }
-    </div>
+    </section>
   )
 }
 

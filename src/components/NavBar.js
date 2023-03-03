@@ -33,7 +33,7 @@ function NavBar() {
   );
 
   return (
-    <div className={`${!currentUser && "hidden"} btm-nav text-primary lg:hidden bg-base-200`}>
+    <nav className={`${!currentUser && "hidden"} btm-nav text-primary lg:hidden bg-base-200`}>
       {/* Display navBarIcons only if current user is logged in */}
       {currentUser && 
         <>
@@ -41,7 +41,7 @@ function NavBar() {
             {navBarIcons}
         </>
       }
-    </div>
+    </nav>
   );
 };
 

@@ -80,7 +80,7 @@ function ContactSearch({ handleCancelButton }) {
   }
 
   return (
-    <div className={`basis-full ${css.ContactsSearchExpand}`}>
+    <section className={`basis-full ${css.ContactsSearchExpand}`}>
       <h3>Search contacts</h3>
 
       {/* Display alert if there was an issue fetching contact data */}
@@ -147,7 +147,7 @@ function ContactSearch({ handleCancelButton }) {
             confirmHandler={doDelete}
           />, document.body)
       }
-    </div>
+    </section>
   )
 }
 

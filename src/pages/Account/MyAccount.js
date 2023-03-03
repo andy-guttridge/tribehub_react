@@ -59,7 +59,7 @@ function MyAccount() {
   }
 
   return (
-    <>
+    <section>
       {/* Update profile section */}
       <h3>My Profile</h3>
       <div className="justify-center flex w-4/5 md:w-full mx-auto my-4">
@@ -67,12 +67,13 @@ function MyAccount() {
       </div>
 
       {/* Change password section */}
-      <h3>Change password</h3>
-      <div className="block m-4 md:mx-2">
+
+      <section className="block m-4 md:mx-2">
+        <h3>Change password</h3>
         <div className="md:w-2/3 md:w-full text-left m-auto">
           <PasswordChangeForm />
         </div>
-      </div>
+      </section>
 
       {/* Delete acccount section */}
       <h3>Delete Account</h3>
@@ -85,12 +86,12 @@ function MyAccount() {
         </div>
       }
 
-      <div className="block m-4">
+      <section className="block m-4">
         <div className="md:w-2/3 text-left m-auto">
           <p>This is a permanent action and can't be undone.</p>
           {currentUser?.is_admin && <p>Deleting your account will also delete all those of all your tribe members and the tribe itself.</p>}
         </div>
-      </div>
+      </section>
       < DeleteAccountButton handleDeleteAccountBtn={handleDeleteAccountBtn} />
       {
         // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
@@ -115,7 +116,7 @@ function MyAccount() {
         // Empty div with margin to provide clearance above bottom navbar if not in single page mode
         !singlePage && <div className="mb-8 bg-base-100"><br /></div>
       }
-    </>
+    </section>
   )
 }
 

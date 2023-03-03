@@ -9,7 +9,7 @@ import EventDetailsForm from './EventDetailsForm';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
-function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) {
+function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId }) {
 
   // Reference to current user
   const currentUser = useCurrentUser();
@@ -259,7 +259,8 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
 
       {/* Collapse section for more detail */}
       <div className="collapse collapse-arrow p-0">
-        <input type="checkbox" />
+        <label htmlFor={calEventId} className="sr-only">Dropdown button for more detail</label>
+        <input type="checkbox" id={calEventId}/>
         <div className="collapse-title text-right">Detail</div>
         <div className="collapse-content">
           <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center">

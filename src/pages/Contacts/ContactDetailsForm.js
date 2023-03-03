@@ -62,7 +62,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
   }, [isEditingContact, setContactForm, contact])
 
   return (
-    <div className={`w-4/5 md:w-full m-auto ${css.ContactDetailsExpand}`}>
+    <section className={`w-4/5 md:w-full m-auto ${css.ContactDetailsExpand}`}>
       {isEditingContact ? <h3>Edit Contact</h3> : <h3>Add contact</h3>}
       <form onSubmit={handleSubmit} className="md:mx-2">
 
@@ -249,7 +249,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         }
 
       </form>
-    </div>
+    </section>
   )
 }
 

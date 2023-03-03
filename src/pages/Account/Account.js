@@ -15,7 +15,7 @@ function Account() {
 
   return (
     // Apply some styling if displaying in single page mode
-    <div
+    <section
       className={
         (singlePage ? singlePageStyles : "bg-base-100")
       }
@@ -24,7 +24,7 @@ function Account() {
       {/* Show members of the user's tribe if they are tribe admin */}
       {currentUser?.is_admin && <MyTribe />}
       <MyAccount />
-    </div>
+    </section>
   )
 }
 

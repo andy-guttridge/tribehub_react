@@ -94,7 +94,7 @@ function Contacts() {
 
   return (
     // Apply some styling if displaying in single page mode
-    <div
+    <section
       className={
         singlePage ? singlePageStyles : "bg-base-100"
       }
@@ -208,7 +208,7 @@ function Contacts() {
             confirmHandler={doDelete}
           />, document.body)
       }
-    </div>
+    </section>
   )
 }
 

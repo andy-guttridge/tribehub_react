@@ -150,7 +150,7 @@ function TribeHome() {
 
   return (
     // Apply some styling dependinf on whether displaying in single page mode
-    <div
+    <section
       className={
         `${singlePage ? singlePageStyles : 'bg-base-100'}`
       }
@@ -251,6 +251,7 @@ function TribeHome() {
                       return <CalEvent
                         event={dayEvent}
                         key={`event-${dayEvent.id}-${dayEvent.start}`}
+                        calEventId={`event-${dayEvent.id}-${dayEvent.start}`}
                         didSaveEvent={didSaveEvent}
                         setDidSaveEvent={setDidSaveEvent}
                         handleDeleteButton={handleDeleteButton}
@@ -282,7 +283,7 @@ function TribeHome() {
             confirmHandler={doDelete}
           />, document.body)
       }
-    </ div>
+    </ section>
   )
 }
 

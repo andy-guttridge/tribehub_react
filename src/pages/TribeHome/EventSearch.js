@@ -169,7 +169,7 @@ function EventSearch({ handleCancelButton }) {
   }
 
   return (
-    <div className={`basis-full ${css.EventSearchExpand}`}>
+    <section className={`basis-full ${css.EventSearchExpand}`}>
       <h3>Search events</h3>
 
       {/* Display alert if there was an issue fetching tribe data */}
@@ -193,7 +193,7 @@ function EventSearch({ handleCancelButton }) {
           <form>
 
           {/* Text search field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="text-search">
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="text_search">
             <span>Text search:</span>
             <input
               type="text"
@@ -206,7 +206,7 @@ function EventSearch({ handleCancelButton }) {
           </label>
   
           {/* Category search field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category-search">
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category_search">
             <span>Category:</span>
   
             {/* How to iterate over values of an object in React is from */}
@@ -228,7 +228,7 @@ function EventSearch({ handleCancelButton }) {
           </label>
   
           {/* Tribe members search field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe_to">
             <span>Tribe members invited:</span>
             <select
               className="input input-bordered w-full"
@@ -247,7 +247,7 @@ function EventSearch({ handleCancelButton }) {
           </label>
   
           {/* Tribe members from field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe-search">
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe_from">
             <span>Tribe member sent from:</span>
             <select
               className="input input-bordered w-full"
@@ -267,7 +267,7 @@ function EventSearch({ handleCancelButton }) {
   
           {/* From date field */}
           <p className='text-sm text-left md:text-center'>You'll get events for the next two months if you don't enter dates</p>
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="from_date">
             <span>From date:</span>
             <input
               type="date"
@@ -281,7 +281,7 @@ function EventSearch({ handleCancelButton }) {
           </label>
   
           {/* To date field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="start">
+          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to_date">
             <span>To date:</span>
             <input
               type="date"
@@ -321,6 +321,7 @@ function EventSearch({ handleCancelButton }) {
                   return <CalEvent
                     event={event}
                     key={`event-${event.id}-${i}`}
+                    calEventId={`event-${event.id}-${i}`}
                     didSaveEvent={didSaveEvent}
                     setDidSaveEvent={setDidSaveEvent}
                     handleDeleteButton={handleDeleteButton}
@@ -345,7 +346,7 @@ function EventSearch({ handleCancelButton }) {
           />, document.body)
       }
 
-    </div>
+    </section>
   )
 }
 

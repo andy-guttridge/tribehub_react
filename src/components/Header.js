@@ -25,7 +25,7 @@ function Header() {
   }
 
   return (
-    <div id="Header" className="bg-base-100 mx-auto my-0 lg:mb-2 lg:mx-2 lg:rounded-lg lg:border lg:border-base-300">
+    <header id="Header" className="bg-base-100 mx-auto my-0 lg:mb-2 lg:mx-2 lg:rounded-lg lg:border lg:border-base-300">
       <h1 className="md:text-6xl"><span className="text-primary">Tribe</span><span className="text-secondary">Hub</span></h1>
       {
         // Show welcome and sign-out button if user is authenticated
@@ -45,7 +45,7 @@ function Header() {
           <InfoCircle size="32" className="m-auto"/><p>{errors.logout}</p>
         </div>
       }
-    </div>
+    </header>
   )
 };
 

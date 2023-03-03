@@ -165,7 +165,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
   }, [event, isEditingEvent])
 
   return (
-    <div className={`basis-full w-4/5 m-auto ${css.EventDetailsExpand}`}>
+    <section className={`basis-full w-4/5 m-auto ${css.EventDetailsExpand}`}>
 
       {/* Show appropriate title depending if user is adding new or editing existing event */}
       {isEditingEvent ? (
@@ -380,7 +380,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         </div>
       }
 
-    </div>
+    </section>
   )
 }
 
