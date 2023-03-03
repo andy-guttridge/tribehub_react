@@ -212,7 +212,7 @@ function TribeHome() {
                 {/* Add new event button and form */}
                 {
                   !isAddingNewEvent && !isSearching ? (
-                    <button onClick={() => setIsAddingNewEvent(!isAddingNewEvent)} className="btn btn-ghost">
+                    <button onClick={() => setIsAddingNewEvent(!isAddingNewEvent)} className="btn btn-ghost" id="add-new-event-btn">
                       <PlusCircle size="32" className="text-primary" /><span className="sr-only">Add new calendar event</span>
                     </button>
                   ) : isAddingNewEvent && (
@@ -229,7 +229,7 @@ function TribeHome() {
                 {/* Search button and form */}
                 {
                   !isSearching && !isAddingNewEvent ? (
-                    <button onClick={() => setIsSearching(!isSearching)} className="btn btn-ghost">
+                    <button onClick={() => setIsSearching(!isSearching)} className="btn btn-ghost" id="search-events-btn">
                       <Search size="32" className="text-primary" /><span className="sr-only">Search calendar events</span>
                     </button>
                   ) : isSearching && (

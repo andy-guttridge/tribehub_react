@@ -26,12 +26,14 @@ function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
         <button
           className="btn btn-outline btn-sm m-2"
           onClick={cancelHandler}
+          id="modal-cancel"
         >
           Cancel
         </button>
         <button
           className="btn btn-warning btn-sm m-2"
           onClick={confirmHandler}
+          id="modal-confirm"
         >
           Confirm
         </button>

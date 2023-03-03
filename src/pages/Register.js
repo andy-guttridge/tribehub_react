@@ -164,7 +164,7 @@ function Register() {
               </div>
             }
 
-            <button className="btn btn-primary w-full" type="submit">Submit</button>
+            <button className="btn btn-primary w-full" type="submit" id="register-submit-btn">Submit</button>
           </form>
 
           {/* Display alert with any non-field errors */}

@@ -117,6 +117,7 @@ function NotficationsMenu() {
                     return <NotificationItem
                       notification={notification}
                       key={`notification-${notification.id}`}
+                      notificationId={`notification-${notification.id}`}
                       notificationsChanged={notificationsChanged}
                       setNotificationsChanged={setNotificationsChanged}
                       handleDeleteButton={handleDeleteButton}

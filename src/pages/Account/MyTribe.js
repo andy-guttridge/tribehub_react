@@ -90,6 +90,7 @@ function MyTribe() {
               onClick={handleNewMemberButton}
               className="btn btn-ghost"
               type="button"
+              id="add-new-tribe-btn"
             >
               <PlusCircle size="32" className="text-primary" /><span className="sr-only">Add new tribe member</span>
             </button>

@@ -134,7 +134,7 @@ function PasswordChangeForm() {
             </div>
           }
 
-          <button className="btn btn-primary btn-wide" type="submit">Submit</button>
+          <button className="btn btn-primary btn-wide" type="submit" id="password-submit-btn">Submit</button>
 
           {/* Display alert with any non-field errors */}
           {

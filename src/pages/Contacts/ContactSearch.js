@@ -113,7 +113,7 @@ function ContactSearch({ handleCancelButton }) {
             onChange={handleChange}
           />
         </label>
-        <button type="button" onClick={handleCancelButton} className="btn btn-outline">Cancel search</button>
+        <button type="button" onClick={handleCancelButton} className="btn btn-outline" id="cancel-contact-search-btn">Cancel search</button>
       </form>
 
       {/* Display contacts using search results */}

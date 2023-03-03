@@ -208,6 +208,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
             <button
               className={`btn btn-ghost ${isEditingEvent && "btn-disabled"}`}
               onClick={() => setIsEditingEvent(true)}
+              id={`edit-event-btn-${calEventId}`}
             >
               <PencilSquare size="26" className="text-primary" />
               <span className="sr-only">Edit calender event {event.subject}</span>
@@ -216,6 +217,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
             <button
               className="btn btn-ghost"
               onClick={() => handleDeleteButton(event.id)}
+              id={`delete-event-btn-${calEventId}`}
             >
               <Trash3 size="26" className="text-primary" />
               <span className="sr-only">Delete calender event {event.subject}</span>

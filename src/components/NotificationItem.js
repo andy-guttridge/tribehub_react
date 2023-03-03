@@ -5,7 +5,7 @@ import { InfoCircle, Trash3 } from 'react-bootstrap-icons';
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-function NotificationItem({ notification, notificationsChanged, setNotificationsChanged, handleDeleteButton }) {
+function NotificationItem({ notification, notificationsChanged, setNotificationsChanged, handleDeleteButton, notificationId }) {
 
   // State variables for strings representing event start and end dates and times
   const [startDateStr, setStartDateStr] = useState('');
@@ -91,7 +91,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
             <button
               className={"btn btn-xs " + (!hasAccepted && "btn-active")}
               name='not-going'
-              id='not-going'
+              id={`${notificationId}-not-going`}
               value='decline'
               onClick={handleEventResponse}
             >
@@ -100,13 +100,13 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
             <button
               className={"btn btn-xs " + (hasAccepted && "btn-active")}
               name='not-going'
-              id='not-going'
+              id={`${notificationId}-going`}
               value='accept'
               onClick={handleEventResponse}
             >
               Going
             </button>
-            <button className="btn btn-xs btn-outline" onClick={() => handleDeleteButton(notification.id)}>
+            <button className="btn btn-xs btn-outline" id={`${notificationId}-delete`} onClick={() => handleDeleteButton(notification.id)}>
               <Trash3 size="16" />
               <span className="sr-only">Delete notification</span>
             </button>

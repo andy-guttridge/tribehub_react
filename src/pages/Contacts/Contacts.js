@@ -123,6 +123,7 @@ function Contacts() {
           <button className="btn btn-ghost"
             onClick={() => setIsAddingContact(!isAddingContact)}
             type="button"
+            id="add-contact-btn"
           >
             <PlusCircle size="32" className="text-primary" />
             <span className="sr-only">Add new contact</span>
@@ -136,6 +137,7 @@ function Contacts() {
               onClick={() => setIsSearching(!isSearching)}
               className="btn btn-ghost"
               type="button"
+              id="contact-search-btn"
             >
               <Search size="32" className="text-primary" /><span className="sr-only">Search contacts</span>
             </button>
@@ -177,7 +179,7 @@ function Contacts() {
               contacts?.results?.map((contact) => {
                 return <Contact
                   contact={contact}
-                  key={contact.id}
+                  key={`contact-${contact.id}`}
                   handleDeleteButton={handleDeleteButton}
                   didSaveContact={didSaveContact}
                   setDidSaveContact={setDidSaveContact}

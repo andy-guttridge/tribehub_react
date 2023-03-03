@@ -20,13 +20,13 @@ function Landing() {
       {/* Register button */}
       {!currentUser &&
       <NavLink to={"/register"}>
-        <button className="btn btn-outline btn-wide m-2" type="button">Register</button>
+        <button className="btn btn-outline btn-wide m-2" type="button" id="register-btn">Register</button>
       </NavLink>}
       
       {/* Sign-in button */}
       {!currentUser &&
       <NavLink to={"/sign-in"}>
-        <button className="btn m-2 btn-primary" type="button">Sign-in</button>
+        <button className="btn m-2 btn-primary" type="button" id="sign-in-btn">Sign-in</button>
       </NavLink>}
       <h2>Landing Page Placeholder</h2>
     </div>

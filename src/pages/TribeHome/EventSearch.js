@@ -295,7 +295,7 @@ function EventSearch({ handleCancelButton }) {
           </label>
   
           {/* Cancel search button */}
-          <button onClick={handleCancelButton} className="btn btn-outline" type="button">Cancel search</button>
+          <button onClick={handleCancelButton} className="btn btn-outline" type="button" id="event-search-cancel-btn">Cancel search</button>
         </form>
         ) : (
           <Spinner />

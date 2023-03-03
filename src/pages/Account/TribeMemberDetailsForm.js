@@ -116,8 +116,8 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton }) {
             <InfoCircle size="32" /><span>{errors.password2}</span>
           </div>
         }
-        <button className="btn btn-outline m-2}" type="button" onClick={handleNewMemberButton}>Cancel</button>
-        <button className="btn btn-primary w-1/3 m-2" type="submit">Submit</button>
+        <button className="btn btn-outline m-2}" type="button" id="add-tribe-member-cancel-btn" onClick={handleNewMemberButton}>Cancel</button>
+        <button className="btn btn-primary w-1/3 m-2" type="submit" id="add-tribe-member-submit-btn">Submit</button>
       </form>
 
       {/* Display alert with any non-field errors */}

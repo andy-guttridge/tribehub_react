@@ -236,8 +236,8 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         }
 
         {/* Cancel and submit buttons */}
-        <button className="btn btn-outline" onClick={handleCancelButton} type="button">Cancel</button>
-        <button className="btn btn-primary w-1/3 m-2" type="submit">Submit</button>
+        <button className="btn btn-outline" onClick={handleCancelButton} type="button" id="contact-details-cancel-btn">Cancel</button>
+        <button className="btn btn-primary w-1/3 m-2" type="submit" id="contact-details-submit-btn">Submit</button>
 
         {/* Display alert with any non-field errors */}
         {

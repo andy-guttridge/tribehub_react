@@ -34,6 +34,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
               className={`btn btn-ghost ${isEditingContact && "btn-disabled"}`}
               onClick={() => setIsEditingContact(true)}
               type="button"
+              id={`edit-contact-btn-${contact.id}`}
             >
               <PencilSquare size="26" className="text-primary" />
               <span className="sr-only">Edit contact</span>
@@ -43,6 +44,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
               className="btn btn-ghost"
               onClick={() => handleDeleteButton(contact.id)}
               type="button"
+              id={`delete-contact-btn-${contact.id}`}
             >
               <Trash3 size="26" className="text-primary"></Trash3>
               <span className="sr-only">Delete contact</span>
