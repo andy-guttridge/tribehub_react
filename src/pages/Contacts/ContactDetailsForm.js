@@ -68,12 +68,12 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
 
         {/* The value from the API for each form input is or'd with an empty string, as the API can return null values which cause errors in React */}
         {/* Category field */}
-        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category">
+        <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="contact-category">
           <span>Category:</span>
           <input
             type="text"
             className="input input-bordered w-full"
-            id="category"
+            id="contact-category"
             name="category"
             value={category || ''}
             onChange={handleChange}

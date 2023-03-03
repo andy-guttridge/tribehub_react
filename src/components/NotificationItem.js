@@ -77,7 +77,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
     // Return a list item representing the notification
     <li>
       <div className="rounded-sm mb-1 p-1 bg-base-100">
-        <h3 className="text-base text-center">{notification.subject}</h3>
+        <h2 className="text-base text-base-content font-nunito text-center">{notification.subject}</h2>
         <p className="text-sm text-center">{notification.message}</p>
         <p className="text-sm text-left"><span>Start: </span><br /><span>{startDateStr} {startTimeStr}</span></p>
         <br />
