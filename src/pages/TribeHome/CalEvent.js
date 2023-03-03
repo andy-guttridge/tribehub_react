@@ -173,6 +173,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton }) 
                 <Avatar
                   small = {singlePage ? false : true}
                   imageUrl={toUser.image}
+                  displayName={toUser.display_name}
                   key={`event-to${event.id}-${toUser.user_id}-${i}`}
                   accepted={!(acceptedUserIds.includes(toUser.user_id))}
                 />

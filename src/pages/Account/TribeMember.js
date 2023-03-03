@@ -11,8 +11,8 @@ function TribeMember({ tribeMember, handleDeleteButton }) {
         <div className="flex col-start-1 justify-content-between">
 
           {/* Avatar for tribe member */}
-          <Avatar imageUrl={tribeMember.profile_image} />
-          <span className="basis-1 m-2" aria-label="Name of tribe member">{tribeMember.display_name}</span>
+          <Avatar imageUrl={tribeMember.profile_image} displayName={tribeMember.display_name}/>
+          <span className="basis-1 m-2">{tribeMember.display_name}</span>
         </div>
 
         {/* Delete button for tribe member */}

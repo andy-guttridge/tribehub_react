@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Avatar({ imageUrl, large, small, accepted }) {
+function Avatar({ imageUrl, large, small, accepted, displayName }) {
   // Render three different size avatars depending on large, small or no size prop.
   // If the accepted prop is received with a value of false, grey the avatar out.
   return (
@@ -9,7 +9,7 @@ function Avatar({ imageUrl, large, small, accepted }) {
 							className={(large? "w-40 " : small ? "w-10 " : "w-20 ") + 
               (accepted && "contrast-50 grayscale ")  + 
               " rounded-full"}>
-        <img src={imageUrl} alt="User avatar"></img>
+        <img src={imageUrl} alt={`Avatar for ${displayName}`}></img>
       </div>
     </div>
   )
