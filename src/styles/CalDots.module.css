@@ -1,3 +1,9 @@
+.CalDotDiv {
+  position: relative;
+}
+
 .CalDot {
-  position: absolute;
+  position: relative;
+  background-color: white;
+  mix-blend-mode: difference;
 }

@@ -38,9 +38,9 @@ export const checkEventsForDate = (calData, events) => {
   
   // If match found, return a div to display in the calendar tile
   return (
-    <div className={`${styles.CalDot} block`}>
+    <div className={`${styles.CalDotDiv} block`}>
       {matchFound ? (
-        <span className="inline-block w-5 h-1 md:w-2 md:h-2 lg:w-3 lg:h-3 bg-primary rounded-full mb-2 lg:mb-0 md:mt-2 ml-2 md:ml-6 lg:ml-10"></span>
+        <span className={`${styles.CalDot} inline-block w-5 h-1 md:w-2 md:h-2 lg:w-3 lg:h-3 rounded-full mb-2 md:mb-0 mx-auto}`}></span>
       ) : (
         null
       )}
