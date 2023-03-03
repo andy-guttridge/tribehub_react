@@ -33,7 +33,7 @@ function Header() {
           <>
             <span className="mx-2">Welcome, {currentUser.display_name}</span>
             <NotficationsMenu />
-            <NavLink to="/" onClick={handleSignout}><button className="btn btn-outline btn-xs m-2" type="button">Sign-out</button></NavLink>
+            <NavLink to="/" onClick={handleSignout}><button className="btn btn-outline btn-xs m-2" type="button" id="signout-button">Sign-out</button></NavLink>
           </>
         )
       }

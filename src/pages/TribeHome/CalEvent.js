@@ -235,7 +235,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           <button
             className={"btn btn-sm " + (!hasAccepted && "btn-active")}
             name="not-going"
-            id="not-going"
+            id={`not-going-btn-${calEventId}`}
             value="decline"
             onClick={handleEventResponse}
           >
@@ -243,8 +243,8 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           </button>
           <button
             className={"btn btn-sm " + (hasAccepted && "btn-active")}
-            name="not-going"
-            id="not-going"
+            name="going"
+            id={`going-btn-${calEventId}`}
             value="accept"
             onClick={handleEventResponse}
           >
