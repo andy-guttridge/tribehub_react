@@ -182,7 +182,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
       {hasLoaded ? (
 
         // Add event form 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="m-1">
 
           {/* To users field */}
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to">
