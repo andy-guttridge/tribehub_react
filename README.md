@@ -70,6 +70,8 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 
 ### Lighthouse testing
 
+Lighthouse testing revealed that button elements did not have id attributes which are required by assistive technologies. These were added to all buttons, with programatically generated unique values where required for components which are rendered multiple times.
+
 ### Accessability testing
 
 Wave testing revealed contrast issues with buttons. The text colour for buttons in the primary and secondary colour was lightened, while outline buttons were changed from primary to a dark (or light for dark mode) colour, and the font size was increased for all buttons. This resolved the contrast issues.
