@@ -15,7 +15,7 @@ function Landing() {
   }, [currentUser, navigate])
 
   return (
-    <div className="bg-base-100 max-h-screen">
+    <div className="bg-base-100 max-h-screen sm:overflow-hidden">
 
       {/* Register and sign-in buttons if user not authenticated */}
       {/* Register button */}

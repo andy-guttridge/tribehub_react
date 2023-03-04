@@ -3,12 +3,13 @@
 /* Technique for creating divs with diagonal lines is from */
 /* https://9elements.com/blog/pure-css-diagonal-layouts/ */
 
-/* Base styles - mobiles above 400px width */
+/* Base styles  */
 .LandingPageTop {
   background-image: url("../assets/hero.jpg");
-  background-position: -35vh -10vh;
+  background-position: 0 0;
   background-size: 960px 640px;
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .DiagonalBoxPrimary {
@@ -18,157 +19,77 @@
   top: 40vh;
   height: 100vh;
   width: 100%;
+  max-width: 1920px;
   transform: skewY(-20deg);
 }
 
 .Content {
   transform: skewY(20deg);
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .ContentInner {
   position: relative;
-  top: 15vh;
+  top: 12vh;
 }
 
-.DiagonalBoxBase {
-  @apply bg-base-300;
-  position: relative;
-  top: -10vh;
-  z-index: 20;
-  height: 90vh;
-  width: 100%;
-  transform: skewY(30deg);
-}
-
-.ContentBase {
-  max-width: 25%;
-  height: 100%;
-  margin: 0 auto;
-  transform: skewY(30deg);
-}
-
-.DiagonalBoxSecondary {
-  @apply bg-secondary;
-  position: relative;
-  top: -20vh;
-  z-index: 30;
-  height: 60vh;
-  width: 100%;
-  transform: skewY(35deg);
-}
-
-.ContentSecondary {
-  max-width: 25%;
-  height: 100%;
-  margin: 0 auto;
-  transform: skewY(-35deg);
-}
-
-/* Styles for devices above 685px and below 1024px width */
-@media (min-width: 685px) {
+/* Media queries - these are bespoke based on the size of the hero image, rather than standard Tailwind breakpoints */
+/* Styles for very small devices less than 390px width */
+@media (max-width: 390px) {
   .LandingPageTop {
-    background-position: -50vh -24vh;
-    background-size: 1440px 960px;
+    background-size: 800px 535px;
   }
 }
 
-/* Styles for devices above 1024px width an above 1400px width */
-@media (min-width: 1024px) {
+/* Styles for devices wider than 835px */
+@media (min-width: 835px) {
   .LandingPageTop {
-    background-position: -40vh -32vh;
-    background-size: 1920px 1280px;
+    background-size: 1440px 957px;
   }
 
   .DiagonalBoxPrimary {
-    transform: skewY(15deg);
+    @apply bg-primary;
+    transform: skewY(-30deg);
   }
 
   .Content {
-    transform: skewY(-15deg);
-  }
-}
-
-/* Styles for devices wider than 1400 px */
-@media (min-width: 1400px) {
-  .LandingPageTop {
-    background-position: -30vh -43vh;
-    background-size: 2400px 1600px;
-  }
-
-  .DiagonalBoxPrimary {
-    transform: skewY(10deg);
-  }
-
-  .Content {
-    transform: skewY(-10deg);
-  }
-}
-
-/* Bespoke styles for narrow mobiles, e.g. iPhone SE */
-@media (min-width: 250px) and (max-width: 380px) {
-  .LandingPageTop {
-    background-position: -38vh -15vh;
-    background-size: 750px 499px;
+    transform: skewY(30deg);
   }
 
   .ContentInner {
     position: relative;
-    top: 10vh;
+    top: 12vh;
+    left: 7vw;
   }
 }
 
-/* Bespoke styles for Surface Pro 7 */
-@media (width: 912px) and (height: 1368px) {
+/* Styles for devices wider than 1435px */
+@media (min-width: 1435px) {
   .LandingPageTop {
-    background-position: -40vh -15vh;
-    background-size: 1920px 1280px;
+    background-size: 1920px 1276px;
+    transform: skewY(-deg);
   }
 
   .DiagonalBoxPrimary {
-    transform: skewY(20deg);
+    transform: skewY(-40deg);
+    height: 150vh;
   }
 
   .Content {
-    transform: skewY(-20deg);
+    transform: skewY(40deg);
   }
-}
-
-/* Bespoke styles for iPad Air */
-@media (width: 820px) and (height: 1180px) {
-  .LandingPageTop {
-    background-position: -50vh -15vh;
-    background-size: 1920px 1280px;
-  }
-
-  .DiagonalBoxPrimary {
-    transform: skewY(20deg);
-  }
-
-  .Content {
-    transform: skewY(-20deg);
-  }
-}
-
-/* Bespoke styles for Nest and Nest Hub */
-
-@media (min-width: 1024px) and (max-height: 800px) {
-  .LandingPageTop {
-    background-position: -15vh -30vh;
-    background-size: 1536px 1024px;
-  }
-
-  .DiagonalBoxPrimary {
-    transform: skewY(20deg);
-  }
-
-  .Content {
-    transform: skewY(-20deg);
-  }
-
-   .ContentInner {
-    @apply text-2xl;
+  
+  .ContentInner {
     position: relative;
-    top: 5vh;
-    left: -10vh;
+    top: 12vh;
+    left: 20vw;
+  }
+}
+
+/* Styles for Nest Hub */
+@media (width: 1024px) and (height:600px) {  
+  .ContentInner {
+    left: 14vw;
   }
 }
