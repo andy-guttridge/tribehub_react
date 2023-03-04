@@ -14,6 +14,7 @@ import Register from './pages/Register';
 import SinglePage from './pages/SinglePage';
 import { useSinglePage } from './contexts/SinglePageContext';
 import css from './styles/App.module.css'
+import { useEffect } from 'react';
 
 function App() {
 
@@ -22,9 +23,23 @@ function App() {
 
   // Hook to provide context on whether to display in single page mode
   const singlePage = useSinglePage();
+  
+  // Set body element to use the lightmode theme if the user isn't logged in using the DaisyUI data-theme attribute
+  useEffect (() => {
+    if (!currentUser) {
+      document.body.setAttribute ('data-theme', 'tribehub_theme');
+      document.body.style.height = '100vh';
+    }
+
+    // Clean-up function to remove the data-theme attribute and set the body back to 100% height
+    return () => {
+      document.body.removeAttribute('data-theme');
+      document.body.style = '100%';
+    }
+  }, [currentUser]);
 
   return (
-    <div className={`App ${css.AppStyles} m-auto`}>
+    <div className={`App ${css.AppStyles} m-auto`} data-theme={!currentUser && "tribehub_theme"}>
       <Header />
       {
         // If window width less than large breakpoint, display mobile navbar and separate pages
