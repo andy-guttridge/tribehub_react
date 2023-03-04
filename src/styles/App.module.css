@@ -1,0 +1,4 @@
+/* Limit the width of the app to 2000px  */
+.AppStyles {
+  max-width: 2000px;
+}

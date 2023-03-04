@@ -13,6 +13,7 @@ import Landing from './pages/Landing';
 import Register from './pages/Register';
 import SinglePage from './pages/SinglePage';
 import { useSinglePage } from './contexts/SinglePageContext';
+import css from './styles/App.module.css'
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
   const singlePage = useSinglePage();
 
   return (
-    <div className="App">
+    <div className={`App ${css.AppStyles} m-auto`}>
       <Header />
       {
         // If window width less than large breakpoint, display mobile navbar and separate pages
