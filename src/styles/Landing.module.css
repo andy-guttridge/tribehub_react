@@ -1,8 +1,5 @@
 /* Styles for landing page image and diagonal coloured div */
 
-/* Technique for creating divs with diagonal lines is from */
-/* https://9elements.com/blog/pure-css-diagonal-layouts/ */
-
 /* Base styles  */
 .LandingPageTop {
   background-image: url("../assets/hero.jpg");
@@ -11,6 +8,9 @@
   background-repeat: no-repeat;
   overflow: hidden;
 }
+
+/* Technique for creating divs with diagonal lines is from */
+/* https://9elements.com/blog/pure-css-diagonal-layouts/ */
 
 .DiagonalBoxPrimary {
   @apply bg-primary;
@@ -23,16 +23,16 @@
   transform: skewY(-20deg);
 }
 
+/* How to use the text shadow property to create an outline on text is from */
+/* https://stackoverflow.com/questions/57464935/font-outline-using-only-css */
 .Content {
   transform: skewY(20deg);
-  margin-left: 1rem;
-  margin-right: 1rem;
   position: relative;
-  top: 12vh;
-}
-
-.ContentInner {
-  
+  top: -8vh;
+  mix-blend-mode: difference;
+  outline: #000000;
+  text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
+  color: #ffffff;
 }
 
 /* Media queries - these are bespoke based on the size of the hero image, rather than standard Tailwind breakpoints */
