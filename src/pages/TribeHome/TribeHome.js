@@ -207,7 +207,7 @@ function TribeHome() {
             <div>
 
               {/* Button to search, search form, button to add new event add new event form */}
-              <div className="justify-end lg:justify-start flex w-4/5 md:w-2/3 lg:w-full mx-auto my-4">
+              <div className="justify-end lg:justify-start flex md:w-2/3 lg:w-full mx-auto my-4">
 
                 {/* Add new event button and form */}
                 {
@@ -244,7 +244,7 @@ function TribeHome() {
               {/* Do not display these if in search mode */}
               {
                 !isSearching &&
-                <div className={`${singlePage ? (css.DisplayEvents) : "bg-base-200"} md:w-4/5 lg:w-full md:inline-block lg:block`} >
+                <div className={`${singlePage ? (css.DisplayEvents) : "bg-base-200"} w-full md:inline-block lg:block`} >
                   {
                     dayEvents?.map((dayEvent) => {
                       // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event

@@ -190,7 +190,7 @@ function EventSearch({ handleCancelButton }) {
 
       {
         hasLoaded ? (
-          <form>
+          <form className="w-4/5 m-auto md:w-full">
 
           {/* Text search field */}
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="text_search">

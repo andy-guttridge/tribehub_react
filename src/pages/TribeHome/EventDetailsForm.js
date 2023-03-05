@@ -165,7 +165,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
   }, [event, isEditingEvent])
 
   return (
-    <section className={`basis-full w-4/5 m-auto ${css.EventDetailsExpand}`}>
+    <section className={`basis-full m-auto ${css.EventDetailsExpand}`}>
 
       {/* Show appropriate title depending if user is adding new or editing existing event */}
       {isEditingEvent ? (
@@ -182,7 +182,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
       {hasLoaded ? (
 
         // Add event form 
-        <form onSubmit={handleSubmit} className="m-1">
+        <form onSubmit={handleSubmit} className="w-4/5 m-auto md:m-1 md:w-full">
 
           {/* To users field */}
           <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to">
