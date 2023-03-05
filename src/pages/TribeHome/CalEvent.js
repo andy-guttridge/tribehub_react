@@ -139,7 +139,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
 
 
   return (
-    <div className="card rounded-md bg-base-100 my-2 lg:mx-2 text-center">
+    <div className="card rounded-none md:rounded-md mb-0.5 bg-base-100 md:mx-0.5 text-center">
 
       {/* Display the EventDetailsForm if user is editing an event */}
       {isEditingEvent &&
