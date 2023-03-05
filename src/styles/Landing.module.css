@@ -27,11 +27,12 @@
   transform: skewY(20deg);
   margin-left: 1rem;
   margin-right: 1rem;
+  position: relative;
+  top: 12vh;
 }
 
 .ContentInner {
-  position: relative;
-  top: 12vh;
+  
 }
 
 /* Media queries - these are bespoke based on the size of the hero image, rather than standard Tailwind breakpoints */

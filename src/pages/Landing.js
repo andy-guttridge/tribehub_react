@@ -38,17 +38,11 @@ function Landing() {
         {/* Diagonal coloured div */}
         <div className={`${css.DiagonalBoxPrimary}`}>
 
-          {/*  Outer container for text content*/}
+          {/*  Container for text content*/}
           <div className={`${css.Content}`}>
-
-            {/* Inner container for text content */}
-            <div className={`${css.ContentInner}`}>
-
-              {/* Text content */}
               <p className="font-nunito text-3xl max-[399px]:text-2xl text-base-100 m-auto">Organise your tribe.</p>
               <br></br>
               <p className="font-nunito text-3xl max-[399px]:text-2xl text-base-100">Your family's calendar and contacts all in one place.</p>
-            </div>
           </div>
         </div>
       </div>
