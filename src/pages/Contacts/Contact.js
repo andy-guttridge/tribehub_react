@@ -25,33 +25,6 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
           setDidSaveContact={setDidSaveContact}
         />
       }
-      <div className="flex justify-end">
-        {/* Show delete and edit buttons if user is tribe admin */}
-        {
-          currentUser.is_admin &&
-          <>
-            <button
-              className={`btn btn-ghost ${isEditingContact && "btn-disabled"}`}
-              onClick={() => setIsEditingContact(true)}
-              type="button"
-              id={`edit-contact-btn-${contact.id}`}
-            >
-              <PencilSquare size="26" className="text-primary" />
-              <span className="sr-only">Edit contact</span>
-            </button>
-
-            <button
-              className="btn btn-ghost"
-              onClick={() => handleDeleteButton(contact.id)}
-              type="button"
-              id={`delete-contact-btn-${contact.id}`}
-            >
-              <Trash3 size="26" className="text-primary"></Trash3>
-              <span className="sr-only">Delete contact</span>
-            </button>
-          </>
-        }
-      </div>
 
       {/* Display contact details */}
       <div className="card-body grid grid-cols-1 md:grid-cols-2 text-left break-words">
@@ -63,6 +36,34 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
         <div>
           <p><span className="font-bold">Tel: </span>{contact.phone}</p>
           <p><span className="font-bold">Email: </span>{contact.email}</p>
+        </div>
+
+        <div className="flex justify-end">
+          {/* Show delete and edit buttons if user is tribe admin */}
+          {
+            currentUser.is_admin &&
+            <>
+              <button
+                className={`btn btn-ghost ${isEditingContact && "btn-disabled"}`}
+                onClick={() => setIsEditingContact(true)}
+                type="button"
+                id={`edit-contact-btn-${contact.id}`}
+              >
+                <PencilSquare size="26" className="text-primary" />
+                <span className="sr-only">Edit contact</span>
+              </button>
+
+              <button
+                className="btn btn-ghost"
+                onClick={() => handleDeleteButton(contact.id)}
+                type="button"
+                id={`delete-contact-btn-${contact.id}`}
+              >
+                <Trash3 size="26" className="text-primary"></Trash3>
+                <span className="sr-only">Delete contact</span>
+              </button>
+            </>
+          }
         </div>
       </div>
     </div>
