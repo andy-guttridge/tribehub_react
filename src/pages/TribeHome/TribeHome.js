@@ -161,10 +161,9 @@ function TribeHome() {
       {/* Display generic alert if problems loading calendar data */}
       {
         errors.calendarError && (
-          <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
+          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <InfoCircle size="32" className="m-auto" />
-            <p className="text-center inline-block">There was a problem fetching calendar data.</p>
-            <p className="text-center inline-block">You are either offline, or a server error has occurred.</p>
+            <p>There was a problem fetching calendar data. You are either offline, or a server error has occurred.</p>
           </div>
         )
       }
@@ -197,15 +196,17 @@ function TribeHome() {
               />
             </div>
 
-            {/* Display alert if there was an issue deleting a calender event */}
-            {
-              errors.delete &&
-              <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
-                <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
-              </div>
-            }
-
             <div>
+
+              {/* Display alert if there was an issue deleting a calender event */}
+              {
+                errors.delete &&
+                <div className="h-fit alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+                  <div>
+                    <InfoCircle size="32" /><span>{errors.delete}</span>
+                  </div>
+                </div>
+              }
 
               {/* Button to search, search form, button to add new event add new event form */}
               <div className="justify-end lg:justify-start flex md:w-2/3 lg:w-full mx-auto my-4">

@@ -92,8 +92,10 @@ function Register() {
             {/* Display alert with any username errors */}
             {
               errors.username &&
-              <div className="alert alert-warning justify-start mt-4 mb-4">
-                <InfoCircle size="32" /><span>{errors.username}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+                <div>
+                  <InfoCircle size="32" /><span>{errors.username}</span>
+                </div>
               </div>
             }
 
@@ -114,8 +116,10 @@ function Register() {
             {/* Display alert with any password errors */}
             {
               errors.password &&
-              <div className="alert alert-warning justify-start mt-4 mb-4">
-                <InfoCircle size="32" /><span>{errors.password}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+                <div>
+                  <InfoCircle size="32" /><span>{errors.password}</span>
+                </div>
               </div>
             }
 
@@ -136,8 +140,10 @@ function Register() {
             {/* Display alert with any password2 errors */}
             {
               errors.password2 &&
-              <div className="alert alert-warning justify-start mt-4 mb-4">
-                <InfoCircle size="32" /><span>{errors.password2}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+                <div>
+                  <InfoCircle size="32" /><span>{errors.password2}</span>
+                </div>
               </div>
             }
 
@@ -159,8 +165,10 @@ function Register() {
             {/* Display alert with any tribename errors */}
             {
               errors.tribename &&
-              <div className="alert alert-warning justify-start mt-4 mb-4">
-                <InfoCircle size="32" /><span>{errors.tribename}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+                <div>
+                  <InfoCircle size="32" /><span>{errors.tribename}</span>
+                </div>
               </div>
             }
 
@@ -170,8 +178,10 @@ function Register() {
           {/* Display alert with any non-field errors */}
           {
             errors.non_field_errors?.map((error) => (
-              <div className="alert alert-warning justify-start mt-4">
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             ))
           }

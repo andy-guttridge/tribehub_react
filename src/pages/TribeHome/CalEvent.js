@@ -149,7 +149,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           event={event}
           setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
         />}
-      
+
       {/* Card title */}
       <div className="card-title bg-base-100 rounded-sm flex justify-between p-2">
         {/* Event category icon */}
@@ -159,19 +159,19 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           alt={[eventCategories[event.category].text]}
         />
         <div>
-        <p className={`${singlePage ? "text-xl" : "text-md"}`}>{event.subject}</p>
+          <p className={`${singlePage ? "text-xl" : "text-md"}`}>{event.subject}</p>
         </div>
-        
+
 
         <div className={`avatar-group ${singlePage ? "-space-x-14" : "-space-x-6"}`}>
-    
+
           {/* Return an avatar for each user */}
           {/* Include a prop to say whether they have accepted the invitation */}
           {
             avatarUsers.map((toUser, i) => {
               return (
                 <Avatar
-                  small = {singlePage ? false : true}
+                  small={singlePage ? false : true}
                   imageUrl={toUser.image}
                   displayName={toUser.display_name}
                   key={`event-to${event.id}-${toUser.user_id}-${i}`}
@@ -191,15 +191,15 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           }
         </div>
       </div>
-      
+
       <div className="col-span-2 text-center">
-          {event.recurrence_type !== 'NON' && <ArrowRepeat size="18" className="inline mr-1"/>}
-          <div className="text-right inline-block">
+        {event.recurrence_type !== 'NON' && <ArrowRepeat size="18" className="inline mr-1" />}
+        <div className="text-right inline-block">
           <span className="font-bold text-sm md:text-md">Start: </span><span className="text-sm md:text-md">{startDateStr} {eventTimeStr}  </span>
-          <br className="md:hidden"/>
+          <br className="md:hidden" />
           <span className="font-bold text-sm md:text-md">End: </span><span className="text-sm md:text-md">{endDateStr} {endTimeStr}</span>
-          </div>
         </div>
+      </div>
       {/* Show edit button and delete button if user is owner of this event or tribe admin */}
       <div className="flex justify-end">
         {(event.user.user_id === currentUser.pk || currentUser.is_admin)
@@ -251,18 +251,20 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
             Going
           </button>
         </div>
-        /* Display alert if there was an issue loading tribe data */}
+        /* Display alert if there was an handling the user's response to the event */}
       {
         errors.event_response &&
-        <div className="alert alert-warning justify-start mt-4">
-          <InfoCircle size="32" /><span>{errors.event_response}</span>
+        <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+          <div>
+            <InfoCircle size="32" /><span>{errors.event_response}</span>
+          </div>
         </div>
       }
 
       {/* Collapse section for more detail */}
       <div className="collapse collapse-arrow p-0">
         <label htmlFor={calEventId} className="sr-only">Dropdown button for more detail</label>
-        <input type="checkbox" id={calEventId}/>
+        <input type="checkbox" id={calEventId} />
         <div className="collapse-title text-right">Detail</div>
         <div className="collapse-content">
           <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center">

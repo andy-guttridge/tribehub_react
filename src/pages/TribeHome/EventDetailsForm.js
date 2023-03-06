@@ -108,7 +108,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         setTribe(data);
         setHasLoaded(true);
       } catch (error) {
-        if(error.response?.status !== 401) {
+        if (error.response?.status !== 401) {
           setErrors({ tribe: 'There was an error loading tribe data from the server.' })
         }
       }
@@ -140,7 +140,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             })
             setHasLoaded(true);
           } catch (error) {
-            if(error.response?.status !== 401) {
+            if (error.response?.status !== 401) {
               setErrors({ event: 'There was an error loading event data from the server.' })
             }
           }
@@ -208,8 +208,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
           {/* Display alert with any to field errors */}
           {
             errors.to &&
-            <div className="alert alert-warning justify-start mt-4 mb-4">
-              <InfoCircle size="32" /><span>{errors.to}</span>
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" /><span>{errors.to}</span>
+              </div>
             </div>
           }
 
@@ -230,8 +232,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
           {/* Display alert with any start field errors */}
           {
             errors.start &&
-            <div className="alert alert-warning justify-start mt-4 mb-4">
-              <InfoCircle size="32" /><span>{errors.start}</span>
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" /><span>{errors.start}</span>
+              </div>
             </div>
           }
 
@@ -262,8 +266,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
           {/* Display alert with any duration field errors */}
           {
             errors.duration &&
-            <div className="alert alert-warning justify-start mt-4 mb-4">
-              <InfoCircle size="32" /><span>{errors.duration}</span>
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" /><span>{errors.duration}</span>
+              </div>
             </div>
           }
 
@@ -289,8 +295,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
           {/* Display alert with any recurrence_type field errors */}
           {
             errors.recurrence_type &&
-            <div className="alert alert-warning justify-start mt-4 mb-4">
-              <InfoCircle size="32" /><span>{errors.recurrence_type}</span>
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" /><span>{errors.recurrence_type}</span>
+              </div>
             </div>
           }
 
@@ -310,8 +318,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
           {/* Display alert with any subject field errors */}
           {
             errors.subject &&
-            <div className="alert alert-warning justify-start mt-4 mb-4">
-              <InfoCircle size="32" /><span>{errors.subject}</span>
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" /><span>{errors.subject}</span>
+              </div>
             </div>
           }
 
@@ -340,8 +350,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
           {/* Display alert with any category field errors */}
           {
             errors.category &&
-            <div className="alert alert-warning justify-start mt-4 mb-4">
-              <InfoCircle size="32" /><span>{errors.category}</span>
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" /><span>{errors.category}</span>
+              </div>
             </div>
           }
 
@@ -352,8 +364,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
           {/* Display alert with any non-field errors */}
           {
             errors.non_field_errors?.map((error, i) => (
-              <div className="alert alert-warning justify-start mt-4" key={`eventform-nonfield-err${i}`}>
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`eventform-nonfield-err${i}`}>
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             ))
           }
@@ -367,16 +381,20 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
       {/* Display alert if there was an issue loading tribe data */}
       {
         errors.tribe &&
-        <div className="alert alert-warning justify-start mt-4">
-          <InfoCircle size="32" /><span>{errors.tribe}</span>
+        <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+          <div>
+            <InfoCircle size="32" /><span>{errors.tribe}</span>
+          </div>
         </div>
       }
 
       {/* Display alert if there was an issue fetching event data */}
       {
         errors.event &&
-        <div className="alert alert-warning justify-start mt-4">
-          <InfoCircle size="32" /><span>{errors.event}</span>
+        <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+          <div>
+            <InfoCircle size="32" /><span>{errors.event}</span>
+          </div>
         </div>
       }
 

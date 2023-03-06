@@ -81,8 +81,10 @@ function MyAccount() {
       {/* Display error alert if there was an issue deleting account */}
       {
         errors.delete &&
-        <div className="block w-4/5 md:w-2/3 lg:1/2 mx-auto my-4 alert alert-warning">
-          <InfoCircle size="32" className="m-auto" /><p>{errors.delete}</p>
+        <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+          <div>
+            <InfoCircle size="32" className="m-auto" /><span>{errors.delete}</span>
+          </div>
         </div>
       }
 

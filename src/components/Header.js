@@ -20,7 +20,7 @@ function Header() {
       setCurrentUser(null);
       setErrors({});
     } catch (error) {
-      setErrors({logout: 'There was an issue signing out of your account. You may be offline or a server error may have occurred.'})
+      setErrors({ logout: 'There was an issue signing out of your account. You may be offline or a server error may have occurred.' })
     };
   }
 
@@ -41,8 +41,10 @@ function Header() {
       {/* Display alert if there was an signing out */}
       {
         errors.logout &&
-        <div className="block alert alert-warning mx-auto my-4 w-4/5">
-          <InfoCircle size="32" className="m-auto"/><p>{errors.logout}</p>
+        <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+          <div>
+            <InfoCircle size="32" className="m-auto" /><span>{errors.logout}</span>
+          </div>
         </div>
       }
     </header>

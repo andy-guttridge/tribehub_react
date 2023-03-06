@@ -59,6 +59,7 @@ function Contacts() {
       await axiosReq.delete(`contacts/${isDeletingContact}/`);
       setDidSaveContact(!didSaveContact);
       setIsDeletingContact(false);
+      setErrors({});
     } catch (error) {
       if (error.response?.status !== 401) {
         setIsDeletingContact(false);
@@ -104,16 +105,20 @@ function Contacts() {
       {/* Display alert if there was an issue fetching contact data */}
       {
         errors.contacts &&
-        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center">
-          <InfoCircle size="32" className="inline-block" /><p>{errors.contacts}</p>
+        <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+          <div>
+            <InfoCircle size="32" className="inline-block" /><p>{errors.contacts}</p>
+          </div>
         </div>
       }
 
       {/* Display alert if there was an issue deleting a contact */}
       {
         errors.delete &&
-        <div className="alert alert-warning w-3/4 inline-block m-4 justify-center text-center row-end-1">
-          <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
+        <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+          <div>
+            <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
+          </div>
         </div>
       }
 
@@ -167,7 +172,7 @@ function Contacts() {
             {
               !contacts?.results?.length && !isAddingContact &&
               <div className="bg-base-100 p-2">
-                <div className="alert alert-info justify-center">
+                <div className="alert alert-info justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
                   <p className="text-left md:text-center font-bold">Press the + button to start adding your tribe's contacts</p>
                 </div>
               </div>

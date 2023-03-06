@@ -46,6 +46,7 @@ function MyTribe() {
     try {
       await axiosReq.delete(`accounts/user/${isDeletingMember}`);
       setTribeChangeFlag(!tribeChangeFlag);
+      setErrors({});
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors({ delete: 'There was an error attempting to delete this tribe member.\n\nYou may be offline or there may have been a server error.' })
@@ -66,6 +67,7 @@ function MyTribe() {
         const { data } = await axiosReq.get('tribe/');
         setTribe(data);
         setHasLoaded(true);
+        setErrors({});
       } catch (error) {
         if (error.response?.status !== 401) {
           setErrors({ tribe: 'There was an error fetching your tribe members from the server.\n\nYou may be offline or there may have been a server error.' })
@@ -109,8 +111,8 @@ function MyTribe() {
             (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} handleDeleteButton={handleDeleteButton} />)
           ))
         ) : !isAddingNewMember && (
-          <div className="bg-base-100 p-2">
-            <div className="alert alert-info mx-auto w-4/5">
+          <div className="alert alert-info justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div>
               <p className="m-2 font-bold">It's looking a bit empty! Click the add button to add a member to your tribe.</p>
             </div>
           </div>
@@ -125,16 +127,20 @@ function MyTribe() {
         {/* Display alert if there was an issue deleting a tribe member */}
         {
           errors.delete &&
-          <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 justify-self-center">
-            <InfoCircle size="32" /><span>{errors.delete}</span>
+          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div>
+              <InfoCircle size="32" /><span>{errors.delete}</span>
+            </div>
           </div>
         }
 
         {/* Display alert if there was an issue fetching tribe members */}
         {
           errors.tribe &&
-          <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 justify-self-center">
-            <InfoCircle size="32" /><span>{errors.tribe}</span>
+          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div>
+              <InfoCircle size="32" /><span>{errors.tribe}</span>
+            </div>
           </div>
         }
       </div>

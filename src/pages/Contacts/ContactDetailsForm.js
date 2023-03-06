@@ -84,8 +84,10 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         {
           errors?.category?.map((error, i) => {
             return (
-              <div className="alert alert-warning justify-start mt-4 mb-4" key={`category-err${i}`}>
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`category-err${i}`}>
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             )
           })
@@ -108,8 +110,10 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         {
           errors?.company?.map((error, i) => {
             return (
-              <div className="alert alert-warning justify-start mt-4 mb-4" key={`company-err${i}`}>
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`company-err${i}`}>
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             )
           })
@@ -132,8 +136,10 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         {
           errors?.title?.map((error, i) => {
             return (
-              <div className="alert alert-warning justify-start mt-4 mb-4" key={`title-err${i}`}>
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`title-err${i}`}>
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             )
           })
@@ -156,8 +162,10 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         {
           errors?.first_name?.map((error, i) => {
             return (
-              <div className="alert alert-warning justify-start mt-4 mb-4" key={`first_name-err${i}`}>
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`first_name-err${i}`}>
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             )
           })
@@ -180,8 +188,10 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         {
           errors?.last_name?.map((error, i) => {
             return (
-              <div className="alert alert-warning justify-start mt-4 mb-4" key={`last_name-err${i}`}>
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`last_name-err${i}`}>
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             )
           })
@@ -204,8 +214,10 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         {
           errors?.phone?.map((error, i) => {
             return (
-              <div className="alert alert-warning justify-start mt-4 mb-4" key={`phone-err${i}`}>
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`phone-err${i}`}>
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             )
           })
@@ -228,8 +240,10 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         {
           errors?.email?.map((error, i) => {
             return (
-              <div className="alert alert-warning justify-start mt-4 mb-4" key={`email-err${i}`}>
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`email-err${i}`}>
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             )
           })
@@ -242,8 +256,10 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
         {/* Display alert with any non-field errors */}
         {
           errors?.non_field_errors?.map((error, i) => (
-            <div className="alert alert-warning justify-start mt-4" key={`contact-nonfield-err${i}`}>
-              <InfoCircle size="32" /><span>{error}</span>
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`contact-nonfield-err${i}`}>
+              <div>
+                <InfoCircle size="32" /><span>{error}</span>
+              </div>
             </div>
           ))
         }

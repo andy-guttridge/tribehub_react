@@ -114,14 +114,14 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
         }
       </div>
 
-      {/* Display alert if there was an issue deleting a tribe member */}
+      {/* Display alert if there was an issue dealing with the user's response to the event */}
       {/* Technique for adding an element to a different location in the DOM is from */}
       {/* https://upmostly.com/tutorials/modal-components-react-custom-hooks */}
       {
         errors.event_response && ReactDOM.createPortal(
-          <div className="flex justify-center">
-            <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 block">
-              <InfoCircle size="32" className="inline-block" /><span>{errors.event_response}</span>
+          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div>
+              <InfoCircle size="32" className="m-auto" /><span>{errors.event_response}</span>
             </div>
           </div>
           , document.getElementById('Header'))

@@ -124,8 +124,10 @@ function ProfileForm() {
           {/* Display alert with any display_name field errors */}
           {
             errors.display_name &&
-            <div className="alert alert-warning justify-start mt-4 mb-4">
-              <InfoCircle size="32" /><span>{errors.display_name}</span>
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" /><span>{errors.display_name}</span>
+              </div>
             </div>
           }
 
@@ -141,8 +143,10 @@ function ProfileForm() {
           {/* Display alert with any image field errors */}
           {
             errors.image &&
-            <div className="alert alert-warning justify-start mt-4 mb-4">
-              <InfoCircle size="32" /><span>{errors.image}</span>
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" /><span>{errors.image}</span>
+              </div>
             </div>
           }
 
@@ -151,18 +155,22 @@ function ProfileForm() {
           {/* Display alert with any non-field errors */}
           {
             errors.non_field_errors?.map((error, i) => (
-              <div className="alert alert-warning justify-start mt-4" key={`profile_form_non-field_err${i}`}>
-                <InfoCircle size="32" /><span>{error}</span>
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`profile_form_non-field_err${i}`}>
+                <div>
+                  <InfoCircle size="32" /><span>{error}</span>
+                </div>
               </div>
             ))
           }
 
           {/* Display alert with success message if the request succeeded */}
           {
-            requestSucceeded && 
-              <div className="alert alert-success justify-start mt-4">
+            requestSucceeded &&
+            <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
                 <InfoCircle size="32" /><span>Profile updated</span>
               </div>
+            </div>
           }
         </form>
       ) : (

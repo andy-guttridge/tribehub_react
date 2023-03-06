@@ -150,25 +150,25 @@ function NotficationsMenu() {
         )
       }
 
-      {/* Display alert if there was an issue deleting a tribe member */}
+      {/* Display alert if there was an issue deleting a notification */}
       {/* Same technique used to add the alert to the Header component as noted above. */}
       {
         errors.delete && ReactDOM.createPortal(
-          <div className="flex justify-center">
-            <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 block">
-              <InfoCircle size="32" className="inline-block" /><span>{errors.delete}</span>
+          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div>
+              <InfoCircle size="32" className="m-auto" /><span>{errors.delete}</span>
             </div>
           </div>
           , document.getElementById('Header'))
       }
 
-      {/* Display alert if there was an issue deleting a tribe member */}
+      {/* Display alert if there was an issue fetching notifications */}
       {/* Same technique used to add the alert to the Header component as noted above. */}
       {
         errors.notifications && ReactDOM.createPortal(
-          <div className="flex justify-center">
-            <div className="alert alert-warning justify-start m-4 w-4/5 md:w-2/3 lg:1/2 block">
-              <InfoCircle size="32" className="inline-block" /><span>{errors.notifications}</span>
+          <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div>
+              <InfoCircle size="32" className="m-auto" /><span>{errors.notifications}</span>
             </div>
           </div>
           , document.getElementById('Header'))
