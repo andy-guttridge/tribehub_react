@@ -79,6 +79,8 @@ Wave testing revealed contrast issues with buttons. The text colour for buttons 
 
 Contrast issues were also detected between the dots on the calendar indicating where there are events for a given day. This was more difficult to address, because the calendar cells can have a number of different colours depending on their current state. After some experimentation, the `mix-blend-mode` attribute with a value of `difference` was used on these elements to invert their colour against that of the background. This means the colour of these indicators might not fit as well with the colour scheme of the site, but it guarantees there will be no contrast issues.
 
+Three further contrast errors were found, but these were ignored as they apply to hidden elements which provide additional information for screen readers.
+
 Wave testing also highlighted that avatar images throughout the website had the same text for the alt attribute. This was addressed by passing a `displayName` prop through to the Avatar component, and using this to generate an appropriate alt text value for each user.
 
 The Wave validator also several form elements with no label on the profile update form and the event search form (caused by a missing or incorrect ids on input elements), and one element with a duplicate id on the contacts form (caused by a naming clash with another element on the add event form).
