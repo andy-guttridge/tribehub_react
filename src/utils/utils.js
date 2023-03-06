@@ -1,4 +1,6 @@
+import React from 'react';
 import jwtDecode from 'jwt-decode'
+
 import styles from '../styles/CalDots.module.css'
 
 // Data param is data returned from the API when user logs in.

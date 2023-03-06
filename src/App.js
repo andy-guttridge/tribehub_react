@@ -14,7 +14,7 @@ import Register from './pages/Register';
 import SinglePage from './pages/SinglePage';
 import { useSinglePage } from './contexts/SinglePageContext';
 import css from './styles/App.module.css'
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 function App() {
 
