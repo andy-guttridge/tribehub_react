@@ -55,6 +55,9 @@ module.exports = {
           ".CalWeekendText": {
             "color": "#f2efc2"
           },
+          ".CalTextBlack": {
+            "color": "#000000"
+          },
           primary: '#add5f7',
           secondary: '#e6e6e6',
           accent: '#d8ebf2',

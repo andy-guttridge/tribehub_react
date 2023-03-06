@@ -47,11 +47,17 @@
 /* Hover styles for active day on calendar when enabled */
 .TribehubCalendar :global(.react-calendar__tile--active:enabled:hover){
   @apply bg-primary;
+  @apply CalTextBlack;
 }
 
 /* Styles for weekend days */
 .TribehubCalendar :global(.react-calendar__month-view__days__day--weekend){
   @apply CalWeekendText;
+}
+
+/* Styles for weekend days */
+.TribehubCalendar :global(.react-calendar__tile--now){
+  @apply CalTextBlack;
 }
 
 /* Styles for inactive days */
