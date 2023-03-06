@@ -68,6 +68,8 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 
 ### ESLint JavaScript validator
 
+Issues corrected include: unnecessary semi-colons at the end of statements, unescaped apostrophies in html text, unused variable, missing React import statements
+
 ### Lighthouse testing
 
 Lighthouse testing revealed that button elements did not have id attributes which are required by assistive technologies. These were added to all buttons, with programatically generated unique values where required for components which are rendered multiple times.
