@@ -47,7 +47,7 @@ function Signin() {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
       }
-    };
+    }
   };
 
   // Redirect to tribe homepage if user is authenticated

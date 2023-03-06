@@ -43,7 +43,7 @@ function Register() {
       navigate('/sign-in');
     } catch (error) {
       setErrors(error.response?.data);
-    };
+    }
   };
 
   // Redirect to tribe homepage if user is authenticated
@@ -177,8 +177,8 @@ function Register() {
 
           {/* Display alert with any non-field errors */}
           {
-            errors.non_field_errors?.map((error) => (
-              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            errors.non_field_errors?.map((error, i) => (
+              <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`register-non-field-error${i}`}>
                 <div>
                   <InfoCircle size="32" /><span>{error}</span>
                 </div>

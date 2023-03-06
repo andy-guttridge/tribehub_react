@@ -1,8 +1,8 @@
-import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-import { House, PersonVcard, PersonGear } from 'react-bootstrap-icons'
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { House, PersonVcard, PersonGear } from 'react-bootstrap-icons';
 
-import { useCurrentUser } from '../contexts/CurrentUserContext'
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 function NavBar() {
 
@@ -43,6 +43,6 @@ function NavBar() {
       }
     </nav>
   );
-};
+}
 
 export default NavBar;

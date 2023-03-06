@@ -21,7 +21,7 @@ function Header() {
       setErrors({});
     } catch (error) {
       setErrors({ logout: 'There was an issue signing out of your account. You may be offline or a server error may have occurred.' })
-    };
+    }
   }
 
   return (
@@ -49,6 +49,6 @@ function Header() {
       }
     </header>
   )
-};
+}
 
 export default Header

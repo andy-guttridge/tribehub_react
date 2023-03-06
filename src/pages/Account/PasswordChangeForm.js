@@ -58,7 +58,7 @@ function PasswordChangeForm() {
         setHasLoaded(true);
         setRequestSucceeded(false);
       }
-    };
+    }
   };
 
   return (

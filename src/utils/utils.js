@@ -52,7 +52,7 @@ export const checkEventsForDate = (calData, events) => {
 }
 
 // Find out if there are any events for the day supplied by the calendar
-export const getEventsForDay = (calDate, events, e) => {
+export const getEventsForDay = (calDate, events) => {
   // Convert all dates to ISO strings without timezone data
   const calDateISOStr = calDate.toISOString().slice(0, -5);
 
