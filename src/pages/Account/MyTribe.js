@@ -113,7 +113,7 @@ function MyTribe() {
         ) : !isAddingNewMember && (
           <div className="alert alert-info justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <div>
-              <p className="m-2 font-bold">It`&apos`s looking a bit empty! Click the add button to add a member to your tribe.</p>
+              <p className="m-2 font-bold">{`It's looking a bit empty! Click the add button to add a member to your tribe.`}</p>
             </div>
           </div>
         )

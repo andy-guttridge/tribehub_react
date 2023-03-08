@@ -90,7 +90,7 @@ function MyAccount() {
 
       <section className="block m-4">
         <div className="md:w-2/3 text-left m-auto">
-          <p>This is a permanent action and can`&apos`t be undone.</p>
+          <p>{`This is a permanent action and can't be undone.`}</p>
           {currentUser?.is_admin && <p>Deleting your account will also delete all those of all your tribe members and the tribe itself.</p>}
         </div>
       </section>

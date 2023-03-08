@@ -40,7 +40,7 @@ function Landing() {
 
           {/*  Container for text content*/}
           <div className={`${css.Content}`}>
-              <p className="font-nunito mx-1 text-6xl max-[399px]:text-4xl m-auto">Your family`&apos`s calendar and contacts all in one place.</p>
+              <p className="font-nunito mx-1 text-6xl max-[399px]:text-4xl m-auto">{`Your family's calendar and contacts all in one place.`}</p>
           </div>
         </div>
       </div>
