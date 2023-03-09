@@ -8,15 +8,15 @@ function TribeMember({ tribeMember, handleDeleteButton }) {
   return (
     <>
       <div className="rounded-sm grid grid-cols-2 my-1 lg:my-0 lg:mb-1 bg-base-100">
-        <div className="flex col-start-1 justify-content-between">
+        <div className="flex col-start-1 col-span-1 justify-content-between">
 
           {/* Avatar for tribe member */}
           <Avatar imageUrl={tribeMember.profile_image} displayName={tribeMember.display_name}/>
-          <span className="basis-1 m-2">{tribeMember.display_name}</span>
+          <span className="basis-1 m-2 min-w-[50%] break-all text-left">{tribeMember.display_name}</span>
         </div>
 
         {/* Delete button for tribe member */}
-        <div className="grid col-start-2 justify-end">
+        <div className="grid col-start-2 col-span-1 justify-end">
           <button
             className="m-4 btn btn-ghost"
             onClick={() => handleDeleteButton(tribeMember.user_id)}
