@@ -9,9 +9,104 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 ## Table of contents
 
 ## User stories
-**Need to map user stories to project goals**
+Themes, epics, user stories and testing outcomes are documented in the `user_stories` worksheet of [this Google sheet](https://docs.google.com/spreadsheets/d/11wcDHeqr85VaHXdJjATod_WECRY03IRUlGgT_L_ikIw/edit#gid=0).
+
+### Themes
+Themes were developed using the project goals as a starting point. These included:
+
+- Account management - necessary to support the use of the app on an individual basis and to group users together into a 'tribe' to support goal 1.
+- Calendar/event scheduling - central to the requirement to enable the key functionality required by goal 1.
+- Family contacts - chosen as a feature with low implementation over-head to be included in an initial set of minimal functionality in support of goal 3.
+- Shopping lists - chosen as a 'nice to have' feature which could be implemented for version 1 of the project given sufficient time, but which is also a discrete area of functionality which could be added later as per goal 3.
+- Meal planning - also chosen as a 'nice to have' feature which could be added in a future version of the app, aligning with goal 3. This functionality would likely build on that of the shopping lists feature, and was therefore regarded as unlikely to be included in version 1.
+- User feedback and information - required to support goal 2.
+- Search and filter - required to support goal 2.
+
+### Epics
+Themes were then refined into the following epics:
+
+- Account management
+  - Account registration
+  - Account sign-in
+  - Account sign-out
+  - Account deletion
+  - User profile
+- Calendar/event scheduling
+  - Scheduling events
+  - Event responses
+  - Event deletion
+  - Editing events
+- Family contacts
+  - Adding family contacts
+  - Amending family contacts
+  - Deleting family contacts
+  - Viewing family contacts
+- Shopping lists
+  - Creating shopping lists
+  - Amending shopping lists
+  - Deleting shopping lists
+- Meal planning
+  - Creating a meal plan
+  - Editing a meal plan
+  - Deleting a meal plan
+- User feedback/information
+  - Notifications
+  - User feedback
+- Search and filter
+  - Searching calendar events
+  - Searching contact list
+  - Searching shopping lists
+  - Searching meal plans
+
+### User stories
+User stories required to implement each epic were created. These were categorised according to whether they were 'must have' features required to implement a Minimum Viable Product (MVP).
+Please see the [Google sheet](https://docs.google.com/spreadsheets/d/11wcDHeqr85VaHXdJjATod_WECRY03IRUlGgT_L_ikIw/edit#gid=0) for detail.
 
 ## Agile development methodology
+GitHub issues and projects were used to document and track an agile development approach.
+A GitHub issue was created for each user story, with a label to indicate if they were required for the MVP. A GitHub milestone was created to represent the product backlog. All user stories were initially added to the product backlog.
+
+Development work was scheduled using a series of iterations each with a timebox of three working days, representing a total 16 story points (although the duration of each iteration in calendar days was variable due to fitting the three working days around work and other commitments).
+
+A GitHub project board was created for each iteration, and user stories moved from the product backlog into the relevant iteration as each cycle of work began. User stories were labelled as 'must have', 'could have' or 'should have' for goals for that specific iteration, and assigned story point values.  Story points for 'must have' user stories never exceeded 9 (60%). Some iterations also contained 'tasks' for activity not represented as user stories, such as setup/configuration and design/styling.
+
+A project kanban board was used to track progress, with user stories moved between 'Todo', 'In Progress' and 'Done' columns as appropriate. For example, the iteration 4 project board was captured at the start, in the middle and at the end:
+
+<p align="center">
+    <img src="readme_assets/iteration3_start_kanban.png" width=600>
+    <img src="readme_assets/iteration3_mid_kanban.png" width=600>
+    <img src="readme_assets/iteration3_end_kanban.png" width=600>
+</p>
+
+The project boards in their final form can be accessed at [TribeHub GitHub Project Boards](https://github.com/andy-guttridge/tribehub_react/projects?query=is%3Aopen).
+
+Additionally, Notion was used to note and track other miscellanious tasks as they arose during development. The Notion tasks list can be accessed [here](https://www.notion.so/968f16ba28c94562b34767b616e31cd5?v=58c1cd844948493aa55f70f9458130b2&p=f16bfd5c78cd4bc4b4370cf6dd944a09&pm=s).
+
+## Planning
+
+### Mockups
+
+Wireframes were produced based on those user stories that had been identified as required for the MVP.
+These were based on a mobile view of the site, as TribeHub is very much a mobile first web app.
+
+<p align="center">
+    <img src="readme_assets/pp5_wireframes.png" width=600>
+</p>
+<p align="center">
+    <a href="readme_assets/pp5_wireframes.pdf" target="_rel">Link to fullsize wireframes</a>
+</p>
+The wireframes were critical to the development of the site and were invaluable in terms of mapping and visualising the 'flow' through the site and the UI, however the final product varies from the wireframes in a number of respects, largely for technical and/or usablility reasons:
+
+- There is no modal dialog to confirm the user wishes to sign-out. This was omitted as signing out is a non-destructive action and sign-in requirements are minimal, so an additional modal was deemed unnecessary. 
+- There is no modal dialog to confirm the user wishes to decline an event. This was not included because the default state of an event is that users have not accepted the invitation. They can either choose not to accept the invitation (no action required), or accept it, and the UI includes a 'going/not going' button directly from notifications and/or calendar events, making it quicker and easier for the user to provide an initial response or change their minds from the notification or event than from a modal. This may be revisited in future if a more fully featured 'accept/decline' system is implemented (see future improvements below).
+- Forms to add and edit events, contacts and tribe member details are presented in line with the other webpage elements, rather than in modals. Once implementation started, it quickly became apparent that enclosing such forms in modals could negatively impact usability on cramped mobile screens.
+- Rather than have a separate button to delete a tribe, deletion of a tribe is tied to the deletion of the tribe administrator's account - i.e., if the tribe administrator wants to close all accounts associated with the tribe, they simply close their own account and all other accounts associated with the tribe are also closed. This approach was chosen to simplify the user experience. The tribe administrator can still close accounts of individual tribe members.
+- A `select` form elements is used to invite tribe members when creating a new calendar event, rather than the avatar based interface depicted on the wireframes. This approach was chosen to speed development and implement the 'add new event' functionality within the required timeframe. This could be revisited/enhanced in future.
+- The wireframes depict calendar events for a given day rendered in a 'popover' style element attached to the calendar cell. In the final implementation, events are rendered in a list under the calendar. The primary reason for this was again in order to deliver the MVP functionality within the required timeframe, however implementing a scrollable list underneath the calendar might also provide a better experience for mobile by virtue of being less cramped (for example, this approach is used within the iPhone Calendar app). This could be revisited in future.
+- The landing page was simplified to include a hero image and a one line description of the site, in order not to provide users with a cluttered view of the site.
+- The search forms for events and contacts are initially hidden and can be opened using a search button, unlike on the wireframes. This is because the final events search form is considerably larger than suggested on the wireframe, and not keeping it hidden in the initial page load state would significantly clutter the Tribe Home page. While the contacts search form is much smaller, the same approach was adopted for UI consistency.
+- 'Accordians' were not used for the 'Settings' page, and Settings was renamed to 'My Account'. It quickly became apparent that using accordians here would lead to a very sparse screen, even on mobile, and would therefore introduce an additional layer of UI interaction with little or no benefit. The 'Settings' page title was changed after comments from family testers who felt that 'My Account' would be a better fit for the content.
+- A coloured dot with high contrast against the background colour is used on calendar cells to indicate whether there are any calendar events on a given day, rather than colour coding. This is because the calendar already uses several colours to indicate the current day, whether a cell is selected etc, and introducing another colour to convey such key data to the user could cause accessability challenges for colour blind users.
 
 ## Design
 
@@ -32,10 +127,6 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 #### Future improvements
 
 #### Future features
-
-## Planning
-
-### Mockups
 
 ## Frameworks, libraries and dependencies
 **Need to document rationale for choices**
