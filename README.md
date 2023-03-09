@@ -108,7 +108,37 @@ The wireframes were critical to the development of the site and were invaluable 
 - 'Accordians' were not used for the 'Settings' page, and Settings was renamed to 'My Account'. It quickly became apparent that using accordians here would lead to a very sparse screen, even on mobile, and would therefore introduce an additional layer of UI interaction with little or no benefit. The 'Settings' page title was changed after comments from family testers who felt that 'My Account' would be a better fit for the content.
 - A coloured dot with high contrast against the background colour is used on calendar cells to indicate whether there are any calendar events on a given day, rather than colour coding. This is because the calendar already uses several colours to indicate the current day, whether a cell is selected etc, and introducing another colour to convey such key data to the user could cause accessability challenges for colour blind users.
 
+### Data models
+Data models were planned alongside the wireframes. These are documented in the read-me for the [TribeHub Django Rest Framework API](https://github.com/andy-guttridge/tribehub_drf).
+
 ## Design
+
+### Colours
+The primary design aim was to create a simple and functional appearance. One of the reasons the DaisyUI component library was chosen was because it includes a simple colour theming feature, allowing the developer to define any number of colour themes composed of a small number of colours with semantic class names. This approach was ideally suited to the desire for a clean and simple site.
+
+A white background was chosen for the site's main theme, to maximise contrast and provide a clean, straighforward and uncluttered look.
+Colour palettes from [Adobe Colour Wheel](https://color.adobe.com/create) were explored. A bold pink from the ['purples' theme by Anisha Thomas](https://color.adobe.com/My%20Color%20Theme%20-%20purples-color-theme-10167596) was chosen for its vibrancy - this is used as the site's 'primary' colour to indicate clickable UI items. The 'secondary' and 'accent' colours were then chosen to complement it, using the algorithms in Adobe Colour Wheel, and then darkening the colours to increase contrast against the background.
+
+A secondary colour scheme was chosen for the site's dark mode. The aim for dark mode was to provide an understated, muted and undistracting look, suited to low lighting conditions and provided as an alternative for users who prefer a less colourful presentation.
+The primary colour for dark mode is a light sky blue, chosen to stand out against the dark background while also being a 'restful' colour. The secondary and accent colours are two different shades of grey, chosen to be unobtrusive.
+
+The main colour palettes used for light and dark modes are:
+
+| Colour |Light mode value   |Dark mode value   |   |   |
+|---|---|---|---|---|
+|  Primary - used for logo and key UI elements |  #e5006a |  #add5f7 |   |   |
+| Secondary - used for logo, notifications badge and calendar highlighting  | #9c13bf  |  #e6e6e6 |   |   |
+|  Accent - used for section/page headings |  #215ba6 | #d8ebf2  |   |   |
+|  Neutral - used for sub-headings |   #4a4a4a |  #ffffff |   |   |
+|  Base-100 - main background colour |  #fbfbfb |  #1c1c1c |   |   |
+|  Base-200 - darker background colour |  #f8f8f8 | #141414  |   |   |
+|  Base-300 - second darker background colour |  #d6d6d6 | #141414  |   |   |
+
+Additionally, while colours for the primary and secondary colours (when used as backgrounds) are automatically defined by DaisyUI, these were overidden for the light theme to resolve some contrast issues highlighted by the Wave accessability validator.
+
+Likewise, two additional CSS classes (`.CalWeekendText` and `CalTextBlack`) were defined especially for the dark mode theme, to resolve some contrast issues with the default calendar colour for weekend days against the dark background and with the light coloured text used for some highlighted cells against the already light primary, secondary and accent colours in dark mode.
+
+### Fonts
 
 ## Features
 **Need to document how features have contributed to UX**
