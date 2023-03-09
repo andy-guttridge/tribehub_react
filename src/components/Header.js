@@ -26,7 +26,11 @@ function Header() {
 
   return (
     <header id="Header" className="bg-base-100 mx-auto my-0 lg:mb-2 lg:mx-2 lg:rounded-lg lg:border lg:border-base-300">
-      <h1 className="md:text-6xl"><span className="text-primary">Tribe</span><span className="text-secondary">Hub</span></h1>
+      <NavLink to="/tribe-home">
+        <h1 className="md:text-6xl">
+          <span className="text-primary">Tribe</span><span className="text-secondary">Hub</span>
+        </h1>
+      </ NavLink>
       {
         // Show welcome and sign-out button if user is authenticated
         currentUser && (
