@@ -68,9 +68,11 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
 
         {/* The value from the API for each form input is or'd with an empty string, as the API can return null values which cause errors in React */}
         {/* Category field */}
+        <p className="text-xs text-left">Use the category field to describe the nature or purpose of the contact</p>
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="contact-category">
           <span>Category:</span>
           <input
+            required
             type="text"
             className="input input-bordered w-full"
             id="contact-category"
