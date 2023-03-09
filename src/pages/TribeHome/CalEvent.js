@@ -267,7 +267,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
         <input type="checkbox" id={calEventId} />
         <div className="collapse-title text-right">Detail</div>
         <div className="collapse-content">
-          <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center break-all">
             <div>
 
               {/* Retrieve and display the event w */}
