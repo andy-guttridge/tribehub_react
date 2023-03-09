@@ -170,7 +170,7 @@ function Contacts() {
             {/* Display message if there are no tribe contacts yet */}
 
             {
-              !contacts?.results?.length && !isAddingContact &&
+              !contacts?.results?.length && !isAddingContact && currentUser.is_admin &&
               <div className="bg-base-100 p-2">
                 <div className="alert alert-info justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
                   <p className="text-left md:text-center font-bold">{`Press the + button to start adding your tribe's contacts`}</p>
