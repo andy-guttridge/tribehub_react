@@ -8,11 +8,15 @@ import Spinner from '../../components/Spinner';
 import { eventCategories } from '../../utils/constants';
 import CalEvent from './CalEvent';
 import css from '../../styles/EventSearch.module.css';
+import { useSinglePage } from '../../contexts/SinglePageContext';
 
 function EventSearch({ handleCancelButton }) {
 
   // State variables for user's tribe members
   const [tribe, setTribe] = useState({ results: [] });
+
+  // Find out if running in single page mode
+  const singlePage = useSinglePage();
 
   // State variables for errors
   const [errors, setErrors] = useState({});
@@ -177,7 +181,7 @@ function EventSearch({ handleCancelButton }) {
         errors.tribe &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-          <InfoCircle size="32" /><span>{errors.tribe}</span>
+            <InfoCircle size="32" /><span>{errors.tribe}</span>
           </div>
         </div>
       }
@@ -187,7 +191,7 @@ function EventSearch({ handleCancelButton }) {
         errors.events &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-          <InfoCircle size="32" /><span>{errors.events}</span>
+            <InfoCircle size="32" /><span>{errors.events}</span>
           </div>
         </div>
       }
@@ -196,111 +200,111 @@ function EventSearch({ handleCancelButton }) {
         hasLoaded ? (
           <form className="w-4/5 m-auto md:w-full">
 
-          {/* Text search field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="text_search">
-            <span>Text search:</span>
-            <input
-              type="text"
-              className="input input-bordered w-full"
-              id="text_search"
-              name="text_search"
-              value={text_search}
-              onChange={handleChange}
-            />
-          </label>
-  
-          {/* Category search field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category_search">
-            <span>Category:</span>
-  
-            {/* How to iterate over values of an object in React is from */}
-            {/* https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs */}
-            <select
-              className="input input-bordered w-full"
-              id="category_search"
-              name="category_search"
-              value={category_search}
-              onChange={handleChange}
-            >
-              <option value="" key="empty-category">--</option>
-              {
-                Object.keys(eventCategories).map((keyName) => {
-                  return <option value={keyName} key={`category-${keyName}`}>{eventCategories[keyName].text}</option>
-                })
-              }
-            </select>
-          </label>
-  
-          {/* Tribe members search field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe_to">
-            <span>Tribe members invited:</span>
-            <select
-              className="input input-bordered w-full"
-              id="tribe_to"
-              name="tribe_to"
-              value={tribe_to}
-              onChange={handleMultipleSelectChange}
-              multiple={true}
-            >
-              {
-                tribe?.results[0]?.users?.map((tribeMember) => {
-                  return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
-                })
-              }
-            </select>
-          </label>
-  
-          {/* Tribe members from field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe_from">
-            <span>Tribe member sent from:</span>
-            <select
-              className="input input-bordered w-full"
-              id="tribe_from"
-              name="tribe_from"
-              value={tribe_from}
-              onChange={handleMultipleSelectChange}
-            >
-              <option value={""} key={"blank-from-option"}>--</option>
-              {
-                tribe?.results[0]?.users?.map((tribeMember) => {
-                  return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
-                })
-              }
-            </select>
-          </label>
-  
-          {/* From date field */}
-          <p className='text-sm text-left md:text-center'>{`You'll get events for the next two months if you don't enter dates`}</p>
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="from_date">
-            <span>From date:</span>
-            <input
-              type="date"
-              className="input input-bordered w-full"
-              id="from_date"
-              name="from_date"
-              value={from_date}
-              onChange={handleChange}
-              ref={fromInput}
-            />
-          </label>
-  
-          {/* To date field */}
-          <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to_date">
-            <span>To date:</span>
-            <input
-              type="date"
-              className="input input-bordered w-full"
-              id="to_date"
-              name="to_date"
-              value={to_date}
-              onChange={handleChange}
-              ref={toInput}
-            />
-          </label>
-  
-          {/* Cancel search button */}
-          <button onClick={handleCancelButton} className="btn btn-outline" type="button" id="event-search-cancel-btn">Cancel search</button>
-        </form>
+            {/* Text search field */}
+            <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="text_search">
+              <span>Text search:</span>
+              <input
+                type="text"
+                className="input input-bordered w-full"
+                id="text_search"
+                name="text_search"
+                value={text_search}
+                onChange={handleChange}
+              />
+            </label>
+
+            {/* Category search field */}
+            <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="category_search">
+              <span>Category:</span>
+
+              {/* How to iterate over values of an object in React is from */}
+              {/* https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs */}
+              <select
+                className="input input-bordered w-full"
+                id="category_search"
+                name="category_search"
+                value={category_search}
+                onChange={handleChange}
+              >
+                <option value="" key="empty-category">--</option>
+                {
+                  Object.keys(eventCategories).map((keyName) => {
+                    return <option value={keyName} key={`category-${keyName}`}>{eventCategories[keyName].text}</option>
+                  })
+                }
+              </select>
+            </label>
+
+            {/* Tribe members search field */}
+            <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe_to">
+              <span>Tribe members invited:</span>
+              <select
+                className="input input-bordered w-full"
+                id="tribe_to"
+                name="tribe_to"
+                value={tribe_to}
+                onChange={handleMultipleSelectChange}
+                multiple={true}
+              >
+                {
+                  tribe?.results[0]?.users?.map((tribeMember) => {
+                    return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
+                  })
+                }
+              </select>
+            </label>
+
+            {/* Tribe members from field */}
+            <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe_from">
+              <span>Tribe member sent from:</span>
+              <select
+                className="input input-bordered w-full"
+                id="tribe_from"
+                name="tribe_from"
+                value={tribe_from}
+                onChange={handleMultipleSelectChange}
+              >
+                <option value={""} key={"blank-from-option"}>--</option>
+                {
+                  tribe?.results[0]?.users?.map((tribeMember) => {
+                    return <option value={tribeMember.user_id} key={`tribe-${tribeMember.user_id}`}>{tribeMember.display_name}</option>
+                  })
+                }
+              </select>
+            </label>
+
+            {/* From date field */}
+            <p className='text-sm text-left md:text-center'>{`You'll get events for the next two months if you don't enter dates`}</p>
+            <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="from_date">
+              <span>From date:</span>
+              <input
+                type="date"
+                className="input input-bordered w-full"
+                id="from_date"
+                name="from_date"
+                value={from_date}
+                onChange={handleChange}
+                ref={fromInput}
+              />
+            </label>
+
+            {/* To date field */}
+            <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="to_date">
+              <span>To date:</span>
+              <input
+                type="date"
+                className="input input-bordered w-full"
+                id="to_date"
+                name="to_date"
+                value={to_date}
+                onChange={handleChange}
+                ref={toInput}
+              />
+            </label>
+
+            {/* Cancel search button */}
+            <button onClick={handleCancelButton} className="btn btn-outline" type="button" id="event-search-cancel-btn">Cancel search</button>
+          </form>
         ) : (
           <Spinner />
         )
@@ -312,30 +316,30 @@ function EventSearch({ handleCancelButton }) {
         errors.delete &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-          <InfoCircle size="32" /><span>{errors.delete}</span>
+            <InfoCircle size="32" /><span>{errors.delete}</span>
           </div>
         </div>
       }
 
       {/* Display events using search results */}
       {
-          <div className="bg-base-200">
-            <div className="md:max-h-96 md:overflow-scroll md:border md:border-base-200 w-full">
-              {
-                events?.results?.map((event, i) => {
-                  // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
-                  return <CalEvent
-                    event={event}
-                    key={`event-${event.id}-${i}`}
-                    calEventId={`event-${event.id}-${i}`}
-                    didSaveEvent={didSaveEvent}
-                    setDidSaveEvent={setDidSaveEvent}
-                    handleDeleteButton={handleDeleteButton}
-                  />
-                })
-              }
-            </div>
+        <div className="bg-base-200">
+          <div className="md:max-h-96 md:overflow-scroll md:border md:border-base-200 w-full">
+            {
+              events?.results?.map((event, i) => {
+                // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
+                return <CalEvent
+                  event={event}
+                  key={`event-${event.id}-${i}`}
+                  calEventId={`event-${event.id}-${i}`}
+                  didSaveEvent={didSaveEvent}
+                  setDidSaveEvent={setDidSaveEvent}
+                  handleDeleteButton={handleDeleteButton}
+                />
+              })
+            }
           </div>
+        </div>
       }
 
 
@@ -350,6 +354,11 @@ function EventSearch({ handleCancelButton }) {
             cancelHandler={() => setIsDeletingEvent(false)}
             confirmHandler={doDelete}
           />, document.body)
+      }
+
+      {
+        // Empty div with margin to provide clearance above bottom navbar if not in single page mode
+        !singlePage && <div className="mb-4 bg-base-100"><br /></div>
       }
 
     </section>
