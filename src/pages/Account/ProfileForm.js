@@ -79,6 +79,10 @@ function ProfileForm() {
         setHasLoaded(true);
         setRequestSucceeded(false);
       }
+      if (error.response?.status === 500) {
+        setErrors({server_error : 'The server experienced an internal error'
+        })
+      }
     }
   }
 
@@ -161,6 +165,21 @@ function ProfileForm() {
                 </div>
               </div>
             ))
+          }
+
+           {/* Display alert if there was a 500 error */}
+           {
+            errors.server_error &&
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <p><InfoCircle size="32" /></p>
+                <div>
+                <p>The server experienced an internal error. A common cause of this is uploading a file that is not an image.</p>
+                <br />
+                <p>If you attempted to upload a profile image, please check your file format and try again.</p>
+                </div>
+              </div>
+            </div>
           }
 
           {/* Display alert with success message if the request succeeded */}
