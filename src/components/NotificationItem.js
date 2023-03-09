@@ -35,8 +35,8 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
       setNotificationsChanged(!notificationsChanged);
       setErrors({});
     } catch (error) {
-      if(error.response?.status !== 401) {
-        setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
+      if (error.response?.status !== 401) {
+        setErrors({ event_response: 'There was an error processing your response to this event. The event may have been deleted, you may be offline, or there may have been a server error.' })
       }
     }
   }
@@ -121,7 +121,10 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
         errors.event_response && ReactDOM.createPortal(
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <div>
-              <InfoCircle size="32" className="m-auto" /><span>{errors.event_response}</span>
+              <InfoCircle size="32" className="m-auto" />
+            </div>
+            <div>
+              <p>{errors.event_response}</p>
             </div>
           </div>
           , document.getElementById('Header'))
