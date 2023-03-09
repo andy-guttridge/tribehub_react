@@ -156,7 +156,7 @@ function TribeHome() {
       }
     >
       <h2>Home</h2>
-      <h3>{currentUser?.tribe_name}</h3>
+      <h3 className="break-all">{currentUser?.tribe_name}</h3>
 
       {/* Display generic alert if problems loading calendar data */}
       {
