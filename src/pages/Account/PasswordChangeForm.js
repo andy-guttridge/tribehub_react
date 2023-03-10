@@ -66,6 +66,7 @@ function PasswordChangeForm() {
       {hasLoaded ? (
 
         // Password change form
+        // All validation is handled by the API for this form
         <form onSubmit={handleSubmit}>
 
           {/* New password 1 */}
