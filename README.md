@@ -147,123 +147,337 @@ Nunito was chosen for `<h3>` and `<h4>` elements (used as sub-headings within ma
 Lato was chosen as a font for all non-heading text elements, based on its popularity as a highly legible font for web text content (e.g. https://fontandswatch.com.au/fonts/lato-font/#:~:text=Lato%20Font%20comes%20in%2018,1%20billion%20audiences%20per%20day.)
 
 ## Features
+### Landing page with hero image
+The landing page features an image and brief description of the function of the site. 
 
-### Pages
-**Need to relate pages and components to the relevant user stories** (1.4)
-#### Landing page with hero image
-<p align="left">
+<p align="center">
     <img src="readme_assets/hero.png" width=250>
 </p>
 
-#### Registration form
-<p align="left">
+### Registration form
+*User stories 1 and 2*
+
+The registration form enables a user to open a new account with 'tribe administrator' status. As well as entering a user name and password for the account, the user is also asked to name their tribe. This page includes an alert which explains to a new user that they will be the tribe admin, and will be able to add members to their tribe when they've signed in.
+
+<p align="center">
     <img src="readme_assets/registration.png" width=250>
 </p>
 
-#### Sign-in form
-<p align="left">
+### Sign-in form
+*User stories 4 and 53*
+
+The sign-in form enables a user to login using their user name and password.
+<p align="center">
     <img src="readme_assets/sign-in.png" width=250>
 </p>
 
-#### Header with welcome message, notifications menu and sign-out button
-<p align="left">
+### Header with welcome message, notifications menu and sign-out button
+*User stories 6, 7, 27, 50 and 51*
+
+The site header contains the logo/name of the site, a welcome message to provide clear feedback to the user that they are signed in and a sign-out button.
+<p align="center">
     <img src="readme_assets/header.png" width=250>
 </p>
 
-#### Bottom navbar
-<p align="left">
+### Bottom navbar
+The bottom navbar supports the mobile first nature of the site by providing easy and convenient navigation without having to reach for the top of the screen for users of small touchscreen devices. The three icons correspond to the 'Tribe Home', 'Contacts' and 'Account' pages.
+
+<p align="center">
     <img src="readme_assets/bottom_nav.png" width=250>
 </p>
 
-#### Drop-down notifications menu
-<p align="left">
+### Drop-down notifications menu
+*User stories 18, 19, 20, 27, 50 and 51*
+
+The notification icon includes a badge to inform the user of the current number of notifications (or no badge if they have none).
+Selecting the icon reveals a list of current notifications. The user can delete notifications and respond to event invitations directly from the list. Notifications are currently generated when a user is invited to a calendar event or a change is made to an existing event to which they are invited. Other notification types could be added in future.
+
+<p align="center">
     <img src="readme_assets/notifications.png" width=250>
 </p>
 
-#### TribeHome page with family calendar
-<p align="left">
+### Home page with family calendar
+*User stories 14, 15, 16, 17, 18, 19, 20, 22, 23, 25, 54, 55, 56 and 57*
+
+The Home page features the family calendar - this is the virtual equivalent of a kitchen wall planner. Days with meetings/appointmens ('calendar events') are marked with a line underneath the date (or a dot on larger displays). The user can select a given day to see a list of events for that day underneath the calendar (or to the side on large displays).
+The user can view the next or previous month using the inner chevron buttons to the left and right of the month and year name. The outer chevron buttons allow the user to skip forward or backwards a whole 12 months.
+
+<p align="center">
     <img src="readme_assets/tribehome.png" width=250>
 </p>
 
-#### Add event and search buttons
+### Add event and search buttons
+*User stories 14, 54, 55, 56 and 57*
 
-#### Calendar events detail displayed below calendar
-<p align="left">
+The add event button opens a form for the user to add a new calendar event, and the search button opens a form to search/filter events.
+These are visible underneath the calendar in the above screnshot.
+
+### Calendar events detail displayed below calendar
+*User stories 18, 19, 20, 22, 23 and 25*
+
+When the user selects a day with events in the calendar, or performs a search with valid results, all relevant events are displayed in a list below the calendar (or to one side for large screens).
+
+The events include an icon to represent the category of the event (like the stickers on a wall planner), the 'subject'/title of the event, avatars of the originating user and those who have been invited, the start and end dates and a further details 'collapsible' element to reveal who originated the event, who is invited to it and who has accepted the invitation. 
+The avatars of users who have not accepted the invitation a 'greyed out', while those who have accepted are coloured. If more than four users have been invited to an event, a circular avatar indicating the number of users over four (e.g. '+2' if there are six invited in total) is displayed.
+
+If the current user is invited to an event, 'not going/going' buttons are shown to enable them to respond to the invitation.
+
+<p align="center">
     <img src="readme_assets/events.png" width=250>
     <img src="readme_assets/events2.png" width=250>
 </p>
 
-#### Edit event and delete event buttons
+### Edit event and delete event buttons
+*User stories 22, 23 and 25*
 
-#### Add event form
-<p align="left">
+Each calendar event can include an edit and delete button (visible in the screenshot above). These are only available for the user who originated the event, and the tribe admin (who has permission to edit and delete all of the family's events). Selecting the edit button opens the edit event form, and the delete button opens a modal dialog asking the user to confirm whether they wish to delete the event.
+
+### Add event form
+*User stories 14, 15, 16 and 17*
+
+Selecting the add event button opens a form enabling the user to add a new calendar event. The form includes the following fields:
+
+- To - a list of the other members of the user's tribe who can be invited to the event.
+- Date and time - to select the start date and time of the event.
+- Duration - to select the duration of the event. This is a dropdown list pre-populated with choices of 30 minutes, 1 hour, 90 minutes, 2 hours, 3 hours, 4 hours, 5 hours and 6 hours.
+- Repeat - to allow the user to specify daily, weekly, two weekly, monthly or yearly recurrences.
+- Subject - the subject or title of the event.
+- Category - allows the user to select a category for the event from choices of Celebration, Club, Education, Medical, Music, Outing, Other, Pets, Shopping, Sport, Vacation, Work and None. The category determines the icon shown on the event.
+
+The form also includes cancel and submit buttons.
+
+<p align="center">
     <img src="readme_assets/add_event.png" width=250>
 </p>
 
-#### Edit event form
-<p align="left">
+### Edit event form
+*User story 23*
+
+The edit event form is identical to the add event form, but is pre-populated with the data for the relevant event, enabling the originator of the event or the tribe admin to edit the details and save to the database.
+
+<p align="center">
     <img src="readme_assets/edit_event.png" width=250>
 </p>
 
-#### Family contacts page
-<p align="left">
+### Family contacts page
+*User stories 30, 31, 32, 33 and 58*
+
+The family contacts page displays a list of contacts for the family. These can be viewed by all members of the tribe, and only the tribe admin can add, edit or delete contacts.
+
+<p align="center">
     <img src="readme_assets/contacts.png" width=250>
 </p>
 
-#### Add contacts and search contacts buttons
+### Add contacts and search contacts buttons
+*User stories 30 and 58*
 
-#### Add contacts form
-<p align="left">
+These two buttons are visible in the screenshot above. The add contact button is only visible to the tribe admin, and opens a form to add a new contact.
+All members of the tribe can access the search contacts button, which opens a simple form to perform a text search on the contacts list.
+
+### Add contacts form
+*User story 30*
+
+The add contact form enables the tribe admin to add a new contact to the family's list.
+It includes the following fields:
+
+- Category - this describes the nature or purpose of the contact, and is used as the heading for each contact in the contacts list. This is the only compulsory field on the form.
+- Company - allows the tribe admin to record a company name, if relevant.
+- Title - allows the tribe admin to record the title of a named contact, if relevant.
+- First name - allows the tribe admin to record the first name of a named contact, if relevant.
+- Last name - allows the tribe admin to record the last name of a name contact, if relevant.
+- Telephone number - allows the tribe admin to record the phone number of a contact, if relevant.
+- Email - allows the tribe admin to record the email address of a contact, if relevant.
+
+The form also includes cancel and submit buttons.
+
+<p align="center">
     <img src="readme_assets/add_contacts.png" width=250>
 </p>
 
-#### Search contacts form
-<p align="left">
+### Search contacts form
+*User story 58*
+
+The search contacts form enables all members of the tribe to perform a simple text search of the contact list. All fields are matched against the search term by the API, and any results are shown underneath the form.
+
+<p align="center">
     <img src="readme_assets/search_contacts.png" width=250>
 </p>
 
-#### Edit contact and delete contact buttons
+### Edit contact and delete contact buttons
+*User stories 31 and 32*
 
-#### Edit contact form
-<p align="left">
+Each contact can contain edit and delete buttons (visible in the screenshot above). These are only visible to the tribe admin.
+The edit button opens the edit contact form, and the delete button opens a modal dialog asking the user to cancel or confirm the deletion.
+
+### Edit contact form
+*User story 31*
+
+The edit contact form is identical to the add contact form, but is pre-populated with the data for the relevant contact and enables the tribe admin to make changes and save them to the database.
+
+<p align="center">
     <img src="readme_assets/edit_contact.png" width=250>
 </p>
 
-#### Account page with My Tribe, My Profile, Change Password and Delete Account
-<p align="left">
-    <img src="readme_assets/account1.png" width=250>
-    <img src="readme_assets/account2.png" width=250>
-    <img src="readme_assets/account3.png" width=250>
+### Account page with My Tribe, My Profile, Change Password and Delete Account
+*User stories 2, 8, 9 and 12*
+
+The account page includes several sub-sections. For normal users these are My Profile, Change Password and Delete Account.
+In addition, the tribe admin has the My Tribe section.
+
+### My Tribe
+*User stories 2 and 8*
+
+This section includes a list of tribe members with their avatars, display name and a delete button, enabling the tribe admin to remove any members from the tribe and close their accounts. The delete button opens a modal dialog asking the user to cancel or confirm the action.
+
+<p align="center">
+    <img src="readme_assets/my_tribe.png" width=250>
 </p>
 
-#### Modal dialogs to confirm or cancel destructive actions
-<p align="left">
+The My Tribe section includes an add tribe member button, which opens a form enabling the tribe admin to add new tribe members.
+This requires entering a username and password (the new tribe member can change their own password later).
+
+<p align="center">
+    <img src="readme_assets/add_tribe_member.png" width=250>
+</p>
+
+### My Profile
+*User story 12*
+
+This section enables the user to preview and upload a profile image, and change their display name. The display name is is used to represent the user throughout the app (e.g. on calendar invitations), and when a new account is created this is set to the username, but can be freely changed.
+
+<p align="center">
+    <img src="readme_assets/my_profile.png" width=250>
+</p>
+
+### Change password
+This enables the user to change their password. They are required to enter the new password twice to ensure a match, along with their old password - these fields validated by the REST API to ensure the two new password fields match and that the old password is correct. An error alert is displayed if the form values do not pass validation.
+
+<p align="center">
+    <img src="readme_assets/change_password.png" width=250>
+</p>
+
+### Delete account
+*User story 9*
+
+This section enables the user to delete their account. Selecting the button opens a modal dialog asking the user to cancel or confirm.
+If the user confirms, their account is made inactive in the database, their profile deleted, and any events they have created are also deleted.
+
+If the user deleting the account is the tribe admin, all user accounts associated with the tribe are made inactive, all their profiles deleted and all other data associated with the tribe is deleted. This action effectively 'shuts down' the whole tribe. Tribe admin users are presented with a specific warning of this above the delete button and in the modal.
+
+<p align="center">
+    <img src="readme_assets/delete_account.png" width=250>
+</p>
+
+### Modal dialogs to confirm or cancel destructive actions
+All user actions that result in a permanent deletion of data trigger a modal dialog offering the opportunity to cancel or confirm.
+
+<p align="center">
     <img src="readme_assets/delete_event_modal.png" width=250>
     <img src="readme_assets/delete_contact_modal.png" width=250>
     <img src="readme_assets/delete_tribe_member_modal.png" width=250>
     <img src="readme_assets/delete_account_modal.png" width=250>
 </p>
 
-#### 'Single page mode' for medium and large screen sizes
-<p align="left">
+### 'Single page mode' for medium and large screen sizes
+Early in development, it became apparent that while the content and design of the web app was very well suited to mobile devices, each of the separate pages would appear very sparse on larger displayes (e.g. tablet and desktop).
+It was then decided to display the Tribe Home, Account and Profile pages as sections on a single page for screens of 768px width and above. The bottom navbar is not present when the app is in 'single page mode'. This was implemented using a custom `useSinglePage` hook, which any component within the app can access to determine whether the app is currently in single page mode and render itself appropriately.
+
+For both tablets (768px breakpoint) and large devices (1024px breakpoint) calendar events are embedded in a scrolling div in order to avoid long lists of events above the Contacts and Account sections. This appears underneath the calendar for tablets, and to the right of the calendar for large devices.
+
+TribeHub is very much a mobile first web app, and the experience for tablet and desktop users could be improved further (see the section on future features below).
+
+<p align="center">
     <img src="readme_assets/singlepage1.png" width=500>
     <img src="readme_assets/singlepage2.png" width=500>
 </p>
 
-#### Darkmode
-<p align="left">
+### Prompts for new users
+The Contacts and Account pages include prompts for tribe admins who have just opened an account to aid them with setting their tribe up.
+
+<p align="center">
+    <img src="readme_assets/prompt1.png" width=250>
+    <img src="readme_assets/prompt2.png" width=250>
+</p>
+
+### Success messages
+The web app includes a series of success alerts to inform the user when a request resulting in a change create, update or delete action in the database has been successful.
+The only such action for which there is no explicit success message is accepting/declining invitations to events, as it was felt this would be intrusive and detrimental to the user experience. The 'not going/going' buttons provide some visual feedback themselves, and the user will see an error message if an attempt to respond to an event invitation fails.
+
+<p align="center">
+    <img src="readme_assets/success1.png" width=250>
+    <img src="readme_assets/success2.png" width=250>
+    <img src="readme_assets/success3.png" width=250>
+    <img src="readme_assets/success4.png" width=250>
+    <img src="readme_assets/success5.png" width=250>
+    <img src="readme_assets/success5a.png" width=250>
+    <img src="readme_assets/success6.png" width=250>
+    <img src="readme_assets/success7.png" width=250>
+    <img src="readme_assets/success8.png" width=250>
+</p>
+
+### Error messages
+TribeHub includes error alerts which are presented in the event a create, update or delete action fails (including data validation errors received from the REST API) and if there are any issues fetching data. A sample of error messages is shown below (these do not include every single permutation).
+
+<p align="center">
+    <img src="readme_assets/error1.png" width=250>
+    <img src="readme_assets/error2.png" width=250>
+    <img src="readme_assets/error3.png" width=250>
+    <img src="readme_assets/error4.png" width=250>
+</p>
+
+### Darkmode
+The web app features a darkmode which is activated depending on the user's browser or system settings.
+
+<p align="center">
     <img src="readme_assets/darkmode1.png" width=250>
     <img src="readme_assets/darkmode2.png" width=250>
     <img src="readme_assets/darkmode3.png" width=250>
 </p>
 
+### Re-use of components
+A number of reusable React components were created with the intention of reducing code duplication.
+
+#### `Avatar.js`
+Utilised to display user avatars in the `CalEvent.js` (displays calendar event details), `ProfileForm.js` (allows the user to preview and upload a new profile image) and `TribeMember.js` (used to display each tribe member in the My Tribe section) components. 
+
+It accepts `small` and `large` props which allow any other component which embeds it to request small or large versions (it renders itself in a medium size if neither of these props is present). 
+
+It also accepts an `accepted` prop with a `true` or `false` value - if it receives false the avatar is rendered in grey scale, otherwise in colour. This is used to provide visual indicator of whether a tribe member has accepted a calendar event in the `CalEvent.js` component. Finally, it also accepts a `displayName` prop which is used to provide an `alt` attribute for the image.
+
+#### `ConfirmModal.js`
+Used for the various cancel/confirm modal dialogs which are displayed when the user requests to perform a destructive action. Props it accepts include `heading` for the modal title; `body` for the modal body text; `cancelHandler` for handler function for the cancel button; and `confirmHandler` for a handler function for the confirm button.
+
+#### `NotificationItem.js`
+Used to render multiple instances of notifications in the notification menu. Props include `notification` for the notification details from the REST API; `notificationsChanged` and `setNotificationsChanged` which are used to toggle a boolean value to communicate to the parent component that the state of the notification has changed, for example if the user accepts or declines an event directly from the notification; `handleDeleteButton` for a handler function for the user deleting the notification and `notificationId` which is used to generate unique HTML `id` attributes for the buttons in the component and to communicate which notification has been deleted to the delete handler.
+
+#### `Spinner.js`
+Used to render the loading spinner utilised throughout the app. It accepts a `small` prop which a parent component can use to request the spinner is rendered in small size.
+
+#### `Account.js`
+Used for the main Account page in the mobile view, and also for the Account section in single page mode. It uses the `useSinglePage` custom hook to determine which CSS styles to use.
+
+#### `TribeMember.js`
+Multiple instances of this component represent tribe members in the My Tribe section of the Account page/section. It accepts `tribeMember` and `handleDeleteButton` props, which contain the details of the tribe member to be rendered and a handler for the delete button.
+
+#### `Contacts.js`
+Used for the main Contacts page in the mobile view, and for the Contacts section in single  page mode. It uses the `useSinglePage` custom hook to determine which CSS styles to use.
+
+#### `Contact.js`
+Multiple instances of this component represent contacts in the Contacts page/section. It accepts props including `contact` for the details of the contact to render; `didSaveContact` and `setDidSaveContact` which toggle a boolean value to inform the parent component that a change to  the state of the contact has taken place (e.g. it has been edited), `handleDeleteButton` which accept a handler for the user selecting the delete button for the specific contact; and `setActionSucceeded` which is used to set the value of a success alert message in the parent component.
+
+#### `ContactDetailsForm.js`
+Used for both the add contact and edit contact forms in the Contacts page/section. Props include `handleCancelButton` for a handler function; `didSaveContact` and `setDidSaveContact` which are used to inform the parent component that the state of a contact (if being edited as opposed to created) has changed; `isEditingContact` which the parent uses to tell the component whether it is being used to edit an existing contact or create a new one (this informs whether the form has to be populated with existing data, form submission behaviour and the title at the top of the form); `contact` for the details of the contact to be rendered and `setActionSucceeded` which is used to set the value of a success alert message in the parent.
+
+#### `CalEvent.js`
+Multiple instances represent calendar events in the Home page/section. It accepts props including `event` for the details of the event to be rendered; `didSaveEvent` and `setDidSaveEvent` which are used to inform the parent component that the state of an existing calendar event has changed; `handleDeleteButton` for delete button handler function; `calEventId` which is used to provide unique HTML id attribute values for buttons and other elements (the calendar event id from the API is unsuitable for this, as it may be shared between an original event and its recurrences, which may be displayed at the same time e.g. in search results) and `setActionSucceeded` which is used to set the value of a success message alert in the parent component.
+
+#### `EventDetailsForm.js`
+Used for the add event and edit event forms in the Home page/section. Props include `handleCancelButton` for a handler function; `didSaveEvent` and `setDidSaveEvent` to inform the parent of a change to the state of the event if it has been edited; `isEditingEvent` which informs the component if it is being used to edit an existing event as opposed to create a new one (this affects whether the form needs to be populated with an existing event, form submission behaviour); `event` which contains details of the event being edited (if applicable); `defaultStartDate` which is used to populate the default form value for the start date of a new event (the parent passes in the current calendar day) and `setActionSucceeded` which sets the value of a success message alert in the parent.
 
 
 
-
-### Components
-**Need to relate pages and components to the relevant user stories** (1.4)
-**Need to document re-use of components to demonstrate understanding of modern React architecture** (2.1)
+### React features enhancing user experience
+**ILO 2.1**
 
 ### CRUD functionality
 
