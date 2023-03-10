@@ -4,7 +4,7 @@ import { InfoCircle } from 'react-bootstrap-icons';
 import { axiosReq } from '../../api/axiosDefaults';
 import css from '../../styles/ContactDetailsForm.module.css';
 
-function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveContact, isEditingContact, contact }) {
+function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveContact, isEditingContact, contact, setActionSucceeded }) {
 
   // State variables for form values
   const [contactForm, setContactForm] = useState({
@@ -32,8 +32,10 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
     try {
       if (isEditingContact) {
         await axiosReq.put(`contacts/${contact.id}/`, contactForm);
+        setActionSucceeded('Your changes to the contact have been saved');
       } else {
         await axiosReq.post('contacts/', contactForm);
+        setActionSucceeded('Your contact has been added')
       }
       // Hide form and tell parent component the contact was saved
       handleCancelButton();

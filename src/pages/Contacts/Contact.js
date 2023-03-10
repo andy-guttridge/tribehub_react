@@ -5,7 +5,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import ContactDetailsForm from './ContactDetailsForm';
 
 // Component for individual contact
-function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButton }) {
+function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButton, setActionSucceeded }) {
 
   // Reference to current user
   const currentUser = useCurrentUser();
@@ -23,6 +23,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
           contact={contact}
           didSaveContact={didSaveContact}
           setDidSaveContact={setDidSaveContact}
+          setActionSucceeded={setActionSucceeded}
         />
       }
 

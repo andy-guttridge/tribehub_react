@@ -35,6 +35,9 @@ function Contacts() {
   // State variables for errors
   const [errors, setErrors] = useState({});
 
+  // State variable to confirm the password change request was successful
+  const [actionSucceeded, setActionSucceeded] = useState('');
+
   // State variables for whether user is adding a contact
   const [isAddingContact, setIsAddingContact] = useState(false);
 
@@ -60,6 +63,7 @@ function Contacts() {
       setDidSaveContact(!didSaveContact);
       setIsDeletingContact(false);
       setErrors({});
+      setActionSucceeded('The contact was deleted');
     } catch (error) {
       if (error.response?.status !== 401) {
         setIsDeletingContact(false);
@@ -159,7 +163,18 @@ function Contacts() {
           handleCancelButton={() => setIsAddingContact(!isAddingContact)}
           didSaveContact={didSaveContact}
           setDidSaveContact={setDidSaveContact}
+          setActionSucceeded={setActionSucceeded}
         />
+      }
+
+      {/* Display alert with success message if a request resulting in change of data succeeded */}
+      {
+        actionSucceeded !== '' &&
+        <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+          <div>
+            <InfoCircle size="32" /><span>{actionSucceeded}</span>
+          </div>
+        </div>
       }
 
 
@@ -188,6 +203,7 @@ function Contacts() {
                   handleDeleteButton={handleDeleteButton}
                   didSaveContact={didSaveContact}
                   setDidSaveContact={setDidSaveContact}
+                  setActionSucceeded={setActionSucceeded}
                 />
               })
             }
