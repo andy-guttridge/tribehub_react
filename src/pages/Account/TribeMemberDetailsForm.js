@@ -4,7 +4,7 @@ import { InfoCircle } from 'react-bootstrap-icons';
 import { axiosReq } from '../../api/axiosDefaults';
 import css from '../../styles/TribeMemberDetailsForm.module.css'
 
-function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton }) {
+function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton, setActionSucceeded }) {
 
   // State variables for registration form submission data
   const [registerData, setRegisterData] = useState({
@@ -35,6 +35,7 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton }) {
       await axiosReq.post('/accounts/user/', registerData);
       handleNewMemberButton();
       tribeChangeFlag();
+      setActionSucceeded('The new member was added to your tribe')
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);

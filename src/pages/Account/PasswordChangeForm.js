@@ -156,7 +156,7 @@ function PasswordChangeForm() {
           {/* Display alert with success message if the request succeeded */}
           {
             requestSucceeded &&
-            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
                 <InfoCircle size="32" /><span>Password updated</span>
               </div>

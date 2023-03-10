@@ -25,6 +25,9 @@ function MyTribe() {
   // accounts. If yes, this stores the user id of the user they've selected to delete.
   const [isDeletingMember, setIsDeletingMember] = useState(false);
 
+  // State variable to confirm whether a change to data was successful
+  const [actionSucceeded, setActionSucceeded] = useState('');
+
   // State variable to trigger data reload if a change has been made to tribemembers
   const [tribeChangeFlag, setTribeChangeFlag] = useState(false);
 
@@ -47,6 +50,7 @@ function MyTribe() {
       await axiosReq.delete(`accounts/user/${isDeletingMember}`);
       setTribeChangeFlag(!tribeChangeFlag);
       setErrors({});
+      setActionSucceeded('The tribe member has been deleted');
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors({ delete: 'There was an error attempting to delete this tribe member.\n\nYou may be offline or there may have been a server error.' })
@@ -97,7 +101,7 @@ function MyTribe() {
               <PlusCircle size="32" className="text-primary" /><span className="sr-only">Add new tribe member</span>
             </button>
           ) : (
-            <TribeMemberDetailsForm tribeChangeFlag={() => setTribeChangeFlag(!tribeChangeFlag)} handleNewMemberButton={handleNewMemberButton} />
+            <TribeMemberDetailsForm tribeChangeFlag={() => setTribeChangeFlag(!tribeChangeFlag)} handleNewMemberButton={handleNewMemberButton} setActionSucceeded={setActionSucceeded}/>
           )
         }
       </div>
@@ -143,6 +147,17 @@ function MyTribe() {
             </div>
           </div>
         }
+
+        {/* Display alert with success message if a request resulting in change of data succeeded */}
+        {
+          actionSucceeded !== '' &&
+          <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+            <div>
+              <InfoCircle size="32" /><span>{actionSucceeded}</span>
+            </div>
+          </div>
+        }
+
       </div>
 
       {/* If tribe admin has selected to delete a tribeMember, show the modal to confirm or cancel */}
