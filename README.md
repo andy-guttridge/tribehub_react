@@ -136,19 +136,134 @@ The main colour palettes used for light and dark modes are:
 
 Additionally, while colours for the primary and secondary colours (when used as backgrounds) are automatically defined by DaisyUI, these were overidden for the light theme to resolve some contrast issues highlighted by the Wave accessability validator.
 
-Likewise, two additional CSS classes (`.CalWeekendText` and `CalTextBlack`) were defined especially for the dark mode theme, to resolve some contrast issues with the default calendar colour for weekend days against the dark background and with the light coloured text used for some highlighted cells against the already light primary, secondary and accent colours in dark mode.
+Likewise, two additional CSS classes (`.CalWeekendText` and `.CalTextBlack`) were defined especially for the dark mode theme, to resolve some contrast issues with the default calendar colour for weekend days against the dark background and with the light coloured text used for some highlighted cells against the already light primary, secondary and accent colours in dark mode.
 
 ### Fonts
+Google fonts were used for the project.
+Fredoka One was chosen for the TribeHub logo `<h1>` element and `<h2>` headings used for the main page/section headings. The aim was to find a fun, friendly yet clear and legible font, and was selected after trying a number of possibilities suggested in this [shapegrams blog post on 'Fun Fonts for Every Season'](https://shapegrams.com/fonts/).
+
+Nunito was chosen for `<h3>` and `<h4>` elements (used as sub-headings within major pages/sections) because it is similar to Fredoka One, but has a 'thinner' look better suited to smaller headings.
+
+Lato was chosen as a font for all non-heading text elements, based on its popularity as a highly legible font for web text content (e.g. https://fontandswatch.com.au/fonts/lato-font/#:~:text=Lato%20Font%20comes%20in%2018,1%20billion%20audiences%20per%20day.)
 
 ## Features
-**Need to document how features have contributed to UX**
 
 ### Pages
-**Need to relate pages and components to the relevant user stories**
+**Need to relate pages and components to the relevant user stories** (1.4)
+#### Landing page with hero image
+<p align="left">
+    <img src="readme_assets/hero.png" width=250>
+</p>
+
+#### Registration form
+<p align="left">
+    <img src="readme_assets/registration.png" width=250>
+</p>
+
+#### Sign-in form
+<p align="left">
+    <img src="readme_assets/sign-in.png" width=250>
+</p>
+
+#### Header with welcome message, notifications menu and sign-out button
+<p align="left">
+    <img src="readme_assets/header.png" width=250>
+</p>
+
+#### Bottom navbar
+<p align="left">
+    <img src="readme_assets/bottom_nav.png" width=250>
+</p>
+
+#### Drop-down notifications menu
+<p align="left">
+    <img src="readme_assets/notifications.png" width=250>
+</p>
+
+#### TribeHome page with family calendar
+<p align="left">
+    <img src="readme_assets/tribehome.png" width=250>
+</p>
+
+#### Add event and search buttons
+
+#### Calendar events detail displayed below calendar
+<p align="left">
+    <img src="readme_assets/events.png" width=250>
+    <img src="readme_assets/events2.png" width=250>
+</p>
+
+#### Edit event and delete event buttons
+
+#### Add event form
+<p align="left">
+    <img src="readme_assets/add_event.png" width=250>
+</p>
+
+#### Edit event form
+<p align="left">
+    <img src="readme_assets/edit_event.png" width=250>
+</p>
+
+#### Family contacts page
+<p align="left">
+    <img src="readme_assets/contacts.png" width=250>
+</p>
+
+#### Add contacts and search contacts buttons
+
+#### Add contacts form
+<p align="left">
+    <img src="readme_assets/add_contacts.png" width=250>
+</p>
+
+#### Search contacts form
+<p align="left">
+    <img src="readme_assets/search_contacts.png" width=250>
+</p>
+
+#### Edit contact and delete contact buttons
+
+#### Edit contact form
+<p align="left">
+    <img src="readme_assets/edit_contact.png" width=250>
+</p>
+
+#### Account page with My Tribe, My Profile, Change Password and Delete Account
+<p align="left">
+    <img src="readme_assets/account1.png" width=250>
+    <img src="readme_assets/account2.png" width=250>
+    <img src="readme_assets/account3.png" width=250>
+</p>
+
+#### Modal dialogs to confirm or cancel destructive actions
+<p align="left">
+    <img src="readme_assets/delete_event_modal.png" width=250>
+    <img src="readme_assets/delete_contact_modal.png" width=250>
+    <img src="readme_assets/delete_tribe_member_modal.png" width=250>
+    <img src="readme_assets/delete_account_modal.png" width=250>
+</p>
+
+#### 'Single page mode' for medium and large screen sizes
+<p align="left">
+    <img src="readme_assets/singlepage1.png" width=500>
+    <img src="readme_assets/singlepage2.png" width=500>
+</p>
+
+#### Darkmode
+<p align="left">
+    <img src="readme_assets/darkmode1.png" width=250>
+    <img src="readme_assets/darkmode2.png" width=250>
+    <img src="readme_assets/darkmode3.png" width=250>
+</p>
+
+
+
+
 
 ### Components
-**Need to relate pages and components to the relevant user stories**
-**Need to document re-use of components to demonstrate understanding of modern React architecture**
+**Need to relate pages and components to the relevant user stories** (1.4)
+**Need to document re-use of components to demonstrate understanding of modern React architecture** (2.1)
 
 ### CRUD functionality
 
@@ -271,4 +386,6 @@ The following documentation was referenced extensively throughout the project:
   - Car icon used for outing by Clker-Free-Vector-Images on [Pixabay](https://pixabay.com/vectors/car-automobile-sedan-four-door-car-35502/)
   - Cat icon used for pets by Lohrelei on  [Pixabay](https://pixabay.com/vectors/cat-kitten-sitting-silhouette-1144200/)
 - Fonts:
-  **Include final fonts selection**
+  [Google Fonts Fredoka One](https://fonts.google.com/?query=fredoka+one&sort=popularity)
+  [Google Fonts Nunito](https://fonts.google.com/specimen/Nunito?query=nunito&sort=popularity)
+  [Google Fonts Lato](https://fonts.google.com/?query=lato&sort=popularity)
