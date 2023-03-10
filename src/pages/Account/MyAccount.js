@@ -61,7 +61,7 @@ function MyAccount() {
   return (
     <section>
       {/* Update profile section */}
-      <h3>My Profile</h3>
+      <h3>My profile</h3>
       <div className="justify-center flex w-4/5 md:w-full mx-auto my-4">
         <ProfileForm />
       </div>
@@ -76,7 +76,7 @@ function MyAccount() {
       </section>
 
       {/* Delete acccount section */}
-      <h3>Delete Account</h3>
+      <h3>Delete account</h3>
 
       {/* Display error alert if there was an issue deleting account */}
       {
