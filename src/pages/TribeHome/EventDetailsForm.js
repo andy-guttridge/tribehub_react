@@ -7,7 +7,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { eventCategories } from '../../utils/constants';
 import css from '../../styles/EventDetailsForm.module.css'
 
-function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate }) {
+function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate, setActionSucceeded }) {
 
   // State variables for loading status and tribe members data
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -83,13 +83,15 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         // Hide form and tell parent component the event was saved
         handleCancelButton();
         setDidSaveEvent(!didSaveEvent);
+        setActionSucceeded('Your changes to the event have been saved');
       }
       else {
         await axiosReq.post('/events/', calEvent);
 
-        // Hide form and tell parent component the event was saved
+        // Hide form, tell parent component the event was saved and set success message
         handleCancelButton();
         setDidSaveEvent(!didSaveEvent);
+        setActionSucceeded('Your event has been added to the calendar')
       }
     } catch (error) {
       if (error.response?.status !== 401) {

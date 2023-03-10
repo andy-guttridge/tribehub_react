@@ -43,6 +43,9 @@ function TribeHome() {
   // State variables for API errors
   const [errors, setErrors] = useState({});
 
+  // State variable to confirm whether a change to data was successful
+  const [actionSucceeded, setActionSucceeded] = useState('');
+
   // State variables for whether user has the add event form open
   const [isAddingNewEvent, setIsAddingNewEvent] = useState(false);
 
@@ -106,6 +109,7 @@ function TribeHome() {
     try {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
+      setActionSucceeded('The event has now been deleted')
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
@@ -198,6 +202,16 @@ function TribeHome() {
 
             <div>
 
+              {/* Display alert with success message if a request resulting in change of data succeeded */}
+              {
+                actionSucceeded !== '' &&
+                <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+                  <div>
+                    <InfoCircle size="32" /><span>{actionSucceeded}</span>
+                  </div>
+                </div>
+              }
+
               {/* Display alert if there was an issue deleting a calender event */}
               {
                 errors.delete &&
@@ -224,6 +238,7 @@ function TribeHome() {
                       setDidSaveEvent={setDidSaveEvent}
                       // Pass currently selected calendar day in correct format to the form, to populate the starting value for the date of the event
                       defaultStartDate={`${currentDayRef.current.toISOString().substring(0, 10)}T12:00`}
+                      setActionSucceeded={setActionSucceeded}
                     />
                   )
                 }
@@ -257,6 +272,7 @@ function TribeHome() {
                         didSaveEvent={didSaveEvent}
                         setDidSaveEvent={setDidSaveEvent}
                         handleDeleteButton={handleDeleteButton}
+                        setActionSucceeded={setActionSucceeded}
                       />
                     })
                   }

@@ -9,7 +9,7 @@ import EventDetailsForm from './EventDetailsForm';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
-function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId }) {
+function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId, setActionSucceeded }) {
 
   // Reference to current user
   const currentUser = useCurrentUser();
@@ -148,6 +148,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           isEditingEvent
           event={event}
           setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
+          setActionSucceeded={setActionSucceeded}
         />}
 
       {/* Card title */}
