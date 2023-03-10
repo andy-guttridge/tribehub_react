@@ -122,6 +122,7 @@ function ProfileForm() {
               name="display_name"
               value={display_name}
               onChange={handleChange}
+              maxLength="50"
             />
           </label>
 

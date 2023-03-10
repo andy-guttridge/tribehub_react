@@ -101,10 +101,20 @@ function MyTribe() {
               <PlusCircle size="32" className="text-primary" /><span className="sr-only">Add new tribe member</span>
             </button>
           ) : (
-            <TribeMemberDetailsForm tribeChangeFlag={() => setTribeChangeFlag(!tribeChangeFlag)} handleNewMemberButton={handleNewMemberButton} setActionSucceeded={setActionSucceeded}/>
+            <TribeMemberDetailsForm tribeChangeFlag={() => setTribeChangeFlag(!tribeChangeFlag)} handleNewMemberButton={handleNewMemberButton} setActionSucceeded={setActionSucceeded} />
           )
         }
       </div>
+
+      {/* Display alert with success message if a request resulting in change of data succeeded */}
+      {
+        actionSucceeded !== '' &&
+        <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+          <div>
+            <InfoCircle size="32" /><span>{actionSucceeded}</span>
+          </div>
+        </div>
+      }
 
       {/* We do not include the user in the list */}
       {hasLoaded ? (
@@ -144,16 +154,6 @@ function MyTribe() {
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <div>
               <InfoCircle size="32" /><span>{errors.tribe}</span>
-            </div>
-          </div>
-        }
-
-        {/* Display alert with success message if a request resulting in change of data succeeded */}
-        {
-          actionSucceeded !== '' &&
-          <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-            <div>
-              <InfoCircle size="32" /><span>{actionSucceeded}</span>
             </div>
           </div>
         }

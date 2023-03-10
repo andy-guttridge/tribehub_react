@@ -63,6 +63,7 @@ function Signin() {
       <div className="flex justify-center">
 
         {/* Sign-in form  */}
+        {/* All validation is handled by the API for this form */}
         <div className="form-control w-3/4 md:w-1/2 lg:w-1/2">
           <form onSubmit={handleSubmit}>
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="username">

@@ -81,6 +81,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             name="category"
             value={category || ''}
             onChange={handleChange}
+            maxLength="100"
           />
         </label>
 
@@ -107,6 +108,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             name="company"
             value={company || ''}
             onChange={handleChange}
+            maxLength="100"
           />
         </label>
 
@@ -133,6 +135,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             name="title"
             value={title || ''}
             onChange={handleChange}
+            maxLength="20"
           />
         </label>
 
@@ -159,6 +162,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             name="first_name"
             value={first_name || ''}
             onChange={handleChange}
+            maxLength="100"
           />
         </label>
 
@@ -185,6 +189,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             name="last_name"
             value={last_name || ''}
             onChange={handleChange}
+            maxLength="100"
           />
         </label>
 
@@ -211,6 +216,7 @@ function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveCont
             name="phone"
             value={phone || ''}
             onChange={handleChange}
+            maxLength="50"
           />
         </label>
 

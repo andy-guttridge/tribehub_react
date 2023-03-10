@@ -35,7 +35,7 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton, setAct
       await axiosReq.post('/accounts/user/', registerData);
       handleNewMemberButton();
       tribeChangeFlag();
-      setActionSucceeded('The new member was added to your tribe')
+      setActionSucceeded('The new member was added to your tribe');
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
@@ -46,7 +46,9 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton, setAct
   return (
     <div className={`w-4/5 lg:w-full m-auto lg:mx-2 ${css.TribeMemberFormExpand}`}>
       <h3>Add tribe member</h3>
-      {/* Registration form */}
+      
+      {/* Form to add tribe members */}
+      {/* All validation is handled by the API for this form  */}
       <form onSubmit={handleSubmit}>
 
         {/* Username */}

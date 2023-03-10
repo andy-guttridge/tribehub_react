@@ -314,6 +314,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
               name="subject"
               value={subject}
               onChange={handleChange}
+              maxLength="100"
             />
           </label>
 

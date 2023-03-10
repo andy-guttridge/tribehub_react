@@ -72,6 +72,7 @@ function Register() {
         <div className="form-control w-3/4 md:w-1/2 lg:w-1/2 text-left">
 
           {/* Registration form */}
+          {/* All validation is handled by the API for this form */}
           <form onSubmit={handleSubmit}>
 
             {/* Username */}
