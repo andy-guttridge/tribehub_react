@@ -152,14 +152,16 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
         />}
 
       {/* Card title */}
-      <div className="card-title bg-base-100 rounded-sm flex justify-between p-2">
+      <div className="card-title bg-base-100 rounded-sm flex justify-between p-2 break-all">
         {/* Event category icon */}
         <img
           src={require(`../../assets/categories/${eventCategories[event.category].image}`)}
           className={`w-12 CategoryIcon col-span-1`}
           alt={[eventCategories[event.category].text]}
         />
-        <div>
+
+        {/* Event subject */}
+        <div className="w-1/2">
           <p className={`${singlePage ? "text-xl" : "text-md"}`}>{event.subject}</p>
         </div>
 
