@@ -131,7 +131,7 @@ The main colour palettes used for light and dark modes are:
 |  Accent - used for section/page headings |  #215ba6 | #d8ebf2  |   |   |
 |  Neutral - used for sub-headings |   #4a4a4a |  #ffffff |   |   |
 |  Base-100 - main background colour |  #fbfbfb |  #1c1c1c |   |   |
-|  Base-200 - darker background colour |  #f8f8f8 | #141414  |   |   |
+|  Base-200 - darker background colour |  #ebebeb | #141414  |   |   |
 |  Base-300 - second darker background colour |  #d6d6d6 | #141414  |   |   |
 
 Additionally, while colours for the primary and secondary colours (when used as backgrounds) are automatically defined by DaisyUI, these were overidden for the light theme to resolve some contrast issues highlighted by the Wave accessability validator.
