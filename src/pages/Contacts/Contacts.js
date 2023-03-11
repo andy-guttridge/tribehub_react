@@ -116,138 +116,151 @@ function Contacts() {
     >
       <h2>Contacts</h2>
 
-      {/* Display alert if there was an issue fetching contact data */}
-      {
-        errors.contacts &&
-        <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-          <div>
-            <InfoCircle size="32" className="inline-block" />
-          </div>
-          <div>
-            <p>{errors.contacts}</p>
-          </div>
-        </div>
-      }
+      {/* Content wrapped in collapsible div for single screen mode */}
+      <div className={singlePage && "collapse collapse-arrow"}>
+        <label className="sr-only" htmlFor="contacts-dropdown">Dropdown button for contacts section</label>
+        <input type="checkbox" id="contacts-dropdown" className={singlePage ? "visible" : "invisible"} />
+        
+        {/* Title for collapsible (needed for DaisyUI collapse component to work) */}
+        <div className={singlePage && "collapse-title"}></div>
+        
+        {/* Content for collapsible */}
+        <div className={singlePage && "collapse-content"}>
 
-      {/* Display alert if there was an issue deleting a contact */}
-      {
-        errors.delete &&
-        <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-          <div>
-            <InfoCircle size="32" className="inline-block" />
-          </div>
-          <div>
-            <p>{errors.delete}</p>
-          </div>
-        </div>
-      }
-
-      {/* Show add contact button if user is tribe admin, they are not currently adding a contact and user does not have the search form open */}
-      <div className="justify-end lg:justify-start flex w-4/5 md:w-full mx-auto my-4">
-        {!isAddingContact && !isSearching && currentUser?.is_admin &&
-          <button className="btn btn-ghost"
-            onClick={() => setIsAddingContact(!isAddingContact)}
-            type="button"
-            id="add-contact-btn"
-          >
-            <PlusCircle size="32" className="text-primary" />
-            <span className="sr-only">Add new contact</span>
-          </button>
-        }
-
-        {/* Show search button or search form if user has pressed the button */}
-        {
-          !isSearching && !isAddingContact ? (
-            <button
-              onClick={() => setIsSearching(!isSearching)}
-              className="btn btn-ghost"
-              type="button"
-              id="contact-search-btn"
-            >
-              <Search size="32" className="text-primary" /><span className="sr-only">Search contacts</span>
-            </button>
-          ) : isSearching && (
-            <ContactSearch handleCancelButton={() => setIsSearching(false)} />
-          )
-        }
-      </div>
-
-      {/* Show contact details form if user is currently adding a contact and doesn't have the search form open */}
-      {
-        isAddingContact && !isSearching && currentUser?.is_admin &&
-        <ContactDetailsForm
-          handleCancelButton={() => setIsAddingContact(!isAddingContact)}
-          didSaveContact={didSaveContact}
-          setDidSaveContact={setDidSaveContact}
-          setActionSucceeded={setActionSucceeded}
-        />
-      }
-
-      {/* Display alert with success message if a request resulting in change of data succeeded */}
-      {
-        actionSucceeded !== '' &&
-        <div className="fixed w-full h-full top-0 left-0 z-10">
-          <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
-            <div>
-              <InfoCircle size="32" /><span>{actionSucceeded}</span>
+          {/* Display alert if there was an issue fetching contact data */}
+          {
+            errors.contacts &&
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" className="inline-block" />
+              </div>
+              <div>
+                <p>{errors.contacts}</p>
+              </div>
             </div>
-          </div>
-        </div>
-      }
+          }
 
-      {/* Display contacts */}
-      {
-        hasLoaded ? (
-          <div className="inline-block w-full bg-base-200">
-            {/* Display message if there are no tribe contacts yet */}
+          {/* Display alert if there was an issue deleting a contact */}
+          {
+            errors.delete &&
+            <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+              <div>
+                <InfoCircle size="32" className="inline-block" />
+              </div>
+              <div>
+                <p>{errors.delete}</p>
+              </div>
+            </div>
+          }
 
+          {/* Show add contact button if user is tribe admin, they are not currently adding a contact and user does not have the search form open */}
+          <div className="justify-end lg:justify-start flex w-4/5 md:w-full mx-auto my-4">
+            {!isAddingContact && !isSearching && currentUser?.is_admin &&
+              <button className="btn btn-ghost"
+                onClick={() => setIsAddingContact(!isAddingContact)}
+                type="button"
+                id="add-contact-btn"
+              >
+                <PlusCircle size="32" className="text-primary" />
+                <span className="sr-only">Add new contact</span>
+              </button>
+            }
+
+            {/* Show search button or search form if user has pressed the button */}
             {
-              !contacts?.results?.length && !isAddingContact && currentUser.is_admin &&
-              <div className="bg-base-100 p-2">
-                <div className="alert alert-info justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-                  <p className="text-left md:text-center font-bold">{`Press the + button to start adding your tribe's contacts`}</p>
+              !isSearching && !isAddingContact ? (
+                <button
+                  onClick={() => setIsSearching(!isSearching)}
+                  className="btn btn-ghost"
+                  type="button"
+                  id="contact-search-btn"
+                >
+                  <Search size="32" className="text-primary" /><span className="sr-only">Search contacts</span>
+                </button>
+              ) : isSearching && (
+                <ContactSearch handleCancelButton={() => setIsSearching(false)} />
+              )
+            }
+          </div>
+
+          {/* Show contact details form if user is currently adding a contact and doesn't have the search form open */}
+          {
+            isAddingContact && !isSearching && currentUser?.is_admin &&
+            <ContactDetailsForm
+              handleCancelButton={() => setIsAddingContact(!isAddingContact)}
+              didSaveContact={didSaveContact}
+              setDidSaveContact={setDidSaveContact}
+              setActionSucceeded={setActionSucceeded}
+            />
+          }
+
+          {/* Display alert with success message if a request resulting in change of data succeeded */}
+          {
+            actionSucceeded !== '' &&
+            <div className="fixed w-full h-full top-0 left-0 z-10">
+              <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
+                <div>
+                  <InfoCircle size="32" /><span>{actionSucceeded}</span>
                 </div>
               </div>
-            }
+            </div>
+          }
 
-            {
-              // Don't display contacts here if user is searching
-              !isSearching &&
-              contacts?.results?.map((contact) => {
-                return <Contact
-                  contact={contact}
-                  key={`contact-${contact.id}`}
-                  handleDeleteButton={handleDeleteButton}
-                  didSaveContact={didSaveContact}
-                  setDidSaveContact={setDidSaveContact}
-                  setActionSucceeded={setActionSucceeded}
-                />
-              })
-            }
-          </div>
+          {/* Display contacts */}
+          {
+            hasLoaded ? (
+              <div className="inline-block w-full bg-base-200">
+                {/* Display message if there are no tribe contacts yet */}
 
-        ) : (
-          <Spinner />
-        )
-      }
+                {
+                  !contacts?.results?.length && !isAddingContact && currentUser.is_admin &&
+                  <div className="bg-base-100 p-2">
+                    <div className="alert alert-info justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+                      <p className="text-left md:text-center font-bold">{`Press the + button to start adding your tribe's contacts`}</p>
+                    </div>
+                  </div>
+                }
 
-      {
-        // Empty div with margin to provide clearance above bottom navbar if not in single page mode
-        !singlePage && <div className="mb-4 bg-base-100"><br /></div>
-      }
+                {
+                  // Don't display contacts here if user is searching
+                  !isSearching &&
+                  contacts?.results?.map((contact) => {
+                    return <Contact
+                      contact={contact}
+                      key={`contact-${contact.id}`}
+                      handleDeleteButton={handleDeleteButton}
+                      didSaveContact={didSaveContact}
+                      setDidSaveContact={setDidSaveContact}
+                      setActionSucceeded={setActionSucceeded}
+                    />
+                  })
+                }
+              </div>
 
-      {/* If tribe admin has selected to delete a contact, show the modal to confirm or cancel */}
-      {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
+            ) : (
+              <Spinner />
+            )
+          }
+
+          {
+            // Empty div with margin to provide clearance above bottom navbar if not in single page mode
+            !singlePage && <div className="mb-4 bg-base-100"><br /></div>
+          }
+
+          {/* If tribe admin has selected to delete a contact, show the modal to confirm or cancel */}
+          {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
           // https://upmostly.com/tutorials/modal-components-react-custom-hooks */}
-      {
-        isDeletingContact && ReactDOM.createPortal(
-          <ConfirmModal
-            heading="Delete contact"
-            body={`Are	you sure you want to delete this contact?`}
-            cancelHandler={() => setIsDeletingContact(false)}
-            confirmHandler={doDelete}
-          />, document.body)
-      }
+          {
+            isDeletingContact && ReactDOM.createPortal(
+              <ConfirmModal
+                heading="Delete contact"
+                body={`Are	you sure you want to delete this contact?`}
+                cancelHandler={() => setIsDeletingContact(false)}
+                confirmHandler={doDelete}
+              />, document.body)
+          }
+        </div>
+      </div>
     </section>
   )
 }
