@@ -39,7 +39,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
           <p><span className="font-bold">Email: </span>{contact.email}</p>
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex col-span-2 justify-end">
           {/* Show delete and edit buttons if user is tribe admin */}
           {
             currentUser.is_admin &&
