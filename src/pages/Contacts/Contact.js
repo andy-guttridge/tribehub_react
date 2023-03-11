@@ -14,7 +14,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
   const [isEditingContact, setIsEditingContact] = useState();
 
   return (
-    <div className="card rounded-none md:rounded-md mb-0.5 text-center bg-base-100">
+    <div className="card rounded-none md:rounded-sm mb-0.5 text-center bg-base-100">
       {/* Display ContactDetailsForm if user is editing a contact */}
       {isEditingContact &&
         <ContactDetailsForm

@@ -7,7 +7,7 @@ function TribeMember({ tribeMember, handleDeleteButton }) {
 
   return (
     <>
-      <div className="rounded-sm grid grid-cols-2 my-1 lg:my-0 lg:mb-1 bg-base-100">
+      <div className="rounded-sm grid grid-cols-2 mb-0.5 bg-base-100">
         <div className="flex col-start-1 col-span-1 justify-content-between">
 
           {/* Avatar for tribe member */}

@@ -24,7 +24,7 @@ function Contacts() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = 'basis-4/5 border border-base-300 rounded-lg flex-none mr-2 mt-2 bg-base-100'
+  const singlePageStyles = 'basis-4/5 border border-base-300 rounded-lg flex-none mr-2 mt-2 md:mx-0.5 md:mt-0.5 bg-base-100'
 
   // State variables for tribe contacts
   const [contacts, setContacts] = useState([]);

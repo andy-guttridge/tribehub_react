@@ -18,7 +18,7 @@ function SinglePage() {
   return (
     // Use the components we display as separate pages for mobile embedded in one single
     // page.
-    <div className="grid grid-cols-2 m-1 items-start">
+    <div className="grid grid-cols-2 m-1 mt-0 items-start bg-base-200">
       <TribeHome />
       <Contacts />
       <Account />

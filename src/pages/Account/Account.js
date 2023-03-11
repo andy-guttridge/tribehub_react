@@ -11,7 +11,7 @@ function Account() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = 'basis-4/5 border border-base-300 rounded-lg flex-none ml-2 my-2 bg-base-100';  
+  const singlePageStyles = 'basis-4/5 border border-base-300 rounded-lg flex-none mr-2 mt-2 md:mx-0.5 md:mt-0.5 bg-base-100';  
 
   return (
     // Apply some styling if displaying in single page mode

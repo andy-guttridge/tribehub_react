@@ -32,7 +32,7 @@ function TribeHome() {
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
-  const singlePageStyles = 'basis-4/5 rounded-lg border border-base-300 bg-base-100 col-span-2';
+  const singlePageStyles = 'basis-4/5 mx-0.5 rounded-lg rounded-t-none border border-t-0 border-base-300 bg-base-100 col-span-2';
 
   // State variables for user's events
   const [events, setEvents] = useState({ results: [] });

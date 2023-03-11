@@ -39,7 +39,7 @@ function App() {
   }, [currentUser]);
 
   return (
-    <div className={`App ${css.AppStyles} m-auto`} data-theme={!currentUser && "tribehub_theme"}>
+    <div className={`App ${css.AppStyles} m-auto md:bg-base-200`} data-theme={!currentUser && "tribehub_theme"}>
       <Header />
       {
         // If window width less than large breakpoint, display mobile navbar and separate pages
