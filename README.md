@@ -401,7 +401,7 @@ The Contacts and Account pages include prompts for tribe admins who have just op
 
 ### Success messages
 The web app includes a series of success alerts to inform the user when a request resulting in a change create, update or delete action in the database has been successful.
-The only such action for which there is no explicit success message is accepting/declining invitations to events, as it was felt this would be intrusive and detrimental to the user experience. The 'not going/going' buttons provide some visual feedback themselves, and the user will see an error message if an attempt to respond to an event invitation fails.
+There are no explicit success messages for accepting/declining invitations to events and deleting notifications, as it was felt this would be intrusive and detrimental to the user experience. The 'not going/going' buttons and the notifications badge provide visual feedback themselves, and the user will see an error message if an attempt to perform one of these actions fails.
 
 <p align="center">
     <img src="readme_assets/success1.png" width=250>
