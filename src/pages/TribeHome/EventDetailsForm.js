@@ -213,7 +213,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             errors.to &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.to}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.to}</p>
               </div>
             </div>
           }
@@ -237,7 +240,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             errors.start &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.start}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.start}</p>
               </div>
             </div>
           }
@@ -271,7 +277,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             errors.duration &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.duration}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.duration}</p>
               </div>
             </div>
           }
@@ -300,7 +309,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             errors.recurrence_type &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.recurrence_type}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.recurrence_type}</p>
               </div>
             </div>
           }
@@ -324,7 +336,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             errors.subject &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.subject}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.subject}</p>
               </div>
             </div>
           }
@@ -356,7 +371,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             errors.category &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.category}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.category}</p>
               </div>
             </div>
           }
@@ -370,7 +388,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             errors.non_field_errors?.map((error, i) => (
               <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`eventform-nonfield-err${i}`}>
                 <div>
-                  <InfoCircle size="32" /><span>{error}</span>
+                  <InfoCircle size="32" />
+                </div>
+                <div>
+                  <p>{error}</p>
                 </div>
               </div>
             ))
@@ -387,7 +408,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         errors.tribe &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-            <InfoCircle size="32" /><span>{errors.tribe}</span>
+            <InfoCircle size="32" />
+          </div>
+          <div>
+            <p>{errors.tribe}</p>
           </div>
         </div>
       }
@@ -397,7 +421,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         errors.event &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-            <InfoCircle size="32" /><span>{errors.event}</span>
+            <InfoCircle size="32" />
+          </div>
+          <div>
+            <p>{errors.event}</p>
           </div>
         </div>
       }

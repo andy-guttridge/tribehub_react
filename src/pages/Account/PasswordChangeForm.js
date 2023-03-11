@@ -63,12 +63,12 @@ function PasswordChangeForm() {
 
   // Set timeout and get rid of any success alert
   useEffect(() => {
-    const hideSuccess = setTimeout(() =>{
+    const hideSuccess = setTimeout(() => {
       setActionSucceeded('');
     }, 5000);
 
     // Cleanup
-    return () => {clearTimeout(hideSuccess)}
+    return () => { clearTimeout(hideSuccess) }
   }, [actionSucceeded]);
 
   return (
@@ -98,7 +98,10 @@ function PasswordChangeForm() {
             errors.new_password1 &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.new_password1}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.new_password1}</p>
               </div>
             </div>
           }
@@ -122,7 +125,10 @@ function PasswordChangeForm() {
             errors.new_password2 &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.new_password2}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.new_password2}</p>
               </div>
             </div>
           }
@@ -146,7 +152,10 @@ function PasswordChangeForm() {
             errors.old_password &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.old_password}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.old_password}</p>
               </div>
             </div>
           }
@@ -158,7 +167,10 @@ function PasswordChangeForm() {
             errors.non_field_errors?.map((error, i) => (
               <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`password_change_non-field_err${i}`}>
                 <div>
-                  <InfoCircle size="32" /><span>{error}</span>
+                  <InfoCircle size="32" />
+                </div>
+                <div>
+                  <p>{error}</p>
                 </div>
               </div>
             ))

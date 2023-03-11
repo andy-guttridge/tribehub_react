@@ -46,7 +46,7 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton, setAct
   return (
     <div className={`w-4/5 lg:w-full m-auto lg:mx-2 ${css.TribeMemberFormExpand}`}>
       <h3>Add tribe member</h3>
-      
+
       {/* Form to add tribe members */}
       {/* All validation is handled by the API for this form  */}
       <form onSubmit={handleSubmit}>
@@ -71,7 +71,10 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton, setAct
           errors.username &&
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <div>
-              <InfoCircle size="32" /><span>{errors.username}</span>
+              <InfoCircle size="32" />
+            </div>
+            <div>
+              <p>{errors.username}</p>
             </div>
           </div>
         }
@@ -95,7 +98,10 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton, setAct
           errors.password &&
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <div>
-              <InfoCircle size="32" /><span>{errors.password}</span>
+              <InfoCircle size="32" />
+            </div>
+            <div>
+              <p>{errors.password}</p>
             </div>
           </div>
         }
@@ -121,7 +127,10 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton, setAct
           errors.password2 &&
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <div>
-              <InfoCircle size="32" /><span>{errors.password2}</span>
+              <InfoCircle size="32" />
+            </div>
+            <div>
+              <p>{errors.password2}</p>
             </div>
           </div>
         }
@@ -134,7 +143,10 @@ function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton, setAct
         errors.non_field_errors?.map((error, i) => (
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`tribemember_form_non-field_err${i}`}>
             <div>
-              <InfoCircle size="32" /><span>{error}</span>
+              <InfoCircle size="32" />
+            </div>
+            <div>
+              <p>{error}</p>
             </div>
           </div>
         ))

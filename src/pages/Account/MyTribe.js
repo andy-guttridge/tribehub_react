@@ -120,11 +120,11 @@ function MyTribe() {
       {
         actionSucceeded !== '' &&
         <div className="fixed w-full h-full top-0 left-0 z-10">
-        <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
-          <div>
-            <InfoCircle size="32" /><span>{actionSucceeded}</span>
+          <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
+            <div>
+              <InfoCircle size="32" /><span>{actionSucceeded}</span>
+            </div>
           </div>
-        </div>
         </div>
       }
 
@@ -155,7 +155,10 @@ function MyTribe() {
           errors.delete &&
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <div>
-              <InfoCircle size="32" /><span>{errors.delete}</span>
+              <InfoCircle size="32" />
+            </div>
+            <div>
+              <p>{errors.delete}</p>
             </div>
           </div>
         }
@@ -165,7 +168,10 @@ function MyTribe() {
           errors.tribe &&
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <div>
-              <InfoCircle size="32" /><span>{errors.tribe}</span>
+              <InfoCircle size="32" />
+            </div>
+            <div>
+              <p>{errors.tribe}</p>
             </div>
           </div>
         }

@@ -181,7 +181,10 @@ function EventSearch({ handleCancelButton }) {
         errors.tribe &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-            <InfoCircle size="32" /><span>{errors.tribe}</span>
+            <InfoCircle size="32" />
+          </div>
+          <div>
+            <p>{errors.tribe}</p>
           </div>
         </div>
       }
@@ -191,7 +194,10 @@ function EventSearch({ handleCancelButton }) {
         errors.events &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-            <InfoCircle size="32" /><span>{errors.events}</span>
+            <InfoCircle size="32" />
+          </div>
+          <div>
+            <p>{errors.events}</p>
           </div>
         </div>
       }
@@ -316,7 +322,10 @@ function EventSearch({ handleCancelButton }) {
         errors.delete &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-            <InfoCircle size="32" /><span>{errors.delete}</span>
+            <InfoCircle size="32" />
+          </div>
+          <div>
+            <p>{errors.delete}</p>
           </div>
         </div>
       }

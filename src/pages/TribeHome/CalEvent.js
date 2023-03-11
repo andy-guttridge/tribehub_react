@@ -259,7 +259,10 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
         errors.event_response &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-            <InfoCircle size="32" /><span>{errors.event_response}</span>
+            <InfoCircle size="32" />
+          </div>
+          <div>
+            <p>{errors.event_response}</p>
           </div>
         </div>
       }

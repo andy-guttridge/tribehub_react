@@ -142,7 +142,10 @@ function ProfileForm() {
             errors.display_name &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.display_name}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.display_name}</p>
               </div>
             </div>
           }
@@ -161,7 +164,10 @@ function ProfileForm() {
             errors.image &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <InfoCircle size="32" /><span>{errors.image}</span>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>{errors.image}</p>
               </div>
             </div>
           }
@@ -173,7 +179,10 @@ function ProfileForm() {
             errors.non_field_errors?.map((error, i) => (
               <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`profile_form_non-field_err${i}`}>
                 <div>
-                  <InfoCircle size="32" /><span>{error}</span>
+                  <InfoCircle size="32" />
+                </div>
+                <div>
+                  <p>{error}</p>
                 </div>
               </div>
             ))
@@ -184,12 +193,12 @@ function ProfileForm() {
             errors.server_error &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
-                <p><InfoCircle size="32" /></p>
-                <div>
-                  <p>The server experienced an internal error. A common cause of this is uploading a file that is not an image.</p>
-                  <br />
-                  <p>If you attempted to upload a profile image, please check your file format and try again.</p>
-                </div>
+                <InfoCircle size="32" />
+              </div>
+              <div>
+                <p>The server experienced an internal error. A common cause of this is uploading a file that is not an image.</p>
+                <br />
+                <p>If you attempted to upload a profile image, please check your file format and try again.</p>
               </div>
             </div>
           }
@@ -200,7 +209,10 @@ function ProfileForm() {
             <div className="fixed w-full h-full top-0 left-0 z-10">
               <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
                 <div>
-                  <InfoCircle size="32" /><span>Profile updated</span>
+                  <InfoCircle size="32" />
+                </div>
+                <div>
+                  <p>Profile updated</p>
                 </div>
               </div>
             </div>

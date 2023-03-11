@@ -95,7 +95,10 @@ function Register() {
               errors.username &&
               <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
                 <div>
-                  <InfoCircle size="32" /><span>{errors.username}</span>
+                  <InfoCircle size="32" />
+                </div>
+                <div>
+                  <p>{errors.username}</p>
                 </div>
               </div>
             }
@@ -119,7 +122,10 @@ function Register() {
               errors.password &&
               <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
                 <div>
-                  <InfoCircle size="32" /><span>{errors.password}</span>
+                  <InfoCircle size="32" />
+                </div>
+                <div>
+                  <p>{errors.password}</p>
                 </div>
               </div>
             }
@@ -143,7 +149,10 @@ function Register() {
               errors.password2 &&
               <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
                 <div>
-                  <InfoCircle size="32" /><span>{errors.password2}</span>
+                  <InfoCircle size="32" />
+                </div>
+                <div>
+                  <p>{errors.password2}</p>
                 </div>
               </div>
             }
@@ -168,7 +177,10 @@ function Register() {
               errors.tribename &&
               <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
                 <div>
-                  <InfoCircle size="32" /><span>{errors.tribename}</span>
+                  <InfoCircle size="32" />
+                </div>
+                <div>
+                  <p>{errors.tribename}</p>
                 </div>
               </div>
             }
@@ -181,7 +193,10 @@ function Register() {
             errors.non_field_errors?.map((error, i) => (
               <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto" key={`register-non-field-error${i}`}>
                 <div>
-                  <InfoCircle size="32" /><span>{error}</span>
+                  <InfoCircle size="32" />
+                </div>
+                <div>
+                  <p>{error}</p>
                 </div>
               </div>
             ))

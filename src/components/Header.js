@@ -47,7 +47,10 @@ function Header() {
         errors.logout &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-            <InfoCircle size="32" className="m-auto" /><span>{errors.logout}</span>
+            <InfoCircle size="32" className="m-auto" />
+          </div>
+          <div>
+            <p>{errors.logout}</p>
           </div>
         </div>
       }

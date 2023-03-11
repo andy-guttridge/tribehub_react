@@ -99,13 +99,13 @@ function Contacts() {
 
   // Set timeout and get rid of any success alert
   useEffect(() => {
-    const hideSuccess = setTimeout(() =>{
+    const hideSuccess = setTimeout(() => {
       setActionSucceeded('');
     }, 5000);
 
     // Cleanup
-    return () => {clearTimeout(hideSuccess)}
-  },[actionSucceeded]);
+    return () => { clearTimeout(hideSuccess) }
+  }, [actionSucceeded]);
 
   return (
     // Apply some styling if displaying in single page mode
@@ -121,7 +121,10 @@ function Contacts() {
         errors.contacts &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-            <InfoCircle size="32" className="inline-block" /><p>{errors.contacts}</p>
+            <InfoCircle size="32" className="inline-block" />
+          </div>
+          <div>
+            <p>{errors.contacts}</p>
           </div>
         </div>
       }
@@ -131,7 +134,10 @@ function Contacts() {
         errors.delete &&
         <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
           <div>
-            <InfoCircle size="32" className="inline-block" /><p>{errors.delete}</p>
+            <InfoCircle size="32" className="inline-block" />
+          </div>
+          <div>
+            <p>{errors.delete}</p>
           </div>
         </div>
       }

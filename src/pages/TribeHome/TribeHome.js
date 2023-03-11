@@ -176,8 +176,12 @@ function TribeHome() {
       {
         errors.calendarError && (
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-            <InfoCircle size="32" className="m-auto" />
-            <p>There was a problem fetching calendar data. You are either offline, or a server error has occurred.</p>
+            <div>
+              <InfoCircle size="32" className="m-auto" />
+            </div>
+            <div>
+              <p>There was a problem fetching calendar data. You are either offline, or a server error has occurred.</p>
+            </div>
           </div>
         )
       }
@@ -216,11 +220,11 @@ function TribeHome() {
               {
                 actionSucceeded !== '' &&
                 <div className="fixed w-full h-full top-0 left-0 z-10">
-                <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
-                  <div>
-                    <InfoCircle size="32" /><span>{actionSucceeded}</span>
+                  <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
+                    <div>
+                      <InfoCircle size="32" /><span>{actionSucceeded}</span>
+                    </div>
                   </div>
-                </div>
                 </div>
               }
 
@@ -229,7 +233,10 @@ function TribeHome() {
                 errors.delete &&
                 <div className="h-fit alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
                   <div>
-                    <InfoCircle size="32" /><span>{errors.delete}</span>
+                    <InfoCircle size="32" />
+                  </div>
+                  <div>
+                    <p>{errors.delete}</p>
                   </div>
                 </div>
               }
