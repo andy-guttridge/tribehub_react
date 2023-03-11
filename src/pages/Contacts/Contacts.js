@@ -35,7 +35,7 @@ function Contacts() {
   // State variables for errors
   const [errors, setErrors] = useState({});
 
-  // State variable to confirm the password change request was successful
+  // State variable to confirm a change to data was successful
   const [actionSucceeded, setActionSucceeded] = useState('');
 
   // State variables for whether user is adding a contact
@@ -96,6 +96,16 @@ function Contacts() {
     }
     fetchContacts();
   }, [didSaveContact, isSearching])
+
+  // Set timeout and get rid of any success alert
+  useEffect(() => {
+    const hideSuccess = setTimeout(() =>{
+      setActionSucceeded('');
+    }, 5000);
+
+    // Cleanup
+    return () => {clearTimeout(hideSuccess)}
+  },[actionSucceeded]);
 
   return (
     // Apply some styling if displaying in single page mode
@@ -170,13 +180,14 @@ function Contacts() {
       {/* Display alert with success message if a request resulting in change of data succeeded */}
       {
         actionSucceeded !== '' &&
-        <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-          <div>
-            <InfoCircle size="32" /><span>{actionSucceeded}</span>
+        <div className="fixed w-full h-full top-0 left-0 z-10">
+          <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
+            <div>
+              <InfoCircle size="32" /><span>{actionSucceeded}</span>
+            </div>
           </div>
         </div>
       }
-
 
       {/* Display contacts */}
       {

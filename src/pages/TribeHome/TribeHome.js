@@ -152,6 +152,16 @@ function TribeHome() {
     fetchEvents(fromDate, toDate, true);
   }
 
+  // Set timeout and get rid of any success alert
+  useEffect(() => {
+    const hideSuccess = setTimeout(() => {
+      setActionSucceeded('');
+    }, 5000);
+
+    // Cleanup
+    return () => { clearTimeout(hideSuccess) }
+  }, [actionSucceeded]);
+
   return (
     // Apply some styling dependinf on whether displaying in single page mode
     <section
@@ -205,10 +215,12 @@ function TribeHome() {
               {/* Display alert with success message if a request resulting in change of data succeeded */}
               {
                 actionSucceeded !== '' &&
-                <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
+                <div className="fixed w-full h-full top-0 left-0 z-10">
+                <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
                   <div>
                     <InfoCircle size="32" /><span>{actionSucceeded}</span>
                   </div>
+                </div>
                 </div>
               }
 

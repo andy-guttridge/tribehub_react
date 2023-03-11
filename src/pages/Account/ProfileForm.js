@@ -26,7 +26,7 @@ function ProfileForm() {
   const [errors, setErrors] = useState({});
 
   // State variable to confirm the profile change request was successful
-  const [requestSucceeded, setRequestSucceeded] = useState(false);
+  const [actionSucceeded, setActionSucceeded] = useState(false);
 
   // State variable to confirm whether data has loaded;
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -70,17 +70,18 @@ function ProfileForm() {
       setHasLoaded(false);
       await axiosReq.put(`/profile/${currentUser.pk}/`, formData);
       setHasLoaded(true);
-      setRequestSucceeded(true);
+      setActionSucceeded(true);
       setErrors({});
     } catch (error) {
       // A 401 error will be handled by our axios interceptor, so only set the error data if its a different error.
       if (error.response?.status !== 401) {
         setErrors(error.response?.data)
         setHasLoaded(true);
-        setRequestSucceeded(false);
+        setActionSucceeded(false);
       }
       if (error.response?.status === 500) {
-        setErrors({server_error : 'The server experienced an internal error'
+        setErrors({
+          server_error: 'The server experienced an internal error'
         })
       }
     }
@@ -104,6 +105,16 @@ function ProfileForm() {
     }
     fetchProfile();
   }, [currentUser])
+
+  // Set timeout and get rid of any success alert
+  useEffect(() => {
+    const hideSuccess = setTimeout(() => {
+      setActionSucceeded('');
+    }, 5000);
+
+    // Cleanup
+    return () => { clearTimeout(hideSuccess) }
+  }, [actionSucceeded]);
 
   return (
     <div className="justify-self-center basis-full mx-2">
@@ -168,16 +179,16 @@ function ProfileForm() {
             ))
           }
 
-           {/* Display alert if there was a 500 error */}
-           {
+          {/* Display alert if there was a 500 error */}
+          {
             errors.server_error &&
             <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
               <div>
                 <p><InfoCircle size="32" /></p>
                 <div>
-                <p>The server experienced an internal error. A common cause of this is uploading a file that is not an image.</p>
-                <br />
-                <p>If you attempted to upload a profile image, please check your file format and try again.</p>
+                  <p>The server experienced an internal error. A common cause of this is uploading a file that is not an image.</p>
+                  <br />
+                  <p>If you attempted to upload a profile image, please check your file format and try again.</p>
                 </div>
               </div>
             </div>
@@ -185,10 +196,12 @@ function ProfileForm() {
 
           {/* Display alert with success message if the request succeeded */}
           {
-            requestSucceeded &&
-            <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-              <div>
-                <InfoCircle size="32" /><span>Profile updated</span>
+            actionSucceeded &&
+            <div className="fixed w-full h-full top-0 left-0 z-10">
+              <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
+                <div>
+                  <InfoCircle size="32" /><span>Profile updated</span>
+                </div>
               </div>
             </div>
           }

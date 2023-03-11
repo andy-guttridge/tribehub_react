@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { InfoCircle } from 'react-bootstrap-icons';
 
 import { axiosReq } from '../../api/axiosDefaults';
@@ -20,7 +20,7 @@ function PasswordChangeForm() {
   const [errors, setErrors] = useState({});
 
   // State variable to confirm the password change request was successful
-  const [requestSucceeded, setRequestSucceeded] = useState(false);
+  const [actionSucceeded, setActionSucceeded] = useState(false);
 
   // Change handler for password form
   const handleChange = (event) => {
@@ -42,7 +42,7 @@ function PasswordChangeForm() {
         new_password2: '',
         old_password: ''
       })
-      setRequestSucceeded(true);
+      setActionSucceeded(true);
       setHasLoaded(true);
       setErrors({});
     } catch (error) {
@@ -56,10 +56,20 @@ function PasswordChangeForm() {
           old_password: ''
         })
         setHasLoaded(true);
-        setRequestSucceeded(false);
+        setActionSucceeded(false);
       }
     }
   };
+
+  // Set timeout and get rid of any success alert
+  useEffect(() => {
+    const hideSuccess = setTimeout(() =>{
+      setActionSucceeded('');
+    }, 5000);
+
+    // Cleanup
+    return () => {clearTimeout(hideSuccess)}
+  }, [actionSucceeded]);
 
   return (
     <div className="w-4/5 md:w-full m-auto text-center">
@@ -156,10 +166,12 @@ function PasswordChangeForm() {
 
           {/* Display alert with success message if the request succeeded */}
           {
-            requestSucceeded &&
-            <div className="alert alert-success justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
-              <div>
-                <InfoCircle size="32" /><span>Password updated</span>
+            actionSucceeded &&
+            <div className="fixed w-full h-full top-0 left-0 z-10">
+              <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
+                <div>
+                  <InfoCircle size="32" /><span>Password updated</span>
+                </div>
               </div>
             </div>
           }
