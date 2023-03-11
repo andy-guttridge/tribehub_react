@@ -39,7 +39,7 @@ module.exports = {
           accent: '#215ba6',
           neutral: '#4a4a4a',
           'base-100': '#fbfbfb',
-          'base-200': '#f8f8f8',
+          'base-200': '#ebebeb',
           'base-300': '#d6d6d6'
         }
       },
