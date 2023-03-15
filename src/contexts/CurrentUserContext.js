@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, createContext, useContext, useEffect, useMemo} from 'react';
+import { useState, createContext, useContext, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -20,14 +20,14 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
-  
+
   // Get current user from API
   const handleMount = async () => {
     try {
-      const {data} = await axiosRes.get('dj-rest-auth/user/');
+      const { data } = await axiosReq.get('dj-rest-auth/user/');
       setCurrentUser(data);
-    } catch(error) {
-    console.log(error);
+    } catch (error) {
+      // Catch error but do nothing as this would be caused by a lack of valid authorisation credentials
     }
   }
 
@@ -35,30 +35,30 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     handleMount()
   }, [])
-  
+
   // Check tokens and refresh if needed before components mount
-  useMemo (() => {
+  useMemo(() => {
     // Create request interceptor
     axiosReq.interceptors.request.use(
 
       // Check if there is a refresh token, if yes request a refresh. If error, redirect to sign-in page if
       // user was previously logged in.
-      async(config) => {
-        if (shouldRefreshToken()){
+      async (config) => {
+        if (shouldRefreshToken()) {
           try {
-              await axios.post('/dj-rest-auth/token/refresh/');
+            await axios.post('/dj-rest-auth/token/refresh/');
           }
-          catch(error){
-              setCurrentUser((prevCurrentUser) => {
-                  if(prevCurrentUser) {
-                      navigate('/signin');
-                  }
-                  return null;
-              });
+          catch (error) {
+            setCurrentUser((prevCurrentUser) => {
+              if (prevCurrentUser) {
+                navigate('/signin');
+              }
+              return null;
+            });
 
-              // If user was logged out, remove the token.
-              removeTokenTimestamp();
-              return config;
+            // If user was logged out, remove the token.
+            removeTokenTimestamp();
+            return config;
           }
         }
         return config;
@@ -76,13 +76,13 @@ export const CurrentUserProvider = ({ children }) => {
       // If user not authorised, try to refresh token. If that doesn't work,
       // navigate back to sign-in page if the user was previously logged in.
       async (error) => {
-        if(error.response?.status === 401) {
+        if (error.response?.status === 401) {
           try {
             await axios.post('dj-rest-auth/token/refresh/')
           }
-          catch(error) {
+          catch (error) {
             setCurrentUser((prevCurrentUser) => {
-              if(prevCurrentUser){
+              if (prevCurrentUser) {
                 navigate('/signin')
               }
               return null;
@@ -100,7 +100,7 @@ export const CurrentUserProvider = ({ children }) => {
 
   // Return providers for children to subscribe to
   return (
-    <CurrentUserContext.Provider  value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser}>
       <SetCurrentUserContext.Provider value={setCurrentUser}>
         {children}
       </SetCurrentUserContext.Provider>
