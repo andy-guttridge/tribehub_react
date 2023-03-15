@@ -584,7 +584,13 @@ All CSS files were passed through the W3C validator. The following errors and wa
 
 ### ESLint JavaScript validator
 
-Issues corrected include: unnecessary semi-colons at the end of statements, unescaped apostrophies in html text, unused variable, missing React import statements
+All JavaScript files were validated using the ESLint JavaScript validator.
+The following issues were identified and corrected:
+
+- Unnecessary semi-colons at the end of some statements.
+- Unescaped apostrophies in HTML text in some components.
+- An unused variable.
+- Missing React import statements.
 
 ### Lighthouse testing
 
