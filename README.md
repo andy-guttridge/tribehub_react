@@ -484,14 +484,43 @@ TribeHub features full Create, Read, Update and Delete functionality, via the UI
 
 ### Future improvements and features
 
-#### Future improvements
+#### Short term future improvements
+The following fixes and improvements would be made in the short term as a high priority if more time were available:
 
-#### Future features
+- Full synchronisation between notifications and calendar events - currently if a user responds to an event via the notifications menu, this is not reflected in the calendar events list until the calendar data is reloaded from the server. This is because the notifications menu and calendar are hold their own state and are separated from each other in the 'component tree'. This could be resolved by refactoring the app so that event and notification state are held by a top level context object, and writing a utility function to search for matching events and notifications, and updating the state of both as needed.
+- Automatically display any events for the current day - currently the user has to select the a day on the calendar to see any events when the page first loads, even if there are events for the current day.
+-  Automatically update display name in `Header` component - if the user updates their display name, the user has to refresh the page to see this reflected in the welcome message in the site header. This would require some refactoring to ensure the `Header` component 'knows' there has been a change of state.
+- Refactoring to reduce the number of requests to the REST API - when the user selects a new month on the calendar, the React frontend requests events for 12 months either side of the current month, in order to 'buffer' the data and prevent a delay in data being displayed if the user skips a few months forwards or backwards. While this provides a relatively seamless user experience, it also means more data than necessary is being fetched in the background. This could be reduced by only fetching a full two years worth of data when the `TribeHome` component first mounts, and subsequently only loading one additional month at the 'extreme end of the range' each time the user changes month. Additionally, the `MyTribe` and `EventDetailsForm` components both separately fetch details of the current user's tribe from the API independently. Implementing a top level context object to fetch this data when the app first loads and make it available to the whole component tree could further reduce the number of data fetches. 
+- Password strength checking for all accounts - the custom Django Rest Framework code that enables tribe administrators to create additional user accounts for tribe members does not currently 'hook in' to Django's built-in checks for password strength.
+- Reassign ownership of events created by deleted users - currently events are deleted if the user who created them deletes their account. This avoids any issues with 'orphaned' instances in the database, but a better solution would be to automatically or optionally transfer ownership of such events to the tribe administrator.
+- Transfer of tribe admin status to another user - in the event a tribe administrator closes their account, all user accounts associated with the tribe are closed and data deleted. This is to prevent 'orphaned' tribes and tribe members with no administrator. A better solution would be to enable the transfer of tribe admin status to another user.
+- All day calendar events.
+- Improved event duration input - the current dropdown with a selection of pre-set duration values was chosen for speed of implementation. A more flexible means of selecting the durations would improve the user experience.
+- A 'no reply' default event response status - currently each user can only have an 'accepted' or 'not accepted' status for each calendar event, with the default being 'not accepted'. This means that while users can actively accept an invitation, they cannot actively decline. This is acceptable for a first iteration of a minimum viable product, but a far better user experience would be for the default status to be neutral, so that a user can either actively accept or decline.
+- Improvements to 'single page mode' - the priority for the first iteration of TribeHub was to provide the best possible experience for mobile users, and while single page mode does take advantage of larger screen sizes, it is really still an expanded version of the mobile experience. A better tablet and desktop experience could be achieved by using a React library such as [Big Calendar](https://jquense.github.io/react-big-calendar/examples/?path=/story/about-big-calendar--page) to implement a larger 'outlook' style calendar where details of events are visible on the actual calendar itself. A modal or 'popover' type component would be implemented to present an additional layer of detail and to allow creation and editing of events.
+
+#### Longer term future features
+Lower priority, longer term features to be added are:
+
+- Refactoring the events data format to adopt the iCal standard, as a first step towards implementing integration with external calendars such as Gmail etc.
+- End dates/date ranges for repeat events (e.g. 'repeat weekly until 1 December 2023').
+- Exceptions to repeat event rules (e.g. a user could set up an event to recur weekly every Wednesday, but could create an exception so that one recurrence is on a Thursday).
+- Exceptions to 'accept/decline' responses for recurrences (e.g. the user could accept all recurrences and then decline them on an individual basis).
+- Day/week/year views for the calendar.
+- Avatars for contacts.
+- A 'banner image' for the whole tribe which can be set by the tribe admin. This would appear at the top of the page or as a background.
+- Tribe colour themes which can be set by the tribe admin and/or colour themes which can be set by the user. This would be relatively straightforward to implement with TailwindCSS and daisyUI.
+- Read/unread status for notifications - currently the notifications menu badge counts the number of notifications, and users can reduce the count only by deleting notifications. Flagging notifications as read or unread and giving the user the ability to mark each notification on an individual basis would be more in line with the behaviour of other apps/websites. 
+- Optionally adjusting calendar event dates and times to reflect the user's local timezone.
+- Shopping lists and items, integrated with the calendar system.
+- Meal plans, intregrated into shopping lists.
+- UI improvements, e.g. an avatar based UI for inviting tribe members to events, and 'popovers' or 'callouts' for displaying calendar events.
+
 
 ## Frameworks, libraries and dependencies
 
 ### React-Calendar
-- [react-calendar](https://github.com/wojtekmaj/react-calendar) - this React library was used to implement the calendar. This is critical to the user experience as the calendar is a fundamental feature of the app, and creating such a calendar 'from scratch' would have been impractical within the time allowed for the project. React-Calendar was chosen because it is relatively lightweight and straightforward to use, enabling the key features to be implemented quickly, and because it provides flexibility with respect to customisable CSS and calendar cell content (e.g. to enable the 'dots' used to indicate when there are events on a given day).
+- [react-calendar](https://github.com/wojtekmaj/react-calendar) - this React library was used to implement the calendar. This is critical to the user experience as the calendar is a fundamental feature of the app, and creating such a calendar 'from scratch' would have been impractical within the time allowed for the project. React-Calendar was chosen because it is relatively lightweight and straightforward to use, enabling the key features to be implemented quickly, because it is compact in terms of its style, making it suitable for use on smal mobile screens, and because it provides flexibility with respect to customisable CSS and calendar cell content (e.g. to enable the 'dots' used to indicate when there are events on a given day).
 
 ### React-Router-DOM
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom) - this library enables 'client side routing' for React web applications, and is used to implement basic routing in TribeHub, i.e. to implement the links on the bottom navbar, and register, sign-in and sign-out links. Using React-Router-DOM also enabled implementation of 'single page mode'to enhance the experience for users on larger screens. The `useSinglePage` custom hook is referenced in `App.js`, with different `Route` components conditionally rendered for the various paths depending on whether the app is running in single page mode. The `useLocation` hook from React-Router-DOM is used in some components to determine the current URL and respond accordingly, for example by ensuring the correct nav button is highlighted in the bottom navbar for mobile users.
@@ -537,7 +566,6 @@ Issues corrected include: unnecessary semi-colons at the end of statements, unes
 ### Lighthouse testing
 
 Lighthouse testing revealed that button elements did not have id attributes which are required by assistive technologies. These were added to all buttons, with programatically generated unique values where required for components which are rendered multiple times.
-
 
 ### Accessability testing
 
