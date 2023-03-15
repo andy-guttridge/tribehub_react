@@ -2,6 +2,6 @@
   max-height: 750px;
   overflow-y: scroll;
   @apply bg-base-200;
-  @apply rounded-lg m-2;
+  @apply rounded-lg;
   @apply md:border md:border-base-200;
 }
