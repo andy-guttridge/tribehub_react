@@ -163,7 +163,7 @@ function TribeHome() {
   }, [actionSucceeded]);
 
   return (
-    // Apply some styling dependinf on whether displaying in single page mode
+    // Apply some styling depending on whether displaying in single page mode
     <section
       className={
         `${singlePage ? singlePageStyles : 'bg-base-100'}`
@@ -187,10 +187,10 @@ function TribeHome() {
       }
 
       {hasLoaded ? (
-
-        // Calendar
         <>
           <div className="lg:grid lg:grid-cols-2">
+
+          {/* Calendar */}
             <div className="flex justify-center lg:m-2">
               <Calendar
                 className={`${styles.TribehubCalendar}`}
@@ -215,7 +215,6 @@ function TribeHome() {
             </div>
 
             <div>
-
               {/* Display alert with success message if a request resulting in change of data succeeded */}
               {
                 actionSucceeded !== '' &&
@@ -279,7 +278,7 @@ function TribeHome() {
               {/* Event details for selected day */}
               {/* Do not display these if in search mode */}
               {
-                !isSearching &&
+                !isSearching && dayEvents?.length > 0 &&
                 <div className={`${singlePage ? (css.DisplayEvents) : "bg-base-200"} w-full md:inline-block lg:block`} >
                   {
                     dayEvents?.map((dayEvent) => {
