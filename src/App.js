@@ -1,8 +1,9 @@
-import './App.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
-import './api/axiosDefaults'
-import Signin from './pages/Signin'
+import './App.css';
+import './api/axiosDefaults';
+import Signin from './pages/Signin';
 import TribeHome from './pages/TribeHome/TribeHome';
 import Contacts from './pages/Contacts/Contacts';
 import Account from './pages/Account/Account';
@@ -13,8 +14,8 @@ import Landing from './pages/Landing';
 import Register from './pages/Register';
 import SinglePage from './pages/SinglePage';
 import { useSinglePage } from './contexts/SinglePageContext';
-import css from './styles/App.module.css'
-import React, { useEffect } from 'react';
+import css from './styles/App.module.css';
+
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
     <div className={`App ${css.AppStyles} m-auto md:bg-base-200`} data-theme={!currentUser && "tribehub_theme"}>
       <Header />
       {
-        // If window width less than large breakpoint, display mobile navbar and separate pages
+        // If window width less than medium breakpoint, display mobile navbar and separate pages
         !singlePage ?
           (
             <>
@@ -70,7 +71,7 @@ function App() {
               <NavBar />
             </>
           ) : (
-            // If window width larger than breakpoint, use single page app layout
+            // If window width larger than medium breakpoint, use single page app layout
             <>
               <Routes>
                 <Route exact path="/" element={
