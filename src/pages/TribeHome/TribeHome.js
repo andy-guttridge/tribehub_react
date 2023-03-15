@@ -190,7 +190,7 @@ function TribeHome() {
         <>
           <div className="lg:grid lg:grid-cols-2">
 
-          {/* Calendar */}
+            {/* Calendar */}
             <div className="flex justify-center lg:m-2">
               <Calendar
                 className={`${styles.TribehubCalendar}`}
@@ -294,14 +294,14 @@ function TribeHome() {
                       />
                     })
                   }
-                  {
-                    // Empty div with margin to provide clearance above bottom navbar if not in single page mode
-                    !singlePage && <div className="mb-4 bg-base-100"><br /></div>
-                  }
                 </div>
               }
             </div>
           </div>
+          {
+            // Empty div with margin to provide clearance above bottom navbar if not in single page mode
+            !singlePage && <div className="mb-4 bg-base-100"><br /></div>
+          }
         </>
       ) : (
         <Spinner />
