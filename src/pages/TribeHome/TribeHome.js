@@ -218,7 +218,7 @@ function TribeHome() {
               {/* Display alert with success message if a request resulting in change of data succeeded */}
               {
                 actionSucceeded !== '' &&
-                <div className="fixed w-full h-full top-0 left-0 z-10">
+                <div className="fixed min-h-fit min-w-full top-0 left-0 z-10">
                   <div className="alert alert-success justify-start w-3/4 md:w-1/2 lg:w-1/2 mx-auto mt-14">
                     <div>
                       <InfoCircle size="32" /><span>{actionSucceeded}</span>
