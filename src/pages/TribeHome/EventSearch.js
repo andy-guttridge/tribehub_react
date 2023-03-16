@@ -242,6 +242,7 @@ function EventSearch({ handleCancelButton }) {
             </label>
 
             {/* Tribe members search field */}
+            <p className="text-left text-sm md:text-center hidden lg:inline">Hold own Ctrl (Windows) or Cmd (Mac) to make multiple selections</p>
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="tribe_to">
               <span>Tribe members invited:</span>
               <select

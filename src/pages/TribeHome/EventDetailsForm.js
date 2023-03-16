@@ -187,7 +187,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         <form onSubmit={handleSubmit} className="w-4/5 m-auto md:w-full">
 
           {/* To users field */}
-          <p className="text-left invisible lg:visible">Hold own Ctrl (Windows) or Cmd (Mac) to make multiple selections</p>
+          <p className="text-left text-sm md:text-center hidden lg:inline">Hold own Ctrl (Windows) or Cmd (Mac) to make multiple selections</p>
           <label className="text-sm input-group max-lg:input-group-vertical mb-4" htmlFor="to">
             <span>To:</span>
             <select
