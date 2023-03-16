@@ -25,7 +25,7 @@ function Header() {
   }
 
   return (
-    <header id="Header" className="bg-base-100 mx-1.5 mb-0 mt-0 rounded-lg md:border md:rounded-b-none md:border-b-0 md:border-base-300">
+    <header id="Header" className={`bg-base-100 ${currentUser && "mx-1.5"} mb-0 mt-0 rounded-lg md:border md:rounded-b-none md:border-b-0 md:border-base-300`}>
       <NavLink to="/tribe-home">
         <h1 className="md:text-6xl">
           <span className="text-primary">Tribe</span><span className="text-secondary">Hub</span>
