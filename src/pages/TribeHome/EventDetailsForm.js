@@ -167,7 +167,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
   }, [event, isEditingEvent])
 
   return (
-    <section className={`w-full m-auto ${css.EventDetailsExpand}`}>
+    <section className={`w-full m-auto md:mx-2 ${css.EventDetailsExpand}`}>
 
       {/* Show appropriate title depending if user is adding new or editing existing event */}
       {isEditingEvent ? (
@@ -184,7 +184,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
       {hasLoaded ? (
 
         // Add/edit event form 
-        <form onSubmit={handleSubmit} className="w-4/5 m-auto md:m-1 md:w-full">
+        <form onSubmit={handleSubmit} className="w-4/5 m-auto md:w-full">
 
           {/* To users field */}
           <p className="text-left invisible lg:visible">Hold own Ctrl (Windows) or Cmd (Mac) to make multiple selections</p>

@@ -173,7 +173,7 @@ function EventSearch({ handleCancelButton }) {
   }
 
   return (
-    <section className={`basis-full ${css.EventSearchExpand}`}>
+    <section className={`basis-full md:mx-2 ${css.EventSearchExpand}`}>
       <h3>Search events</h3>
 
       {/* Display alert if there was an issue fetching tribe data */}
