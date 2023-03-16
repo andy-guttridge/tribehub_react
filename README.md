@@ -674,7 +674,7 @@ To deploy to Heroku, follow these steps:
 - Enter a name for the app and select the appropriate region.
 - Select 'Create app'.
 - Select the 'Deploy' tab at the top.
-- Select 'GitHub' and confirm you wish to deploy using GitHub. You may be asked to enter your GitHub password.
+- Select 'GitHub' from the deployment method options to confirm you wish to deploy using GitHub. You may be asked to enter your GitHub password.
 - Find the 'Connect to GitHub' section and use the search box to locate your repo.
 - Select 'Connect' when found.
 - Optionally choose the main branch under 'Automatic Deploys' and select 'Enable Automatic Deploys' if you wish your deployed site to be automatically redeployed every time you push changes to GitHub.
