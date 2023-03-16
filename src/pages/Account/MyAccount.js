@@ -70,7 +70,7 @@ function MyAccount() {
 
       <section className="block m-4 md:mx-2">
         <h3>Change password</h3>
-        <div className="md:w-full text-left m-auto">
+        <div className="justify-center flex w-4/5 md:w-full mx-auto my-4">
           <PasswordChangeForm />
         </div>
       </section>
