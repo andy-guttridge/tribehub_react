@@ -28,7 +28,7 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
       }
 
       {/* Display contact details */}
-      <div className="card-body grid grid-cols-1 md:grid-cols-2 text-left break-words">
+      <div className="card-body grid grid-cols-2 text-left break-all">
         <div>
           <h3 className="text-xl">{contact.category}</h3>
           <p>{contact.title} {contact.first_name} {contact.last_name}</p>
