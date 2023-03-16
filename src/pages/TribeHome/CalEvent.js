@@ -143,13 +143,16 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
 
       {/* Display the EventDetailsForm if user is editing an event */}
       {isEditingEvent &&
-        <EventDetailsForm
-          handleCancelButton={() => setIsEditingEvent(false)}
-          isEditingEvent
-          event={event}
-          setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
-          setActionSucceeded={setActionSucceeded}
-        />}
+        <div className="md:mx-2 md:flex md:justify-center">
+          <EventDetailsForm
+            handleCancelButton={() => setIsEditingEvent(false)}
+            isEditingEvent
+            event={event}
+            setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
+            setActionSucceeded={setActionSucceeded}
+          />
+        </div>
+      }
 
       {/* Card title */}
       <div className="card-title bg-base-100 rounded-sm flex justify-between p-2 break-all">
