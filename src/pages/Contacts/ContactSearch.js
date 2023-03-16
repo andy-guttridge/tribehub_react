@@ -9,39 +9,47 @@ import Contact from './Contact';
 import css from '../../styles/ContactSearch.module.css';
 
 function ContactSearch({ handleCancelButton }) {
+  /**
+   * Contacts search form and results
+   * @param {function} handleCancelButton Handler for cancel button
+   */
 
-  // State variable for whether search results have loaded
+  // State for whether search results have loaded
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  // State variable for search term
+  // State for search term
   const [searchValue, setSearchValue] = useState('');
 
-  // State variable for search results
+  // State for search results
   const [contacts, setContacts] = useState({});
 
-  // State variables for errors
+  // Errors
   const [errors, setErrors] = useState({});
 
-  // Flag for when a contact has been changed or deleted.
-  // This is simply toggled to trigger a reload of the data
+  // Toggle when a contact has been changed or deleted to trigger a refresh of data
   const [didSaveContact, setDidSaveContact] = useState(false);
 
-  // Flag for when user is in the process of deleting a contact.
-  // If user is deleting a contact, the id of the contact is stored here.
+  // State for when user is in the process of deleting a contact. If user is deleting a contact, id of the contact is stored here.
   const [isDeletingContact, setIsDeletingContact] = useState(false);
 
-  // Handle change of form input value
   const handleChange = (e) => {
+    /**
+     * Handle change of form input value
+     */
     setSearchValue(e.target.value);
   }
 
-  // Handle delete button by storing contact id
   const handleDeleteButton = (contactId) => {
+    /** 
+     * Handle delete button by storing contact id
+     */
     setIsDeletingContact(contactId);
   }
 
-  // Fetch contacts according to search values
   useEffect(() => {
+    /**
+     * Fetch contacts according to search values
+     */
     const fetchContacts = async () => {
       try {
         setHasLoaded(false);
@@ -67,8 +75,10 @@ function ContactSearch({ handleCancelButton }) {
     }
   }, [searchValue, didSaveContact])
 
-  // Delete the contact if user confirms deletion
   const doDelete = async () => {
+    /**
+     *  Handle delete contact if user confirms
+     */
     try {
       await axiosReq.delete(`contacts/${isDeletingContact}/`);
       setDidSaveContact(!didSaveContact);

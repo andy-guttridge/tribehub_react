@@ -5,33 +5,40 @@ import { axiosReq } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
 
 function PasswordChangeForm() {
+  /**
+   * Form to change password
+   */
 
-  // State variable to confirm whether data has loaded;
+  // Use to confirm whether data has loaded;
   const [hasLoaded, setHasLoaded] = useState(true);
 
-  // State variables for password form fields
+  // State for password form fields 
   const [passwordFormData, setPasswordFormData] = useState({
     new_password1: '',
     new_password2: '',
     old_password: ''
   });
 
-  // State variables for HTTP errors from the API
+  // Errors
   const [errors, setErrors] = useState({});
 
-  // State variable to confirm the password change request was successful
+  // Use to confirm the password change request was successful
   const [actionSucceeded, setActionSucceeded] = useState(false);
 
-  // Change handler for password form
   const handleChange = (event) => {
+    /**
+     * Change handler for password form
+     */
     setPasswordFormData({
       ...passwordFormData,
       [event.target.name]: event.target.value
     });
   };
 
-  // Handle form submission
   const handleSubmit = async (event) => {
+    /**
+     * Handle form submission
+     */
     event.preventDefault();
     try {
       setHasLoaded(false);
@@ -49,7 +56,7 @@ function PasswordChangeForm() {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data)
 
-        // Clear the form
+        // Clear form
         setPasswordFormData({
           new_password1: '',
           new_password2: '',

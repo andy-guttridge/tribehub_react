@@ -11,41 +11,51 @@ import TribeMemberDetailsForm from './TribeMemberDetailsForm';
 import { axiosReq } from '../../api/axiosDefaults';
 
 function MyTribe() {
-  // Hooks for current user, changing current page location, checking if app is in single page mode
+  /**
+   * My Tribe section, only visible to tribe admin
+   */
+
+  // Current user, and hook for changing current page location
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
-  // State variables for members of the user's tribe, whether the component has loaded, and whether user
+  // State for members of the user's tribe, whether data has loaded, and whether user
   // is in the process of adding a new user.
   const [tribe, setTribe] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [isAddingNewMember, setIsAddingNewMember] = useState(false);
 
-  // State variable to confirm whether a tribe admin has selected to delete one of their tribe member's
-  // accounts. If yes, this stores the user id of the user they've selected to delete.
+  // State for whether a tribe admin has selected to delete one of their tribe member's
+  // accounts. Use to store user id of the user they've selected to delete.
   const [isDeletingMember, setIsDeletingMember] = useState(false);
 
-  // State variable to confirm whether a change to data was successful
+  // State for whether a change to data was successful
   const [actionSucceeded, setActionSucceeded] = useState('');
 
-  // State variable to trigger data reload if a change has been made to tribemembers
+  // Toggle to trigger data refresh if a change has been made to tribemembers
   const [tribeChangeFlag, setTribeChangeFlag] = useState(false);
 
-  // State variables for errors
+  // Errors
   const [errors, setErrors] = useState({});
 
-  // Handler to respond to the add new member button by toggling the state
   const handleNewMemberButton = () => {
+    /**
+     * Handle add new member button by toggling state
+     */
     setIsAddingNewMember(!isAddingNewMember);
   }
 
-  // Handler for delete tribe member buttons
   const handleDeleteButton = (id) => {
+    /**
+     * Handle delete buttons for each tribe member
+     */
     setIsDeletingMember(id);
   }
 
-  // Handler to delete a tribe member
   const doDelete = async () => {
+    /**
+     * Handle deletion of tribe member
+     */
     try {
       await axiosReq.delete(`accounts/user/${isDeletingMember}`);
       setTribeChangeFlag(!tribeChangeFlag);
@@ -59,10 +69,10 @@ function MyTribe() {
     setIsDeletingMember(false);
   }
 
-  // Use effect has isAddingNewMember and isDeletingNewMember in dependency array, to ensure component reloads
-  // when the user has finished adding a new user or deleting a user
   useEffect(() => {
-    // Check if user logged in on mount, if not redirect to landing page
+    /**
+     * Check if user logged in on mount, if not redirect to landing page
+     */
     !currentUser && navigate('/');
 
     // Fetch tribe members
@@ -97,8 +107,8 @@ function MyTribe() {
         <h3>My tribe</h3>
       </div>
 
-      {/* Show button to add new user or the component with the form to add a new user depending on state variable */}
-      {/* We have to pass handleNewMemberButton to the form component so that it can set the isAddingNewMember state back to false */}
+      {/* Show button to add new user or the component with the form */}
+      {/* Pass handleNewMemberButton to the form component so that it can set the isAddingNewMember state back to false */}
       <div className="justify-end lg:justify-start flex mx-auto m-0 bg-base-100">
         {
           !isAddingNewMember ? (
@@ -128,15 +138,15 @@ function MyTribe() {
         </div>
       }
 
-      {/* We do not include the user in the list */}
+      {/* Display all members of the tribe except the current user */}
       {hasLoaded ? (
-        // If there is only one user in the tribe, it must be the tribe admin so show a prompt to add more users.
         tribe.results[0]?.users.length > 1 ? (
           tribe.results[0].users.map(tribeMember => (
             (currentUser.pk !== tribeMember.user_id) &&
             (<TribeMember key={tribeMember.user_id} tribeMember={tribeMember} handleDeleteButton={handleDeleteButton} />)
           ))
         ) : !isAddingNewMember && (
+          // If there is only one user in the tribe, it must be the tribe admin so show a prompt to add more users.
           <div className="alert alert-info justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
             <div>
               <p className="m-2 font-bold">{`It's looking a bit empty! Click the add button to add a member to your tribe.`}</p>
@@ -150,7 +160,7 @@ function MyTribe() {
       )}
 
       <div className="flex justify-center">
-        {/* Display alert if there was an issue deleting a tribe member */}
+        {/* Display alert if issue deleting a tribe member */}
         {
           errors.delete &&
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
@@ -163,7 +173,7 @@ function MyTribe() {
           </div>
         }
 
-        {/* Display alert if there was an issue fetching tribe members */}
+        {/* Display alert if issue fetching tribe members */}
         {
           errors.tribe &&
           <div className="alert alert-warning justify-start mt-4 mb-2 w-3/4 md:w-1/2 lg:w-1/2 mx-auto">
@@ -178,7 +188,7 @@ function MyTribe() {
 
       </div>
 
-      {/* If tribe admin has selected to delete a tribeMember, show the modal to confirm or cancel */}
+      {/* If tribe admin has selected to delete a tribeMember, show modal to confirm or cancel */}
       {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
           // https://upmostly.com/tutorials/modal-components-react-custom-hooks */}
       {

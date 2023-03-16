@@ -5,12 +5,18 @@ import { useCurrentUser } from '../contexts/CurrentUserContext';
 import css from '../styles/Landing.module.css'
 
 function Landing() {
+  /**
+   * Landing page if user not authenticated
+   */
 
+  // Current user and hook for redirection
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
-  // Check if user logged in on mount, if yes redirect to tribe-home
   useEffect(() => {
+    /**
+     * Check if user logged in on mount, if yes redirect to tribe-home
+     */
     currentUser && navigate('/tribe-home')
   }, [currentUser, navigate])
 
@@ -31,7 +37,7 @@ function Landing() {
             <button className="btn m-2 btn-primary" type="button" id="sign-in-btn">Sign-in</button>
           </NavLink>}
       </div>
-      
+
       {/* Outer container for landing page hero */}
       <div className={`mt-14 ${css.LandingPageTop} overflow-hidden`} >
 
@@ -40,16 +46,11 @@ function Landing() {
 
           {/*  Container for text content*/}
           <div className={`${css.Content}`}>
-              <p className="font-nunito mx-1 text-6xl max-[399px]:text-4xl m-auto">{`Your family's calendar and contacts all in one place.`}</p>
+            <p className="font-nunito mx-1 text-6xl max-[399px]:text-4xl m-auto">{`Your family's calendar and contacts all in one place.`}</p>
           </div>
         </div>
       </div>
-
-
-
-
     </div>
-
   )
 }
 

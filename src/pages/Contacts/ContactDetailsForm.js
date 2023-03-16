@@ -5,6 +5,15 @@ import { axiosReq } from '../../api/axiosDefaults';
 import css from '../../styles/ContactDetailsForm.module.css';
 
 function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveContact, isEditingContact, contact, setActionSucceeded }) {
+  /**
+   * Form for creating new contacts and editing existing ones
+   * @param {function} handleCancelButton Handler for cancel button
+   * @param {boolean} didSaveContact Bool which is toggled to let parent know a contact was saved
+   * @param {function} setDidSaveContact Set state for didSaveContact
+   * @param {bool} isEditingContact If true, user is editing an existing contact rather than adding a new one
+   * @param {object} contact Contact to be editied if user is editing
+   * @param {function} setActionSucceeded Set string with message to inform parent a request to change data succeeded
+   */
 
   // State variables for form values
   const [contactForm, setContactForm] = useState({

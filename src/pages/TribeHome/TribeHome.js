@@ -18,54 +18,58 @@ import EventSearch from './EventSearch';
 import css from '../../styles/TribeHome.module.css'
 
 function TribeHome() {
+  /**
+   * TribeHome page/section, including calendar and events
+   */
 
-  // State variables for loading status
+  // State for loading status
   const [hasLoaded, setHasLoaded] = useState(false)
 
-  // Get ref to current user
+  // Current user
   const currentUser = useCurrentUser();
 
   // Hook for redirection
   const navigate = useNavigate();
 
-  // Get ref to whether the app is displaying in single page mode
+  // Check if in single page mode
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
   const singlePageStyles = 'basis-4/5 mx-0.5 rounded-lg rounded-t-none border border-t-0 border-base-300 bg-base-100 col-span-2';
 
-  // State variables for user's events
+  // State for user's events
   const [events, setEvents] = useState({ results: [] });
 
-  // State variables for specific day's events
+  // State for specific day's events
   const [dayEvents, setDayEvents] = useState([]);
 
-  // State variables for API errors
+  // Errors
   const [errors, setErrors] = useState({});
 
-  // State variable to confirm whether a change to data was successful
+  // String to confirm whether a change to data was successful
   const [actionSucceeded, setActionSucceeded] = useState('');
 
-  // State variables for whether user has the add event form open
+  // State for whether user has the add event form open
   const [isAddingNewEvent, setIsAddingNewEvent] = useState(false);
 
-  // State variables for whether user is in the process of deleting an event
+  // State for whether user is in the process of deleting an event
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
 
-  // State variable for whether user has the search form open
+  // State for whether user has the search form open
   const [isSearching, setIsSearching] = useState(false);
 
-  // State variable used as a flag when event details are saved.
-  // This is simply toggles to trigger events to reload when there has been a change.
+  // Toggle when event details are saved.
   const [didSaveEvent, setDidSaveEvent] = useState(false)
 
-  // Reference to current day so we can use it without making it a dependency in useCallback
+  // Ref to current day so we can use it without making it a dependency in useCallback
   const currentDayRef = useRef(new Date());
 
-  // Function to fetch user's events and set them as values for the current calendar day
-  // How to use useCallback hook to correctly declare a function outside of useEffect to enable
-  // code re-use from https://stackoverflow.com/questions/56410369/can-i-call-separate-function-in-useeffect
   const fetchEvents = useCallback(
+    /**
+     * Function to fetch user's events and set them as values for the current calendar day
+     * How to use useCallback hook to correctly declare a function outside of useEffect to enable
+     * code re-use from https://stackoverflow.com/questions/56410369/can-i-call-separate-function-in-useeffect
+     */
     async (fromDate, toDate, didChangeMonth = false) => {
 
       // Convert fromDate and toDate to ISO strings for the API, and get rid of last 5 chars to eliminate timezone data
@@ -99,13 +103,17 @@ function TribeHome() {
     }
     , [])
 
-  // Handle user pressing delete event button by storing the event id.
   const handleDeleteButton = (eventId) => {
+    /**
+     * Handle user pressing delete event button by storing event id
+     */
     setIsDeletingEvent(eventId);
   }
 
-  // Delete event when user has confirmed they wish to do so.
   const doDelete = async () => {
+    /**
+     * Handle user confirmation of event deletion
+     */
     try {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
@@ -119,6 +127,9 @@ function TribeHome() {
   }
 
   useEffect(() => {
+    /**
+     * Get event data on mount
+     */
 
     // Set dates for fetching calendar data. Load data for 3 months before and after today.
     const fromDate = new Date(currentDayRef.current);
@@ -131,14 +142,19 @@ function TribeHome() {
   }, [didSaveEvent, fetchEvents])
 
   useEffect(() => {
-    // Check if user logged in on mount, if not redirect to landing page.
-    // Ensure top of page is visible if not in single page mode.
+    /**
+     * Check if user logged in on mount, if not redirect to landing page.
+     * Ensure top of page is visible if not in single page mode.
+     */
+
     !currentUser && navigate('/');
     !singlePage && window.scrollTo(0, 0);
   }, [currentUser, navigate, singlePage])
 
-  // Handle the user changing the calendar month by reloading events data with correct date range
   const handleCalMonthChange = (calData) => {
+    /**
+     * Handle the user changing the calendar month by reloading events data with correct date range
+     */
 
     // Set dates for fetching data based on the activeStartDate supplied by the calendar component
     const { activeStartDate } = calData;
@@ -152,8 +168,10 @@ function TribeHome() {
     fetchEvents(fromDate, toDate, true);
   }
 
-  // Set timeout and get rid of any success alert
   useEffect(() => {
+    /**
+     * Set timeout and get rid of any success alert
+     */
     const hideSuccess = setTimeout(() => {
       setActionSucceeded('');
     }, 5000);
@@ -276,7 +294,7 @@ function TribeHome() {
               </div>
 
               {/* Event details for selected day */}
-              {/* Do not display these if in search mode */}
+              {/* Do not show these if in search mode */}
               {
                 !isSearching && dayEvents?.length > 0 &&
                 <div className={`${singlePage ? (css.DisplayEvents) : "bg-base-200"} w-full md:inline-block lg:block`} >

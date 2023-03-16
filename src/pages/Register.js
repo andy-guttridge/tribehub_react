@@ -6,8 +6,11 @@ import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosReq } from '../api/axiosDefaults';
 
 function Register() {
+  /**
+   * User registration page
+   */
 
-  // State variables for registration form submission data
+  // State for registration form submission data
   const [registerData, setRegisterData] = useState({
     username: '',
     password: '',
@@ -15,28 +18,32 @@ function Register() {
     tribename: ''
   });
 
-  // State variables for HTTP errors from the API
+  const { username, password, password2, tribename } = registerData;
+
+  // Errors
   const [errors, setErrors] = useState({});
 
   // Use to redirect when registered
   const navigate = useNavigate();
-
+  
+  // Current user
   const currentUser = useCurrentUser();
 
-  // Retrieve required form data from state variables
-  const { username, password, password2, tribename } = registerData;
-
-  // Change handler for registration form
   const handleChange = (event) => {
+    /**
+     * Change handler for registration form
+     */
     setRegisterData({
       ...registerData,
       [event.target.name]: event.target.value
     })
   };
 
-  // Event handler for registration form submission.
-  // Redirects to sign-in page after successful form submission
   const handleSubmit = async (event) => {
+    /**
+     * Handle registration form submission.
+     * Redirects to sign-in page after successful form submission
+     */
     event.preventDefault();
     try {
       await axiosReq.post('/accounts/tribe/', registerData);
@@ -46,8 +53,10 @@ function Register() {
     }
   };
 
-  // Redirect to tribe homepage if user is authenticated
   useEffect(() => {
+    /**
+     * Redirect to tribe homepage if user is authenticated
+     */
     currentUser && navigate('/tribe-home')
   }, [currentUser, navigate])
 

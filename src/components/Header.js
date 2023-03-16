@@ -1,16 +1,21 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+
 import { InfoCircle } from 'react-bootstrap-icons';
 import { NavLink } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import NotficationsMenu from './NotficationsMenu';
 
 function Header() {
-  // State variables for current user details
+  /**
+   * Site header
+   */
+
+  // Current user details
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  // State variables for errors
+  // Errors
   const [errors, setErrors] = useState({});
 
   // Handle sign-out with API

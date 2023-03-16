@@ -7,28 +7,30 @@ import Avatar from '../../components/Avatar';
 import Spinner from '../../components/Spinner';
 
 function ProfileForm() {
+  /**
+   * Update profile form
+   */
 
-  // Reference to current user
+  // Current user
   const currentUser = useCurrentUser();
 
-  // Use useRef hook to maintain a reference to the form file upload element
+  // Reference to the form file upload element
   const imageInput = useRef(null);
 
-  // State variables for editable profile data;
+  // State for editable profile data;
   const [profileData, setProfileData] = useState({
     display_name: '',
     image: '',
   });
-
   const { display_name, image } = profileData;
 
-  // State variables for HTTP errors from the API
+  // State for HTTP errors from the API
   const [errors, setErrors] = useState({});
 
-  // State variable to confirm the profile change request was successful
+  // State to confirm the profile change request was successful
   const [actionSucceeded, setActionSucceeded] = useState(false);
 
-  // State variable to confirm whether data has loaded;
+  // State to confirm whether data has loaded;
   const [hasLoaded, setHasLoaded] = useState(false);
 
   // Change handler for profile form
@@ -39,10 +41,14 @@ function ProfileForm() {
     })
   };
 
-  // Change handler for profile image form element. Use revokeObjectURL to destroy reference to previous profile image
-  // and createObjectURL to create a new one from the form element.
+
   const handleImageChange = (event) => {
+    /**
+     * Change handler for profile image form element
+     */
     if (event.target.files.length) {
+      // Destroy reference to previous profile image
+      // and createObjectURL to create a new one from the form element
       URL.revokeObjectURL(image);
       setProfileData({
         ...profileData,
@@ -51,16 +57,17 @@ function ProfileForm() {
     }
   }
 
-  // Handle form submission
   const handleSubmit = async (event) => {
+    /**
+     * Handle form submission
+     */
     event.preventDefault();
 
-    // Create new form data and append the current display_name value.
+    // Create new form data and append the current display_name value
     const formData = new FormData();
     formData.append('display_name', display_name);
 
-    // Check if the user has uploaded a new image. If not, then the existing image stays in place,
-    // as the form  component won't have an image file. If yes, append to form data.
+    // Check if the user has uploaded a new image. If yes, append to form data
     if (imageInput?.current?.files[0]) {
       formData.append('image', imageInput.current.files[0]);
     }
@@ -73,7 +80,6 @@ function ProfileForm() {
       setActionSucceeded(true);
       setErrors({});
     } catch (error) {
-      // A 401 error will be handled by our axios interceptor, so only set the error data if its a different error.
       if (error.response?.status !== 401) {
         setErrors(error.response?.data)
         setHasLoaded(true);
@@ -87,9 +93,10 @@ function ProfileForm() {
     }
   }
 
-  // Fetch user's profile data on mount and update state variables with 
-  // fetched data, or errors if not successful
   useEffect(() => {
+    /**
+     * Fetch user's profile data on mount and update state with fetched data
+     */
     const fetchProfile = async () => {
       try {
         const { data } = await axiosReq.get(`profile/${currentUser.pk}/`);
@@ -106,8 +113,10 @@ function ProfileForm() {
     fetchProfile();
   }, [currentUser])
 
-  // Set timeout and get rid of any success alert
   useEffect(() => {
+    /**
+     * Set timeout and get rid of any success alert
+     */
     const hideSuccess = setTimeout(() => {
       setActionSucceeded('');
     }, 5000);
@@ -203,7 +212,7 @@ function ProfileForm() {
             </div>
           }
 
-          {/* Display alert with success message if the request succeeded */}
+          {/* Display alert with success message if request succeeded */}
           {
             actionSucceeded &&
             <div className="fixed min-h-fit min-w-full top-0 left-0 z-10">

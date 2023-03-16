@@ -13,31 +13,36 @@ import { InfoCircle } from 'react-bootstrap-icons';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
 function MyAccount() {
+  /**
+   * User account section containing update My Profile, Change Password and Delete Account 
+   */
 
-  // Ref to useNavigate hook for redidrection
+  // Hook for redidrection
   const navigate = useNavigate();
 
-  // Hook to determine if in single page mode
+  // Determine if in single page mode
   const singlePage = useSinglePage();
 
-  // State variables for errors
+  // Errors
   const [errors, setErrors] = useState({})
 
-  // Reference to current user
+  // Current user
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  // State variable to track whether user is currently in the process of deleting their account
+  // Track whether user is currently in the process of deleting their account
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
 
-  // Check if user logged in on mount, if not redirect to landing page.
-  // Scroll to top of page if not in single page mode.
   useEffect(() => {
+    /**
+    * Check if user logged in on mount, if not redirect to landing page.
+    * Scroll to top of page if not in single page mode.
+    */
     !currentUser && navigate('/');
     !singlePage && window.scrollTo(0, 0);
   }, [currentUser, navigate, singlePage])
 
-  // Handle user confirm they want to delete their account
+  // Handle user confirmation they want to delete their account
   const doDeleteAccount = async () => {
     try {
       await axiosReq.delete(`accounts/user/${currentUser.pk}/`);
@@ -67,16 +72,12 @@ function MyAccount() {
       </div>
 
       {/* Change password section */}
-
       <section className="block m-4 md:mx-2">
         <h3>Change password</h3>
         <div className="justify-center flex w-4/5 md:w-full mx-auto my-4">
           <PasswordChangeForm />
         </div>
       </section>
-
-      {/* Delete acccount section */}
-      <h3>Delete account</h3>
 
       {/* Display error alert if there was an issue deleting account */}
       {
@@ -91,13 +92,18 @@ function MyAccount() {
         </div>
       }
 
+      {/* Delete acccount section */}
       <section className="block m-4">
+        <h3>Delete account</h3>
         <div className="md:w-2/3 text-left m-auto">
           <p>{`This is a permanent action and can't be undone.`}</p>
+          {/* Special message for tribe admin */}
           {currentUser?.is_admin && <p>Deleting your account will also delete all those of all your tribe members and the tribe itself.</p>}
         </div>
+        < DeleteAccountButton handleDeleteAccountBtn={handleDeleteAccountBtn} />
       </section>
-      < DeleteAccountButton handleDeleteAccountBtn={handleDeleteAccountBtn} />
+
+      {/* Modal to confirm delete action */}
       {
         // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from
         // https://upmostly.com/tutorials/modal-components-react-custom-hooks
@@ -117,6 +123,7 @@ function MyAccount() {
             confirmHandler={doDeleteAccount}
           />, document.body)
       }
+
       {
         // Empty div with margin to provide clearance above bottom navbar if not in single page mode
         !singlePage && <div className="mb-8 bg-base-100"><br /></div>

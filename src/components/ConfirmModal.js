@@ -3,6 +3,14 @@ import React, { useEffect } from 'react'
 import styles from '../styles/ConfirmModal.module.css'
 
 function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
+  /** 
+   * Reusable modal dialog component
+   * @param {string} heading Text for modal heading
+   * @param {string} body Text for modal body
+   * @param {function} cancelHandler Handler function for cancel button
+   * @param {function} confirmHandler Jandler function for confirm button
+   }}
+   */
 
   // Create event listener to close modal when user clicks outside modal, and clean-up when component unmounts
   useEffect(() => {
@@ -13,8 +21,11 @@ function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
       }
     }
 
+    // Find instance of modal and add event listener
     const modalOuter = document.getElementsByClassName('modal')[0];
     modalOuter.addEventListener('click', (handleOutsideClick));
+
+    // Cleanup
     return () => { modalOuter.removeEventListener('click', handleOutsideClick) }
   }, [cancelHandler])
 

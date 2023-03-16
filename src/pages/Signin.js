@@ -7,36 +7,42 @@ import { setTokenTimestamp } from "../utils/utils";
 import { axiosReq } from '../api/axiosDefaults';
 
 function Signin() {
+  /**
+   * Sign-in page
+   */
 
-  // State variables for sign-in form submission data
+  // State for sign-in form submission data
   const [signInData, setSignInData] = useState({
     username: '',
     password: '',
   });
 
-  // State variables for HTTP errors from the API
+  const { username, password } = signInData;
+
+  // Errors
   const [errors, setErrors] = useState({});
 
   // Use to redirect on login
   const navigate = useNavigate();
 
-  // References to current user
+  // Current user
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  // Retrieve username and password from the state variables
-  const { username, password } = signInData;
-
-  // Change handler for sign-in form
   const handleChange = (event) => {
+    /**
+     * Handle changes to sign-in form
+     */
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value
     })
   };
 
-  // Event handler for sign-in form submission
   const handleSubmit = async (event) => {
+    /**
+     * Event handler for sign-in form submission
+     */
     event.preventDefault();
     try {
       const { data } = await axiosReq.post('/dj-rest-auth/login/', signInData);
@@ -50,8 +56,10 @@ function Signin() {
     }
   };
 
-  // Redirect to tribe homepage if user is authenticated
   useEffect(() => {
+    /**
+     * Redirect to tribe homepage if user is authenticated
+     */
     currentUser && navigate('/tribe-home')
   }, [currentUser, navigate])
 
@@ -64,6 +72,8 @@ function Signin() {
 
         {/* Sign-in form  */}
         {/* All validation is handled by the API for this form */}
+
+        {/* User name */}
         <div className="form-control w-3/4 md:w-1/2 lg:w-1/2">
           <form onSubmit={handleSubmit}>
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="username">
@@ -78,7 +88,8 @@ function Signin() {
                 onChange={handleChange}
               />
             </label>
-
+            
+            {/* Password */}
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password">
               <span>Password:</span>
               <input

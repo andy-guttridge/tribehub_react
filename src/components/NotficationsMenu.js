@@ -9,24 +9,26 @@ import ConfirmModal from './ConfirmModal';
 import { click } from '@testing-library/user-event/dist/click';
 
 function NotficationsMenu() {
+  /**
+   * Notifications dropdown menu
+   */
 
-  // State variable to flag if data is loading
+  // Flag if data has finished loading
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  // State variable to store notifications
+  // Store notifications
   const [notifications, setNotifications] = useState({});
 
-  // State variable for errors
+  // Errors
   const [errors, setErrors] = useState({});
 
-  // State variable to trigger notifications to reload when a user has accepted or declined an event.
-  // The value is simply toggled when there is a change to trigger a re-load.
+  // State variable is toggled when there is a change to trigger a re-render
   const [notificationsChanged, setNotificationsChanged] = useState(false);
 
-  // State variable to determine whether user is in the process of deleting a notification
+  // Use to determine whether user is in the process of deleting a notification
   const [isDeletingNotification, setIsDeletingNotification] = useState(false);
 
-  // State variable to store whether dropdown menu is currently open
+  // Store whether dropdown menu is currently open
   const [dropdownIsOpen, setDropDownIsOpen] = useState();
 
   // Handle user pressing delete notification button by storing id of the notification
@@ -63,12 +65,10 @@ function NotficationsMenu() {
 
       }
     }
-
     fetchNotifications();
   }, [notificationsChanged])
 
   useEffect(() => {
-
     // Set up an event handler to see if the user clicks outside of the notifications button
     // or dropdown list. Close the dropdown if they do.
     const handleDocumentClick = (e) => {
@@ -81,7 +81,7 @@ function NotficationsMenu() {
     };
     document.addEventListener('click', handleDocumentClick);
 
-    // Clean-up event listener
+    // Clean-up
     return () => document.body.removeEventListener(click, handleDocumentClick);
   }, [])
 
@@ -127,7 +127,7 @@ function NotficationsMenu() {
               </>
             ) : (
 
-              // Display spinner if notifications haven't loaded
+              // Spinner if notifications haven't loaded
               <li>
                 <Spinner small />
               </li>

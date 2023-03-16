@@ -6,7 +6,11 @@ import MyTribe from './MyTribe';
 import MyAccount from './MyAccount';
 
 function Account() {
-  // Hooks for current user, changing current page location, checking if app is in single page mode
+  /**
+   * Overall account page/section
+   */
+
+  // Hooks for current user, checking if app is in single page mode
   const currentUser = useCurrentUser();
   const singlePage = useSinglePage();
 

@@ -10,52 +10,63 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
 function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId, setActionSucceeded }) {
+  /**
+   * Display details of individual calendar event.
+   * @param {object} event Event to be displayed
+   * @param {boolean} didSaveEvent Toggle to let parent know the details of the event were changed and saved
+   * @param {function} setDidSaveEvent Set state for didSaveEvent
+   * @param {function} handleDeleteButton Handler for delete contact button
+   * @param {string} calEventId Used to give elements unique id attributes
+   * @param {function} setActionSucceeded Set success message when data has changed
+   */
 
-  // Reference to current user
+  // Current user
   const currentUser = useCurrentUser();
 
-  // State variables to flag whether user is currently editing an event
+  // State to flag whether user is currently editing an event
   const [isEditingEvent, setIsEditingEvent] = useState();
 
-  // Single page mode hook
+  // Check if in single page mode
   const singlePage = useSinglePage();
 
-  // State variable for whether more than four users are invited
+  // State for whether more than four users are invited
   const [moreThanFour, setMoreThanFour] = useState(false);
 
-  // State variable for users who need an avatar on the event
+  // State for users who need an avatar on the event
   const [avatarUsers, setAvatarUsers] = useState([]);
 
-  // State variable for users who have accepted the invitation
+  // State for users who have accepted the invitation
   const [acceptedUserIds, setAcceptedUserIds] = useState([]);
 
-  // State variables for string representations of the event start and end times
+  // State for string representations of the event start and end times
   const [eventTimeStr, setEventTimeStr] = useState('');
   const [endTimeStr, setEndTimeStr] = useState('');
 
-  // State variables for string representations of event start and end dates
+  // State for string representations of event start and end dates
   const [startDateStr, setStartDateStr] = useState('');
   const [endDateStr, setEndDateStr] = useState('');
 
-  // State variables for whether user is invited to the event and whether they have accepted
+  // State for whether user is invited to the event and whether they have accepted
   const [isInvited, setIsInvited] = useState(false);
   const [hasAccepted, setHasAccepted] = useState('false');
 
-  // State variables for errors
+  // Errors
   const [errors, setErrors] = useState({})
 
-  // Handle event accept/decline buttons
   const handleEventResponse = async (e) => {
+    /**
+     *  Handle event accept/decline buttons
+     */
 
-    // Create response object from value of button, attempt to post and set state variable
+    // Create response object from value of button, attempt to post and set state
     const eventResponse = { event_response: e.target.value }
     try {
       await axiosReq.post(`/events/response/${event.id}/`, eventResponse);
       setHasAccepted(e.target.value === 'accept');
 
-      // If the user has accepted, create an object to represent the user matching
+      // If user has accepted, create an object to represent the user matching
       // the format that comes back from the API and use it to update the current accepted status in the UI
-      // (currentUser is in the wrong format). If user has declined, filter them out of the array of accepted users.
+      // (currentUser is in the wrong format)
       let updatedAcceptArray = [];
       if (e.target.value === 'accept') {
         updatedAcceptArray = [...event.accepted];
@@ -65,12 +76,13 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           image: currentUser.profile_image
         })
       } else {
+        // If user has declined, remove them from array users who have accepted
         updatedAcceptArray = [...event.accepted].filter((user) => user.user_id !== currentUser.pk)
       }
 
       setErrors({});
 
-      // Trigger a reload of the parent as event recurrences may also be affected
+      // Trigger refresh of data in parent as event recurrences may also be affected
       setDidSaveEvent(!didSaveEvent);
     } catch (error) {
       if (error.response?.status !== 401) {
@@ -80,8 +92,8 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
   }
 
   useEffect(() => {
-    // Get list of users invited to this event who need avatars, including the owner and invitees.
-    // Set flag if there will be more than four invitees (plus the owner).
+    // Get list of users invited to this event who need avatars, including owner and invitees
+    // Set flag if there will be more than four invitees (plus the owner)
     const getUsers = () => {
       const usersNeedAvatars = [];
       usersNeedAvatars.push(event.user);
@@ -92,12 +104,12 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
       }
       setAvatarUsers(usersNeedAvatars);
 
-      // Check if this user is invited by comparing to each user in the event.to field in turn
+      // Check if this user is invited by comparing to each user in the event.to field
       const checkInvited = () => (event.to?.reduce(
         (acc, user) => ((user.user_id === currentUser.pk) || acc), false))
       setIsInvited(checkInvited());
 
-      // Check if this user has accepted the invitation by comparing to each user in the event.accepted field in turn
+      // Check if this user has accepted the invitation by comparing to each user in the event.accepted field
       const checkAccepted = () => (event.accepted?.reduce(
         (acc, user) => ((user.user_id === currentUser.pk) || acc), false))
       setHasAccepted(checkAccepted());
@@ -106,12 +118,16 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
   }, [currentUser, event])
 
   useEffect(() => {
+    /**
+     * Retrieve time and date strings from the event
+     */
     const getTimeStrs = () => {
 
       // Convert event start date string to an actual date and format for display
       const eventDate = new Date(event.start);
       setEventTimeStr(eventDate.toLocaleTimeString('en-UK', { timeStyle: 'short' }));
       setStartDateStr(eventDate.toDateString('en-UK', { dateStyle: 'short' }));
+
       // Split duration string into array of hours, mins, secs and convert to array of ints
       const hoursMinsSecsStr = event.duration.split(':');
       const hoursMinsSecs = hoursMinsSecsStr.map((str) => parseInt(str));
@@ -168,7 +184,6 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           <p className={`${singlePage ? "text-xl" : "text-md"}`}>{event.subject}</p>
         </div>
 
-
         <div className={`avatar-group ${singlePage ? "-space-x-14" : "-space-x-6"}`}>
 
           {/* Return an avatar for each user */}
@@ -206,6 +221,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           <span className="font-bold text-sm md:text-md">End: </span><span className="text-sm md:text-md">{endDateStr} {endTimeStr}</span>
         </div>
       </div>
+
       {/* Show edit button and delete button if user is owner of this event or tribe admin */}
       <div className="flex justify-end">
         {(event.user.user_id === currentUser.pk || currentUser.is_admin)
@@ -257,6 +273,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
             Going
           </button>
         </div>
+
         /* Display alert if there was an handling the user's response to the event */}
       {
         errors.event_response &&
@@ -279,14 +296,14 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
           <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center break-all">
             <div>
 
-              {/* Retrieve and display the event w */}
+              {/* Owner of event */}
               <p className="font-bold">From:</p>
               <div className={`${styles.User} m-2 inline-block bg-secondary`}><span className="text-secondary-content font-bold">{event.user.display_name}</span></div>
             </div>
 
             <div>
 
-              {/* Retrieve and display the users invited */}
+              {/* Users invited */}
               <p className="font-bold">To:</p>
               {event.to?.map((user, i) => {
                 return (
@@ -297,7 +314,7 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
 
             <div>
 
-              {/* Retrieve and display the users who have accepted */}
+              {/* Users who have accepted */}
               <p className="font-bold">Accepted:</p>
               {event.accepted?.map((user, j) => {
                 return (

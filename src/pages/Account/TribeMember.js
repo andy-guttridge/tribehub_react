@@ -4,6 +4,11 @@ import { Trash3 } from 'react-bootstrap-icons'
 import Avatar from '../../components/Avatar'
 
 function TribeMember({ tribeMember, handleDeleteButton }) {
+  /**
+   * Details of individual tribe member
+   * @param {object} tribeMember Tribe member to be displayed
+   * @param {function} handleDeleteButton Handler for delete button on each tribe member
+   */
 
   return (
     <>

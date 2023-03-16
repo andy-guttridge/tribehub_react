@@ -6,32 +6,40 @@ import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 function NotificationItem({ notification, notificationsChanged, setNotificationsChanged, handleDeleteButton, notificationId }) {
+  /**
+   * Notification item that appears in the notifications dropdown menu
+   * @param {object} notification The notification to be displayed
+   * @param {boolean} notificationsChanged Boolean which is toggled to let the parent know a notification has changed state
+   * @param {function} setNotificationsChanged Setter for notificationsChanged value
+   * @param {function} handleDeleteButton Handler for delete button
+   * @param {string} notificationsId Used to give elements unique id attributes
+   */
 
-  // State variables for strings representing event start and end dates and times
+  // Strings for event start and end dates and times
   const [startDateStr, setStartDateStr] = useState('');
   const [startTimeStr, setStartTimeStr] = useState('');
   const [endTimeStr, setEndTimeStr] = useState('');
   const [endDateStr, setEndDateStr] = useState('');
 
-  // State variable for whether user has accepted the invitation
+  // State for if user has accepted the invitation
   const [hasAccepted, setHasAccepted] = useState('false');
 
-  // State variable for errors
+  // Errors
   const [errors, setErrors] = useState({})
 
-  // Reference to current user
+  // Current user
   const currentUser = useCurrentUser();
 
   // Handle event accept/decline buttons
   const handleEventResponse = async (e) => {
 
-    // Create response object from value of button, attempt to post and set state variable
+    // Create response object from value of button, attempt to post and set state
     const eventResponse = { event_response: e.target.value }
     try {
       await axiosReq.post(`/events/response/${notification?.event?.id}/`, eventResponse);
       setHasAccepted(e.target.value === 'accept');
 
-      // Communicate to the parent that the status of the notification changed
+      // Communicate to parent that the status of the notification changed
       setNotificationsChanged(!notificationsChanged);
       setErrors({});
     } catch (error) {
@@ -74,7 +82,7 @@ function NotificationItem({ notification, notificationsChanged, setNotifications
 
   return (
 
-    // Return a list item representing the notification
+    // Return list item representing the notification
     <li>
       <div className="rounded-sm mb-1 p-1 bg-base-100">
         <h2 className="text-base text-base-content font-nunito text-center">{notification.subject}</h2>

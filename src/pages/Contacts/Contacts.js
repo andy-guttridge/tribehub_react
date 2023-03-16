@@ -13,51 +13,57 @@ import ConfirmModal from '../../components/ConfirmModal';
 import ContactSearch from './ContactSearch';
 
 function Contacts() {
+  /**
+   * Contacts page/section
+   */
 
-  // Reference to current user
+  // Current user
   const currentUser = useCurrentUser();
 
-  // Enables navigation
+  // Use to redirect user
   const navigate = useNavigate();
 
-  // Hook to determine whether the component is being presented as part of a single page view
+  // Check if we are in single page mode
   const singlePage = useSinglePage();
 
   // Styles to apply if app is in single page mode
   const singlePageStyles = 'basis-4/5 border border-base-300 rounded-lg flex-none mr-2 mt-2 md:mx-0.5 md:mt-0.5 bg-base-100'
 
-  // State variables for tribe contacts
+  // State for tribe contacts
   const [contacts, setContacts] = useState([]);
 
-  // State variables to record if data has loaded
+  // State to record if data has loaded
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  // State variables for errors
+  // Errors
   const [errors, setErrors] = useState({});
 
-  // State variable to confirm a change to data was successful
+  // State to confirm a change to data was successful
   const [actionSucceeded, setActionSucceeded] = useState('');
 
-  // State variables for whether user is adding a contact
+  // State for whether user is adding a contact
   const [isAddingContact, setIsAddingContact] = useState(false);
 
-  // State variable used as a flag when contact details are saved.
-  // This is simply toggles to trigger events to reload when there has been a change.
+  // Toggles to trigger contacts to reload when there has been a change.
   const [didSaveContact, setDidSaveContact] = useState(false);
 
-  // State variable for id of contact being deleted, or false if user is not currently deleting a contact
+  // State for id of contact being deleted, or false if user is not currently deleting a contact
   const [isDeletingContact, setIsDeletingContact] = useState(false);
 
-  // State variable for whether user is currently searching contacts
+  // State for whether user is currently searching contacts
   const [isSearching, setIsSearching] = useState(false);
 
-  // Handle user pressing delete contact button by storing the contact id
   const handleDeleteButton = (contactId) => {
+    /**
+     * Handle user pressing delete contact button by storing the contact id
+     */
     setIsDeletingContact(contactId);
   }
 
-  // Delete the contact if user confirms deletion
   const doDelete = async () => {
+    /**
+     * Handle confirmation contact to be deleted
+     */
     try {
       await axiosReq.delete(`contacts/${isDeletingContact}/`);
       setDidSaveContact(!didSaveContact);
@@ -72,15 +78,19 @@ function Contacts() {
     }
   }
 
-  // Check if user logged in on mount, if not redirect to landing page.
-  // Scroll to top of page if not in single page mode.
   useEffect(() => {
+    /**
+     * Check if user logged in on mount, if not redirect to landing page. 
+     * Scroll to top of page if not in single page mode.
+     */
     !currentUser && navigate("/");
     !singlePage && window.scrollTo(0, 0);
   }, [currentUser, navigate, singlePage])
 
-  // Fetch users contacts from API
   useEffect(() => {
+    /**
+     * Fetch users contacts from API
+     */
     const fetchContacts = async () => {
       try {
         setHasLoaded(false);
@@ -97,8 +107,10 @@ function Contacts() {
     fetchContacts();
   }, [didSaveContact, isSearching])
 
-  // Set timeout and get rid of any success alert
   useEffect(() => {
+    /**
+     * Set timeout and get rid of any success alert
+     */
     const hideSuccess = setTimeout(() => {
       setActionSucceeded('');
     }, 5000);
@@ -108,7 +120,7 @@ function Contacts() {
   }, [actionSucceeded]);
 
   return (
-    // Apply some styling if displaying in single page mode
+    // Apply styling if displaying in single page mode
     <section
       className={
         singlePage ? singlePageStyles : "bg-base-100"

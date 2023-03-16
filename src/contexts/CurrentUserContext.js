@@ -10,19 +10,23 @@ import { removeTokenTimestamp, shouldRefreshToken } from '../utils/utils';
 Create a user context to allow user details to be accessed throughout the app, and setup
 axios interceptors to refresh tokens. */
 
-//  Create contexts and hooks
+//  Contexts and hooks
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
-// Create a Provider to provide context to children
 export const CurrentUserProvider = ({ children }) => {
+  /**
+   * Provider to give context to children
+   */
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 
-  // Get current user from API
   const handleMount = async () => {
+    /**
+     * Get current user details and set state
+     */
     try {
       const { data } = await axiosReq.get('dj-rest-auth/user/');
       setCurrentUser(data);
@@ -31,13 +35,15 @@ export const CurrentUserProvider = ({ children }) => {
     }
   }
 
-  // Get the current user from the API when component mounted
   useEffect(() => {
     handleMount()
   }, [])
 
-  // Check tokens and refresh if needed before components mount
   useMemo(() => {
+    /**
+     * Check tokens and refresh if needed before components mount
+     */
+
     // Create request interceptor
     axiosReq.interceptors.request.use(
 
@@ -56,7 +62,7 @@ export const CurrentUserProvider = ({ children }) => {
               return null;
             });
 
-            // If user was logged out, remove the token.
+            // If user was logged out, remove token.
             removeTokenTimestamp();
             return config;
           }

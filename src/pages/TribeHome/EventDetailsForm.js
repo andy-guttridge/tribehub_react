@@ -8,18 +8,28 @@ import { eventCategories } from '../../utils/constants';
 import css from '../../styles/EventDetailsForm.module.css'
 
 function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate, setActionSucceeded }) {
+  /**
+   * Form for adding new and editing existing events
+   * @param {function} handleCancelButton Handler for cancel button
+   * @param {boolean} didSaveContact Toggle to tell parent an event was saved
+   * @param {function} setDidSaveEvent Set didSaveContact
+   * @param {boolean} isEditingEvent If true, use is editing an existing event
+   * @param {object} event The event to be editied, if user is editing
+   * @param {date} defaultStartDate The default start date for the edit event form
+   * @param {function} setActionSucceeded Set string for success message when data has been changed
+   */
 
-  // State variables for loading status and tribe members data
+  // State for loading status and tribe members data
   const [hasLoaded, setHasLoaded] = useState(false);
   const [tribe, setTribe] = useState({ results: [] });
 
-  // State variables for form submission errors
+  // Errors
   const [errors, setErrors] = useState({});
 
-  // Ref to current user
+  // Current user
   const currentUser = useCurrentUser();
 
-  // State variables for calendar events
+  // State for calendar events
   const [calEvent, setCalEvent] = useState({
     to: [''],
     start: defaultStartDate,
@@ -28,22 +38,24 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
     subject: '',
     category: 'OTH'
   });
-
-  // Retrieve form data from state variables
   const { to, start, duration, recurrence_type, subject, category } = calEvent;
 
-  // Change handler for event form (excepting the multiple selection input for inviting users)
   const handleChange = (e) => {
+    /**
+     *   Handle change for event form (excepting the multiple selection input for inviting users)
+     */
     setCalEvent({
       ...calEvent,
       [e.target.name]: e.target.value
     })
   }
 
-  // Change handler for 'to' multiple selection form field
-  // Code to handle multiple selections in controlled React forms is from
-  // https://stackoverflow.com/questions/50090335/how-handle-multiple-select-form-in-reactjs
   const handleChangeTo = (event) => {
+    /**
+     * Change handler for 'to' multiple selection form field
+     * Code to handle multiple selections in controlled React forms is from
+     * https://stackoverflow.com/questions/50090335/how-handle-multiple-select-form-in-reactjs
+     */
 
     // Get full array of options from click event, and map over them
     // to find out if they are selected - if so, add to array
@@ -60,8 +72,10 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
     })
   }
 
-  // Handle form submission
   const handleSubmit = async (e) => {
+    /**
+     * Handle form submission
+     */
     e.preventDefault();
     try {
 
@@ -101,9 +115,11 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
 
   }
 
-  // Retrieve this user's tribe members from the API and fetch the original event if user is editing a recurrence.
-  // Populate form with existing event details if applicable.
   useEffect(() => {
+    /**
+     * Retrieve user's tribe members from the API and fetch the original event if user is editing a recurrence.
+     * Populate form with existing event details if applicable.
+     */
     const fetchTribe = async () => {
       try {
         const { data } = await axiosReq.get('tribe/');
@@ -119,15 +135,15 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
 
     if (isEditingEvent) {
 
-      // If user is editing a recurrence, then we need to fetch the original and use that
-      // to populate the form. Otherwise, we have an original event already, so just use that data.
+      // If user is editing a recurrence, fetch the original event and use that
+      // to populate form. Otherwise, we have an original event already, so just use that data.
       const fetchEvent = async () => {
         if (event.recurrence_type === 'REC') {
           try {
             setHasLoaded(false);
             const { data } = await axiosReq.get(`/events/${event.id}/`);
 
-            // Extract user ids from event data if users have been invited
+            // Extract user ids from event if users have been invited
             let toUsersArray = ['']
             toUsersArray = data.to?.map((toUser) => toUser.user_id)
 
@@ -178,8 +194,6 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
       ) : (
         <h3>Add a calendar event</h3>
       )}
-
-
 
       {hasLoaded ? (
 
@@ -397,7 +411,6 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
             ))
           }
         </form>
-
 
       ) : (
         <Spinner />

@@ -5,17 +5,21 @@ import { House, PersonVcard, PersonGear } from 'react-bootstrap-icons';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 function NavBar() {
+  /**
+   * Bottom navbar for mobile
+   */
 
-  // Reference to current user
+  // Current user
   const currentUser = useCurrentUser();
 
   // Reference to current URL
   const location = useLocation();
-  
-  // Icons for bottom navbar (only used for breakpoints below large). Use current url to apply the active class to the correct Navlink component
+
+  // Icons for bottom navbar (only used below medium breakpoint)
+  // Use current url to apply the active class to the correct Navlink component
   const navBarIcons = (
     <>
-      <NavLink  to="/tribe-home" className={`bg-base-200 ${location.pathname !== '/account' && location.pathname !=='/contacts' && 'active'}`}>
+      <NavLink to="/tribe-home" className={`bg-base-200 ${location.pathname !== '/account' && location.pathname !== '/contacts' && 'active'}`}>
         <House size="32" aria-label="Home" />
         <span className="sr-only">Home</span>
       </NavLink>
@@ -33,12 +37,11 @@ function NavBar() {
   );
 
   return (
+    // Don't show navbar if user is not authenticated
     <nav className={`${!currentUser && "hidden"} btm-nav text-primary lg:hidden bg-base-200`}>
-      {/* Display navBarIcons only if current user is logged in */}
-      {currentUser && 
+      {currentUser &&
         <>
-          {/* Bottom NavBar for mobile */}
-            {navBarIcons}
+          {navBarIcons}
         </>
       }
     </nav>

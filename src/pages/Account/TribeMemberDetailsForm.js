@@ -5,6 +5,12 @@ import { axiosReq } from '../../api/axiosDefaults';
 import css from '../../styles/TribeMemberDetailsForm.module.css'
 
 function TribeMemberDetailsForm({ tribeChangeFlag, handleNewMemberButton, setActionSucceeded }) {
+  /**
+   * Form for tribe admin to add a new tribe member
+   * @param {function} tribeChangeFlag Callback to let the parent know a tribe member's state has changed
+   * @param {function} handleNewMemberButton Callback to let parent know the request to add a new tribe member has been dealt with
+   * @param {function} setActionSucceeded Set parent state to let it know an action to change data succeeded
+   */
 
   // State variables for registration form submission data
   const [registerData, setRegisterData] = useState({

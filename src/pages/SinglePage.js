@@ -7,6 +7,11 @@ import Account from './Account/Account'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
 function SinglePage() {
+  /**
+   * Show components that are separate pages for mobile in a single page
+   */
+  
+  // Current user and hook for redirection
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 

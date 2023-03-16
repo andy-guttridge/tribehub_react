@@ -11,28 +11,30 @@ import css from '../../styles/EventSearch.module.css';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
 function EventSearch({ handleCancelButton }) {
+  /**
+   * Search form and results for events
+   * @param {function} handleCancelButton Handler for cancel button
+   */
 
-  // State variables for user's tribe members
+  // State for user's tribe members
   const [tribe, setTribe] = useState({ results: [] });
 
-  // Find out if running in single page mode
+  // Check if running in single page mode
   const singlePage = useSinglePage();
 
-  // State variables for errors
+  // Errors
   const [errors, setErrors] = useState({});
 
-  // State variable for if required data from the API has loaded
+  // State for if data has loaded
   const [hasLoaded, setHasLoaded] = useState(false);
 
-  // State variable used as a flag when event details are saved.
-  // This is simply toggles to trigger events to reload when there has been a change.
+  // Toggle to trigger data refresh when event details are saved.
   const [didSaveEvent, setDidSaveEvent] = useState(false)
 
-  // State variables for whether user is in the process of deleting an event.
-  // If user is deleting event, the id of the event is stored here.
+  // State for whether user is in the process of deleting an event. id of the event is stored here if so.
   const [isDeletingEvent, setIsDeletingEvent] = useState(false);
 
-  // State variables for search values
+  // State for search form values
   const [searchValues, setSearchValues] = useState({
     text_search: '',
     category_search: '',
@@ -42,18 +44,19 @@ function EventSearch({ handleCancelButton }) {
     to_date: undefined
   })
 
-  // Retrieve search values from state variables
   const { text_search, category_search, tribe_to, tribe_from, to_date, from_date } = searchValues;
 
-  // State variables for events
+  // State for events
   const [events, setEvents] = useState({ results: [] })
 
-  // References to from and to date form fields
+  // Refs to from and to date form fields
   const fromInput = useRef(null);
   const toInput = useRef(null);
 
-  // Fetch user's tribe members
   useEffect(() => {
+    /**
+     * Fetch user's tribe members
+     */
     const fetchTribe = async () => {
       try {
         setHasLoaded(false);
@@ -70,8 +73,11 @@ function EventSearch({ handleCancelButton }) {
     fetchTribe();
   }, [])
 
-  // Fetch events according to search values
   useEffect(() => {
+  /**
+   * Fetch events according to search values
+   */
+
     // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate
     const textSearch = `?search=${text_search}`;
     const categorySearch = category_search ? `&category=${category_search}` : '';
@@ -83,8 +89,10 @@ function EventSearch({ handleCancelButton }) {
     const fromSearchString = from_date ? `&from_date=${fromDateString}` : '';
     const finalSearchString = textSearch.concat(categorySearch, tribeToSearch, tribeFromSearch, fromSearchString, toSearchString)
 
-    // Fetch events from the API
     const fetchEvents = async () => {
+      /**
+       * Fetch events from the API
+       */
       try {
         const { data } = await axiosReq.get(`events/${finalSearchString}`);
         setEvents(data);
@@ -108,13 +116,17 @@ function EventSearch({ handleCancelButton }) {
     }
   }, [category_search, from_date, tribe_from, text_search, to_date, tribe_to, didSaveEvent])
 
-  // Handle user pressing delete event button by storing the event id.
   const handleDeleteButton = (eventId) => {
+    /** 
+     * Handle event delete button. Store id of event to be deleted 
+     */
     setIsDeletingEvent(eventId);
   }
 
-  // Change handler for text search field
   const handleChange = (e) => {
+    /**
+     * Handle change to search form field values (except multipe selection fields)
+     */
     setSearchValues({
       ...searchValues,
       [e.target.name]: e.target.value
@@ -139,10 +151,13 @@ function EventSearch({ handleCancelButton }) {
     }
   }
 
-  // Change handler for multiple selection form fields
-  // Code to handle multiple selections in controlled React forms is from
-  // https://stackoverflow.com/questions/50090335/how-handle-multiple-select-form-in-reactjs
   const handleMultipleSelectChange = (e) => {
+    /**
+     * Change handler for multiple selection form fields
+     * Code to handle multiple selections in controlled React forms is from
+     * https://stackoverflow.com/questions/50090335/how-handle-multiple-select-form-in-reactjs
+     */
+
     // Get full array of options from click event, and map over them
     // to find out if they are selected - if so, add to array
     const options = Array.from(e.target.options);
@@ -158,8 +173,10 @@ function EventSearch({ handleCancelButton }) {
     })
   }
 
-  // Delete event when user has confirmed they wish to do so.
   const doDelete = async () => {
+    /**
+     * Handle user confirmation of event deletion
+     */
     try {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
@@ -337,7 +354,7 @@ function EventSearch({ handleCancelButton }) {
           <div className="md:max-h-96 md:overflow-scroll md:border md:border-base-200 w-full">
             {
               events?.results?.map((event, i) => {
-                // We pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
+                // Pass didSaveEvent and setDidSaveEvent through to the CalEvent so that it in turn can pass them to its children if the user edits an event
                 return <CalEvent
                   event={event}
                   key={`event-${event.id}-${i}`}
