@@ -14,8 +14,8 @@ import css from '../../styles/EventDetailsForm.module.css'
  * @param {function} obj.handleCancelButton Handler for cancel button
  * @param {boolean} obj.didSaveContact Toggle to tell parent an event was saved
  * @param {function} obj.setDidSaveEvent Set didSaveContact
- * @param {boolean} obj.isEditingEvent If true, use is editing an existing event
- * @param {object} obj.event The event to be editied, if user is editing
+ * @param {boolean} obj.isEditingEvent If true, user is editing an existing event
+ * @param {object} obj.event The event to be edited, if user is editing
  * @param {date} obj.defaultStartDate The default start date for the edit event form
  * @param {function} obj.setActionSucceeded Set string for success message when data has been changed
  */

@@ -61,11 +61,10 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-
             // If user was logged out, remove token.
             removeTokenTimestamp();
-            return config;
           }
+          return config;
         }
         return config;
       },
@@ -93,16 +92,15 @@ export const CurrentUserProvider = ({ children }) => {
               }
               return null;
             });
-
             // If user was logged out, remove the token.
             removeTokenTimestamp();
-            return axios(error.config);
           }
-          return Promise.reject(error);
+          return axios(error.config);
         }
+        return Promise.reject(error);
       }
-    )
-  }, [navigate])
+    );
+  }, [navigate]);
 
   // Return providers for children to subscribe to
   return (
