@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Bell, InfoCircle } from 'react-bootstrap-icons'
 
-import { axiosReq } from '../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../api/axiosDefaults';
 import NotificationItem from './NotificationItem'
 import Spinner from './Spinner';
 import ConfirmModal from './ConfirmModal';
@@ -54,7 +54,7 @@ function NotficationsMenu() {
     // Fetch user's notifications
     const fetchNotifications = async () => {
       try {
-        const { data } = await axiosReq.get('notifications/');
+        const { data } = await axiosRes.get('notifications/');
         setNotifications(data);
         setHasLoaded(true);
         setErrors({});

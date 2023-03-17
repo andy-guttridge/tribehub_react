@@ -28,7 +28,7 @@ export const CurrentUserProvider = ({ children }) => {
      * Get current user details and set state
      */
     try {
-      const { data } = await axiosReq.get('dj-rest-auth/user/');
+      const { data } = await axiosRes.get('dj-rest-auth/user/');
       setCurrentUser(data);
     } catch (error) {
       // Catch error but do nothing as this would be caused by a lack of valid authorisation credentials

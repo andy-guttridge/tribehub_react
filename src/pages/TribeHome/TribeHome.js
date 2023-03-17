@@ -8,7 +8,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { useSinglePage } from '../../contexts/SinglePageContext';
 import styles from '../../styles/Calendar.module.css';
 import Spinner from '../../components/Spinner';
-import { axiosReq } from '../../api/axiosDefaults';
+import { axiosReq, axiosRes } from '../../api/axiosDefaults';
 import { checkEventsForDate, getEventsForDay } from '../../utils/utils';
 import CalEvent from './CalEvent';
 import { InfoCircle, PlusCircle, Search } from 'react-bootstrap-icons';
@@ -76,7 +76,7 @@ function TribeHome() {
       const toDateStr = toDate.toISOString().slice(0, -5);
       const fromDateStr = fromDate.toISOString().slice(0, -5);
       try {
-        const { data } = await axiosReq.get(`/events/?from_date=${fromDateStr}&to_date=${toDateStr}`)
+        const { data } = await axiosRes.get(`/events/?from_date=${fromDateStr}&to_date=${toDateStr}`)
         setEvents(data);
         setHasLoaded(true);
 
