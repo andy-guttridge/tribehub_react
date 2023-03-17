@@ -179,7 +179,10 @@ function Contacts() {
               <Search size="32" className="text-primary" /><span className="sr-only">Search contacts</span>
             </button>
           ) : isSearching && (
-            <ContactSearch handleCancelButton={() => setIsSearching(false)} />
+            <ContactSearch
+              handleCancelButton={() => setIsSearching(false)}
+              setActionSucceeded={setActionSucceeded}
+            />
           )
         }
       </div>

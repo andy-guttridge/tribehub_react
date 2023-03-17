@@ -15,8 +15,9 @@ import { useSinglePage } from '../../contexts/SinglePageContext';
  * @component
  * @param {object} obj Props
  * @param {function} obj.handleCancelButton Handler for cancel button
+ * @param {function} obj.setActionSucceeded Sets a success message when a request resulting in a change to data succeeds
  */
-function EventSearch({ handleCancelButton }) {
+function EventSearch({ handleCancelButton, setActionSucceeded }) {
   // State for user's tribe members
   const [tribe, setTribe] = useState({ results: [] });
 
@@ -182,6 +183,7 @@ function EventSearch({ handleCancelButton }) {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
       setErrors({});
+      setActionSucceeded('The event has now been deleted');
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors({ delete: 'There was an error deleting this calendar event.\n\n You may be offline or there may have been a server error.' })
@@ -362,6 +364,7 @@ function EventSearch({ handleCancelButton }) {
                   didSaveEvent={didSaveEvent}
                   setDidSaveEvent={setDidSaveEvent}
                   handleDeleteButton={handleDeleteButton}
+                  setActionSucceeded={setActionSucceeded}
                 />
               })
             }

@@ -13,8 +13,9 @@ import css from '../../styles/ContactSearch.module.css';
  * @component
  * @param {object} obj Props
  * @param {function} obj.handleCancelButton Handler for cancel button
+ * @param {function} obj.setActionSucceeded Sets a success message when a request resulting in a change to data succeeds
  */
-function ContactSearch({ handleCancelButton }) {
+function ContactSearch({ handleCancelButton, setActionSucceeded }) {
   // State for whether search results have loaded
   const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -84,6 +85,7 @@ function ContactSearch({ handleCancelButton }) {
       await axiosReq.delete(`contacts/${isDeletingContact}/`);
       setDidSaveContact(!didSaveContact);
       setIsDeletingContact(false);
+      setActionSucceeded('The contact was deleted')
     } catch (error) {
       setIsDeletingContact(false);
       setErrors({ delete: 'There was a problem deleting this contact. You may be offline, or there may have been a server error.' });
@@ -148,6 +150,7 @@ function ContactSearch({ handleCancelButton }) {
                 didSaveContact={didSaveContact}
                 setDidSaveContact={setDidSaveContact}
                 handleDeleteButton={handleDeleteButton}
+                setActionSucceeded={setActionSucceeded}
               />
             })
           ) : (
