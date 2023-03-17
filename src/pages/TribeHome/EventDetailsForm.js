@@ -7,18 +7,19 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { eventCategories } from '../../utils/constants';
 import css from '../../styles/EventDetailsForm.module.css'
 
+/**
+ * Form for adding new and editing existing events
+ * @component
+ * @param {object} obj Props
+ * @param {function} obj.handleCancelButton Handler for cancel button
+ * @param {boolean} obj.didSaveContact Toggle to tell parent an event was saved
+ * @param {function} obj.setDidSaveEvent Set didSaveContact
+ * @param {boolean} obj.isEditingEvent If true, use is editing an existing event
+ * @param {object} obj.event The event to be editied, if user is editing
+ * @param {date} obj.defaultStartDate The default start date for the edit event form
+ * @param {function} obj.setActionSucceeded Set string for success message when data has been changed
+ */
 function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate, setActionSucceeded }) {
-  /**
-   * Form for adding new and editing existing events
-   * @param {function} handleCancelButton Handler for cancel button
-   * @param {boolean} didSaveContact Toggle to tell parent an event was saved
-   * @param {function} setDidSaveEvent Set didSaveContact
-   * @param {boolean} isEditingEvent If true, use is editing an existing event
-   * @param {object} event The event to be editied, if user is editing
-   * @param {date} defaultStartDate The default start date for the edit event form
-   * @param {function} setActionSucceeded Set string for success message when data has been changed
-   */
-
   // State for loading status and tribe members data
   const [hasLoaded, setHasLoaded] = useState(false);
   const [tribe, setTribe] = useState({ results: [] });

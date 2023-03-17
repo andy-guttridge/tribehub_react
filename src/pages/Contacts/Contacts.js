@@ -12,11 +12,11 @@ import ContactDetailsForm from './ContactDetailsForm';
 import ConfirmModal from '../../components/ConfirmModal';
 import ContactSearch from './ContactSearch';
 
+/**
+ * Contacts page/section
+ * @component
+ */
 function Contacts() {
-  /**
-   * Contacts page/section
-   */
-
   // Current user
   const currentUser = useCurrentUser();
 

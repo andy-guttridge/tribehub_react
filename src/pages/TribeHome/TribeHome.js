@@ -17,11 +17,11 @@ import ConfirmModal from '../../components/ConfirmModal';
 import EventSearch from './EventSearch';
 import css from '../../styles/TribeHome.module.css'
 
+/**
+ * TribeHome page/section, including calendar and events
+ * @component
+ */
 function TribeHome() {
-  /**
-   * TribeHome page/section, including calendar and events
-   */
-
   // State for loading status
   const [hasLoaded, setHasLoaded] = useState(false)
 

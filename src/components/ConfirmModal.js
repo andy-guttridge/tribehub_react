@@ -2,16 +2,16 @@ import React, { useEffect } from 'react'
 
 import styles from '../styles/ConfirmModal.module.css'
 
+/** 
+ * Reusable modal dialog component
+ * @param {obj} obj Props object
+ * @param {string} obj.heading Text for modal heading
+ * @param {string} obj.body Text for modal body
+ * @param {function} obj.cancelHandler Handler function for cancel button
+ * @param {function} obj.confirmHandler Jandler function for confirm button
+ }}
+ */
 function ConfirmModal({ heading, body, cancelHandler, confirmHandler }) {
-  /** 
-   * Reusable modal dialog component
-   * @param {string} heading Text for modal heading
-   * @param {string} body Text for modal body
-   * @param {function} cancelHandler Handler function for cancel button
-   * @param {function} confirmHandler Jandler function for confirm button
-   }}
-   */
-
   // Create event listener to close modal when user clicks outside modal, and clean-up when component unmounts
   useEffect(() => {
     // Handler to identify if user has clicked outside modal and remove it if so

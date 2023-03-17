@@ -4,17 +4,17 @@ import { PencilSquare, Trash3 } from 'react-bootstrap-icons'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import ContactDetailsForm from './ContactDetailsForm';
 
-// Component for individual contact
+/**
+ * Displays details of indiviual contact
+ * @component
+ * @param {object} obj Props
+ * @param {object} obj.contact Contact to be displayed
+ * @param {boolean} obj.didSaveContact Value from parent to be toggled to indicate when a contact was saved
+ * @param {function} obj.setDidSaveContact Set state of didSaveContact
+ * @param {function} obj.handleDeleteButton Handler for delete contact button
+ * @param {function} obj.setActionSucceeded Set state to let parent know an action resulting in change of data succeeded
+ */
 function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButton, setActionSucceeded }) {
-  /**
-   * Displays details of indiviual contact
-   * @param {object} contact Contact to be displayed
-   * @param {boolean} didSaveContact Value from parent to be toggled to indicate when a contact was saved
-   * @param {function} setDidSaveContact Set state of didSaveContact
-   * @param {function} handleDeleteButton Handler for delete contact button
-   * @param {function} setActionSucceeded Set state to let parent know an action resulting in change of data succeeded
-   */
-
   // Reference to current user
   const currentUser = useCurrentUser();
 

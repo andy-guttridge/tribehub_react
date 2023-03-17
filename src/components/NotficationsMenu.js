@@ -8,11 +8,11 @@ import Spinner from './Spinner';
 import ConfirmModal from './ConfirmModal';
 import { click } from '@testing-library/user-event/dist/click';
 
+/**
+ * Notifications dropdown menu
+ * @component
+ */
 function NotficationsMenu() {
-  /**
-   * Notifications dropdown menu
-   */
-
   // Flag if data has finished loading
   const [hasLoaded, setHasLoaded] = useState(false);
 

@@ -6,11 +6,11 @@ import { NavLink } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import NotficationsMenu from './NotficationsMenu';
 
+/**
+ * Site header
+ * @component
+ */
 function Header() {
-  /**
-   * Site header
-   */
-
   // Current user details
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();

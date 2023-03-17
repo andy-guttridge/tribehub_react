@@ -3,14 +3,13 @@ import React, { createContext, useContext, useMemo, useState } from 'react'
 export const SinglePageContext = createContext();
 export const useSinglePage = () => useContext(SinglePageContext);
 
+/** 
+ * Provides a true or false depending on whether the window width is above or below
+ * a specific breakPoint. Provides context for child components to determine whether to render
+ * as single page app or separate pages, using the useSinglePage hook.
+ */
 export const SinglePageProvider = ({ children }) => {
 
-  /** 
-  * Returns a true or false depending on whether the window width is above or below
-  * a specific breakPoint. Provides context for child components to determine whether to render
-  * as single page app or separate pages.
-  */
- 
   const [singlePage, setSinglePage] = useState(false);
   const breakPoint = 768;
 

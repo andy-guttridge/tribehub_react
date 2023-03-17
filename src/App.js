@@ -18,7 +18,6 @@ import css from './styles/App.module.css';
 
 
 function App() {
-
   // Hook to provide current user context
   const currentUser = useCurrentUser();
 

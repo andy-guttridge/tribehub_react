@@ -10,11 +10,11 @@ import Spinner from '../../components/Spinner';
 import TribeMemberDetailsForm from './TribeMemberDetailsForm';
 import { axiosReq } from '../../api/axiosDefaults';
 
+/**
+ * My Tribe section, only visible to tribe admin
+ * @component
+ */
 function MyTribe() {
-  /**
-   * My Tribe section, only visible to tribe admin
-   */
-
   // Current user, and hook for changing current page location
   const currentUser = useCurrentUser();
   const navigate = useNavigate();

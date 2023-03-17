@@ -12,11 +12,11 @@ import { removeTokenTimestamp } from '../../utils/utils'
 import { InfoCircle } from 'react-bootstrap-icons';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
+/**
+ * User account section containing update My Profile, Change Password and Delete Account 
+ * @component
+ */
 function MyAccount() {
-  /**
-   * User account section containing update My Profile, Change Password and Delete Account 
-   */
-
   // Hook for redidrection
   const navigate = useNavigate();
 

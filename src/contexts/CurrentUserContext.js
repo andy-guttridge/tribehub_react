@@ -16,10 +16,10 @@ export const SetCurrentUserContext = createContext();
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
+/**
+ * Provider to give context to children
+ */
 export const CurrentUserProvider = ({ children }) => {
-  /**
-   * Provider to give context to children
-   */
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
 

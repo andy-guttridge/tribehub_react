@@ -1,3 +1,6 @@
+/**
+ * Constant values for event categories, providing text description and image path
+ */
 export const eventCategories = {
   'CEL' : {
     text: 'Celebration',

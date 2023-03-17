@@ -9,17 +9,18 @@ import EventDetailsForm from './EventDetailsForm';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
-function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId, setActionSucceeded }) {
   /**
    * Display details of individual calendar event.
-   * @param {object} event Event to be displayed
-   * @param {boolean} didSaveEvent Toggle to let parent know the details of the event were changed and saved
-   * @param {function} setDidSaveEvent Set state for didSaveEvent
-   * @param {function} handleDeleteButton Handler for delete contact button
-   * @param {string} calEventId Used to give elements unique id attributes
-   * @param {function} setActionSucceeded Set success message when data has changed
+   * @component
+   * @param {object} obj Props
+   * @param {object} obj.event Event to be displayed
+   * @param {boolean} obj.didSaveEvent Toggle to let parent know the details of the event were changed and saved
+   * @param {function} obj.setDidSaveEvent Set state for didSaveEvent
+   * @param {function} obj.handleDeleteButton Handler for delete contact button
+   * @param {string} obj.calEventId Used to give elements unique id attributes
+   * @param {function} obj.setActionSucceeded Set success message when data has changed
    */
-
+function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId, setActionSucceeded }) {
   // Current user
   const currentUser = useCurrentUser();
 

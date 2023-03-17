@@ -6,11 +6,11 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import Avatar from '../../components/Avatar';
 import Spinner from '../../components/Spinner';
 
+/**
+ * Update profile form
+ * @component
+ */
 function ProfileForm() {
-  /**
-   * Update profile form
-   */
-
   // Current user
   const currentUser = useCurrentUser();
 

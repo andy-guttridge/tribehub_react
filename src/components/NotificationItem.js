@@ -5,16 +5,17 @@ import { InfoCircle, Trash3 } from 'react-bootstrap-icons';
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
-function NotificationItem({ notification, notificationsChanged, setNotificationsChanged, handleDeleteButton, notificationId }) {
-  /**
+ /**
    * Notification item that appears in the notifications dropdown menu
-   * @param {object} notification The notification to be displayed
-   * @param {boolean} notificationsChanged Boolean which is toggled to let the parent know a notification has changed state
-   * @param {function} setNotificationsChanged Setter for notificationsChanged value
-   * @param {function} handleDeleteButton Handler for delete button
-   * @param {string} notificationsId Used to give elements unique id attributes
+   * @component
+   * @param {object} obj
+   * @param {object} obj.notification The notification to be displayed
+   * @param {boolean} obj.notificationsChanged Boolean which is toggled to let the parent know a notification has changed state
+   * @param {function} obj.setNotificationsChanged Setter for notificationsChanged value
+   * @param {function} obj.handleDeleteButton Handler for delete button
+   * @param {string} obj.notificationsId Used to give elements unique id attributes
    */
-
+function NotificationItem({ notification, notificationsChanged, setNotificationsChanged, handleDeleteButton, notificationId }) {
   // Strings for event start and end dates and times
   const [startDateStr, setStartDateStr] = useState('');
   const [startTimeStr, setStartTimeStr] = useState('');

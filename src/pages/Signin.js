@@ -6,11 +6,11 @@ import { InfoCircle } from 'react-bootstrap-icons';
 import { setTokenTimestamp } from "../utils/utils";
 import { axiosReq } from '../api/axiosDefaults';
 
+/**
+ * Sign-in page
+ * @component
+ */
 function Signin() {
-  /**
-   * Sign-in page
-   */
-
   // State for sign-in form submission data
   const [signInData, setSignInData] = useState({
     username: '',
@@ -88,7 +88,7 @@ function Signin() {
                 onChange={handleChange}
               />
             </label>
-            
+
             {/* Password */}
             <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="password">
               <span>Password:</span>

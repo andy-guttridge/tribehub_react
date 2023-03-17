@@ -5,11 +5,11 @@ import { InfoCircle } from 'react-bootstrap-icons';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import { axiosReq } from '../api/axiosDefaults';
 
+/**
+ * User registration page
+ * @component
+ */
 function Register() {
-  /**
-   * User registration page
-   */
-
   // State for registration form submission data
   const [registerData, setRegisterData] = useState({
     username: '',
@@ -25,7 +25,7 @@ function Register() {
 
   // Use to redirect when registered
   const navigate = useNavigate();
-  
+
   // Current user
   const currentUser = useCurrentUser();
 

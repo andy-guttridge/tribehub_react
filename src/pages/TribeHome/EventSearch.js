@@ -10,12 +10,13 @@ import CalEvent from './CalEvent';
 import css from '../../styles/EventSearch.module.css';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
+/**
+ * Search form and results for events
+ * @component
+ * @param {object} obj Props
+ * @param {function} obj.handleCancelButton Handler for cancel button
+ */
 function EventSearch({ handleCancelButton }) {
-  /**
-   * Search form and results for events
-   * @param {function} handleCancelButton Handler for cancel button
-   */
-
   // State for user's tribe members
   const [tribe, setTribe] = useState({ results: [] });
 
@@ -74,9 +75,9 @@ function EventSearch({ handleCancelButton }) {
   }, [])
 
   useEffect(() => {
-  /**
-   * Fetch events according to search values
-   */
+    /**
+     * Fetch events according to search values
+     */
 
     // Create URL parameter strings for text_search and the category and tribe search arrays, then concatenate
     const textSearch = `?search=${text_search}`;

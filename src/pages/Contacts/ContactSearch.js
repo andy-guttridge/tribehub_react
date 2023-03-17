@@ -8,12 +8,13 @@ import Spinner from '../../components/Spinner';
 import Contact from './Contact';
 import css from '../../styles/ContactSearch.module.css';
 
+/**
+ * Contacts search form and results
+ * @component
+ * @param {object} obj Props
+ * @param {function} obj.handleCancelButton Handler for cancel button
+ */
 function ContactSearch({ handleCancelButton }) {
-  /**
-   * Contacts search form and results
-   * @param {function} handleCancelButton Handler for cancel button
-   */
-
   // State for whether search results have loaded
   const [hasLoaded, setHasLoaded] = useState(false);
 

@@ -6,17 +6,17 @@ import Contacts from './Contacts/Contacts'
 import Account from './Account/Account'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
+/**
+ * Show components that are separate pages for mobile in a single page
+ * @component
+ */
 function SinglePage() {
-  /**
-   * Show components that are separate pages for mobile in a single page
-   */
-  
   // Current user and hook for redirection
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
 
   // Check if user logged in on mount, if not redirect to landing page
-  useEffect (() => {
+  useEffect(() => {
     !currentUser && navigate('/');
   }, [currentUser, navigate])
 

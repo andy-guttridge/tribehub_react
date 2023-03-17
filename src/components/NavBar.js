@@ -4,11 +4,11 @@ import { House, PersonVcard, PersonGear } from 'react-bootstrap-icons';
 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 
+/**
+ * Bottom navbar for mobile
+ * @component
+ */
 function NavBar() {
-  /**
-   * Bottom navbar for mobile
-   */
-
   // Current user
   const currentUser = useCurrentUser();
 

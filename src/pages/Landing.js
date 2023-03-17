@@ -4,11 +4,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import css from '../styles/Landing.module.css'
 
+/**
+ * Landing page if user not authenticated
+ * @component
+ */
 function Landing() {
-  /**
-   * Landing page if user not authenticated
-   */
-
   // Current user and hook for redirection
   const currentUser = useCurrentUser();
   const navigate = useNavigate();

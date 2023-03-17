@@ -3,20 +3,21 @@ import { Trash3 } from 'react-bootstrap-icons'
 
 import Avatar from '../../components/Avatar'
 
+/**
+ * Details of individual tribe member
+ * @component
+ * @param {object} obj
+ * @param {object} obj.tribeMember Tribe member to be displayed
+ * @param {function} obj.handleDeleteButton Handler for delete button on each tribe member
+ */
 function TribeMember({ tribeMember, handleDeleteButton }) {
-  /**
-   * Details of individual tribe member
-   * @param {object} tribeMember Tribe member to be displayed
-   * @param {function} handleDeleteButton Handler for delete button on each tribe member
-   */
-
   return (
     <>
       <div className="rounded-sm grid grid-cols-2 mb-0.5 bg-base-100">
         <div className="flex col-start-1 col-span-1 justify-content-between">
 
           {/* Avatar for tribe member */}
-          <Avatar imageUrl={tribeMember.profile_image} displayName={tribeMember.display_name}/>
+          <Avatar imageUrl={tribeMember.profile_image} displayName={tribeMember.display_name} />
           <span className="basis-1 m-2 min-w-[50%] break-all text-left">{tribeMember.display_name}</span>
         </div>
 

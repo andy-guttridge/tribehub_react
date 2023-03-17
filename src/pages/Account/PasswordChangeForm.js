@@ -4,11 +4,11 @@ import { InfoCircle } from 'react-bootstrap-icons';
 import { axiosReq } from '../../api/axiosDefaults';
 import Spinner from '../../components/Spinner';
 
+/**
+ * Form to change password
+ * @component
+ */
 function PasswordChangeForm() {
-  /**
-   * Form to change password
-   */
-
   // Use to confirm whether data has loaded;
   const [hasLoaded, setHasLoaded] = useState(true);
 
