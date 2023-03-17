@@ -316,14 +316,15 @@ function TribeHome() {
               }
             </div>
           </div>
-          {
-            // Empty div with margin to provide clearance above bottom navbar if not in single page mode
-            !singlePage && <div className="mb-4 bg-base-100"><br /></div>
-          }
         </>
       ) : (
         <Spinner />
       )}
+      
+      {
+        // Empty div with padding to provide clearance above bottom navbar if not in single page mode
+        !singlePage && <div className="pb-4 bg-base-100"><br /></div>
+      }
 
       {/* If tribe admin or event owner has selected to delete an event, show the modal to confirm or cancel */}
       {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from

@@ -125,8 +125,8 @@ function MyAccount() {
       }
 
       {
-        // Empty div with margin to provide clearance above bottom navbar if not in single page mode
-        !singlePage && <div className="mb-8 bg-base-100"><br /></div>
+        // Empty div with padding to provide clearance above bottom navbar if not in single page mode
+        !singlePage && <div className="pb-8 bg-base-100"><br /></div>
       }
     </section>
   )

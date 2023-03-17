@@ -244,8 +244,8 @@ function Contacts() {
       }
 
       {
-        // Empty div with margin to provide clearance above bottom navbar if not in single page mode
-        !singlePage && <div className="mb-4 bg-base-100"><br /></div>
+        // Empty div with padding to provide clearance above bottom navbar if not in single page mode
+        !singlePage && <div className="pb-4 bg-base-100"><br /></div>
       }
 
       {/* If tribe admin has selected to delete a contact, show the modal to confirm or cancel */}
