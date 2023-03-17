@@ -1,5 +1,12 @@
 # TribeHub
 
+<p align="center">
+    <img src="readme_assets/amiresponsive.png" width=600>
+</p>
+<p align="center">
+    Image generated using <a href="https://ui.dev/amiresponsive" target="_blank">https://ui.dev/amiresponsive</a>
+</p>
+
 ## Project goals
 TribeHub is designed to be a virtual equivalent to the typical wall planner a family might put up in a kitchen or other communal area. The primary goals of the web app are to:
 1) Provide busy families with a single, central hub around which to plan and organise busy lives and schedules. This should include calendar/event scheduling functionality similar to a family wall planner, enabling events to be scheduled for one or multiple family members, and viewed by all the family.
@@ -15,7 +22,7 @@ Themes, epics, user stories and testing outcomes are documented in the `user_sto
 Themes were developed using the project goals as a starting point. These included:
 
 - Account management - necessary to support the use of the app on an individual basis and to group users together into a 'tribe' to support goal 1.
-- Calendar/event scheduling - central to the requirement to enable the key functionality required by goal 1.
+- Calendar/event scheduling - essential to enable the key functionality required by goal 1.
 - Family contacts - chosen as a feature with low implementation over-head to be included in an initial set of minimal functionality in support of goal 3.
 - Shopping lists - chosen as a 'nice to have' feature which could be implemented for version 1 of the project given sufficient time, but which is also a discrete area of functionality which could be added later as per goal 3.
 - Meal planning - also chosen as a 'nice to have' feature which could be added in a future version of the app, aligning with goal 3. This functionality would likely build on that of the shopping lists feature, and was therefore regarded as unlikely to be included in version 1.
@@ -64,13 +71,13 @@ Please see the [Google sheet](https://docs.google.com/spreadsheets/d/11wcDHeqr85
 
 ## Agile development methodology
 GitHub issues and projects were used to document and track an agile development approach.
-A GitHub issue was created for each user story, with a label to indicate if they were required for the MVP. A GitHub milestone was created to represent the product backlog. All user stories were initially added to the product backlog.
+A GitHub issue was created for each user story, with labels to indicate if they were required for the MVP. A GitHub milestone was created to represent the product backlog. All user stories were initially added to the product backlog.
 
 Development work was scheduled using a series of iterations each with a timebox of three working days, representing a total 16 story points (although the duration of each iteration in calendar days was variable due to fitting the three working days around work and other commitments).
 
-A GitHub project board was created for each iteration, and user stories moved from the product backlog into the relevant iteration as each cycle of work began. User stories were labelled as 'must have', 'could have' or 'should have' for goals for that specific iteration, and assigned story point values.  Story points for 'must have' user stories never exceeded 9 (60%). Some iterations also contained 'tasks' for activity not represented as user stories, such as setup/configuration and design/styling.
+A GitHub project board was created for each iteration, and user stories moved from the product backlog into the relevant iteration as each cycle of work began. User stories were labelled as 'must have', 'could have' or 'should have' goals for that specific iteration, and assigned story point values.  Story points for 'must have' user stories never exceeded 9 (60%). Some iterations also contained 'tasks' for activity not represented as user stories, such as setup/configuration and design/styling.
 
-A project kanban board was used to track progress, with user stories moved between 'Todo', 'In Progress' and 'Done' columns as appropriate. For example, the iteration 4 project board was captured at the start, in the middle and at the end:
+A project kanban board was used to track progress, with user stories moved between 'Todo', 'In Progress' and 'Done' columns as appropriate. For example, the iteration 3 project board was captured at the start, in the middle and at the end:
 
 <p align="center">
     <img src="readme_assets/iteration3_start_kanban.png" width=600>
@@ -101,9 +108,9 @@ The wireframes were critical to the development of the site and were invaluable 
 - There is no modal dialog to confirm the user wishes to decline an event. This was not included because the default state of an event is that users have not accepted the invitation. They can either choose not to accept the invitation (no action required), or accept it, and the UI includes a 'going/not going' button directly from notifications and/or calendar events, making it quicker and easier for the user to provide an initial response or change their minds from the notification or event than from a modal. This may be revisited in future if a more fully featured 'accept/decline' system is implemented (see future improvements below).
 - Forms to add and edit events, contacts and tribe member details are presented in line with the other webpage elements, rather than in modals. Once implementation started, it quickly became apparent that enclosing such forms in modals could negatively impact usability on cramped mobile screens.
 - Rather than have a separate button to delete a tribe, deletion of a tribe is tied to the deletion of the tribe administrator's account - i.e., if the tribe administrator wants to close all accounts associated with the tribe, they simply close their own account and all other accounts associated with the tribe are also closed. This approach was chosen to simplify the user experience. The tribe administrator can still close accounts of individual tribe members.
-- A `select` form elements is used to invite tribe members when creating a new calendar event, rather than the avatar based interface depicted on the wireframes. This approach was chosen to speed development and implement the 'add new event' functionality within the required timeframe. This could be revisited/enhanced in future.
+- A `select` form element is used to invite tribe members when creating a new calendar event, rather than the avatar based interface depicted on the wireframes. This approach was chosen to speed development and implement the 'add new event' functionality within the required timeframe. This could be revisited/enhanced in future.
 - The wireframes depict calendar events for a given day rendered in a 'popover' style element attached to the calendar cell. In the final implementation, events are rendered in a list under the calendar. The primary reason for this was again in order to deliver the MVP functionality within the required timeframe, however implementing a scrollable list underneath the calendar might also provide a better experience for mobile by virtue of being less cramped (for example, this approach is used within the iPhone Calendar app). This could be revisited in future.
-- The landing page was simplified to include a hero image and a one line description of the site, in order not to provide users with a cluttered view of the site.
+- The landing page was simplified to include a hero image and a one line description of the site, in order not to provide users with a cluttered initial view.
 - The search forms for events and contacts are initially hidden and can be opened using a search button, unlike on the wireframes. This is because the final events search form is considerably larger than suggested on the wireframe, and not keeping it hidden in the initial page load state would significantly clutter the Tribe Home page. While the contacts search form is much smaller, the same approach was adopted for UI consistency.
 - 'Accordians' were not used for the 'Settings' page, and Settings was renamed to 'My Account'. It quickly became apparent that using accordians here would lead to a very sparse screen, even on mobile, and would therefore introduce an additional layer of UI interaction with little or no benefit. The 'Settings' page title was changed after comments from family testers who felt that 'My Account' would be a better fit for the content.
 - A coloured dot with high contrast against the background colour is used on calendar cells to indicate whether there are any calendar events on a given day, rather than colour coding. This is because the calendar already uses several colours to indicate the current day, whether a cell is selected etc, and introducing another colour to convey such key data to the user could cause accessability challenges for colour blind users.
@@ -136,7 +143,7 @@ The main colour palettes used for light and dark modes are:
 
 Additionally, while colours for the primary and secondary colours (when used as backgrounds) are automatically defined by DaisyUI, these were overidden for the light theme to resolve some contrast issues highlighted by the Wave accessability validator.
 
-Likewise, two additional CSS classes (`.CalWeekendText` and `.CalTextBlack`) were defined especially for the dark mode theme, to resolve some contrast issues with the default calendar colour for weekend days against the dark background and with the light coloured text used for some highlighted cells against the already light primary, secondary and accent colours in dark mode.
+Likewise, two additional CSS classes (`.CalWeekendText` and `.CalTextBlack`) were defined especially for the dark mode theme, to resolve some contrast issues with the default calendar colour for weekend days and the light coloured text used for some highlighted cells.
 
 ### Fonts
 Google fonts were used for the project.
@@ -174,13 +181,13 @@ The sign-in form enables a user to login using their user name and password.
 ### Header with welcome message, notifications menu and sign-out button
 *User stories 6, 7, 27, 50 and 51*
 
-The site header contains the logo/name of the site, a welcome message to provide clear feedback to the user that they are signed in and a sign-out button.
+The site header contains the logo/name of the site, a welcome message to provide clear feedback to the user and a sign-out button.
 <p align="center">
     <img src="readme_assets/header.png" width=250>
 </p>
 
 ### Bottom navbar
-The bottom navbar supports the mobile first nature of the site by providing easy and convenient navigation without having to reach for the top of the screen for users of small touchscreen devices. The three icons correspond to the 'Tribe Home', 'Contacts' and 'Account' pages.
+The bottom navbar supports the mobile first nature of the site by providing easy and convenient navigation without having to reach for the top of the screen. The three icons correspond to the 'Tribe Home', 'Contacts' and 'Account' pages.
 
 <p align="center">
     <img src="readme_assets/bottom_nav.png" width=250>
@@ -274,13 +281,13 @@ The family contacts page displays a list of contacts for the family. These can b
 These two buttons are visible in the screenshot above. The add contact button is only visible to the tribe admin, and opens a form to add a new contact.
 All members of the tribe can access the search contacts button, which opens a simple form to perform a text search on the contacts list.
 
-### Add contacts form
+### Add contact form
 *User story 30*
 
 The add contact form enables the tribe admin to add a new contact to the family's list.
 It includes the following fields:
 
-- Category - this describes the nature or purpose of the contact, and is used as the heading for each contact in the contacts list. This is the only compulsory field on the form.
+- Category - describes the nature or purpose of the contact, and is used as the heading for each contact in the contacts list. This is the only compulsory field on the form.
 - Company - allows the tribe admin to record a company name, if relevant.
 - Title - allows the tribe admin to record the title of a named contact, if relevant.
 - First name - allows the tribe admin to record the first name of a named contact, if relevant.
@@ -379,7 +386,7 @@ All user actions that result in a permanent deletion of data trigger a modal dia
 </p>
 
 ### 'Single page mode' for medium and large screen sizes
-Early in development, it became apparent that while the content and design of the web app was very well suited to mobile devices, each of the separate pages would appear very sparse on larger displayes (e.g. tablet and desktop).
+Early in development, it became apparent that while the content and design of the web app was very well suited to mobile devices, each of the separate pages would appear very sparse on larger displays (e.g. tablet and desktop).
 It was then decided to display the Tribe Home, Account and Profile pages as sections on a single page for screens of 768px width and above. The bottom navbar is not present when the app is in 'single page mode'. This was implemented using a custom `useSinglePage` hook, which any component within the app can access to determine whether the app is currently in single page mode and render itself appropriately.
 
 For both tablets (768px breakpoint) and large devices (1024px breakpoint) calendar events are embedded in a scrolling div in order to avoid long lists of events above the Contacts and Account sections. This appears underneath the calendar for tablets, and to the right of the calendar for large devices.
@@ -400,7 +407,7 @@ The Contacts and Account pages include prompts for tribe admins who have just op
 </p>
 
 ### Success messages
-The web app includes a series of success alerts to inform the user when a request resulting in a change create, update or delete action in the database has been successful.
+The web app includes a series of success alerts to inform the user when a request resulting in a change (create, update or delete action) in the database has been successful.
 There are no explicit success messages for accepting/declining invitations to events and deleting notifications, as it was felt this would be intrusive and detrimental to the user experience. The 'not going/going' buttons and the notifications badge provide visual feedback themselves, and the user will see an error message if an attempt to perform one of these actions fails.
 
 <p align="center">
@@ -448,10 +455,10 @@ It also accepts an `accepted` prop with a `true` or `false` value - if it receiv
 Used for the various cancel/confirm modal dialogs which are displayed when the user requests to perform a destructive action. Props it accepts include `heading` for the modal title; `body` for the modal body text; `cancelHandler` for handler function for the cancel button; and `confirmHandler` for a handler function for the confirm button.
 
 #### `NotificationItem.js`
-Used to render multiple instances of notifications in the notification menu. Props include `notification` for the notification details from the REST API; `notificationsChanged` and `setNotificationsChanged` which are used to toggle a boolean value to communicate to the parent component that the state of the notification has changed, for example if the user accepts or declines an event directly from the notification; `handleDeleteButton` for a handler function for the user deleting the notification and `notificationId` which is used to generate unique HTML `id` attributes for the buttons in the component and to communicate which notification has been deleted to the delete handler.
+Used to render multiple instances of notifications in the notification menu. Props include `notification` for the notification details from the REST API; `notificationsChanged` and `setNotificationsChanged` which are used to toggle a boolean value to communicate to the parent component that the state of the notification has changed; `handleDeleteButton` for a handler function for the user deleting the notification and `notificationId` which is used to generate unique HTML `id` attributes for the buttons in the component and to communicate which notification has been deleted to the delete handler.
 
 #### `Spinner.js`
-Used to render the loading spinner utilised throughout the app. It accepts a `small` prop which a parent component can use to request the spinner is rendered in small size.
+Used to render the loading spinner utilised throughout the app. It accepts a `small` prop which a parent component can use to request a smaller spinner.
 
 #### `Account.js`
 Used for the main Account page in the mobile view, and also for the Account section in single page mode. It uses the `useSinglePage` custom hook to determine which CSS styles to use.
@@ -469,10 +476,10 @@ Multiple instances of this component represent contacts in the Contacts page/sec
 Used for both the add contact and edit contact forms in the Contacts page/section. Props include `handleCancelButton` for a handler function; `didSaveContact` and `setDidSaveContact` which are used to inform the parent component that the state of a contact (if being edited as opposed to created) has changed; `isEditingContact` which the parent uses to tell the component whether it is being used to edit an existing contact or create a new one (this informs whether the form has to be populated with existing data, form submission behaviour and the title at the top of the form); `contact` for the details of the contact to be rendered and `setActionSucceeded` which is used to set the value of a success alert message in the parent.
 
 #### `CalEvent.js`
-Multiple instances represent calendar events in the Home page/section. It accepts props including `event` for the details of the event to be rendered; `didSaveEvent` and `setDidSaveEvent` which are used to inform the parent component that the state of an existing calendar event has changed; `handleDeleteButton` for delete button handler function; `calEventId` which is used to provide unique HTML id attribute values for buttons and other elements (the calendar event id from the API is unsuitable for this, as it may be shared between an original event and its recurrences, which may be displayed at the same time e.g. in search results) and `setActionSucceeded` which is used to set the value of a success message alert in the parent component.
+Multiple instances represent calendar events in the Home page/section. It accepts props including `event` for the details of the event to be rendered; `didSaveEvent` and `setDidSaveEvent` which are used to inform the parent component that the state of an existing calendar event has changed; `handleDeleteButton` for delete button handler function; `calEventId` which is used to provide unique HTML id attribute values for buttons and other elements (the calendar event id from the API is unsuitable for this, as it may be shared between an original event and its recurrences, which may be displayed at the same time (e.g. in search results) and `setActionSucceeded` which is used to set the value of a success message alert in the parent component.
 
 #### `EventDetailsForm.js`
-Used for the add event and edit event forms in the Home page/section. Props include `handleCancelButton` for a handler function; `didSaveEvent` and `setDidSaveEvent` to inform the parent of a change to the state of the event if it has been edited; `isEditingEvent` which informs the component if it is being used to edit an existing event as opposed to create a new one (this affects whether the form needs to be populated with an existing event, form submission behaviour); `event` which contains details of the event being edited (if applicable); `defaultStartDate` which is used to populate the default form value for the start date of a new event (the parent passes in the current calendar day) and `setActionSucceeded` which sets the value of a success message alert in the parent.
+Used for the add event and edit event forms in the Home page/section. Props include `handleCancelButton` for a handler function; `didSaveEvent` and `setDidSaveEvent` to inform the parent of a change to the state of the event if it has been edited; `isEditingEvent` which informs the component if it is being used to edit an existing event as opposed to create a new one (this affects whether the form needs to be populated with an existing event and form submission behaviour); `event` which contains details of the event being edited (if applicable); `defaultStartDate` which is used to populate the default form value for the start date of a new event (the parent passes in the current calendar day) and `setActionSucceeded` which sets the value of a success message alert in the parent.
 
 ### CRUD functionality
 TribeHub features full Create, Read, Update and Delete functionality, via the UI implemented in React and the Django Rest Framework API.
@@ -487,7 +494,7 @@ TribeHub features full Create, Read, Update and Delete functionality, via the UI
 #### Short term future improvements
 The following fixes and improvements would be made in the short term as a high priority if more time were available:
 
-- Full synchronisation between notifications and calendar events - currently if a user responds to an event via the notifications menu, this is not reflected in the calendar events list until the calendar data is reloaded from the server. This is because the notifications menu and calendar are hold their own state and are separated from each other in the 'component tree'. This could be resolved by refactoring the app so that event and notification state are held by a top level context object, and writing a utility function to search for matching events and notifications, and updating the state of both as needed.
+- Full synchronisation between notifications and calendar events - currently if a user responds to an event via the notifications menu, this is not reflected in the calendar events list until the calendar data is reloaded from the server. Likewise, the notifications menu does not automatically refresh if an event is edited or added. This is because the notifications menu and calendar hold their own state and are separated from each other in the 'component tree'. This could be resolved by refactoring the app so that event and notification state are held by a top level context object, and writing a utility function to search for matching events and notifications, and updating the state of both as needed.
 - Automatically display any events for the current day - currently the user has to select the a day on the calendar to see any events when the page first loads, even if there are events for the current day.
 -  Automatically update display name in `Header` component - if the user updates their display name, the user has to refresh the page to see this reflected in the welcome message in the site header. This would require some refactoring to ensure the `Header` component 'knows' there has been a change of state.
 - Refactoring to reduce the number of requests to the REST API - when the user selects a new month on the calendar, the React frontend requests events for 12 months either side of the current month, in order to 'buffer' the data and prevent a delay in data being displayed if the user skips a few months forwards or backwards. While this provides a relatively seamless user experience, it also means more data than necessary is being fetched in the background. This could be reduced by only fetching a full two years worth of data when the `TribeHome` component first mounts, and subsequently only loading one additional month at the 'extreme end of the range' each time the user changes month. Additionally, the `MyTribe` and `EventDetailsForm` components both separately fetch details of the current user's tribe from the API independently. Implementing a top level context object to fetch this data when the app first loads and make it available to the whole component tree could further reduce the number of data fetches. 
@@ -496,7 +503,7 @@ The following fixes and improvements would be made in the short term as a high p
 - Transfer of tribe admin status to another user - in the event a tribe administrator closes their account, all user accounts associated with the tribe are closed and data deleted. This is to prevent 'orphaned' tribes and tribe members with no administrator. A better solution would be to enable the transfer of tribe admin status to another user.
 - All day calendar events.
 - Improved event duration input - the current dropdown with a selection of pre-set duration values was chosen for speed of implementation. A more flexible means of selecting the durations would improve the user experience.
-- A 'no reply' default event response status - currently each user can only have an 'accepted' or 'not accepted' status for each calendar event, with the default being 'not accepted'. This means that while users can actively accept an invitation, they cannot actively decline. This is acceptable for a first iteration of a minimum viable product, but a far better user experience would be for the default status to be neutral, so that a user can either actively accept or decline.
+- A 'no reply' default event response status - currently each user can only have an 'accepted' or 'not accepted' status for each calendar event, with the default being 'not accepted'. This means that while users can actively accept an invitation, they cannot actively decline. This is acceptable for a first iteration of a minimum viable product, but a better user experience would be for the default status to be neutral, so that a user can either actively accept or decline.
 - Improvements to 'single page mode' - the priority for the first iteration of TribeHub was to provide the best possible experience for mobile users, and while single page mode does take advantage of larger screen sizes, it is really still an expanded version of the mobile experience. A better tablet and desktop experience could be achieved by using a React library such as [Big Calendar](https://jquense.github.io/react-big-calendar/examples/?path=/story/about-big-calendar--page) to implement a larger 'outlook' style calendar where details of events are visible on the actual calendar itself. A modal or 'popover' type component would be implemented to present an additional layer of detail and to allow creation and editing of events.
 
 #### Longer term future features
@@ -520,7 +527,7 @@ Lower priority, longer term features to be added are:
 ## Frameworks, libraries and dependencies
 
 ### React-Calendar
-- [react-calendar](https://github.com/wojtekmaj/react-calendar) - this React library was used to implement the calendar. This is critical to the user experience as the calendar is a fundamental feature of the app, and creating such a calendar 'from scratch' would have been impractical within the time allowed for the project. React-Calendar was chosen because it is relatively lightweight and straightforward to use, enabling the key features to be implemented quickly, because it is compact in terms of its style, making it suitable for use on smal mobile screens, and because it provides flexibility with respect to customisable CSS and calendar cell content (e.g. to enable the 'dots' used to indicate when there are events on a given day).
+- [react-calendar](https://github.com/wojtekmaj/react-calendar) - this React library was used to implement the calendar. This is critical to the user experience as the calendar is a fundamental feature of the app, and creating such a calendar 'from scratch' would have been impractical within the time allowed for the project. React-Calendar was chosen because it is relatively lightweight and straightforward to use, enabling the key features to be implemented quickly, because it is compact in terms of its style, making it suitable for use on small mobile screens, and because it provides flexibility with respect to customisable CSS and calendar cell content (e.g. to enable the 'dots' used to indicate when there are events on a given day).
 
 ### React-Router-DOM
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom) - this library enables 'client side routing' for React web applications, and is used to implement basic routing in TribeHub, i.e. to implement the links on the bottom navbar, and register, sign-in and sign-out links. Using React-Router-DOM also enabled implementation of 'single page mode'to enhance the experience for users on larger screens. The `useSinglePage` custom hook is referenced in `App.js`, with different `Route` components conditionally rendered for the various paths depending on whether the app is running in single page mode. The `useLocation` hook from React-Router-DOM is used in some components to determine the current URL and respond accordingly, for example by ensuring the correct nav button is highlighted in the bottom navbar for mobile users.
@@ -551,11 +558,11 @@ The `useSingle` page custom hook is used throughout the app so that components c
 
 ### Manual testing
 Manual tests were devised for each user story to be implemented for the project. 
-These are documented on the [TribeHub user stories spreadsheet](https://docs.google.com/spreadsheets/d/11wcDHeqr85VaHXdJjATod_WECRY03IRUlGgT_L_ikIw/edit#gid=0).
+These were performed on the final, deployed version of the site and are documented on the [TribeHub user stories spreadsheet](https://docs.google.com/spreadsheets/d/11wcDHeqr85VaHXdJjATod_WECRY03IRUlGgT_L_ikIw/edit#gid=0).
 
 Several tests failed on the first attempt. In these cases, details of how the issues were addressed and the outcome of further testing are provided. All tests were passed after issues were resolved.
 
-In addition, the site was subject to continual user testing throughout the development process. This resulted in a number of enhancements to the user experience, which are documented in the user stories and planning sections above.
+In addition, the site was deployed early and subject to continual user testing throughout the development process. This resulted in a number of enhancements to the user experience, which are documented in the user stories and planning sections above.
 
 ### Validator testing
 
@@ -603,7 +610,7 @@ Testing with the WAVE validation revealed the following issues:
 
 - Avatar images throughout the website had the same text for the alt attribute. This was addressed by passing a `displayName` prop through to the Avatar component, and using this to generate an appropriate alt text value for each user.
 
-- Several form elements with no label were flagged on the profile update form and the event search form (caused by a missing or incorrect id attributes on input elements), and one element with a duplicate id on the contacts form (caused by a naming clash with another element on the add event form).
+- Several form elements with no label were flagged on the profile update form and the event search form (caused by missing or incorrect id attributes on input elements), and one element with a duplicate id on the contacts form (caused by a naming clash with another element on the add event form).
 
 - The label containing the notifications indicator was found to contain no text. This was rectified by putting a `<span>` element with the Tailwind CSS `sr-only` class inside the label, providing a read out of the number of notifications present for screen readers but visually hidden. This label was also flagged as orphaned from its form control by the Wave validator, however this was not fixed, as the label is used instead of a button for the DaisyUI dropdown component in order to overcome a bug in Safari.
 
@@ -621,7 +628,7 @@ Lighthouse testing was undertaken in incognito mode for every URL for mobile and
 
 WAVE validation had already been completed and most accessability issues fixed, however lighthouse did reveal that button elements did not have id attributes, which are required by assistive technologies. 
 
-After this issue had been addressed, every page achieved 100% for accessability and best practices.
+After this issue had been addressed, every page achieved 100% for accessability.
 All pages achieved 100% for best practices, except for the landing, registration and sign-in pages, where HTTP 401 errors in the console reduced the score to 92%. This is expected as a consequence of a non-authenticated user being redirected away from content requiring authorisation.
 
 Performance scores were not as high, ranging from a low of 61% for the contacts page with the search form being opened on mobile to 90% for the app in single page mode with the add tribe member form being opened. Performance scores for the majority of pages/scenarios ranged from the low 70s to high 80s. The same potential performance improvements were identified in each case:
@@ -659,7 +666,7 @@ The hero image on the landing page was compressed in order to improve loading ti
 
 ### Resolved bugs
 - During implementation of the `NotificationItem` component, requests to the REST API for the data for the events with which each notification is associated were frequently resulting in an HTTP 500 internal server error. A version of the API running on a development server was used for debugging. This revealed that the number of simultaneous requests for data coming from a large number of NotificationItems was overwhelming the free tier ElephantSQL database server. The fix was to add the full data for each event to the notification JSON served by the API, which meant that only one network request was required to fetch the notification and event data together. 
-- During testing, a large amount of empty space was noted at the bottom of each page, but only for some user accounts. No elements causing this could be identified using the Chrome developer tools, and elements were manually removed from each component until the culprit was found. This revealed that the unordered list of norifications inside the DaisyUI dropdown component used for the notifications menu was taking up vertical space in the document even when closed/not visible. This was only noticeable for users with a large number of notifications and hence a very long list inside the menu. The issue was addressed by applying the Tailwind CSS hidden class to the unordered list when not visible. An event listener was added to detect clicks outside of the menu and close the list accordingly.
+- During testing, a large amount of empty space was noted at the bottom of each page, but only for some user accounts. No elements causing this could be identified using the Chrome developer tools, and elements were manually removed from each component until the culprit was found. This revealed that the unordered list of notifications inside the DaisyUI dropdown component used for the notifications menu was taking up vertical space in the document even when closed/not visible. This was only noticeable for users with a large number of notifications and hence a very long list inside the menu. The issue was addressed by applying the Tailwind CSS hidden class to the unordered list when not visible. An event listener was added to detect clicks outside of the menu and close the list accordingly.
 
 ### Unresolved bugs
 - Users accessing TribeHub from iOS devices, Safari on MacOS, Samsung Internet on Samsung devices and possibly others must turn off 'Prevent Cross Site Tracking' (Apple devices), 'Smart Anti-Tracking' (Samsung devices) or other similar features in order to use the web app. This is because the Django Rest Framework API and the React front-end are hosted on separate domains using Heroku, and cross-domain requests from the front-end to the API are blocked by these anti-tracking features. It appears there is no solution to this, other than to host the API and front-end on the same domain (reference - https://stackoverflow.com/questions/56972162/is-there-a-workaround-for-safari-ios-prevent-cross-site-tracking-option-when).
@@ -685,20 +692,20 @@ When deployment is complete, you will be given a link to the deployed site.
 ## Credits
 
 ### Code
-- How to use the React Router `<BrowserRouter>` component to provide history context to `<Router>` components from [this Stack Overflow article](https://stackoverflow.com/questions/65425884/react-router-v6-error-useroutes-may-be-used-only-in-the-context-of-a-route)
-- Technique to use an event handler to store the current size of the window in state variables in order to conditionally render components adapted from [this Stack Overflow question](https://stackoverflow.com/questions/62954765/how-to-do-conditional-rendering-according-to-screen-width-in-react)
-- Code to handle current user context in `src/contexts/CurrentUserContext.js` adapted from Code Institute 'Moments' React walkthrough lessons
-- Code to create and use axios interceptors to refresh tokens in `src/contexts/CurrentUserContext.js` and `src/utils/utils.js` adapted from Code Institute 'Moments' React walkthrough lessons
+- How to use the React Router `<BrowserRouter>` component to provide history context to `<Router>` components is from [this Stack Overflow article](https://stackoverflow.com/questions/65425884/react-router-v6-error-useroutes-may-be-used-only-in-the-context-of-a-route)
+- The technique to use an event handler to store the current size of the window in state variables in order to conditionally render components was adapted from [this Stack Overflow question](https://stackoverflow.com/questions/62954765/how-to-do-conditional-rendering-according-to-screen-width-in-react)
+- Code to handle current user context in `src/contexts/CurrentUserContext.js` was adapted from Code Institute 'Moments' React walkthrough lessons
+- Code to create and use axios interceptors to refresh tokens in `src/contexts/CurrentUserContext.js` and `src/utils/utils.js` was adapted from the Code Institute 'Moments' React walkthrough lessons
 - The technique to add modal dialogs to the end of the body element in the DOM is from [upmostly.com](https://upmostly.com/tutorials/modal-components-react-custom-hooks)
-- How to use the `:global` selector in CSS to ensure styles are overriden in a React component from [Stack Overflow](https://stackoverflow.com/questions/42191671/css-modules-reactjs-parent-and-child-css-classes-in-different-components)
+- How to use the `:global` selector in CSS to ensure styles are overriden in a React component is from [Stack Overflow](https://stackoverflow.com/questions/42191671/css-modules-reactjs-parent-and-child-css-classes-in-different-components)
 - How to use `require` to ensure webpack processes local images is from [Stack Overflow](https://stackoverflow.com/questions/34582405/react-wont-load-local-images)
 - How to use CSS filters to colour a SVG is from [Stack Overflow](https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element)
 - How to define a CSS class as part of a DaisyUI theme is from [GitHub](https://github.com/saadeghi/daisyui/discussions/640)
-- How to iterate over they keys of a JavaScript object in React is from [Stack Overflow](https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs)
-- Technique for handling multiple selection elements in controlled React forms is from [Stack Overflow](https://stackoverflow.com/questions/50090335/how-handle-multiple-select-form-in-reactjs)
+- How to iterate over the keys of a JavaScript object in React is from [Stack Overflow](https://stackoverflow.com/questions/40803828/how-can-i-map-through-an-object-in-reactjs)
+- The technique for handling multiple selection elements in controlled React forms is from [Stack Overflow](https://stackoverflow.com/questions/50090335/how-handle-multiple-select-form-in-reactjs)
 - How to correctly use the useCallback hook to declare a function outside of useEffect and call from inside useEffect to enable code reuse is from [Stack Overflow](https://stackoverflow.com/questions/56410369/can-i-call-separate-function-in-useeffect)
 - How to add a number of minutes to a DateTime object is from [StackOverflow](https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object)
-- Technique for using a timer to prevent excessive network requests when the values of input elements on a search form change is from the Code Institute Moments walkthrough project
+- The technique for using a timer to prevent excessive network requests when the values of input elements on a search form change is from the Code Institute Moments walkthrough project
 - How to redirect to an appropriate page when the user enters an invalid URL using the Navigate component from React-Router-DOM has been adapted from [copycat.dev](https://www.copycat.dev/blog/react-router-redirect/)
 - How to use Google Fonts in a Tailwind CSS project is from [daily-dev-tips.com](https://daily-dev-tips.com/posts/using-google-fonts-in-a-tailwind-project/)
 - How to invert the colour of an element compared to its background is from [Stack Overflow](https://stackoverflow.com/questions/17741629/how-can-i-invert-color-using-css)
@@ -707,7 +714,10 @@ When deployment is complete, you will be given a link to the deployed site.
 
 The following documentation was referenced extensively throughout the project:
 
+- [React documentation](https://react.dev/reference/react)
 - [React Router Documentation](https://v5.reactrouter.com/)
+- [TailwindCSS documentation](https://tailwindcss.com/docs/)
+- [DaisyUI documentation](https://daisyui.com/components/)
 
 ### Media
 - Placeholder screenshots image used on the wireframes by u_fg0tkeqgiy on [Pixabay](https://pixabay.com/vectors/view-web-secure-image-ipad-laptop-7321141/).
@@ -721,13 +731,13 @@ The following documentation was referenced extensively throughout the project:
   - Musical note icon used for music by ruhbastard on [Pixabay](https://pixabay.com/vectors/music-note-music-note-musical-notes-1967480/)
   - Metallic O icon used for other by Clker-Free-Vector-Images on [Pixabay](https://pixabay.com/vectors/english-alphabets-o-letters-15th-33793/)
   - Shopping trolley icon used for shopping by Clker-Free-Vector-Images on [Pixabay](https://pixabay.com/vectors/shopping-cart-caddy-shopping-trolley-304843/)
-  - Volley icon used for sport by Clker-Free-Vector-Images on [Pixabay](https://pixabay.com/vectors/volleyball-sport-black-white-306791/)
+  - Volley ball icon used for sport by Clker-Free-Vector-Images on [Pixabay](https://pixabay.com/vectors/volleyball-sport-black-white-306791/)
   - Aeroplane icon used for vacation by GDj on [Pixabay](https://pixabay.com/vectors/jumbo-jet-airplane-aeroplane-1801305/)
   - Office desk icon used for work by OpenClipart-Vectors on [Pixabay](https://pixabay.com/vectors/computer-office-worker-typing-146329/)
   - Present icon used for celebration by chachaoriginal on [Pixabay](https://pixabay.com/vectors/red-icon-present-gift-wrapped-1902863/)
   - Car icon used for outing by Clker-Free-Vector-Images on [Pixabay](https://pixabay.com/vectors/car-automobile-sedan-four-door-car-35502/)
   - Cat icon used for pets by Lohrelei on  [Pixabay](https://pixabay.com/vectors/cat-kitten-sitting-silhouette-1144200/)
 - Fonts:
-  [Google Fonts Fredoka One](https://fonts.google.com/?query=fredoka+one&sort=popularity)
-  [Google Fonts Nunito](https://fonts.google.com/specimen/Nunito?query=nunito&sort=popularity)
-  [Google Fonts Lato](https://fonts.google.com/?query=lato&sort=popularity)
+    - [Google Fonts Fredoka One](https://fonts.google.com/?query=fredoka+one&sort=popularity)
+    - [Google Fonts Nunito](https://fonts.google.com/specimen/Nunito?query=nunito&sort=popularity)
+    - [Google Fonts Lato](https://fonts.google.com/?query=lato&sort=popularity)
