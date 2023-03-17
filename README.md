@@ -87,7 +87,7 @@ A project kanban board was used to track progress, with user stories moved betwe
 
 The project boards in their final form can be accessed at [TribeHub GitHub Project Boards](https://github.com/andy-guttridge/tribehub_react/projects?query=is%3Aopen).
 
-Additionally, Notion was used to note and track other miscellanious tasks as they arose during development. The Notion tasks list can be accessed [here](https://www.notion.so/968f16ba28c94562b34767b616e31cd5?v=58c1cd844948493aa55f70f9458130b2&p=f16bfd5c78cd4bc4b4370cf6dd944a09&pm=s).
+Additionally, Notion was used to note and track other miscellanious tasks as they arose during development.
 
 ## Planning
 
