@@ -335,7 +335,6 @@ function EventSearch({ handleCancelButton }) {
         )
       }
 
-
       {/* Display alert if there was an issue deleting an event */}
       {
         errors.delete &&
@@ -369,7 +368,6 @@ function EventSearch({ handleCancelButton }) {
           </div>
         </div>
       }
-
 
       {/* If tribe admin or event owner has selected to delete an event, show the modal to confirm or cancel */}
       {/* // Technique to use ReactDOM.createPortal to add a modal to the end of the DOM body from

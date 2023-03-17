@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js, jsx, ts, tsx}"],
+  content: ['./src/**/*.{js, jsx, ts, tsx}'],
   theme: {
     extend: {
       // Instructions on how to utilise Google Fonts within a Tailwind CSS project are from
@@ -12,7 +12,7 @@ module.exports = {
       }
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require('daisyui')],
   // daisyUI config
   daisyui: {
     styled: true,
@@ -25,12 +25,12 @@ module.exports = {
       // https://github.com/saadeghi/daisyui/discussions/640
       {
         tribehub_theme: {
-          ...require("daisyui/src/colors/themes")["[data-theme=dark"],
-          ".CategoryIcon": {
-            "filter": "invert(26%) sepia(93%) saturate(832%) hue-rotate(186deg) brightness(97%) contrast(94%)"
+          ...require('daisyui/src/colors/themes')['[data-theme=dark'],
+          '.CategoryIcon': {
+            'filter': 'invert(26%) sepia(93%) saturate(832%) hue-rotate(186deg) brightness(97%) contrast(94%)'
           },
-          ".FidgetSpinner": {
-            "filter": "invert(17%) sepia(81%) saturate(3952%) hue-rotate(295deg) brightness(81%) contrast(93%)"
+          '.FidgetSpinner': {
+            'filter': 'invert(17%) sepia(81%) saturate(3952%) hue-rotate(295deg) brightness(81%) contrast(93%)'
           },
           primary: '#e5006a',
           'primary-content': '#ffffff',
@@ -45,18 +45,18 @@ module.exports = {
       },
       {
         tribehub_dark_theme: {
-          ...require("daisyui/src/colors/themes")["[data-theme=dark"],
-          ".CategoryIcon": {
-            "filter": "invert(90%) sepia(15%) saturate(180%) hue-rotate(150deg) brightness(99%) contrast(98%)"
+          ...require('daisyui/src/colors/themes')['[data-theme=dark'],
+          '.CategoryIcon': {
+            'filter': 'invert(90%) sepia(15%) saturate(180%) hue-rotate(150deg) brightness(99%) contrast(98%)'
           },
-          ".FidgetSpinner": {
-            "filter": "invert(80%) sepia(16%) saturate(709%) hue-rotate(175deg) brightness(101%) contrast(94%)"
+          '.FidgetSpinner': {
+            'filter': 'invert(80%) sepia(16%) saturate(709%) hue-rotate(175deg) brightness(101%) contrast(94%)'
           },
-          ".CalWeekendText": {
-            "color": "#f2efc2"
+          '.CalWeekendText': {
+            'color': '#f2efc2'
           },
-          ".CalTextBlack": {
-            "color": "#000000"
+          '.CalTextBlack': {
+            'color': '#000000'
           },
           primary: '#add5f7',
           secondary: '#e6e6e6',
@@ -72,8 +72,8 @@ module.exports = {
     utils: true,
     logs: true,
     rtl: false,
-    prefix: "",
-    darkTheme: "tribehub_dark_theme",
+    prefix: '',
+    darkTheme: 'tribehub_dark_theme',
   },
   darkMode: ['class', '[data-theme="tribehub_dark_theme"]'],
 }
