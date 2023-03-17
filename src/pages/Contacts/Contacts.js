@@ -155,7 +155,7 @@ function Contacts() {
       }
 
       {/* Show add contact button if user is tribe admin, they are not currently adding a contact and user does not have the search form open */}
-      <div className="justify-end lg:justify-start flex w-4/5 md:w-full mx-auto my-4">
+      <div className="justify-end lg:justify-start flex w-full mx-auto my-4">
         {!isAddingContact && !isSearching && currentUser?.is_admin &&
           <button className="btn btn-ghost"
             onClick={() => setIsAddingContact(!isAddingContact)}

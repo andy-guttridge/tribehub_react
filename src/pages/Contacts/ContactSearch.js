@@ -120,7 +120,7 @@ function ContactSearch({ handleCancelButton }) {
         </div>
       }
 
-      <form className="md:mx-2">
+      <form className="w-4/5 m-auto md:w-full md:px-2">
 
         {/* Contact search field */}
         <label className="input-group max-lg:input-group-vertical mb-4" htmlFor="contact-search">
@@ -138,7 +138,7 @@ function ContactSearch({ handleCancelButton }) {
       </form>
 
       {/* Display contacts using search results */}
-      <div>
+      <div className="bg-base-200">
         {
           hasLoaded ? (
             contacts?.results?.map((contact, i) => {
@@ -151,7 +151,9 @@ function ContactSearch({ handleCancelButton }) {
               />
             })
           ) : (
-            <Spinner />
+            <div className="bg-base-100">
+              <Spinner />
+            </div>
           )
         }
       </div>
