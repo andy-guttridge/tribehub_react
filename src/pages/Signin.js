@@ -4,7 +4,7 @@ import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContex
 import { InfoCircle } from 'react-bootstrap-icons';
 
 import { setTokenTimestamp } from "../utils/utils";
-import { axiosReq } from '../api/axiosDefaults';
+import { axiosRes } from '../api/axiosDefaults';
 
 /**
  * Sign-in page
@@ -45,7 +45,7 @@ function Signin() {
      */
     event.preventDefault();
     try {
-      const { data } = await axiosReq.post('/dj-rest-auth/login/', signInData);
+      const { data } = await axiosRes.post('/dj-rest-auth/login/', signInData);
       setCurrentUser(data.user)
       setTokenTimestamp(data);
       navigate('/tribe-home');
