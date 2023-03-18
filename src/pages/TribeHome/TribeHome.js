@@ -289,6 +289,8 @@ function TribeHome() {
                     <EventSearch
                       handleCancelButton={() => setIsSearching(!isSearching)}
                       setActionSucceeded={setActionSucceeded}
+                      childDidSaveEvent={didSaveEvent}
+                      setChildDidSaveEvent={setDidSaveEvent}
                     />
                   )
                 }

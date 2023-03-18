@@ -16,8 +16,10 @@ import { useSinglePage } from '../../contexts/SinglePageContext';
  * @param {object} obj Props
  * @param {function} obj.handleCancelButton Handler for cancel button
  * @param {function} obj.setActionSucceeded Sets a success message when a request resulting in a change to data succeeds
+ * @param {function} obj.childDidSaveEvent Toggle to let parent components know that details of an event have changed
+ * @param {function} obj.setChildDidSaveEvent Sets childDidSaveEvent
  */
-function EventSearch({ handleCancelButton, setActionSucceeded }) {
+function EventSearch({ handleCancelButton, setActionSucceeded, childDidSaveEvent, setChildDidSaveEvent }) {
   // State for user's tribe members
   const [tribe, setTribe] = useState({ results: [] });
 
@@ -182,6 +184,7 @@ function EventSearch({ handleCancelButton, setActionSucceeded }) {
     try {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
+      setChildDidSaveEvent(!childDidSaveEvent);
       setErrors({});
       setActionSucceeded('The event has now been deleted');
     } catch (error) {
@@ -365,6 +368,8 @@ function EventSearch({ handleCancelButton, setActionSucceeded }) {
                   setDidSaveEvent={setDidSaveEvent}
                   handleDeleteButton={handleDeleteButton}
                   setActionSucceeded={setActionSucceeded}
+                  childDidSaveEvent={childDidSaveEvent}
+                  setChildDidSaveEvent={setChildDidSaveEvent}
                 />
               })
             }

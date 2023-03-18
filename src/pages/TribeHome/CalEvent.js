@@ -19,8 +19,10 @@ import { useSinglePage } from '../../contexts/SinglePageContext';
    * @param {function} obj.handleDeleteButton Handler for delete contact button
    * @param {string} obj.calEventId Used to give elements unique id attributes
    * @param {function} obj.setActionSucceeded Set success message when data has changed
+   * @param {function} obj.childDidSaveEvent Toggle to let parent components higher in the tree know the details of an event have changed
+   * @param {function} obj.setChildDidSaveEvent Sets childDidSaveEvent
    */
-function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId, setActionSucceeded }) {
+function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId, setActionSucceeded, childDidSaveEvent, setChildDidSaveEvent }) {
   // Current user
   const currentUser = useCurrentUser();
 
@@ -83,8 +85,9 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
 
       setErrors({});
 
-      // Trigger refresh of data in parent as event recurrences may also be affected
+      // Trigger refresh of data in parents as event recurrences may also be affected
       setDidSaveEvent(!didSaveEvent);
+      setChildDidSaveEvent(!childDidSaveEvent);
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
@@ -167,6 +170,8 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
             event={event}
             setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
             setActionSucceeded={setActionSucceeded}
+            childDidSaveEvent={childDidSaveEvent}
+            setChildDidSaveEvent={setChildDidSaveEvent}
           />
         </div>
       }

@@ -18,8 +18,10 @@ import css from '../../styles/EventDetailsForm.module.css'
  * @param {object} obj.event The event to be edited, if user is editing
  * @param {date} obj.defaultStartDate The default start date for the edit event form
  * @param {function} obj.setActionSucceeded Set string for success message when data has been changed
+ * @param {function} obj.childDidSaveEvent Toggle to let parent components higher in the tree know details of an event have changed
+ * @param {function} obj.setChildDidSaveEvent Sets childDidSaveEvent
  */
-function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate, setActionSucceeded }) {
+function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate, setActionSucceeded, childDidSaveEvent, setChildDidSaveEvent }) {
   // State for loading status and tribe members data
   const [hasLoaded, setHasLoaded] = useState(false);
   const [tribe, setTribe] = useState({ results: [] });
@@ -98,6 +100,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         // Hide form and tell parent component the event was saved
         handleCancelButton();
         setDidSaveEvent(!didSaveEvent);
+        setChildDidSaveEvent(!childDidSaveEvent);
         setActionSucceeded('Your changes to the event have been saved');
       }
       else {
@@ -106,6 +109,7 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         // Hide form, tell parent component the event was saved and set success message
         handleCancelButton();
         setDidSaveEvent(!didSaveEvent);
+        setChildDidSaveEvent(!childDidSaveEvent);
         setActionSucceeded('Your event has been added to the calendar')
       }
     } catch (error) {
