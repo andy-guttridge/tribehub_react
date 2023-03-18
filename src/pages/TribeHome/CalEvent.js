@@ -9,19 +9,19 @@ import EventDetailsForm from './EventDetailsForm';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useSinglePage } from '../../contexts/SinglePageContext';
 
-  /**
-   * Display details of individual calendar event.
-   * @component
-   * @param {object} obj Props
-   * @param {object} obj.event Event to be displayed
-   * @param {boolean} obj.didSaveEvent Toggle to let parent know the details of the event were changed and saved
-   * @param {function} obj.setDidSaveEvent Set state for didSaveEvent
-   * @param {function} obj.handleDeleteButton Handler for delete contact button
-   * @param {string} obj.calEventId Used to give elements unique id attributes
-   * @param {function} obj.setActionSucceeded Set success message when data has changed
-   * @param {function} obj.childDidSaveEvent Toggle to let parent components higher in the tree know the details of an event have changed
-   * @param {function} obj.setChildDidSaveEvent Sets childDidSaveEvent
-   */
+/**
+ * Display details of individual calendar event.
+ * @component
+ * @param {object} obj Props
+ * @param {object} obj.event Event to be displayed
+ * @param {boolean} obj.didSaveEvent Toggle to let parent know the details of the event were changed and saved
+ * @param {function} obj.setDidSaveEvent Set state for didSaveEvent
+ * @param {function} obj.handleDeleteButton Handler for delete contact button
+ * @param {string} obj.calEventId Used to give elements unique id attributes
+ * @param {function} obj.setActionSucceeded Set success message when data has changed
+ * @param {function} obj.childDidSaveEvent Toggle to let parent components higher in the tree know the details of an event have changed
+ * @param {function} obj.setChildDidSaveEvent Sets childDidSaveEvent
+ */
 function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId, setActionSucceeded, childDidSaveEvent, setChildDidSaveEvent }) {
   // Current user
   const currentUser = useCurrentUser();
@@ -163,21 +163,6 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
   return (
     <div className="card rounded-none md:rounded-md mb-0.5 bg-base-100 md:mx-0.5 text-center">
 
-      {/* Display the EventDetailsForm if user is editing an event */}
-      {isEditingEvent &&
-        <div className="md:mx-2 md:flex md:justify-center">
-          <EventDetailsForm
-            handleCancelButton={() => setIsEditingEvent(false)}
-            isEditingEvent
-            event={event}
-            setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
-            setActionSucceeded={setActionSucceeded}
-            childDidSaveEvent={childDidSaveEvent}
-            setChildDidSaveEvent={setChildDidSaveEvent}
-          />
-        </div>
-      }
-
       {/* Card title */}
       <div className="card-title bg-base-100 rounded-sm flex justify-between p-2 break-all">
         {/* Event category icon */}
@@ -256,7 +241,20 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
         }
       </div>
 
-      {/* Card body */}
+      {/* Display the EventDetailsForm if user is editing an event */}
+      {isEditingEvent &&
+        <div className="md:mx-2 md:flex md:justify-center">
+          <EventDetailsForm
+            handleCancelButton={() => setIsEditingEvent(false)}
+            isEditingEvent
+            event={event}
+            setDidSaveEvent={() => setDidSaveEvent(!didSaveEvent)}
+            setActionSucceeded={setActionSucceeded}
+            childDidSaveEvent={childDidSaveEvent}
+            setChildDidSaveEvent={setChildDidSaveEvent}
+          />
+        </div>
+      }
 
       {/* Show going/not going buttons if user is invited */}
       {

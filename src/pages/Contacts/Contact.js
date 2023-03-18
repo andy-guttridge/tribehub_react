@@ -23,18 +23,6 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
 
   return (
     <div className="card rounded-none md:rounded-sm mb-0.5 text-center bg-base-100">
-      {/* Display ContactDetailsForm if user is editing a contact */}
-      {isEditingContact &&
-        <ContactDetailsForm
-          handleCancelButton={() => setIsEditingContact(false)}
-          isEditingContact
-          contact={contact}
-          didSaveContact={didSaveContact}
-          setDidSaveContact={setDidSaveContact}
-          setActionSucceeded={setActionSucceeded}
-        />
-      }
-
       {/* Display contact details */}
       <div className="card-body grid grid-cols-2 text-left break-words">
         <div>
@@ -74,6 +62,18 @@ function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButto
             </>
           }
         </div>
+
+        {/* Display ContactDetailsForm if user is editing a contact */}
+        {isEditingContact &&
+          <ContactDetailsForm
+            handleCancelButton={() => setIsEditingContact(false)}
+            isEditingContact
+            contact={contact}
+            didSaveContact={didSaveContact}
+            setDidSaveContact={setDidSaveContact}
+            setActionSucceeded={setActionSucceeded}
+          />
+        }
       </div>
     </div>
   )
