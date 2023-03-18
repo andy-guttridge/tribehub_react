@@ -87,7 +87,9 @@ function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, ca
 
       // Trigger refresh of data in parents as event recurrences may also be affected
       setDidSaveEvent(!didSaveEvent);
-      setChildDidSaveEvent(!childDidSaveEvent);
+      if (typeof setChildDidSaveEvent === "function") {
+        setChildDidSaveEvent(!childDidSaveEvent);
+      }
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors({ event_response: 'There was an error processing your response to this event. You may be offline, or there may have been a server error.' })
