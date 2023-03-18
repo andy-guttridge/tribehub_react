@@ -100,7 +100,9 @@ function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, i
         // Hide form and tell parent component the event was saved
         handleCancelButton();
         setDidSaveEvent(!didSaveEvent);
-        setChildDidSaveEvent(!childDidSaveEvent);
+        if (typeof setChildDidSaveEvent === "function") {
+          setChildDidSaveEvent(!childDidSaveEvent);
+        }
         setActionSucceeded('Your changes to the event have been saved');
       }
       else {

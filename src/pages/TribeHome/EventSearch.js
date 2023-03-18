@@ -184,7 +184,9 @@ function EventSearch({ handleCancelButton, setActionSucceeded, childDidSaveEvent
     try {
       await axiosReq.delete(`events/${isDeletingEvent}/`);
       setDidSaveEvent(!didSaveEvent);
-      setChildDidSaveEvent(!childDidSaveEvent);
+      if (typeof setChildDidSaveEvent === "function") {
+        setChildDidSaveEvent(!childDidSaveEvent);
+      }
       setErrors({});
       setActionSucceeded('The event has now been deleted');
     } catch (error) {
