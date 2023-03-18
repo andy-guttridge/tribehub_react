@@ -87,7 +87,7 @@ function EventSearch({ handleCancelButton, setActionSucceeded, childDidSaveEvent
     const categorySearch = category_search ? `&category=${category_search}` : '';
     const tribeToSearch = tribe_to.reduce((acc, tribeMember) => acc + `&to=${tribeMember}`, '');
     const tribeFromSearch = tribe_from ? `&user=${tribe_from}` : '&user=';
-    const toDateString = to_date && new Date(to_date).toISOString().slice(0, -5);
+    const toDateString = to_date && new Date(to_date).toISOString().slice(0, -13) + '23:59:59';
     const toSearchString = to_date ? `&to_date=${toDateString}` : '';
     const fromDateString = from_date && new Date(from_date).toISOString().slice(0, -5);
     const fromSearchString = from_date ? `&from_date=${fromDateString}` : '';
