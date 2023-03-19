@@ -113,10 +113,12 @@ function MyAccount() {
             body={
               currentUser.is_admin ? (
                 "Are you sure you want to delete your user account and all those of your tribe members? This action cannot be undone."
-                + "\n\nIf you have another account, you will need to clear all cookies for TribeHub before you can use it to login again."
+                + "\n\nIf you have another account, you will need to wait at least five minutes for " 
+                +"your authentication token to expire before you can use it to login again."
               ) : (
                 "Are you sure you want to delete your user account? This action cannot be undone."
-                + "\n\nIf you have another account, you will need to clear all cookies for TribeHub before you can use it to login again."
+                + "\n\nIf you have another account, you will need to wait at least five minutes for "
+                +"your authentication token to expire before you can use it to login again."
               )
             }
             cancelHandler={() => setIsDeletingAccount(false)}
