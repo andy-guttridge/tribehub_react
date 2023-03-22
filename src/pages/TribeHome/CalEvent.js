@@ -22,7 +22,16 @@ import { useSinglePage } from '../../contexts/SinglePageContext';
  * @param {function} obj.childDidSaveEvent Toggle to let parent components higher in the tree know the details of an event have changed
  * @param {function} obj.setChildDidSaveEvent Sets childDidSaveEvent
  */
-function CalEvent({ event, didSaveEvent, setDidSaveEvent, handleDeleteButton, calEventId, setActionSucceeded, childDidSaveEvent, setChildDidSaveEvent }) {
+function CalEvent({
+  event,
+  didSaveEvent,
+  setDidSaveEvent,
+  handleDeleteButton,
+  calEventId,
+  setActionSucceeded,
+  childDidSaveEvent,
+  setChildDidSaveEvent
+}) {
   // Current user
   const currentUser = useCurrentUser();
 

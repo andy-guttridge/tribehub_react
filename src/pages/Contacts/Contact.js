@@ -14,7 +14,13 @@ import ContactDetailsForm from './ContactDetailsForm';
  * @param {function} obj.handleDeleteButton Handler for delete contact button
  * @param {function} obj.setActionSucceeded Set state to let parent know an action resulting in change of data succeeded
  */
-function Contact({ contact, didSaveContact, setDidSaveContact, handleDeleteButton, setActionSucceeded }) {
+function Contact({
+  contact,
+  didSaveContact,
+  setDidSaveContact,
+  handleDeleteButton,
+  setActionSucceeded
+}) {
   // Reference to current user
   const currentUser = useCurrentUser();
 

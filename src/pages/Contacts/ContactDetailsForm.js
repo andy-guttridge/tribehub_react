@@ -4,18 +4,25 @@ import { InfoCircle } from 'react-bootstrap-icons';
 import { axiosReq } from '../../api/axiosDefaults';
 import css from '../../styles/ContactDetailsForm.module.css';
 
-  /**
-   * Form for creating new contacts and editing existing ones
-   * @component
-   * @param {object} obj props
-   * @param {function} obj.handleCancelButton Handler for cancel button
-   * @param {boolean} obj.didSaveContact Bool which is toggled to let parent know a contact was saved
-   * @param {function} obj.setDidSaveContact Set state for didSaveContact
-   * @param {bool} obj.isEditingContact If true, user is editing an existing contact rather than adding a new one
-   * @param {object} obj.contact Contact to be editied if user is editing
-   * @param {function} obj.setActionSucceeded Set string with message to inform parent a request to change data succeeded
-   */
-function ContactDetailsForm({ handleCancelButton, didSaveContact, setDidSaveContact, isEditingContact, contact, setActionSucceeded }) {
+/**
+ * Form for creating new contacts and editing existing ones
+ * @component
+ * @param {object} obj props
+ * @param {function} obj.handleCancelButton Handler for cancel button
+ * @param {boolean} obj.didSaveContact Bool which is toggled to let parent know a contact was saved
+ * @param {function} obj.setDidSaveContact Set state for didSaveContact
+ * @param {bool} obj.isEditingContact If true, user is editing an existing contact rather than adding a new one
+ * @param {object} obj.contact Contact to be editied if user is editing
+ * @param {function} obj.setActionSucceeded Set string with message to inform parent a request to change data succeeded
+ */
+function ContactDetailsForm({
+  handleCancelButton,
+  didSaveContact,
+  setDidSaveContact,
+  isEditingContact,
+  contact,
+  setActionSucceeded
+}) {
   // State for form values
   const [contactForm, setContactForm] = useState({
     category: '',

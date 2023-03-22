@@ -21,7 +21,17 @@ import css from '../../styles/EventDetailsForm.module.css'
  * @param {function} obj.childDidSaveEvent Toggle to let parent components higher in the tree know details of an event have changed
  * @param {function} obj.setChildDidSaveEvent Sets childDidSaveEvent
  */
-function EventDetailsForm({ handleCancelButton, didSaveEvent, setDidSaveEvent, isEditingEvent, event, defaultStartDate, setActionSucceeded, childDidSaveEvent, setChildDidSaveEvent }) {
+function EventDetailsForm({
+  handleCancelButton,
+  didSaveEvent,
+  setDidSaveEvent,
+  isEditingEvent,
+  event,
+  defaultStartDate,
+  setActionSucceeded,
+  childDidSaveEvent,
+  setChildDidSaveEvent
+}) {
   // State for loading status and tribe members data
   const [hasLoaded, setHasLoaded] = useState(false);
   const [tribe, setTribe] = useState({ results: [] });
