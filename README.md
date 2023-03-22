@@ -167,12 +167,12 @@ Development work was scheduled using a series of iterations each with a timebox 
 
 A GitHub project board was created for each iteration, and user stories moved from the product backlog into the relevant iteration as each cycle of work began. User stories were labelled as 'must have', 'could have' or 'should have' goals for that specific iteration, and assigned story point values.  Story points for 'must have' user stories never exceeded 9 (60%). Some iterations also contained 'tasks' for activity not represented as user stories, such as setup/configuration and design/styling.
 
-A project kanban board was used to track progress, with user stories moved between 'Todo', 'In Progress' and 'Done' columns as appropriate. For example, the iteration 3 project board was captured at the start, in the middle and at the end:
+A project kanban board was used to track progress, with user stories moved between 'Todo', 'In Progress' and 'Done' columns as appropriate. For example, the iteration 2 project board was captured at the start, in the middle and at the end:
 
 <p align="center">
-    <img src="readme_assets/iteration3_start_kanban.png" width=600>
-    <img src="readme_assets/iteration3_mid_kanban.png" width=600>
-    <img src="readme_assets/iteration3_end_kanban.png" width=600>
+    <img src="readme_assets/iteration2_start_kanban.png" width=600>
+    <img src="readme_assets/iteration2_mid_kanban.png" width=600>
+    <img src="readme_assets/iteration2_end_kanban.png" width=600>
 </p>
 
 The project boards in their final form can be accessed at [TribeHub GitHub Project Boards](https://github.com/andy-guttridge/tribehub_react/projects?query=is%3Aopen).
