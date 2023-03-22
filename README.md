@@ -13,6 +13,9 @@ TribeHub is designed to be a virtual equivalent to the typical wall planner a fa
 2) Deliver a simple and intuitive user experience, suitable for adults and tech literate children aged 10+. 
 3) Offer a minimal set of impactful features chosen in order to deliver a useful app within an achievable development timeframe, while laying a solid foundation for additional features in the future.
 
+This is the repository for the React frontend of TribeHub.
+The project also utilises a Django Rest Framework web API, the repository for which is located [here](https://github.com/andy-guttridge/tribehub_drf).
+
 ## Table of contents
 - [TribeHub](#tribehub)
   * [Project goals](#project-goals)
