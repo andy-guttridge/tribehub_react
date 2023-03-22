@@ -173,7 +173,7 @@ function CalEvent({
     <div className="card rounded-none md:rounded-md mb-0.5 bg-base-100 md:mx-0.5 text-center">
 
       {/* Card title */}
-      <div className="card-title bg-base-100 rounded-sm flex justify-between p-2 break-all">
+      <div className="card-title bg-base-100 rounded-sm flex justify-between p-2 break-words">
         {/* Event category icon */}
         <img
           src={require(`../../assets/categories/${eventCategories[event.category].image}`)}
