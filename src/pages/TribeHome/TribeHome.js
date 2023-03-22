@@ -326,7 +326,7 @@ function TribeHome() {
       
       {
         // Empty div with padding to provide clearance above bottom navbar if not in single page mode
-        !singlePage && <div className="pb-4 bg-base-100"><br /></div>
+        !singlePage && <div className="mt-12 bg-base-100"><br /></div>
       }
 
       {/* If tribe admin or event owner has selected to delete an event, show the modal to confirm or cancel */}
