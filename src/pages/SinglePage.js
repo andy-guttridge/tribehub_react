@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import TribeHome from './TribeHome/TribeHome'
-import Contacts from './Contacts/Contacts'
-import Account from './Account/Account'
+import TribeHome from './tribehome/TribeHome'
+import Contacts from './contacts/Contacts'
+import Account from './account/Account'
 import { useCurrentUser } from '../contexts/CurrentUserContext'
 
 /**
