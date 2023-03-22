@@ -652,6 +652,16 @@ Several tests failed on the first attempt. In these cases, details of how the is
 
 In addition, the site was deployed early and subject to continual user testing throughout the development process. This resulted in a number of enhancements to the user experience, which are documented in the user stories and planning sections above.
 
+### Automated tests
+Four automated tests were written for the `Header.js` component. These are in `src/components/__tests__/Header.test.js`.
+
+The tests are as follows, and all passed:
+
+- Test that the Header component renders with the logo text, and without a sign-out button when the user is not authenticated.
+- Test that the Header renders a welcome message with the user's name when authenticated.
+- Test that the Header renders a sign-out button for an authenticated user.
+- Test that the Header does not render a welcome message or sign-out button after an authenticated user has pressed the sign-out button.
+
 ### Validator testing
 
 ### W3C CSS validator
@@ -800,6 +810,7 @@ When deployment is complete, you will be given a link to the deployed site.
 - How to invert the colour of an element compared to its background is from [Stack Overflow](https://stackoverflow.com/questions/17741629/how-can-i-invert-color-using-css)
 - How to create divs with diagonal lines is from [9elements.com](https://9elements.com/blog/pure-css-diagonal-layouts/)
 - How to use the text-shadow CSS attribute to add an outline to text is from [Stack Overflow](https://stackoverflow.com/questions/57464935/font-outline-using-only-css)
+- How to configure JEST to allow tests with Axios v1 and above is from [Stack Overflow](https://stackoverflow.com/questions/74940474/jest-encountered-an-unexpected-token)
 
 The following documentation was referenced extensively throughout the project:
 
