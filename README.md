@@ -599,6 +599,7 @@ Lower priority, longer term features to be added are:
 - End dates/date ranges for repeat events (e.g. 'repeat weekly until 1 December 2023').
 - Exceptions to repeat event rules (e.g. a user could set up an event to recur weekly every Wednesday, but could create an exception so that one recurrence is on a Thursday).
 - Exceptions to 'accept/decline' responses for recurrences (e.g. the user could accept all recurrences and then decline them on an individual basis).
+- Notifications to remind users of events ahead of time and push notifications.
 - Day/week/year views for the calendar.
 - Avatars for contacts.
 - A 'banner image' for the whole tribe which can be set by the tribe admin. This would appear at the top of the page or as a background.
@@ -609,6 +610,7 @@ Lower priority, longer term features to be added are:
 - Meal plans, intregrated into shopping lists.
 - UI improvements, e.g. an avatar based UI for inviting tribe members to events, and 'popovers' or 'callouts' for displaying calendar events.
 
+Additionally, a native iOS app implementing the existing features in Swift and UIKit is planned (the Django Rest Framework API has been set-up to allow CORS requests from multiple domains with this in mind).
 
 ## Frameworks, libraries and dependencies
 
