@@ -67,6 +67,17 @@ function Signin() {
     <div className="bg-base-100">
       <h2 className="mb-4">Sign-in</h2>
 
+      <div className="flex flex-col items-center">
+        <div className="m-2 alert alert-info w-3/4 md:w-1/2 lg:w-1/2">
+        <h3>Safari desktop/iOS and other mobile browsers</h3>
+          <ul className="m-2 list-disc text-left block">
+            <li>You will need to turn off &apos;prevent cross-site tracking&apos; or similar in your browser settings to login if you are using Safari on mobile or desktop, and some other mobile browsers.</li>
+            <li>This is because the backend API is hosted at a separate domain to the frontend. The site doesn&apos;t do any tracking.</li>
+            <li>I am currently planning to fix this by moving my hosting to a VPS where both frontend and backend can be hosted at the same domain.</li>
+          </ul>
+        </div>
+      </div>
+
       {/* Flex container for page content */}
       <div className="flex justify-center">
 
